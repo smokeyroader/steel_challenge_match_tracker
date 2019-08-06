@@ -235,7 +235,7 @@ class _BestStringsState extends State<BestStrings> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(2.0),
                     child: Text(
                       '${widget.currentDivision}',
                       style: TextStyle(
@@ -248,7 +248,7 @@ class _BestStringsState extends State<BestStrings> {
                 ],
               ),
               Container(
-                height: 40.0,
+                height: 45.0,
                 color: Color(0xFF00681B),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -262,7 +262,7 @@ class _BestStringsState extends State<BestStrings> {
                           'Stage',
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontSize: 14.0,
+                              fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
@@ -275,7 +275,7 @@ class _BestStringsState extends State<BestStrings> {
                         'Best Avg.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -287,7 +287,7 @@ class _BestStringsState extends State<BestStrings> {
                         'Best Single',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -298,7 +298,7 @@ class _BestStringsState extends State<BestStrings> {
                       child: Text(
                         'Best Stage',
                         style: TextStyle(
-                            fontSize: 14.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -314,17 +314,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             '5 to Go',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStr5}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -337,44 +338,47 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvg5',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.left,
                           ),
                         ],
                       )),
                     ),
-                    Container(
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Container(
 //                      color: Colors.green,
-                      width: 45.0,
-                      child: TextField(
+                        width: 45.0,
+                        child: TextField(
+                          style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColor5),
-                        controller: _controller5STR,
-                        focusNode: _focus5,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
+                          controller: _controller5STR,
+                          focusNode: _focus5,
+                          decoration: InputDecoration.collapsed(
+                            border: OutlineInputBorder(),
                           ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controller5STR);
-                        },
+                          keyboardType: TextInputType.numberWithOptions(
+                            decimal: true,
+                          ),
+                          inputFormatters: [
+                            BlacklistingTextInputFormatter(
+                              RegExp('[\\-|,\\ ]'),
+                            ),
+                          ],
+                          onChanged: (text) {
+                            autoFormat(_controller5STR);
+                          },
+                        ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
 //                        color: Colors.yellow,
-                        width: 65.0,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Text(
-                            '$bestStage5',
-                          ),
+                        width: 75.0,
+                        child: Text(
+                          '$bestStage5',
+                          style: TextStyle(fontSize: 18.0),
                         ),
                       ),
                     ),
@@ -393,17 +397,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Showdown',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrShow}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -416,6 +421,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgShow',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.right,
                           ),
                         ],
@@ -425,6 +431,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
+                        style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColor5),
                         controller: _controllerShowSTR,
                         focusNode: _focusShowSTR,
@@ -445,14 +452,15 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
 //                        color: Colors.yellow,
-                        width: 65.0,
+                        width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
                             '$bestStageShow',
+                            style: TextStyle(fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -472,17 +480,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Smoke & Hope',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            'Smoke&Hope',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrSH}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -495,6 +504,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgSH',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.right,
                           ),
                         ],
@@ -504,6 +514,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
+                        style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColorSH),
                         controller: _controllerSHSTR,
                         focusNode: _focusSHSTR,
@@ -524,14 +535,15 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
 //                        color: Colors.yellow,
-                        width: 65.0,
+                        width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
                             '$bestStageSH',
+                            style: TextStyle(fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -551,17 +563,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Outer Limits',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrOL}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -574,6 +587,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgOL',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.right,
                           ),
                         ],
@@ -583,6 +597,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
+                        style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColorOL),
                         controller: _controllerOLSTR,
                         focusNode: _focusOLSTR,
@@ -603,14 +618,15 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
 //                        color: Colors.yellow,
-                        width: 65.0,
+                        width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
                             '$bestStageOL',
+                            style: TextStyle(fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -630,17 +646,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Accelerator',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrAcc}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -653,6 +670,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgAcc',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.right,
                           ),
                         ],
@@ -662,6 +680,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
+                        style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColorAcc),
                         controller: _controllerAccSTR,
                         focusNode: _focusAccSTR,
@@ -682,14 +701,15 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
 //                        color: Colors.yellow,
-                        width: 65.0,
+                        width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
                             '$bestStageAcc',
+                            style: TextStyle(fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -709,17 +729,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Pendulum',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrPend}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -732,6 +753,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgPend',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.right,
                           ),
                         ],
@@ -741,6 +763,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
+                        style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColorPend),
                         controller: _controllerPendSTR,
                         focusNode: _focusPendSTR,
@@ -761,14 +784,15 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
 //                        color: Colors.yellow,
-                        width: 65.0,
+                        width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
                             '$bestStagePend',
+                            style: TextStyle(fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -788,17 +812,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Speed Option',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrSpeed}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -811,6 +836,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgSpeed',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.right,
                           ),
                         ],
@@ -820,6 +846,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
+                        style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColorSpeed),
                         controller: _controllerSpeedSTR,
                         focusNode: _focusSpeedSTR,
@@ -840,13 +867,14 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-                        width: 65.0,
+                        width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
-                            '$bestStagePend',
+                            '$bestStageSpeed',
+                            style: TextStyle(fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -862,17 +890,18 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 95.0,
+                      width: 115.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             'Roundabout',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrRound}',
-                            style: TextStyle(fontSize: 12.0),
+                            style: TextStyle(fontSize: 14.0),
                           )
                         ],
                       ),
@@ -894,6 +923,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
+                        style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColorRound),
                         controller: _controllerRoundSTR,
                         focusNode: _focusRoundSTR,
@@ -914,14 +944,15 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
+                      padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
 //                        color: Colors.yellow,
-                        width: 65.0,
+                        width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
                             '$bestStageRound',
+                            style: TextStyle(fontSize: 18.0),
                           ),
                         ),
                       ),
@@ -930,7 +961,7 @@ class _BestStringsState extends State<BestStrings> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 24.0),
+                padding: const EdgeInsets.only(top: 4.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -939,28 +970,32 @@ class _BestStringsState extends State<BestStrings> {
                       width: 65.0,
                       child: Text(
                         'Time',
-                        style: TextStyle(fontWeight: FontWeight.w900),
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                     Container(
                       width: 65.0,
                       child: Text(
                         'Peak',
-                        style: TextStyle(fontWeight: FontWeight.w900),
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                     Container(
                       width: 65.0,
                       child: Text(
                         '%Peak',
-                        style: TextStyle(fontWeight: FontWeight.w900),
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                     Container(
                       width: 65.0,
                       child: Text(
                         'Class',
-                        style: TextStyle(fontWeight: FontWeight.w900),
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                   ],
@@ -969,49 +1004,50 @@ class _BestStringsState extends State<BestStrings> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Container(
-                          width: 65.0,
-                          child: Text(
-                            'Best Match',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontWeight: FontWeight.w900),
-                          ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        width: 65.0,
+                        child: Text(
+                          'Best Match',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: 16.0),
                         ),
-                        Container(
-                          width: 65.0,
-                          child: Text(
-                            '$bestMatchTime',
-                          ),
+                      ),
+                      Container(
+                        width: 65.0,
+                        child: Text(
+                          '$bestMatchTime',
+                          style: TextStyle(fontSize: 16.0),
                         ),
-                        Container(
-                          width: 65.0,
-                          child: Text(
-                            '$totPeak',
+                      ),
+                      Container(
+                        width: 65.0,
+                        child: Text(
+                          '$totPeak',
+                          style: TextStyle(fontSize: 16.0),
 //                      style: TextStyle(fontWeight: FontWeight.w900),
-                          ),
                         ),
-                        Container(
-                          width: 65.0,
-                          child: Text(
-                            '$matchPct',
+                      ),
+                      Container(
+                        width: 65.0,
+                        child: Text(
+                          '$matchPct',
+                          style: TextStyle(fontSize: 16.0),
 //                      style: TextStyle(fontWeight: FontWeight.w900),
-                          ),
                         ),
-                        Container(
-                          width: 55.0,
-                          child: Text(
-                            '$bestMatchClass',
-                            textAlign: TextAlign.left,
+                      ),
+                      Container(
+                        width: 55.0,
+                        child: Text(
+                          '$bestMatchClass',
+                          style: TextStyle(fontSize: 16.0),
+                          textAlign: TextAlign.left,
 //                      style: TextStyle(fontWeight: FontWeight.w900),
-                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,

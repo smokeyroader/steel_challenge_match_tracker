@@ -135,7 +135,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 50.0),
+            SizedBox(height: 40.0),
             DropdownButton<String>(
               value: dropdownValue,
               onChanged: (String newValue) {
@@ -148,7 +148,10 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value),
+                  child: Text(
+                    value,
+                    style: TextStyle(fontSize: 18.0),
+                  ),
                 );
               }).toList(),
             ),
@@ -163,7 +166,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   '$firstRecent',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 22.0,
                   ),
                 ),
               ),
@@ -189,7 +192,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   '$thirdRecent',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 22.0,
                   ),
                 ),
               ),
@@ -202,7 +205,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   '$fourthRecent',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 20.0,
+                    fontSize: 22.0,
                   ),
                 ),
               ),
@@ -220,7 +223,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   borderRadius: BorderRadius.circular(30.0)),
               child: Text(
                 'Continue',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
               ),
               onPressed: () {
                 if (dropdownValue == 'Select Division') {
@@ -249,6 +252,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   padding: const EdgeInsets.only(right: 16.0, top: 8.0),
                   child: Text(
                     'Version 2.1',
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ),
               ],
