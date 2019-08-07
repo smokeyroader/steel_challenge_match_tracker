@@ -62,28 +62,24 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     getRecent1().then((value) {
       setState(() {
         firstRecent = value;
-//        print('The saved division is $firstDiv');
       });
     });
 
     getRecent2().then((value) {
       setState(() {
         secondRecent = value;
-//        print('The saved division is $secondDiv');
       });
     });
 
     getRecent3().then((value) {
       setState(() {
         thirdRecent = value;
-//        print('The saved division is $thirdDiv');
       });
     });
 
     getRecent4().then((value) {
       setState(() {
         fourthRecent = value;
-//        print('The saved division is $fourthDiv');
       });
     });
   }
@@ -299,7 +295,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
     } else if (choice == 'Resources') {
       //Navigate to the Resources page with useful links
-      print('Resources selected');
+
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -318,13 +314,11 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           },
         ),
       );
-      print('Help selected');
     }
   }
 
   //Set up a match scoring page depending on which division is selected when user taps one of the saved guns
   void trackFirstDiv() {
-    print('first saved division tapped');
     if (firstRecent != '') {
       startTracking('$firstRecent');
     }

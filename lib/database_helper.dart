@@ -271,7 +271,6 @@ class DatabaseHelper {
   }
 
   Future<StageTimes> queryStageTimes(String table, int row) async {
-    print('from queryStageTimes in helper, value of table is $table');
     Database db = await database;
     List<Map> maps = await db.query(table,
         columns: [
