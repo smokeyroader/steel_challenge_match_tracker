@@ -91,7 +91,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   double bestAvgRound;
 
   double diff;
-  double timeShaved;
+  double timeShaved = 0.0;
 
   String todayPct5 = '';
   String todayPctShow = '';
@@ -281,11 +281,12 @@ class _MatchTrackerState extends State<MatchTracker> {
         },
         //Add ScrollView so that keyboard doesn't cover data fields
         child: SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
             child: Column(
               children: <Widget>[
                 Row(
+                  mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -364,7 +365,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -468,7 +469,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -575,7 +576,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -682,7 +683,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     children: <Widget>[
                       Container(
 //                      color: Colors.blue,
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -786,7 +787,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -894,7 +895,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -999,7 +1000,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -1103,7 +1104,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 115.0,
+                        width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -1200,46 +1201,50 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(width: 75.0),
-                      Container(
-                        width: 65.0,
-                        child: Text(
-                          'Time',
-                          style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.w900),
-                        ),
+                Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(width: 75.0),
+                          Container(
+                            width: 65.0,
+                            child: Text(
+                              'Time',
+                              style: TextStyle(
+                                  fontSize: 16.0, fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                          Container(
+                            width: 65.0,
+                            child: Text(
+                              'Peak',
+                              style: TextStyle(
+                                  fontSize: 16.0, fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                          Container(
+                            width: 65.0,
+                            child: Text(
+                              '%Peak',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                          Container(
+                            width: 65.0,
+                            child: Text(
+                              'Class',
+                              style: TextStyle(
+                                  fontSize: 16.0, fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        width: 65.0,
-                        child: Text(
-                          'Peak',
-                          style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                      Container(
-                        width: 65.0,
-                        child: Text(
-                          '%Peak',
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                      Container(
-                        width: 65.0,
-                        child: Text(
-                          'Class',
-                          style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.w900),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -1337,9 +1342,10 @@ class _MatchTrackerState extends State<MatchTracker> {
 //                      height: 15.0,
 //                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 24.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),

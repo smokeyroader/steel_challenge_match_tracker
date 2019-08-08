@@ -314,7 +314,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -397,7 +397,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -480,7 +480,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -563,7 +563,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -646,7 +646,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -729,7 +729,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -812,7 +812,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -890,7 +890,7 @@ class _BestStringsState extends State<BestStrings> {
                   children: <Widget>[
                     Container(
 //                      color: Colors.blue,
-                      width: 115.0,
+                      width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
