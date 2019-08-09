@@ -42,8 +42,9 @@ class CurrentClassification extends StatelessWidget {
                   autofocus: true,
                   controller: _controller,
                   decoration: InputDecoration(hintText: 'USPSA Member #'),
-//                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.go,
                   keyboardType: TextInputType.text,
+
                   inputFormatters: [
                     BlacklistingTextInputFormatter(
                       RegExp('[\\-|,\\ ]'),

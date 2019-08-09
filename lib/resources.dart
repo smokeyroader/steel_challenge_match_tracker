@@ -34,7 +34,7 @@ class _ResourcesState extends State<Resources> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: const EdgeInsets.only(top: 18.0),
                 child: GestureDetector(
                   onTap: () {
                     _teamMT();
@@ -48,7 +48,7 @@ class _ResourcesState extends State<Resources> {
                       'Team Match Tracker Info and Signup',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF00681B),
                       ),
@@ -75,7 +75,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'My Current Classifications',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),
@@ -92,7 +92,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'The Ultimate Steel Shooter Podcast',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),
@@ -109,7 +109,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'The First Steel Challenge Training Manual',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),
@@ -125,7 +125,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'Steel Challenge Training Aids',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),
@@ -142,7 +142,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'How the SCSA Classification System Works',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),
@@ -159,7 +159,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'Steel Challenge Online Rule Book',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),
@@ -176,7 +176,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'Steel Challenge World Records',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),
@@ -192,7 +192,7 @@ class _ResourcesState extends State<Resources> {
                   child: Text(
                     'Practiscore Home',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF00681B),
                     ),

@@ -207,7 +207,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
               ),
             ),
             Container(
-              height: 120.0,
+              height: 180.0,
               child: Image.asset('images/match_tracker_logo_front.jpg'),
             ),
             SizedBox(
