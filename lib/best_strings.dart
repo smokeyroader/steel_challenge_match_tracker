@@ -376,9 +376,12 @@ class _BestStringsState extends State<BestStrings> {
                       child: Container(
 //                        color: Colors.yellow,
                         width: 75.0,
-                        child: Text(
-                          '$bestStage5',
-                          style: TextStyle(fontSize: 18.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Text(
+                            '$bestStage5',
+                            style: TextStyle(fontSize: 18.0),
+                          ),
                         ),
                       ),
                     ),
@@ -1096,11 +1099,11 @@ class _BestStringsState extends State<BestStrings> {
       setState(() {
         text = text.replaceAll('.', '');
         text = text.replaceAll(' ', '');
-        if (text.length <= 2) {
-//      if (text.length == 1 || text.length == 2) {
+        if (text.length == 1)
           text = '.' + text;
-        } else {
-//      (text.length > 2) {
+        else if (text.length == 2)
+          text = '.' + text;
+        else if (text.length > 2) {
           text = text.substring(0, text.length - 2) +
               '.' +
               text.substring(text.length - 2, text.length);
@@ -1347,16 +1350,21 @@ class _BestStringsState extends State<BestStrings> {
               _controllerSpeedSTR.text = '';
               _controllerRoundSTR.text = '';
 
+              bestStage5 = '';
+              bestStageShow = '';
+              bestStageSH = '';
+              bestStageOL = '';
+              bestStageAcc = '';
+              bestStagePend = '';
+              bestStageSpeed = '';
+              bestStageRound = '';
+
               bestMatchTime = '';
               matchPct = '';
               bestMatchClass = '';
               totPeak = '';
 
               _saveStringTimes();
-
-//              addTotalTime();
-//              addTotalPeak();
-//              calcTotalPeak();
             });
             Navigator.pop(context);
 //            calcBestMatch();
@@ -1446,27 +1454,7 @@ class _BestStringsState extends State<BestStrings> {
         }
 
         _calcBestMatch();
-//      _controller5STR.text = stringTimes.fiveToGo;
       });
-
-//
-//      if (stringTimes.fiveToGo != '') {
-//        bestStage5 =
-//            (double.parse(stringTimes.fiveToGo) * 4).toStringAsFixed(2);
-//      }
-//
-//      _controllerShowSTR.text = stringTimes.showdown;
-//
-//      if (stringTimes.showdown != '') {
-//        bestStageShow =
-//            (double.parse(stringTimes.showdown) * 4).toStringAsFixed(2);
-//      }
-//
-//      if (stringTimes.smokeAndHope != '') {
-//        bestStageSH =
-//            (double.parse(stringTimes.smokeAndHope) * 4).toStringAsFixed(2);
-//      }
     }
-//    calcTotals();
   }
 }

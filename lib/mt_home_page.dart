@@ -130,8 +130,10 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       ),
       body: Center(
         child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            SizedBox(height: 40.0),
+//            SizedBox(height: 40.0),
             DropdownButton<String>(
               value: dropdownValue,
               onChanged: (String newValue) {
@@ -151,9 +153,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                 );
               }).toList(),
             ),
-            SizedBox(
-              height: 30.0,
-            ),
+//            SizedBox(
+//              height: 30.0,
+//            ),
             GestureDetector(
               onTap: trackFirstDiv,
               child: Padding(

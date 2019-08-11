@@ -284,6 +284,8 @@ class _MatchTrackerState extends State<MatchTracker> {
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -1204,7 +1206,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                 Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(top: 24.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
@@ -1342,7 +1344,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 //                      height: 15.0,
 //                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 24.0),
+                      padding: const EdgeInsets.only(top: 4.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
@@ -1367,9 +1369,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                             ),
                           ),
                           Container(
-                            width: 80.0,
+                            width: 120.0,
                             child: Text(
                               '$timeCuts',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.bold,
@@ -1414,9 +1417,11 @@ class _MatchTrackerState extends State<MatchTracker> {
       setState(() {
         text = text.replaceAll('.', '');
         text = text.replaceAll(' ', '');
-        if (text.length <= 2) {
+        if (text.length == 1)
           text = '.' + text;
-        } else {
+        else if (text.length == 2)
+          text = '.' + text;
+        else if (text.length > 2) {
           text = text.substring(0, text.length - 2) +
               '.' +
               text.substring(text.length - 2, text.length);
@@ -1709,6 +1714,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClass5 = _calcBestClass(peak5, stageTime);
                     newBestColor5 = Color(0xFF00681B);
+                    _calcOverall();
                   });
                   break;
                 case 'Show':
@@ -1729,6 +1735,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClassShow = _calcBestClass(peakShow, stageTime);
                     newBestColorShow = Color(0xFF00681B);
+                    _calcOverall();
                   });
 
                   break;
@@ -1751,6 +1758,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                     bestClassSH = _calcBestClass(peakSH, stageTime);
                   });
                   newBestColorSH = Color(0xFF00681B);
+                  _calcOverall();
+
                   break;
                 case 'OL':
                   diff = (double.parse(bestOL) - double.parse(stageTime));
@@ -1771,6 +1780,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                     bestClassOL = _calcBestClass(peakOL, stageTime);
                   });
                   newBestColorOL = Color(0xFF00681B);
+                  _calcOverall();
+
                   break;
                 case 'Acc':
                   diff = (double.parse(bestAcc) - double.parse(stageTime));
@@ -1791,6 +1802,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                     bestClassAcc = _calcBestClass(peakAcc, stageTime);
                   });
                   newBestColorAcc = Color(0xFF00681B);
+                  _calcOverall();
+
                   break;
                 case 'Pend':
                   diff = (double.parse(bestPend) - double.parse(stageTime));
@@ -1811,6 +1824,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                     bestClassPend = _calcBestClass(peakPend, stageTime);
                   });
                   newBestColorPend = Color(0xFF00681B);
+                  _calcOverall();
+
                   break;
                 case 'Speed':
                   diff = (double.parse(bestSpeed) - double.parse(stageTime));
@@ -1831,6 +1846,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                     bestClassSpeed = _calcBestClass(peakSpeed, stageTime);
                   });
                   newBestColorSpeed = Color(0xFF00681B);
+                  _calcOverall();
+
                   break;
                 case 'Round':
                   diff = (double.parse(bestRound) - double.parse(stageTime));
@@ -1851,6 +1868,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                     bestClassRound = _calcBestClass(peakRound, stageTime);
                   });
                   newBestColorRound = Color(0xFF00681B);
+                  _calcOverall();
+
                   break;
               }
             });
@@ -1873,6 +1892,13 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
 ///////Call functions to update today and overall totals when TextField loses focus///////////////
+
+  void _calcOverall() {
+    _addOverallTimes();
+    _addOverallPeak();
+    _calcOverallPeak();
+  }
+
   void _calcTotals() {
     if (showToday == 'On') {
       _addTodayTimes();
@@ -2827,7 +2853,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       type: AlertType.none,
       title: "Confirm...",
       desc:
-          "This will clear all $divAbbrev data, including best times, and cannot be undone.",
+          "This will clear all $divAbbrev \"Today\" and \"Best\" times, and cannot be undone.",
       buttons: [
         DialogButton(
           width: 20,
@@ -2892,6 +2918,8 @@ class _MatchTrackerState extends State<MatchTracker> {
               bestClassRound = '';
 
               timeCuts = '';
+
+              timeShaved = 0.0;
             });
             _saveStageTimes();
             Navigator.pop(context);
