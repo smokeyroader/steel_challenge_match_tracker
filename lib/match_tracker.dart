@@ -1363,7 +1363,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 //                      height: 15.0,
 //                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
+                      padding: const EdgeInsets.only(top: 48.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
@@ -1383,6 +1383,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               onPressed: () {
                                 //Code here to save data before exiting screen
+                                SystemChannels.textInput
+                                    .invokeMethod('TextInput.hide');
                                 Navigator.pop(context);
                               },
                             ),
@@ -1398,23 +1400,20 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: RaisedButton(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  side: BorderSide(color: Color(0xFF00681B))),
-                              child: Text(
-                                'Clear Today',
-                                style: TextStyle(
-                                  color: Color(0xFF00681B),
-                                ),
+                          RaisedButton(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                side: BorderSide(color: Color(0xFF00681B))),
+                            child: Text(
+                              'Clear Today',
+                              style: TextStyle(
+                                color: Color(0xFF00681B),
                               ),
-                              onPressed: () {
-                                _confirmClearToday();
-                              },
                             ),
+                            onPressed: () {
+                              _confirmClearToday();
+                            },
                           )
                         ],
                       ),

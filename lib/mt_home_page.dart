@@ -111,6 +111,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: false,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Steel Challenge Match Tracker'),
@@ -171,7 +172,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     '$firstRecent',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                     ),
                   ),
                 ),
@@ -197,7 +198,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     '$thirdRecent',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                     ),
                   ),
                 ),
@@ -210,7 +211,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     '$fourthRecent',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 22.0,
+                      fontSize: 20.0,
                     ),
                   ),
                 ),
