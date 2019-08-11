@@ -110,152 +110,160 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Steel Challenge Match Tracker'),
-        backgroundColor: Color(0xFF00681B),
-        actions: <Widget>[
-          PopupMenuButton<String>(
-            onSelected: mainMenuChoiceAction,
-            itemBuilder: (BuildContext context) {
-              return Constants.mainMenuChoices.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-//            SizedBox(height: 40.0),
-            DropdownButton<String>(
-              value: dropdownValue,
-              onChanged: (String newValue) {
-                setState(() {
-                  dropdownValue = newValue;
-                  showRecents(newValue);
-                });
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Steel Challenge Match Tracker'),
+          backgroundColor: Color(0xFF00681B),
+          actions: <Widget>[
+            PopupMenuButton<String>(
+              onSelected: mainMenuChoiceAction,
+              itemBuilder: (BuildContext context) {
+                return Constants.mainMenuChoices.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice
+//                      ,
+//                      style: TextStyle(fontSize: 18.0),
+                        ),
+                  );
+                }).toList();
               },
-              items: Constants.divisions
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                );
-              }).toList(),
             ),
+          ],
+        ),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+//            SizedBox(height: 40.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 48.0),
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  onChanged: (String newValue) {
+                    setState(() {
+                      dropdownValue = newValue;
+                      showRecents(newValue);
+                    });
+                  },
+                  items: Constants.divisions
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 18.0),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
 //            SizedBox(
 //              height: 30.0,
 //            ),
-            GestureDetector(
-              onTap: trackFirstDiv,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '$firstRecent',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 22.0,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: trackSecondDiv,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '$secondRecent',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: trackThirdDiv,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '$thirdRecent',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 22.0,
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: trackFourthDiv,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '$fourthRecent',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 22.0,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 180.0,
-              child: Image.asset('images/match_tracker_logo_front.jpg'),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            RaisedButton(
-              color: Color(0xFF00681B),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
-              child: Text(
-                'Continue',
-                style: TextStyle(fontSize: 18.0, color: Colors.white),
-              ),
-              onPressed: () {
-                if (dropdownValue == 'Select Division') {
-                  _noDivisionAlert(context);
-                } else {
-//              setState(() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return MatchTracker(
-                          currentDivision: '$dropdownValue',
-//                      peak5: 12.5,
-                        );
-                      },
-                    ),
-                  );
-//              });
-                }
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+              GestureDetector(
+                onTap: trackFirstDiv,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Version 2.1',
-                    style: TextStyle(fontSize: 16.0),
+                    '$firstRecent',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22.0,
+                    ),
                   ),
                 ),
-              ],
-            ),
-          ],
+              ),
+              GestureDetector(
+                onTap: trackSecondDiv,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '$secondRecent',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: trackThirdDiv,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '$thirdRecent',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22.0,
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: trackFourthDiv,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '$fourthRecent',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22.0,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 180.0,
+                child: Image.asset('images/match_tracker_logo_front.jpg'),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              RaisedButton(
+                color: Color(0xFF00681B),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text(
+                  'Continue',
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                ),
+                onPressed: () {
+                  if (dropdownValue == 'Select Division') {
+                    _noDivisionAlert(context);
+                  } else {
+//              setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return MatchTracker(
+                            currentDivision: '$dropdownValue',
+//                      peak5: 12.5,
+                          );
+                        },
+                      ),
+                    );
+//              });
+                  }
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+                    child: Text(
+                      'Version 2.1',
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

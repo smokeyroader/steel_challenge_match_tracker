@@ -7,6 +7,7 @@ import 'best_strings.dart';
 import 'constants.dart';
 import 'database_helper.dart';
 import 'track_class.dart';
+import 'stage_diagrams.dart';
 
 class MatchTracker extends StatefulWidget {
   //Set current division sent from mt_home_page.dart
@@ -377,8 +378,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset(
+                                      return StageDiagram('Five to Go',
                                           'images/five_to_go.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -481,7 +484,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset('images/showdown.jpg');
+                                      return StageDiagram(
+                                          'Showdown', 'images/showdown.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -588,8 +594,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset(
+                                      return StageDiagram('Smoke & Hope',
                                           'images/smoke_n_hope.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -695,8 +703,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset(
+                                      return StageDiagram('Outer Limits',
                                           'images/outer_limits.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -799,8 +809,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset(
+                                      return StageDiagram('Accelerator',
                                           'images/accelerator.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -907,7 +919,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset('images/pendulum.jpg');
+                                      return StageDiagram('The Pendulum',
+                                          'images/pendulum.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -1012,8 +1027,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset(
+                                      return StageDiagram('Speed Option',
                                           'images/speed_option.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -1116,8 +1133,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return Image.asset(
+                                      return StageDiagram('Roundabout',
                                           'images/roundabout.jpg');
+//                                      return Image.asset(
+//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
