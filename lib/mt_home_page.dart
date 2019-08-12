@@ -89,18 +89,22 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     if (div != 'Select Division') {
       if (firstRecent == '') {
         firstRecent = div;
+        dropdownValue = 'Select Division';
       } else {
         if (secondRecent == '' && firstRecent != div) {
           secondRecent = div;
+          dropdownValue = 'Select Division';
         } else {
           if (thirdRecent == '' && firstRecent != div && secondRecent != div) {
             thirdRecent = div;
+            dropdownValue = 'Select Division';
           } else {
             if (fourthRecent == '' &&
                 firstRecent != div &&
                 secondRecent != div &&
                 thirdRecent != div) {
               fourthRecent = div;
+              dropdownValue = 'Select Division';
             }
           }
         }
@@ -134,136 +138,138 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           ],
         ),
         body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
 //            SizedBox(height: 40.0),
-              Padding(
-                padding: const EdgeInsets.only(top: 48.0),
-                child: DropdownButton<String>(
-                  value: dropdownValue,
-                  onChanged: (String newValue) {
-                    setState(() {
-                      dropdownValue = newValue;
-                      showRecents(newValue);
-                    });
-                  },
-                  items: Constants.divisions
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                    );
-                  }).toList(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 48.0),
+                  child: DropdownButton<String>(
+                    value: dropdownValue,
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                        showRecents(newValue);
+                      });
+                    },
+                    items: Constants.divisions
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
-              ),
 //            SizedBox(
 //              height: 30.0,
 //            ),
-              GestureDetector(
-                onTap: trackFirstDiv,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '$firstRecent',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: trackSecondDiv,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '$secondRecent',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: trackThirdDiv,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '$thirdRecent',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: trackFourthDiv,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '$fourthRecent',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                height: 180.0,
-                child: Image.asset('images/match_tracker_logo_front.jpg'),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              RaisedButton(
-                color: Color(0xFF00681B),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0)),
-                child: Text(
-                  'Continue',
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
-                ),
-                onPressed: () {
-                  if (dropdownValue == 'Select Division') {
-                    _noDivisionAlert(context);
-                  } else {
-//              setState(() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return MatchTracker(
-                            currentDivision: '$dropdownValue',
-//                      peak5: 12.5,
-                          );
-                        },
-                      ),
-                    );
-//              });
-                  }
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+                GestureDetector(
+                  onTap: trackFirstDiv,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Version 2.1',
-                      style: TextStyle(fontSize: 16.0),
+                      '$firstRecent',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                GestureDetector(
+                  onTap: trackSecondDiv,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      '$secondRecent',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: trackThirdDiv,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      '$thirdRecent',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: trackFourthDiv,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      '$fourthRecent',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 180.0,
+                  child: Image.asset('images/match_tracker_logo_front.jpg'),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                RaisedButton(
+                  color: Color(0xFF00681B),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  child: Text(
+                    'Continue',
+                    style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  ),
+                  onPressed: () {
+                    if (dropdownValue == 'Select Division') {
+                      _noDivisionAlert(context);
+                    } else {
+//              setState(() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return MatchTracker(
+                              currentDivision: '$dropdownValue',
+//                      peak5: 12.5,
+                            );
+                          },
+                        ),
+                      );
+//              });
+                    }
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+                      child: Text(
+                        'Version 2.1',
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -374,7 +380,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       context: context,
       type: AlertType.warning,
       title: "Oops!",
-      desc: "You must select a division.",
+      desc: "You must select a division or tap a previous division.",
       buttons: [
         DialogButton(
           color: Colors.green,

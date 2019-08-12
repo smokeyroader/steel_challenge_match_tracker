@@ -2262,6 +2262,15 @@ class _MatchTrackerState extends State<MatchTracker> {
 
               timeCuts = '';
               timeShaved = 0.0;
+
+              newBestColor5 = Colors.black;
+              newBestColorShow = Colors.black;
+              newBestColorSH = Colors.black;
+              newBestColorOL = Colors.black;
+              newBestColorAcc = Colors.black;
+              newBestColorPend = Colors.black;
+              newBestColorSpeed = Colors.black;
+              newBestColorRound = Colors.black;
             });
             _saveStageTimes();
             Navigator.pop(context);
