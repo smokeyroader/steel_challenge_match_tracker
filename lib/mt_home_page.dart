@@ -86,30 +86,30 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 
   //Method to add division selections to list of recent guns (up to 4, without duplicates)
   void showRecents(String div) {
-    if (div != 'Select Division') {
-      if (firstRecent == '') {
-        firstRecent = div;
+    if (firstRecent == '') {
+      firstRecent = div;
+      dropdownValue = 'Select Division';
+    } else {
+      if (secondRecent == '' && firstRecent != div) {
+        secondRecent = div;
         dropdownValue = 'Select Division';
       } else {
-        if (secondRecent == '' && firstRecent != div) {
-          secondRecent = div;
+        if (thirdRecent == '' && firstRecent != div && secondRecent != div) {
+          thirdRecent = div;
           dropdownValue = 'Select Division';
         } else {
-          if (thirdRecent == '' && firstRecent != div && secondRecent != div) {
-            thirdRecent = div;
+          if (fourthRecent == '' &&
+              firstRecent != div &&
+              secondRecent != div &&
+              thirdRecent != div) {
+            fourthRecent = div;
             dropdownValue = 'Select Division';
-          } else {
-            if (fourthRecent == '' &&
-                firstRecent != div &&
-                secondRecent != div &&
-                thirdRecent != div) {
-              fourthRecent = div;
-              dropdownValue = 'Select Division';
-            }
           }
         }
       }
     }
+
+    startTracking(div);
   }
 
   @override
@@ -149,10 +149,14 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   child: DropdownButton<String>(
                     value: dropdownValue,
                     onChanged: (String newValue) {
-                      setState(() {
-                        dropdownValue = newValue;
-                        showRecents(newValue);
-                      });
+                      if (newValue != 'Select Division') {
+                        setState(() {
+                          dropdownValue = newValue;
+                          showRecents(newValue);
+                        });
+                      } else {
+                        _noDivisionAlert(context);
+                      }
                     },
                     items: Constants.divisions
                         .map<DropdownMenuItem<String>>((String value) {
@@ -222,52 +226,56 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   ),
                 ),
                 Container(
-                  height: 180.0,
+                  height: 190.0,
                   child: Image.asset('images/match_tracker_logo_front.jpg'),
                 ),
-                SizedBox(
-                  height: 20.0,
+//                SizedBox(
+//                  height: 20.0,
+//                ),
+//                RaisedButton(
+//                  color: Color(0xFF00681B),
+//                  shape: RoundedRectangleBorder(
+//                      borderRadius: BorderRadius.circular(30.0)),
+//                  child: Text(
+//                    'Continue',
+//                    style: TextStyle(fontSize: 18.0, color: Colors.white),
+//                  ),
+//                  onPressed: () {
+//                    if (dropdownValue == 'Select Division') {
+//                      _noDivisionAlert(context);
+//                    } else {
+////              setState(() {
+//                      Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                          builder: (context) {
+//                            return MatchTracker(
+//                              currentDivision: '$dropdownValue',
+////                      peak5: 12.5,
+//                            );
+//                          },
+//                        ),
+//                      );
+////              });
+//                    }
+//                  },
+//                ),
+                Text(
+                  'Version 2.1',
+                  style: TextStyle(fontSize: 16.0),
                 ),
-                RaisedButton(
-                  color: Color(0xFF00681B),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  child: Text(
-                    'Continue',
-                    style: TextStyle(fontSize: 18.0, color: Colors.white),
-                  ),
-                  onPressed: () {
-                    if (dropdownValue == 'Select Division') {
-                      _noDivisionAlert(context);
-                    } else {
-//              setState(() {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return MatchTracker(
-                              currentDivision: '$dropdownValue',
-//                      peak5: 12.5,
-                            );
-                          },
-                        ),
-                      );
-//              });
-                    }
-                  },
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16.0, top: 8.0),
-                      child: Text(
-                        'Version 2.1',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    ),
-                  ],
-                ),
+//                Row(
+//                  mainAxisAlignment: MainAxisAlignment.end,
+//                  children: <Widget>[
+//                    Padding(
+//                      padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+//                      child: Text(
+//                        'Version 2.1',
+//                        style: TextStyle(fontSize: 16.0),
+//                      ),
+//                    ),
+//                  ],
+//                ),
               ],
             ),
           ),
@@ -296,6 +304,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         secondRecent = '';
         thirdRecent = '';
         fourthRecent = '';
+        dropdownValue = 'Select Division';
         saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
       });
     } else if (choice == 'Save Recent Guns') {
