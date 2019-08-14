@@ -429,7 +429,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style:
                                 TextStyle(fontSize: 18.0, color: newBestColor5),
@@ -455,7 +455,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -535,7 +535,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style: TextStyle(
                                 fontSize: 18.0, color: newBestColorShow),
@@ -561,7 +561,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -645,7 +645,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style: TextStyle(
                                 fontSize: 18.0, color: newBestColorSH),
@@ -671,7 +671,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -754,7 +754,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style: TextStyle(
                                 fontSize: 18.0, color: newBestColorOL),
@@ -780,7 +780,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -860,7 +860,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style: TextStyle(
                                 fontSize: 18.0, color: newBestColorAcc),
@@ -886,7 +886,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -970,7 +970,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style: TextStyle(
                                 fontSize: 18.0, color: newBestColorPend),
@@ -996,7 +996,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -1078,7 +1078,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style: TextStyle(
                                 fontSize: 18.0, color: newBestColorSpeed),
@@ -1104,7 +1104,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -1184,7 +1184,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          width: 45.0,
+                          width: 48.0,
                           child: TextField(
                             style: TextStyle(
                                 fontSize: 18.0, color: newBestColorRound),
@@ -1210,7 +1210,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 4.0),
                         child: Container(
                           width: 75.0,
                           child: Text(
@@ -1369,7 +1369,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: const EdgeInsets.only(left: 4.0),
                             child: RaisedButton(
                               color: Colors.white,
                               shape: RoundedRectangleBorder(
@@ -1400,20 +1400,23 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                             ),
                           ),
-                          RaisedButton(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                                side: BorderSide(color: Color(0xFF00681B))),
-                            child: Text(
-                              'Clear Today',
-                              style: TextStyle(
-                                color: Color(0xFF00681B),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: RaisedButton(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  side: BorderSide(color: Color(0xFF00681B))),
+                              child: Text(
+                                'Clear Today',
+                                style: TextStyle(
+                                  color: Color(0xFF00681B),
+                                ),
                               ),
+                              onPressed: () {
+                                _confirmClearToday();
+                              },
                             ),
-                            onPressed: () {
-                              _confirmClearToday();
-                            },
                           )
                         ],
                       ),
@@ -1455,6 +1458,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 //Calculate and display today and total times when TextField loses focus
   Future<Null> _focus5Listener() async {
     if (!_focus5.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controller5.text == '') {
         setState(() {
           todayPct5 = '';
@@ -1483,6 +1487,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   Future<Null> _focusShowListener() async {
     if (!_focusShow.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controllerShow.text == '') {
         setState(() {
           todayPctShow = '';
@@ -1513,6 +1518,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   Future<Null> _focusSHListener() async {
     if (!_focusSH.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controllerSH.text == '') {
         setState(() {
           todayPctSH = '';
@@ -1542,6 +1548,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   Future<Null> _focusOLListener() async {
     if (!_focusOL.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controllerOL.text == '') {
         setState(() {
           todayPctOL = '';
@@ -1571,6 +1578,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   Future<Null> _focusAccListener() async {
     if (!_focusAcc.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controllerAcc.text == '') {
         setState(() {
           todayPctAcc = '';
@@ -1601,6 +1609,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   Future<Null> _focusPendListener() async {
     if (!_focusPend.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controllerPend.text == '') {
         setState(() {
           todayPctPend = '';
@@ -1631,6 +1640,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   Future<Null> _focusSpeedListener() async {
     if (!_focusSpeed.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controllerSpeed.text == '') {
         setState(() {
           todayPctSpeed = '';
@@ -1661,6 +1671,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   Future<Null> _focusRoundListener() async {
     if (!_focusRound.hasFocus) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       if (_controllerRound.text == '') {
         setState(() {
           todayPctRound = '';
