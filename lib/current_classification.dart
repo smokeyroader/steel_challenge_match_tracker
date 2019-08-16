@@ -42,7 +42,7 @@ class CurrentClassification extends StatelessWidget {
                   autofocus: true,
                   controller: _controller,
                   decoration: InputDecoration(hintText: 'USPSA Member #'),
-                  textInputAction: TextInputAction.go,
+                  textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.text,
 
                   inputFormatters: [
@@ -67,11 +67,11 @@ class CurrentClassification extends StatelessWidget {
                 ),
                 onPressed: () {
                   SystemChannels.textInput.invokeMethod('TextInput.hide');
-//                  memberNum = _controller.text;
+
                   _saveMemberNum('${_controller.text}');
                   launchURL(
                       "https://www.steelchallenge.com/steel-challenge-classification.php?action=lookup&scsa=${_controller.text}");
-                  //Code here to save data before exiting screen
+
                   Navigator.pop(context);
                 },
               ),

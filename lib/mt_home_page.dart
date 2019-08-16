@@ -19,8 +19,6 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   String thirdRecent = '';
   String fourthRecent = '';
 
-  String rOne;
-
   //initState and run setData() to populate list of recent guns with saved selections
 //  Also lock orientation to portrait
   @override
@@ -34,11 +32,17 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     setRecents();
   }
 
+//  Future<bool> firstUse() async {
+//    SharedPreferences preferences = await SharedPreferences.getInstance();
+//    if (preferences.get('firstUse') == null) {
+//      _noDivisionAlert(context);
+//      preferences.setBool('firstUse', false);
+//    }
+//  }
+
 // Methods to retrieve saved recent guns. Need to figure out how to return multiple keys
   Future<String> getRecent1() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-//    firstRecent = preferences.get('recent1') ?? '';
-//    secondRecent = preferences.get('recent2') ?? '';
     return preferences.get('recent1') ?? '';
   }
 

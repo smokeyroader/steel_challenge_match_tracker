@@ -2572,7 +2572,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string 5 to Go is ${bestAvg5.toStringAsFixed(2)}'),
+              'Best average string 5 to Go is ${bestAvg5.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2584,7 +2586,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string Showdown is ${bestAvgShow.toStringAsFixed(2)}'),
+              'Best average string Showdown is ${bestAvgShow.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2597,7 +2601,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string Smoke & Hope is ${bestAvgSH.toStringAsFixed(2)}'),
+              'Best average string Smoke & Hope is ${bestAvgSH.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2610,7 +2616,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string Outer Limits is ${bestAvgOL.toStringAsFixed(2)}'),
+              'Best average string Outer Limits is ${bestAvgOL.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2623,7 +2631,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string Accelerator is ${bestAvgAcc.toStringAsFixed(2)}'),
+              'Best average string Accelerator is ${bestAvgAcc.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2636,7 +2646,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string Pendulum is ${bestAvgPend.toStringAsFixed(2)}'),
+              'Best average string Pendulum is ${bestAvgPend.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2649,7 +2661,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string Speed Option is ${bestAvgSpeed.toStringAsFixed(2)}'),
+              'Best average string Speed Option is ${bestAvgSpeed.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2662,7 +2676,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           final snackBar = SnackBar(
             backgroundColor: Color(0xFF00681B),
             content: Text(
-                'Best average string Roundabout is ${bestAvgRound.toStringAsFixed(2)}'),
+              'Best average string Roundabout is ${bestAvgRound.toStringAsFixed(2)}',
+              textAlign: TextAlign.center,
+            ),
           );
           scaffoldState.currentState.showSnackBar(snackBar);
         }
@@ -2961,6 +2977,14 @@ class _MatchTrackerState extends State<MatchTracker> {
             });
             _saveStageTimes();
             Navigator.pop(context);
+            final snackBar = SnackBar(
+              backgroundColor: Color(0xFF00681B),
+              content: Text(
+                '$divAbbrev data cleared.',
+                textAlign: TextAlign.center,
+              ),
+            );
+            scaffoldState.currentState.showSnackBar(snackBar);
           },
           width: 20,
         ),
