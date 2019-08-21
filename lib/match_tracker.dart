@@ -39,16 +39,16 @@ class _MatchTrackerState extends State<MatchTracker> {
   TextEditingController _controllerSpeed = TextEditingController();
   TextEditingController _controllerRound = TextEditingController();
 
-  //Set focusNodes to detect change in focus of TextFields
+  //Declare focusNodes to detect change in focus of TextFields
 
-  FocusNode _focus5 = FocusNode();
-  FocusNode _focusShow = FocusNode();
-  FocusNode _focusSH = FocusNode();
-  FocusNode _focusOL = FocusNode();
-  FocusNode _focusAcc = FocusNode();
-  FocusNode _focusPend = FocusNode();
-  FocusNode _focusSpeed = FocusNode();
-  FocusNode _focusRound = FocusNode();
+  FocusNode _focus5;
+  FocusNode _focusShow;
+  FocusNode _focusSH;
+  FocusNode _focusOL;
+  FocusNode _focusAcc;
+  FocusNode _focusPend;
+  FocusNode _focusSpeed;
+  FocusNode _focusRound;
 
 //  bool savedClass = false;
 
@@ -136,6 +136,15 @@ class _MatchTrackerState extends State<MatchTracker> {
 //      DeviceOrientation.portraitDown,
 //    ]);
 
+    _focus5 = FocusNode();
+    _focusShow = FocusNode();
+    _focusSH = FocusNode();
+    _focusOL = FocusNode();
+    _focusAcc = FocusNode();
+    _focusPend = FocusNode();
+    _focusSpeed = FocusNode();
+    _focusRound = FocusNode();
+
 //    Check if today times are shown (true) or hidden (false)
     _getShowHide().then((value) {
       setState(() {
@@ -213,7 +222,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     //retrieval from database
     _calcTotals();
 
-    //Assign focusNode listeners to each TextField
+    //Assign listeners to each TextField to detect changes.
 
     _focus5.addListener(_focus5Listener);
     _focusShow.addListener(_focusShowListener);
@@ -227,14 +236,14 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   @override
   void dispose() {
-    _focus5.removeListener(_focus5Listener);
-    _focusShow.removeListener(_focusShowListener);
-    _focusSH.removeListener(_focusSHListener);
-    _focusOL.removeListener(_focusOLListener);
-    _focusAcc.removeListener(_focusAccListener);
-    _focusPend.removeListener(_focusPendListener);
-    _focusSpeed.removeListener(_focusSpeedListener);
-    _focusRound.removeListener(_focusRoundListener);
+    _focus5.dispose();
+    _focusShow.dispose();
+    _focusSH.dispose();
+    _focusOL.dispose();
+    _focusAcc.dispose();
+    _focusPend.dispose();
+    _focusSpeed.dispose();
+    _focusRound.dispose();
     super.dispose();
   }
 
@@ -435,6 +444,12 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 TextStyle(fontSize: 18.0, color: newBestColor5),
                             controller: _controller5,
                             focusNode: _focus5,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
+                              BlacklistingTextInputFormatter(
+                                RegExp('[\\-|,\\ ]'),
+                              ),
+                            ],
                             decoration: InputDecoration.collapsed(
                               hintText: null,
                               border: OutlineInputBorder(),
@@ -443,11 +458,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                             keyboardType: TextInputType.numberWithOptions(
                               decimal: true,
                             ),
-                            inputFormatters: [
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
                             onChanged: (text) {
                               autoFormat(_controller5);
                             },
@@ -546,14 +556,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                               border: OutlineInputBorder(),
                             ),
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
                               BlacklistingTextInputFormatter(
                                 RegExp('[\\-|,\\ ]'),
                               ),
                             ],
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
                             onChanged: (text) {
                               autoFormat(_controllerShow);
                             },
@@ -656,14 +667,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                               border: OutlineInputBorder(),
                             ),
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
                               BlacklistingTextInputFormatter(
                                 RegExp('[\\-|,\\ ]'),
                               ),
                             ],
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
                             onChanged: (text) {
                               autoFormat(_controllerSH);
                             },
@@ -765,14 +777,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                               border: OutlineInputBorder(),
                             ),
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
                               BlacklistingTextInputFormatter(
                                 RegExp('[\\-|,\\ ]'),
                               ),
                             ],
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
                             onChanged: (text) {
                               autoFormat(_controllerOL);
                             },
@@ -871,14 +884,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                               border: OutlineInputBorder(),
                             ),
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
                               BlacklistingTextInputFormatter(
                                 RegExp('[\\-|,\\ ]'),
                               ),
                             ],
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
                             onChanged: (text) {
                               autoFormat(_controllerAcc);
                             },
@@ -981,14 +995,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                               border: OutlineInputBorder(),
                             ),
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
                               BlacklistingTextInputFormatter(
                                 RegExp('[\\-|,\\ ]'),
                               ),
                             ],
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
                             onChanged: (text) {
                               autoFormat(_controllerPend);
                             },
@@ -1089,14 +1104,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                               border: OutlineInputBorder(),
                             ),
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
                               BlacklistingTextInputFormatter(
                                 RegExp('[\\-|,\\ ]'),
                               ),
                             ],
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
                             onChanged: (text) {
                               autoFormat(_controllerSpeed);
                             },
@@ -1195,14 +1211,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                               border: OutlineInputBorder(),
                             ),
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(5),
                               BlacklistingTextInputFormatter(
                                 RegExp('[\\-|,\\ ]'),
                               ),
                             ],
+                            keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                            ),
                             onChanged: (text) {
                               autoFormat(_controllerRound);
                             },
@@ -1455,10 +1472,13 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-//Calculate and display today and total times when TextField loses focus
+//Calculate and display today and total times when TextField loses focus.
+//For iOS keyboards (without a "next" or "done" key), hide keyboard when TextField loses focus.
   Future<Null> _focus5Listener() async {
-    if (!_focus5.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focus5.hasFocus) {
+      _controller5.selection =
+          TextSelection(baseOffset: 0, extentOffset: _controller5.text.length);
+    } else {
       if (_controller5.text == '') {
         setState(() {
           todayPct5 = '';
@@ -1486,8 +1506,10 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   Future<Null> _focusShowListener() async {
-    if (!_focusShow.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focusShow.hasFocus) {
+      _controllerShow.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerShow.text.length);
+    } else {
       if (_controllerShow.text == '') {
         setState(() {
           todayPctShow = '';
@@ -1517,8 +1539,10 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   Future<Null> _focusSHListener() async {
-    if (!_focusSH.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focusSH.hasFocus) {
+      _controllerSH.selection =
+          TextSelection(baseOffset: 0, extentOffset: _controllerSH.text.length);
+    } else {
       if (_controllerSH.text == '') {
         setState(() {
           todayPctSH = '';
@@ -1547,8 +1571,10 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   Future<Null> _focusOLListener() async {
-    if (!_focusOL.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focusOL.hasFocus) {
+      _controllerOL.selection =
+          TextSelection(baseOffset: 0, extentOffset: _controllerOL.text.length);
+    } else {
       if (_controllerOL.text == '') {
         setState(() {
           todayPctOL = '';
@@ -1577,8 +1603,10 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   Future<Null> _focusAccListener() async {
-    if (!_focusAcc.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focusAcc.hasFocus) {
+      _controllerAcc.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerAcc.text.length);
+    } else {
       if (_controllerAcc.text == '') {
         setState(() {
           todayPctAcc = '';
@@ -1608,8 +1636,10 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   Future<Null> _focusPendListener() async {
-    if (!_focusPend.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focusPend.hasFocus) {
+      _controllerPend.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerPend.text.length);
+    } else {
       if (_controllerPend.text == '') {
         setState(() {
           todayPctPend = '';
@@ -1639,8 +1669,10 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   Future<Null> _focusSpeedListener() async {
-    if (!_focusSpeed.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focusSpeed.hasFocus) {
+      _controllerSpeed.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerSpeed.text.length);
+    } else {
       if (_controllerSpeed.text == '') {
         setState(() {
           todayPctSpeed = '';
@@ -1670,8 +1702,10 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   Future<Null> _focusRoundListener() async {
-    if (!_focusRound.hasFocus) {
-      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    if (_focusRound.hasFocus) {
+      _controllerRound.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerRound.text.length);
+    } else {
       if (_controllerRound.text == '') {
         setState(() {
           todayPctRound = '';
@@ -2408,6 +2442,8 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
+//Allow user to override the calculated class if it is not correct because of current peak percent
+  //that is lower than the highest class ever attained.
   Future<void> _overrideClass(BuildContext context) async {
     return await showDialog<String>(
         context: context,
@@ -2687,7 +2723,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-//Save all displayed times when a TextField loses focus or user taps back button
+//Save all displayed times when a TextField loses focus or user taps back button.
   _saveStageTimes() async {
     StageTimes stageTimes = StageTimes();
 

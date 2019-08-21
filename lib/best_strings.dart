@@ -44,14 +44,14 @@ class _BestStringsState extends State<BestStrings> {
   TextEditingController _controllerSpeedSTR = TextEditingController();
   TextEditingController _controllerRoundSTR = TextEditingController();
 
-  FocusNode _focus5 = FocusNode();
-  FocusNode _focusShowSTR = FocusNode();
-  FocusNode _focusSHSTR = FocusNode();
-  FocusNode _focusOLSTR = FocusNode();
-  FocusNode _focusAccSTR = FocusNode();
-  FocusNode _focusPendSTR = FocusNode();
-  FocusNode _focusSpeedSTR = FocusNode();
-  FocusNode _focusRoundSTR = FocusNode();
+  FocusNode _focus5STR;
+  FocusNode _focusShowSTR;
+  FocusNode _focusSHSTR;
+  FocusNode _focusOLSTR;
+  FocusNode _focusAccSTR;
+  FocusNode _focusPendSTR;
+  FocusNode _focusSpeedSTR;
+  FocusNode _focusRoundSTR;
 
   String divAbbrev;
 
@@ -98,9 +98,16 @@ class _BestStringsState extends State<BestStrings> {
       DeviceOrientation.portraitDown,
     ]);
 
-//    _calcBestMatch();
+    _focus5STR = FocusNode();
+    _focusShowSTR = FocusNode();
+    _focusSHSTR = FocusNode();
+    _focusOLSTR = FocusNode();
+    _focusAccSTR = FocusNode();
+    _focusPendSTR = FocusNode();
+    _focusSpeedSTR = FocusNode();
+    _focusRoundSTR = FocusNode();
 
-    _focus5.addListener(_focus5Listener);
+    _focus5STR.addListener(_focus5Listener);
     _focusShowSTR.addListener(_focusShowListener);
     _focusSHSTR.addListener(_focusSHListener);
     _focusOLSTR.addListener(_focusOLListener);
@@ -205,14 +212,14 @@ class _BestStringsState extends State<BestStrings> {
 
   @override
   void dispose() {
-    _focus5.removeListener(_focus5Listener);
-    _focusShowSTR.removeListener(_focusShowListener);
-    _focusSHSTR.removeListener(_focusSHListener);
-    _focusOLSTR.removeListener(_focusOLListener);
-    _focusAccSTR.removeListener(_focusAccListener);
-    _focusPendSTR.removeListener(_focusPendListener);
-    _focusSpeedSTR.removeListener(_focusSpeedListener);
-    _focusRoundSTR.removeListener(_focusRoundListener);
+    _focus5STR.dispose();
+    _focusShowSTR.dispose();
+    _focusSHSTR.dispose();
+    _focusOLSTR.dispose();
+    _focusAccSTR.dispose();
+    _focusPendSTR.dispose();
+    _focusSpeedSTR.dispose();
+    _focusRoundSTR.dispose();
     super.dispose();
   }
 
@@ -353,7 +360,7 @@ class _BestStringsState extends State<BestStrings> {
                           style: TextStyle(fontSize: 18.0),
 //                        style: TextStyle(color: newBestColor5),
                           controller: _controller5STR,
-                          focusNode: _focus5,
+                          focusNode: _focus5STR,
                           decoration: InputDecoration.collapsed(
                             border: OutlineInputBorder(),
                           ),
@@ -361,6 +368,7 @@ class _BestStringsState extends State<BestStrings> {
                             decimal: true,
                           ),
                           inputFormatters: [
+                            LengthLimitingTextInputFormatter(4),
                             BlacklistingTextInputFormatter(
                               RegExp('[\\-|,\\ ]'),
                             ),
@@ -445,6 +453,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -528,6 +537,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -611,6 +621,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -694,6 +705,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -777,6 +789,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -860,6 +873,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -937,6 +951,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -1116,8 +1131,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focus5Listener() async {
-    if (_focus5.hasFocus) {}
-    if (!_focus5.hasFocus) {
+    if (_focus5STR.hasFocus) {
+      _controller5STR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controller5STR.text.length);
+    } else {
       if (_controller5STR.text != '') {
         setState(() {
           bestStage5 = _calcBestStage(peak5, _controller5STR.text, 4);
@@ -1136,7 +1153,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focusShowListener() async {
-    if (!_focusShowSTR.hasFocus) {
+    if (_focusShowSTR.hasFocus) {
+      _controllerShowSTR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerShowSTR.text.length);
+    } else {
       if (_controllerShowSTR.text != '') {
         setState(() {
           bestStageShow = _calcBestStage(peakShow, _controllerShowSTR.text, 4);
@@ -1152,7 +1172,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focusSHListener() async {
-    if (!_focusSHSTR.hasFocus) {
+    if (_focusSHSTR.hasFocus) {
+      _controllerSHSTR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerSHSTR.text.length);
+    } else {
       if (_controllerSHSTR.text != '') {
         setState(() {
           bestStageSH = _calcBestStage(peakSH, _controllerSHSTR.text, 4);
@@ -1168,7 +1191,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focusOLListener() async {
-    if (!_focusOLSTR.hasFocus) {
+    if (_focusOLSTR.hasFocus) {
+      _controllerOLSTR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerOLSTR.text.length);
+    } else {
       if (_controllerOLSTR.text != '') {
         setState(() {
           bestStageOL = _calcBestStage(peakOL, _controllerOLSTR.text, 3);
@@ -1184,7 +1210,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focusAccListener() async {
-    if (!_focusAccSTR.hasFocus) {
+    if (_focusAccSTR.hasFocus) {
+      _controllerAccSTR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerAccSTR.text.length);
+    } else {
       if (_controllerAccSTR.text != '') {
         setState(() {
           bestStageAcc = _calcBestStage(peakAcc, _controllerAccSTR.text, 4);
@@ -1200,7 +1229,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focusPendListener() async {
-    if (!_focusPendSTR.hasFocus) {
+    if (_focusPendSTR.hasFocus) {
+      _controllerPendSTR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerPendSTR.text.length);
+    } else {
       if (_controllerPendSTR.text != '') {
         setState(() {
           bestStagePend = _calcBestStage(peakPend, _controllerPendSTR.text, 4);
@@ -1216,7 +1248,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focusSpeedListener() async {
-    if (!_focusSpeedSTR.hasFocus) {
+    if (_focusSpeedSTR.hasFocus) {
+      _controllerSpeedSTR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerSpeedSTR.text.length);
+    } else {
       if (_controllerSpeedSTR.text != '') {
         setState(() {
           bestStageSpeed =
@@ -1233,7 +1268,10 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   Future<Null> _focusRoundListener() async {
-    if (!_focusRoundSTR.hasFocus) {
+    if (_focusRoundSTR.hasFocus) {
+      _controllerRoundSTR.selection = TextSelection(
+          baseOffset: 0, extentOffset: _controllerRoundSTR.text.length);
+    } else {
       if (_controllerRoundSTR.text != '') {
         setState(() {
           bestStageRound =

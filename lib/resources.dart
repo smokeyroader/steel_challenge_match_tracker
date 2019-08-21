@@ -31,6 +31,7 @@ class _ResourcesState extends State<Resources> {
       ),
       body: WillPopScope(
         onWillPop: () async {
+//          Hide keyboard when any back button is pressed.
           SystemChannels.textInput.invokeMethod('TextInput.hide');
           return true;
         },
@@ -49,7 +50,6 @@ class _ResourcesState extends State<Resources> {
                     child: GestureDetector(
                       onTap: () {
                         launchURL("http://www.teammatchtracker.com");
-//                      launchURL("http://www.teammatchtracker.com");
                       },
                       child: Text(
                         'Team Match Tracker Info and Signup',
@@ -75,9 +75,6 @@ class _ResourcesState extends State<Resources> {
                           },
                         ),
                       );
-
-//                    launchURL("http://www.teammatchtracker.com");
-//                      launchURL("http://www.teammatchtracker.com");
                     },
                     child: Text(
                       'My Current Classifications',
