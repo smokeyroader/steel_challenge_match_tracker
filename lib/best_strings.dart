@@ -368,7 +368,7 @@ class _BestStringsState extends State<BestStrings> {
                             decimal: true,
                           ),
                           inputFormatters: [
-                            LengthLimitingTextInputFormatter(4),
+                            LengthLimitingTextInputFormatter(5),
                             BlacklistingTextInputFormatter(
                               RegExp('[\\-|,\\ ]'),
                             ),
@@ -453,7 +453,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
+                          LengthLimitingTextInputFormatter(5),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -537,7 +537,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
+                          LengthLimitingTextInputFormatter(5),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -621,7 +621,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
+                          LengthLimitingTextInputFormatter(5),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -705,7 +705,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
+                          LengthLimitingTextInputFormatter(5),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -789,7 +789,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
+                          LengthLimitingTextInputFormatter(5),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -873,7 +873,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
+                          LengthLimitingTextInputFormatter(5),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -931,6 +931,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgRound',
+                            style: TextStyle(fontSize: 18.0),
                             textAlign: TextAlign.right,
                           ),
                         ],
@@ -951,7 +952,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
+                          LengthLimitingTextInputFormatter(5),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),

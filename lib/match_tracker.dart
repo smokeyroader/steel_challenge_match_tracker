@@ -51,6 +51,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   FocusNode _focusRound;
 
 //  bool savedClass = false;
+  bool ignoreChange = false;
 
   String showToday;
   String overridenClass = '';
@@ -1450,25 +1451,30 @@ class _MatchTrackerState extends State<MatchTracker> {
 
 //Method to automatically add decimal to time inputs
   void autoFormat(TextEditingController controller) {
-    String text = controller.text;
-    if (text != '') {
-      setState(() {
+    //Text entry can go into infinite loop under some conditions, with the
+    //system apparently failing to distinguish between system change and user input.
+    //The ignoreChange switch is an attempt to address this. Will monitor the effectiveness of this 'fix.'
+    if (!ignoreChange) {
+      String text = controller.text;
+      if (text != '') {
         text = text.replaceAll('.', '');
         text = text.replaceAll(' ', '');
-        if (text.length == 1)
+        if (text.length <= 2) {
           text = '.' + text;
-        else if (text.length == 2)
-          text = '.' + text;
-        else if (text.length > 2) {
+        } else {
           text = text.substring(0, text.length - 2) +
               '.' +
               text.substring(text.length - 2, text.length);
         }
-        controller.text = text;
-        //Move cursor to first position after text changed
-        controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: (text ?? '').length));
-      });
+        ignoreChange = true;
+        setState(() {
+          controller.text = text;
+          //Move cursor to first position after text changed
+          controller.selection = TextSelection.fromPosition(
+              TextPosition(offset: (text ?? '').length));
+        });
+        ignoreChange = false;
+      }
     }
   }
 
@@ -2751,8 +2757,9 @@ class _MatchTrackerState extends State<MatchTracker> {
       stageTimes.shavedTime = timeShaved.toStringAsFixed(2);
     }
 
-    int id = await helper.insertStages(divAbbrev, stageTimes);
-    print('inserted row: $id');
+//    int id =
+    await helper.insertStages(divAbbrev, stageTimes);
+//    print('inserted row: $id');
   }
 
 //Restore from database all previously entered and displayed times when user revisits screen
@@ -2943,7 +2950,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       type: AlertType.none,
       title: "Confirm...",
       desc:
-          "This will clear all $divAbbrev \"Today\" and \"Best\" times, and cannot be undone.",
+          "This will clear all $divAbbrev data, including best stage and best string times, and cannot be undone.",
       buttons: [
         DialogButton(
           width: 20,
@@ -3012,6 +3019,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               timeShaved = 0.0;
             });
             _saveStageTimes();
+            _clearStringTimes();
             Navigator.pop(context);
             final snackBar = SnackBar(
               backgroundColor: Color(0xFF00681B),
@@ -3026,6 +3034,21 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
       ],
     ).show();
+  }
+
+  _clearStringTimes() async {
+    StringTimes stringTimes = StringTimes();
+
+    stringTimes.fiveToGo = '';
+    stringTimes.showdown = '';
+    stringTimes.smokeAndHope = '';
+    stringTimes.outerLimits = '';
+    stringTimes.accelerator = '';
+    stringTimes.pendulum = '';
+    stringTimes.speedOption = '';
+    stringTimes.roundabout = '';
+
+    await helper.insertStrings('$divAbbrev' + 'STR', stringTimes);
   }
 
 //Determine if user has scored at least 4 classifier stages before displaying
