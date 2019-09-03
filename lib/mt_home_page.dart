@@ -12,12 +12,16 @@ class MatchTrackerHomePage extends StatefulWidget {
 }
 
 class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
+  //Provide for use of snackbar.
+  final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 //Stings to hold recently used divisions
   String dropdownValue = 'Select Division';
   String firstRecent = '';
   String secondRecent = '';
   String thirdRecent = '';
   String fourthRecent = '';
+
+  bool gunsCleared = false;
 
   //initState and run setData() to populate list of recent guns with saved selections
 //  Also lock orientation to portrait
@@ -141,6 +145,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             ),
           ],
         ),
+        key: scaffoldState, //Key for displaying snackbar
         body: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -233,53 +238,11 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   height: 190.0,
                   child: Image.asset('images/match_tracker_logo_front.jpg'),
                 ),
-//                SizedBox(
-//                  height: 20.0,
-//                ),
-//                RaisedButton(
-//                  color: Color(0xFF00681B),
-//                  shape: RoundedRectangleBorder(
-//                      borderRadius: BorderRadius.circular(30.0)),
-//                  child: Text(
-//                    'Continue',
-//                    style: TextStyle(fontSize: 18.0, color: Colors.white),
-//                  ),
-//                  onPressed: () {
-//                    if (dropdownValue == 'Select Division') {
-//                      _noDivisionAlert(context);
-//                    } else {
-////              setState(() {
-//                      Navigator.push(
-//                        context,
-//                        MaterialPageRoute(
-//                          builder: (context) {
-//                            return MatchTracker(
-//                              currentDivision: '$dropdownValue',
-////                      peak5: 12.5,
-//                            );
-//                          },
-//                        ),
-//                      );
-////              });
-//                    }
-//                  },
-//                ),
+
                 Text(
                   'Version 2.1',
                   style: TextStyle(fontSize: 16.0),
                 ),
-//                Row(
-//                  mainAxisAlignment: MainAxisAlignment.end,
-//                  children: <Widget>[
-//                    Padding(
-//                      padding: const EdgeInsets.only(right: 16.0, top: 8.0),
-//                      child: Text(
-//                        'Version 2.1',
-//                        style: TextStyle(fontSize: 16.0),
-//                      ),
-//                    ),
-//                  ],
-//                ),
               ],
             ),
           ),
@@ -296,13 +259,25 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     preferences.setString('recent2', div2);
     preferences.setString('recent3', div3);
     preferences.setString('recent4', div4);
-//    return await preferences.setString('recent1', div1);
+
+    if (!gunsCleared) {
+      final snackBar = SnackBar(
+        backgroundColor: Color(0xFF00681B),
+        content: Text(
+          'Recent guns saved.',
+          textAlign: TextAlign.center,
+        ),
+      );
+      scaffoldState.currentState.showSnackBar(snackBar);
+    }
+    gunsCleared = false;
   }
 
   //Take actions in response to selections from main menu
   void mainMenuChoiceAction(String choice) {
     if (choice == 'Clear Recent Guns') {
-//Clear any guns from the list and save the empty list to Shared Preferences
+      gunsCleared = true;
+      //Clear any guns from the list and save the empty list to Shared Preferences
       setState(() {
         firstRecent = '';
         secondRecent = '';
@@ -317,12 +292,18 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           secondRecent == '' &&
           thirdRecent == '' &&
           fourthRecent == '') {
-        _noRecentGunsAlert(context);
+        final snackBar = SnackBar(
+          backgroundColor: Color(0xFF00681B),
+          content: Text(
+            'You have no recent guns to save.',
+            textAlign: TextAlign.center,
+          ),
+        );
+        scaffoldState.currentState.showSnackBar(snackBar);
+//        _noRecentGunsAlert(context);
       } else {
         saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
       }
-
-      saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
     } else if (choice == 'Resources') {
       //Navigate to the Resources page with useful links
 
@@ -408,23 +389,23 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     ).show();
   }
 
-  _noRecentGunsAlert(context) {
-    Alert(
-      context: context,
-      type: AlertType.warning,
-      title: "",
-      desc: "You have no recent guns to save.",
-      buttons: [
-        DialogButton(
-          color: Colors.green,
-          child: Text(
-            "OK",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
-    ).show();
-  }
+//  _noRecentGunsAlert(context) {
+//    Alert(
+//      context: context,
+//      type: AlertType.warning,
+//      title: "",
+//      desc: "You have no recent guns to save.",
+//      buttons: [
+//        DialogButton(
+//          color: Colors.green,
+//          child: Text(
+//            "OK",
+//            style: TextStyle(color: Colors.white, fontSize: 20),
+//          ),
+//          onPressed: () => Navigator.pop(context),
+//          width: 120,
+//        )
+//      ],
+//    ).show();
+//  }
 }

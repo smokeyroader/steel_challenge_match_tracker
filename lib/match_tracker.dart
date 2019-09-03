@@ -1452,7 +1452,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 //Method to automatically add decimal to time inputs
   void autoFormat(TextEditingController controller) {
     //Text entry can go into infinite loop under some conditions, with the
-    //system apparently failing to distinguish between system change and user input.
+    //system apparently failing to distinguish between system (programmatic)change and user change.
     //The ignoreChange switch is an attempt to address this. Will monitor the effectiveness of this 'fix.'
     if (!ignoreChange) {
       String text = controller.text;
@@ -1478,8 +1478,8 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-//Calculate and display today and total times when TextField loses focus.
-//For iOS keyboards (without a "next" or "done" key), hide keyboard when TextField loses focus.
+//Update today and total times when TextFields lose focus.
+
   Future<Null> _focus5Listener() async {
     if (_focus5.hasFocus) {
       _controller5.selection =

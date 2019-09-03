@@ -22,6 +22,13 @@ class ClassTracker extends StatefulWidget {
 
 class _ClassTrackerState extends State<ClassTracker> {
   String timeCuts = 'Time cuts needed to advance to:';
+
+  String class1;
+  String class2;
+  String class3;
+  String class4;
+  String class5;
+
   String forGM = '';
   String forM = '';
   String forA = '';
@@ -100,7 +107,7 @@ class _ClassTrackerState extends State<ClassTracker> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                '$forGM',
+                '$class1',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -111,7 +118,7 @@ class _ClassTrackerState extends State<ClassTracker> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                '$forM',
+                '$class2',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -122,7 +129,7 @@ class _ClassTrackerState extends State<ClassTracker> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                '$forA',
+                '$class3',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -133,7 +140,7 @@ class _ClassTrackerState extends State<ClassTracker> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                '$forB',
+                '$class4',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -144,7 +151,7 @@ class _ClassTrackerState extends State<ClassTracker> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                '$forC',
+                '$class5',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -180,15 +187,15 @@ class _ClassTrackerState extends State<ClassTracker> {
     switch (widget.currClass) {
       case 'D':
         setState(() {
-          forC =
+          class1 =
               'C:    ${((double.parse(widget.totPeak) / .40) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forB =
+          class2 =
               'B:    ${((double.parse(widget.totPeak) / .60) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forA =
+          class3 =
               'A:    ${((double.parse(widget.totPeak) / .75) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forM =
+          class4 =
               'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forGM =
+          class5 =
               'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
         });
 
@@ -196,60 +203,64 @@ class _ClassTrackerState extends State<ClassTracker> {
 
       case 'C':
         setState(() {
-          forC = '';
-          forB =
+          class1 =
               'B:    ${((double.parse(widget.totPeak) / .60) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forA =
+          class2 =
               'A:    ${((double.parse(widget.totPeak) / .75) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forM =
+          class3 =
               'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forGM =
+          class4 =
               'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
+          class5 = '';
         });
 
         break;
 
       case 'B':
         setState(() {
-          forC = '';
-          forB = '';
-          forA =
+          class1 =
               'A:    ${((double.parse(widget.totPeak) / .75) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forM =
+          class2 =
               'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forGM =
+          class3 =
               'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
+          class4 = '';
+          class5 = '';
         });
 
         break;
 
       case 'A':
         setState(() {
-          forC = '';
-          forB = '';
-          forA = '';
-          forM =
+          class1 =
               'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          forGM =
+          class2 =
               'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
+          class3 = '';
+          class4 = '';
+          class5 = '';
         });
 
         break;
 
       case 'M':
         setState(() {
-          forGM =
+          class1 =
               'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
+          class2 = '';
+          class3 = '';
+          class4 = '';
+          class5 = '';
         });
         break;
 
       case 'GM':
         setState(() {
-          forC = '';
-          forB = '';
-          forA = '';
-          forM = '';
-          forGM = '';
+          class1 = '';
+          class2 = '';
+          class3 = '';
+          class4 = '';
+          class5 = '';
           timeCuts = 'Congratulations on your achievement!';
         });
         break;
