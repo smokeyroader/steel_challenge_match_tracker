@@ -239,22 +239,24 @@ class _BestStringsState extends State<BestStrings> {
         child: Container(
             margin: EdgeInsets.all(8.0),
             child: Column(children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Text(
-                      '${widget.currentDivision}',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF00681B),
+              FittedBox(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Text(
+                        '${widget.currentDivision}',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF00681B),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Container(
                 height: 45.0,
@@ -330,11 +332,13 @@ class _BestStringsState extends State<BestStrings> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            '5 to Go',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
+                          FittedBox(
+                            child: Text(
+                              '5 to Go',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           Text(
@@ -415,10 +419,12 @@ class _BestStringsState extends State<BestStrings> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Showdown',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            child: Text(
+                              'Showdown',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             '${widget.bestStrShow}',
@@ -585,10 +591,12 @@ class _BestStringsState extends State<BestStrings> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Outer Limits',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            child: Text(
+                              'Outer Limits',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             '${widget.bestStrOL}',
@@ -669,10 +677,12 @@ class _BestStringsState extends State<BestStrings> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Accelerator',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            child: Text(
+                              'Accelerator',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             '${widget.bestStrAcc}',
@@ -753,10 +763,12 @@ class _BestStringsState extends State<BestStrings> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Pendulum',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            child: Text(
+                              'Pendulum',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             '${widget.bestStrPend}',
@@ -836,16 +848,18 @@ class _BestStringsState extends State<BestStrings> {
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Speed Option',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              'Speed Option',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             '${widget.bestStrSpeed}',
                             style: TextStyle(fontSize: 14.0),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -916,10 +930,12 @@ class _BestStringsState extends State<BestStrings> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Roundabout',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            child: Text(
+                              'Roundabout',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             '${widget.bestStrRound}',
@@ -1008,10 +1024,12 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 65.0,
-                      child: Text(
-                        '%Peak',
-                        style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.w900),
+                      child: FittedBox(
+                        child: Text(
+                          '%Peak',
+                          style: TextStyle(
+                              fontSize: 16.0, fontWeight: FontWeight.w900),
+                        ),
                       ),
                     ),
                     Container(

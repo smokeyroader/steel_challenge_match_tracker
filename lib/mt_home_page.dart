@@ -136,10 +136,10 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   return Constants.mainMenuChoices.map((String choice) {
                     return PopupMenuItem<String>(
                       value: choice,
-                      child: Text(choice
-//                      ,
-//                      style: TextStyle(fontSize: 18.0),
-                          ),
+                      child: Text(
+                        choice,
+                        style: TextStyle(fontSize: 16.0),
+                      ),
                     );
                   }).toList();
                 },
@@ -150,110 +150,112 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         key: scaffoldState, //Key for displaying snackbar
         body: Center(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
+            child: FittedBox(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
 //            SizedBox(height: 40.0),
-                Padding(
-                  padding: const EdgeInsets.only(top: 48.0),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    onChanged: (String newValue) {
-                      if (newValue != 'Select Division') {
-                        setState(() {
-                          dropdownValue = newValue;
-                          showRecents(newValue);
-                        });
-                      } else {
-                        _noDivisionAlert(context);
-                      }
-                    },
-                    items: Constants.divisions
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                      );
-                    }).toList(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 48.0),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      onChanged: (String newValue) {
+                        if (newValue != 'Select Division') {
+                          setState(() {
+                            dropdownValue = newValue;
+                            showRecents(newValue);
+                          });
+                        } else {
+                          _noDivisionAlert(context);
+                        }
+                      },
+                      items: Constants.divisions
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ),
 //            SizedBox(
 //              height: 30.0,
 //            ),
-                GestureDetector(
-                  onTap: trackFirstDiv,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FittedBox(
-                      child: Text(
-                        ' $firstRecent ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
+                  GestureDetector(
+                    onTap: trackFirstDiv,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          ' $firstRecent ',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: trackSecondDiv,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FittedBox(
-                      child: Text(
-                        ' $secondRecent ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
+                  GestureDetector(
+                    onTap: trackSecondDiv,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          ' $secondRecent ',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: trackThirdDiv,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FittedBox(
-                      child: Text(
-                        ' $thirdRecent ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
+                  GestureDetector(
+                    onTap: trackThirdDiv,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          ' $thirdRecent ',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: trackFourthDiv,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FittedBox(
-                      child: Text(
-                        ' $fourthRecent ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
+                  GestureDetector(
+                    onTap: trackFourthDiv,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          ' $fourthRecent ',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  height: 190.0,
-                  child: Image.asset('images/match_tracker_logo_front.jpg'),
-                ),
+                  Container(
+                    height: 190.0,
+                    child: Image.asset('images/match_tracker_logo_front.jpg'),
+                  ),
 
-                Text(
-                  'Version 2.1.1',
-                  style: TextStyle(fontSize: 12.0),
-                ),
-              ],
+                  Text(
+                    'Version 2.1.1',
+                    style: TextStyle(fontSize: 14.0),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

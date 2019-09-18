@@ -400,11 +400,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                '5 to Go',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  '5 to Go',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -417,7 +419,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),
                         child: Container(
-                          width: 65.0,
+                          width: 75.0,
                           child: (Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
@@ -507,11 +509,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                'Showdown',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  'Showdown',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -524,7 +528,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),
                         child: Container(
-                          width: 65.0,
+                          width: 75.0,
                           child: (Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
@@ -618,11 +622,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                'Smoke&Hope',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  'Smoke&Hope',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -635,7 +641,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),
                         child: Container(
-                          width: 65.0,
+                          width: 75.0,
                           child: (Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
@@ -728,11 +734,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                'Outer Limits',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  'Outer Limits',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -835,11 +843,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                'Accelerator',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  'Accelerator',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -946,11 +956,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                'Pendulum',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  'Pendulum',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -1055,11 +1067,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                'Speed Option',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  'Speed Option',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -1162,11 +1176,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 );
                               },
-                              child: Text(
-                                'Roundabout',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold),
+                              child: FittedBox(
+                                child: Text(
+                                  'Roundabout',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Text(
@@ -1386,61 +1402,63 @@ class _MatchTrackerState extends State<MatchTracker> {
 //                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 48.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 4.0),
-                            child: RaisedButton(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  side: BorderSide(color: Color(0xFF00681B))),
+                      child: FittedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(left: 4.0),
+                              child: RaisedButton(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    side: BorderSide(color: Color(0xFF00681B))),
+                                child: Text(
+                                  'Change Gun',
+                                  style: TextStyle(
+                                    color: Color(0xFF00681B),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  //Code here to save data before exiting screen
+                                  SystemChannels.textInput
+                                      .invokeMethod('TextInput.hide');
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: 120.0,
                               child: Text(
-                                'Change Gun',
+                                '$timeCuts',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: Color(0xFF00681B),
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              onPressed: () {
-                                //Code here to save data before exiting screen
-                                SystemChannels.textInput
-                                    .invokeMethod('TextInput.hide');
-                                Navigator.pop(context);
-                              },
                             ),
-                          ),
-                          Container(
-                            width: 120.0,
-                            child: Text(
-                              '$timeCuts',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: RaisedButton(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  side: BorderSide(color: Color(0xFF00681B))),
-                              child: Text(
-                                'Clear Today',
-                                style: TextStyle(
-                                  color: Color(0xFF00681B),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: RaisedButton(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    side: BorderSide(color: Color(0xFF00681B))),
+                                child: Text(
+                                  'Clear Today',
+                                  style: TextStyle(
+                                    color: Color(0xFF00681B),
+                                  ),
                                 ),
+                                onPressed: () {
+                                  _confirmClearToday();
+                                },
                               ),
-                              onPressed: () {
-                                _confirmClearToday();
-                              },
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -2773,7 +2791,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
     StageTimes stageTimes = await helper.queryStageTimes(divAbbrev, numRows);
     if (numRows == 0) {
-      print('read row $numRows: empty');
+//      print('read row $numRows: empty');
       timeCuts = '';
     } else {
       setState(() {
