@@ -328,21 +328,38 @@ class _MatchTrackerState extends State<MatchTracker> {
                     children: <Widget>[
                       Container(
                         width: 95.0,
-                        child: Text(
-                          'Stage',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        child: FittedBox(
+                          child: Text(
+                            'Stage',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 24.0),
                         child: Container(
                           width: 60.0,
+                          child: FittedBox(
+                            child: Text(
+                              'Best',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 60.0,
+                        child: FittedBox(
                           child: Text(
-                            'Best',
+                            'Today',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 14.0,
@@ -352,24 +369,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Container(
-                        width: 60.0,
-                        child: Text(
-                          'Today',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
-                      Container(
                         width: 85.0,
-                        child: Text(
-                          '%/Class',
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        child: FittedBox(
+                          child: Text(
+                            '%/Class',
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
                     ],
@@ -1265,11 +1273,14 @@ class _MatchTrackerState extends State<MatchTracker> {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Container(width: 75.0),
+//                          Container(width: 25),
                           Container(
                             width: 65.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 6.0),
                             child: Text(
                               'Time',
                               style: TextStyle(
@@ -1278,26 +1289,38 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                           Container(
                             width: 65.0,
-                            child: Text(
-                              'Peak',
-                              style: TextStyle(
-                                  fontSize: 14.0, fontWeight: FontWeight.w900),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: Text(
+                                'Peak',
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w900),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 70.0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 12.0),
+                              child: Text(
+                                '%Peak',
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w900),
+                              ),
                             ),
                           ),
                           Container(
                             width: 65.0,
-                            child: Text(
-                              '%Peak',
-                              style: TextStyle(
-                                  fontSize: 14.0, fontWeight: FontWeight.w900),
-                            ),
-                          ),
-                          Container(
-                            width: 65.0,
-                            child: Text(
-                              'Class',
-                              style: TextStyle(
-                                  fontSize: 14.0, fontWeight: FontWeight.w900),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Text(
+                                'Class',
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w900),
+                              ),
                             ),
                           ),
                         ],
@@ -1311,7 +1334,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
                             width: 65.0,
@@ -1356,7 +1379,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
                             width: 65.0,

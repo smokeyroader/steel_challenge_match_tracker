@@ -1011,7 +1011,7 @@ class _BestStringsState extends State<BestStrings> {
                       child: Text(
                         'Time',
                         style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.w900),
+                            fontSize: 14.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                     Container(
@@ -1019,17 +1019,15 @@ class _BestStringsState extends State<BestStrings> {
                       child: Text(
                         'Peak',
                         style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.w900),
+                            fontSize: 14.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                     Container(
                       width: 65.0,
-                      child: FittedBox(
-                        child: Text(
-                          '%Peak',
-                          style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.w900),
-                        ),
+                      child: Text(
+                        '%Peak',
+                        style: TextStyle(
+                            fontSize: 14.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                     Container(
@@ -1037,7 +1035,7 @@ class _BestStringsState extends State<BestStrings> {
                       child: Text(
                         'Class',
                         style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.w900),
+                            fontSize: 14.0, fontWeight: FontWeight.w900),
                       ),
                     ),
                   ],
