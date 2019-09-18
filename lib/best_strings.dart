@@ -226,8 +226,10 @@ class _BestStringsState extends State<BestStrings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Track Best Strings',
+        title: FittedBox(
+          child: Text(
+            'Track Best Strings',
+          ),
         ),
         backgroundColor: Color(0xFF00681B),
         actions: <Widget>[],
@@ -265,13 +267,16 @@ class _BestStringsState extends State<BestStrings> {
                       width: 95.0,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          'Stage',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 2.0),
+                          child: Text(
+                            'Stage',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
                     ),
@@ -282,7 +287,7 @@ class _BestStringsState extends State<BestStrings> {
                         'Best Avg.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -294,7 +299,7 @@ class _BestStringsState extends State<BestStrings> {
                         'Best Single',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -305,7 +310,7 @@ class _BestStringsState extends State<BestStrings> {
                       child: Text(
                         'Best Stage',
                         style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -328,7 +333,9 @@ class _BestStringsState extends State<BestStrings> {
                           Text(
                             '5 to Go',
                             style: TextStyle(
-                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             '${widget.bestStr5}',
@@ -345,7 +352,7 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvg5',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                             textAlign: TextAlign.left,
                           ),
                         ],
@@ -357,7 +364,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                         width: 45.0,
                         child: TextField(
-                          style: TextStyle(fontSize: 18.0),
+                          style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColor5),
                           controller: _controller5STR,
                           focusNode: _focus5STR,
@@ -368,7 +375,7 @@ class _BestStringsState extends State<BestStrings> {
                             decimal: true,
                           ),
                           inputFormatters: [
-                            LengthLimitingTextInputFormatter(5),
+                            LengthLimitingTextInputFormatter(4),
                             BlacklistingTextInputFormatter(
                               RegExp('[\\-|,\\ ]'),
                             ),
@@ -385,18 +392,14 @@ class _BestStringsState extends State<BestStrings> {
 //                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStage5',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
                     ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                   ],
                 ),
               ),
@@ -415,7 +418,7 @@ class _BestStringsState extends State<BestStrings> {
                           Text(
                             'Showdown',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrShow}',
@@ -432,8 +435,8 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgShow',
-                            style: TextStyle(fontSize: 18.0),
-                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 14.0),
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       )),
@@ -442,7 +445,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColor5),
                         controller: _controllerShowSTR,
                         focusNode: _focusShowSTR,
@@ -453,7 +456,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(5),
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -469,10 +472,10 @@ class _BestStringsState extends State<BestStrings> {
 //                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStageShow',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -496,10 +499,12 @@ class _BestStringsState extends State<BestStrings> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Smoke&Hope',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                          FittedBox(
+                            child: Text(
+                              'Smoke&Hope',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             '${widget.bestStrSH}',
@@ -516,8 +521,8 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgSH',
-                            style: TextStyle(fontSize: 18.0),
-                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 14.0),
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       )),
@@ -526,7 +531,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColorSH),
                         controller: _controllerSHSTR,
                         focusNode: _focusSHSTR,
@@ -537,7 +542,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(5),
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -553,10 +558,10 @@ class _BestStringsState extends State<BestStrings> {
 //                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStageSH',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -583,7 +588,7 @@ class _BestStringsState extends State<BestStrings> {
                           Text(
                             'Outer Limits',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrOL}',
@@ -600,8 +605,8 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgOL',
-                            style: TextStyle(fontSize: 18.0),
-                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 14.0),
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       )),
@@ -610,7 +615,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColorOL),
                         controller: _controllerOLSTR,
                         focusNode: _focusOLSTR,
@@ -621,7 +626,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(5),
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -637,10 +642,10 @@ class _BestStringsState extends State<BestStrings> {
 //                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStageOL',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -667,7 +672,7 @@ class _BestStringsState extends State<BestStrings> {
                           Text(
                             'Accelerator',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrAcc}',
@@ -684,8 +689,8 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgAcc',
-                            style: TextStyle(fontSize: 18.0),
-                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 14.0),
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       )),
@@ -694,7 +699,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColorAcc),
                         controller: _controllerAccSTR,
                         focusNode: _focusAccSTR,
@@ -705,7 +710,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(5),
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -721,10 +726,10 @@ class _BestStringsState extends State<BestStrings> {
 //                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStageAcc',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -751,7 +756,7 @@ class _BestStringsState extends State<BestStrings> {
                           Text(
                             'Pendulum',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrPend}',
@@ -768,8 +773,8 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgPend',
-                            style: TextStyle(fontSize: 18.0),
-                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 14.0),
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       )),
@@ -778,7 +783,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColorPend),
                         controller: _controllerPendSTR,
                         focusNode: _focusPendSTR,
@@ -789,7 +794,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(5),
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -805,10 +810,10 @@ class _BestStringsState extends State<BestStrings> {
 //                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStagePend',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -835,7 +840,7 @@ class _BestStringsState extends State<BestStrings> {
                           Text(
                             'Speed Option',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrSpeed}',
@@ -852,8 +857,8 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgSpeed',
-                            style: TextStyle(fontSize: 18.0),
-                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 14.0),
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       )),
@@ -862,7 +867,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColorSpeed),
                         controller: _controllerSpeedSTR,
                         focusNode: _focusSpeedSTR,
@@ -873,7 +878,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(5),
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -888,10 +893,10 @@ class _BestStringsState extends State<BestStrings> {
                       child: Container(
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStageSpeed',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -914,7 +919,7 @@ class _BestStringsState extends State<BestStrings> {
                           Text(
                             'Roundabout',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '${widget.bestStrRound}',
@@ -931,8 +936,8 @@ class _BestStringsState extends State<BestStrings> {
                         children: <Widget>[
                           Text(
                             '$_bestAvgRound',
-                            style: TextStyle(fontSize: 18.0),
-                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 14.0),
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       )),
@@ -941,7 +946,7 @@ class _BestStringsState extends State<BestStrings> {
 //                      color: Colors.green,
                       width: 45.0,
                       child: TextField(
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 16.0),
 //                        style: TextStyle(color: newBestColorRound),
                         controller: _controllerRoundSTR,
                         focusNode: _focusRoundSTR,
@@ -952,7 +957,7 @@ class _BestStringsState extends State<BestStrings> {
                           decimal: true,
                         ),
                         inputFormatters: [
-                          LengthLimitingTextInputFormatter(5),
+                          LengthLimitingTextInputFormatter(4),
                           BlacklistingTextInputFormatter(
                             RegExp('[\\-|,\\ ]'),
                           ),
@@ -968,10 +973,10 @@ class _BestStringsState extends State<BestStrings> {
 //                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(right: 4.0),
                           child: Text(
                             '$bestStageRound',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),

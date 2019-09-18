@@ -24,8 +24,10 @@ class _ResourcesState extends State<Resources> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
-          'Useful Links for Steel Challenge',
+        title: FittedBox(
+          child: Text(
+            'Resources for Steel Challenge Shooters',
+          ),
         ),
         backgroundColor: Color(0xFF00681B),
       ),

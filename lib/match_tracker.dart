@@ -298,23 +298,27 @@ class _MatchTrackerState extends State<MatchTracker> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Text(
-                        '${widget.currentDivision}',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                FittedBox(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: FittedBox(
+                          child: Text(
+                            '${widget.currentDivision}',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF00681B),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Container(
                   height: 20.0,
@@ -399,13 +403,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 '5 to Go',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '101 ($peak5)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -413,7 +417,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),
                         child: Container(
-                          width: 75.0,
+                          width: 65.0,
                           child: (Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
@@ -423,13 +427,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$best5',
-                                  style: TextStyle(fontSize: 18.0),
+                                  style: TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClass5',
-                                style: TextStyle(fontSize: 18.0),
+                                style: TextStyle(fontSize: 14.0),
                                 textAlign: TextAlign.left,
                               ),
                             ],
@@ -442,7 +446,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style:
-                                TextStyle(fontSize: 18.0, color: newBestColor5),
+                                TextStyle(fontSize: 14.0, color: newBestColor5),
                             controller: _controller5,
                             focusNode: _focus5,
                             inputFormatters: [
@@ -471,7 +475,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPct5',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -506,13 +510,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 'Showdown',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '102 ($peakShow)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -520,7 +524,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),
                         child: Container(
-                          width: 75.0,
+                          width: 65.0,
                           child: (Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
@@ -530,14 +534,14 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$bestShow',
-                                  style: TextStyle(fontSize: 18.0),
-                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClassShow',
-                                style: TextStyle(fontSize: 18.0),
-                                textAlign: TextAlign.right,
+                                style: TextStyle(fontSize: 14.0),
+                                textAlign: TextAlign.left,
                               ),
                             ],
                           )),
@@ -549,7 +553,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style: TextStyle(
-                                fontSize: 18.0, color: newBestColorShow),
+                                fontSize: 14.0, color: newBestColorShow),
                             controller: _controllerShow,
                             focusNode: _focusShow,
                             decoration: InputDecoration.collapsed(
@@ -578,7 +582,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPctShow',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -617,13 +621,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 'Smoke&Hope',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '103 ($peakSH)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -631,7 +635,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       Padding(
                         padding: const EdgeInsets.only(right: 16.0),
                         child: Container(
-                          width: 75.0,
+                          width: 65.0,
                           child: (Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
@@ -641,14 +645,14 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$bestSH',
-                                  style: TextStyle(fontSize: 18.0),
-                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClassSH',
-                                style: TextStyle(fontSize: 18.0),
-                                textAlign: TextAlign.right,
+                                style: TextStyle(fontSize: 14.0),
+                                textAlign: TextAlign.left,
                               ),
                             ],
                           )),
@@ -660,7 +664,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style: TextStyle(
-                                fontSize: 18.0, color: newBestColorSH),
+                                fontSize: 14.0, color: newBestColorSH),
                             controller: _controllerSH,
                             focusNode: _focusSH,
                             decoration: InputDecoration.collapsed(
@@ -689,7 +693,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPctSH',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -727,13 +731,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 'Outer Limits',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '104 ($peakOL)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -751,13 +755,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$bestOL',
-                                  style: TextStyle(fontSize: 18.0),
-                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClassOL',
-                                style: TextStyle(fontSize: 18.0),
+                                style: TextStyle(fontSize: 14.0),
                                 textAlign: TextAlign.right,
                               ),
                             ],
@@ -770,7 +774,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style: TextStyle(
-                                fontSize: 18.0, color: newBestColorOL),
+                                fontSize: 14.0, color: newBestColorOL),
                             controller: _controllerOL,
                             focusNode: _focusOL,
                             decoration: InputDecoration.collapsed(
@@ -799,7 +803,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPctOL',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -834,13 +838,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 'Accelerator',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '105 ($peakAcc)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -858,13 +862,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$bestAcc',
-                                  style: TextStyle(fontSize: 18.0),
-                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClassAcc',
-                                style: TextStyle(fontSize: 18.0),
+                                style: TextStyle(fontSize: 14.0),
                                 textAlign: TextAlign.right,
                               ),
                             ],
@@ -877,7 +881,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style: TextStyle(
-                                fontSize: 18.0, color: newBestColorAcc),
+                                fontSize: 14.0, color: newBestColorAcc),
                             controller: _controllerAcc,
                             focusNode: _focusAcc,
                             decoration: InputDecoration.collapsed(
@@ -906,7 +910,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPctAcc',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -945,13 +949,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 'Pendulum',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '106 ($peakPend)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -969,13 +973,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$bestPend',
-                                  style: TextStyle(fontSize: 18.0),
-                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClassPend',
-                                style: TextStyle(fontSize: 18.0),
+                                style: TextStyle(fontSize: 14.0),
                                 textAlign: TextAlign.right,
                               ),
                             ],
@@ -988,7 +992,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style: TextStyle(
-                                fontSize: 18.0, color: newBestColorPend),
+                                fontSize: 14.0, color: newBestColorPend),
                             controller: _controllerPend,
                             focusNode: _focusPend,
                             decoration: InputDecoration.collapsed(
@@ -1017,7 +1021,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPctPend',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -1054,13 +1058,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 'Speed Option',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '107 ($peakSpeed)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -1078,13 +1082,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$bestSpeed',
-                                  style: TextStyle(fontSize: 18.0),
-                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClassSpeed',
-                                style: TextStyle(fontSize: 18.0),
+                                style: TextStyle(fontSize: 14.0),
                                 textAlign: TextAlign.right,
                               ),
                             ],
@@ -1097,7 +1101,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style: TextStyle(
-                                fontSize: 18.0, color: newBestColorSpeed),
+                                fontSize: 14.0, color: newBestColorSpeed),
                             controller: _controllerSpeed,
                             focusNode: _focusSpeed,
                             decoration: InputDecoration.collapsed(
@@ -1126,7 +1130,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPctSpeed',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -1161,13 +1165,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: Text(
                                 'Roundabout',
                                 style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                             Text(
                               '108 ($peakRound)',
-                              style: TextStyle(fontSize: 14.0),
+                              style: TextStyle(fontSize: 12.0),
                             )
                           ],
                         ),
@@ -1185,13 +1189,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 },
                                 child: Text(
                                   '$bestRound',
-                                  style: TextStyle(fontSize: 18.0),
-                                  textAlign: TextAlign.right,
+                                  style: TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                               Text(
                                 '$bestClassRound',
-                                style: TextStyle(fontSize: 18.0),
+                                style: TextStyle(fontSize: 14.0),
                                 textAlign: TextAlign.right,
                               ),
                             ],
@@ -1204,7 +1208,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 48.0,
                           child: TextField(
                             style: TextStyle(
-                                fontSize: 18.0, color: newBestColorRound),
+                                fontSize: 14.0, color: newBestColorRound),
                             controller: _controllerRound,
                             focusNode: _focusRound,
                             decoration: InputDecoration.collapsed(
@@ -1233,7 +1237,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                           width: 75.0,
                           child: Text(
                             '$todayPctRound',
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 14.0),
                           ),
                         ),
                       ),
@@ -1253,7 +1257,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             child: Text(
                               'Time',
                               style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.w900),
+                                  fontSize: 14.0, fontWeight: FontWeight.w900),
                             ),
                           ),
                           Container(
@@ -1261,7 +1265,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             child: Text(
                               'Peak',
                               style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.w900),
+                                  fontSize: 14.0, fontWeight: FontWeight.w900),
                             ),
                           ),
                           Container(
@@ -1269,7 +1273,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             child: Text(
                               '%Peak',
                               style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w900),
+                                  fontSize: 14.0, fontWeight: FontWeight.w900),
                             ),
                           ),
                           Container(
@@ -1277,7 +1281,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             child: Text(
                               'Class',
                               style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.w900),
+                                  fontSize: 14.0, fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
@@ -1297,7 +1301,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             width: 65.0,
                             child: Text(
                               'Today',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -1305,28 +1309,28 @@ class _MatchTrackerState extends State<MatchTracker> {
                             width: 65.0,
                             child: Text(
                               '$todayTime',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                           Container(
                             width: 65.0,
                             child: Text(
                               '$todayPeak',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                           Container(
                             width: 65.0,
                             child: Text(
                               '$todayPct',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                           Container(
                             width: 55.0,
                             child: Text(
                               '$todayClass',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -1342,7 +1346,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             width: 65.0,
                             child: Text(
                               'Overall',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -1350,28 +1354,28 @@ class _MatchTrackerState extends State<MatchTracker> {
                             width: 65.0,
                             child: Text(
                               '$overallTime',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                           Container(
                             width: 65.0,
                             child: Text(
                               '$overallPeak',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                           Container(
                             width: 65.0,
                             child: Text(
                               '$overallPct',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                           Container(
                             width: 55.0,
                             child: Text(
                               '$overallClass',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                         ],
@@ -1494,7 +1498,7 @@ class _MatchTrackerState extends State<MatchTracker> {
           todayPct5 = _calcTodayPercent(peak5, _controller5.text);
         });
 
-        if (best5 == '') {
+        if (best5 == '' || best5 == '') {
           setState(() {
             best5 = _controller5.text;
             bestClass5 = _calcBestClass(peak5, _controller5.text);
@@ -1759,6 +1763,7 @@ class _MatchTrackerState extends State<MatchTracker> {
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
+//            Navigator.pop(context);
             setState(() {
               switch (bestID) {
                 case '5':
@@ -2807,7 +2812,12 @@ class _MatchTrackerState extends State<MatchTracker> {
                 _calcTodayPercent(peakRound, stageTimes.roundabout)
             : todayPctRound = '';
 
-        stageTimes.best5 != null ? best5 = stageTimes.best5 : best5 = '';
+        stageTimes.best5 != null &&
+//                stageTimes.best5 != &&
+                stageTimes.best5 != ''
+            ? best5 = stageTimes.best5
+            : best5 = '';
+
         if (best5 != '') {
           bestClass5 = _calcBestClass(peak5, best5);
           if (best5 == _controller5.text) {

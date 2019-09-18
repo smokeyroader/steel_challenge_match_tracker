@@ -36,8 +36,10 @@ class _ClassTrackerState extends State<ClassTracker> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Steel Challenge Class Tracker',
+          title: FittedBox(
+            child: Text(
+              'Steel Challenge Class Tracker',
+            ),
           ),
           backgroundColor: Color(0xFF00681B),
         ),
@@ -52,12 +54,14 @@ class _ClassTrackerState extends State<ClassTracker> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Center(
-                    child: Text(
-                      '${widget.division}',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF00681B),
+                    child: FittedBox(
+                      child: Text(
+                        '${widget.division}',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF00681B),
+                        ),
                       ),
                     ),
                   ),

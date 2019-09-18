@@ -126,22 +126,24 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       top: false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Steel Challenge Match Tracker'),
+          title: FittedBox(child: Text('Steel Challenge Match Tracker')),
           backgroundColor: Color(0xFF00681B),
           actions: <Widget>[
-            PopupMenuButton<String>(
-              onSelected: mainMenuChoiceAction,
-              itemBuilder: (BuildContext context) {
-                return Constants.mainMenuChoices.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice
+            FittedBox(
+              child: PopupMenuButton<String>(
+                onSelected: mainMenuChoiceAction,
+                itemBuilder: (BuildContext context) {
+                  return Constants.mainMenuChoices.map((String choice) {
+                    return PopupMenuItem<String>(
+                      value: choice,
+                      child: Text(choice
 //                      ,
 //                      style: TextStyle(fontSize: 18.0),
-                        ),
-                  );
-                }).toList();
-              },
+                          ),
+                    );
+                  }).toList();
+                },
+              ),
             ),
           ],
         ),
@@ -186,11 +188,13 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   onTap: trackFirstDiv,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '$firstRecent',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
+                    child: FittedBox(
+                      child: Text(
+                        ' $firstRecent ',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                        ),
                       ),
                     ),
                   ),
@@ -199,11 +203,13 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   onTap: trackSecondDiv,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '$secondRecent',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
+                    child: FittedBox(
+                      child: Text(
+                        ' $secondRecent ',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                        ),
                       ),
                     ),
                   ),
@@ -212,11 +218,13 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   onTap: trackThirdDiv,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '$thirdRecent',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
+                    child: FittedBox(
+                      child: Text(
+                        ' $thirdRecent ',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                        ),
                       ),
                     ),
                   ),
@@ -225,11 +233,13 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   onTap: trackFourthDiv,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '$fourthRecent',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
+                    child: FittedBox(
+                      child: Text(
+                        ' $fourthRecent ',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                        ),
                       ),
                     ),
                   ),
@@ -240,8 +250,8 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                 ),
 
                 Text(
-                  'Version 2.1',
-                  style: TextStyle(fontSize: 16.0),
+                  'Version 2.1.1',
+                  style: TextStyle(fontSize: 12.0),
                 ),
               ],
             ),
