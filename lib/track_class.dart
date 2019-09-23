@@ -50,11 +50,11 @@ class _ClassTrackerState extends State<ClassTracker> {
               SizedBox(
                 height: 50.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: FittedBox(
+              FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
                       child: Text(
                         '${widget.division}',
                         style: TextStyle(
@@ -64,8 +64,8 @@ class _ClassTrackerState extends State<ClassTracker> {
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
 //          Center(
 //            child: Text(

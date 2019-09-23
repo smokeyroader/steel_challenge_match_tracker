@@ -1002,43 +1002,45 @@ class _BestStringsState extends State<BestStrings> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(width: 75.0),
-                    Container(
-                      width: 65.0,
-                      child: Text(
-                        'Time',
-                        style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w900),
+                child: FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(width: 75.0),
+                      Container(
+                        width: 65.0,
+                        child: Text(
+                          'Time',
+                          style: TextStyle(
+                              fontSize: 14.0, fontWeight: FontWeight.w900),
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 65.0,
-                      child: Text(
-                        'Peak',
-                        style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w900),
+                      Container(
+                        width: 65.0,
+                        child: Text(
+                          'Peak',
+                          style: TextStyle(
+                              fontSize: 14.0, fontWeight: FontWeight.w900),
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 65.0,
-                      child: Text(
-                        '%Peak',
-                        style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w900),
+                      Container(
+                        width: 75.0,
+                        child: Text(
+                          '%Peak',
+                          style: TextStyle(
+                              fontSize: 14.0, fontWeight: FontWeight.w900),
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 65.0,
-                      child: Text(
-                        'Class',
-                        style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w900),
+                      Container(
+                        width: 65.0,
+                        child: Text(
+                          'Class',
+                          style: TextStyle(
+                              fontSize: 14.0, fontWeight: FontWeight.w900),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Column(

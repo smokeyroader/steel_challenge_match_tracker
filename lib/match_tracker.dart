@@ -1300,7 +1300,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             ),
                           ),
                           Container(
-                            width: 70.0,
+                            width: 75.0,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 12.0),
                               child: Text(
@@ -1828,7 +1828,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   best5 = stageTime;
                   setState(() {
                     bestClass5 = _calcBestClass(peak5, stageTime);
-                    newBestColor5 = Color(0xFF00681B);
+                    newBestColor5 = Colors.green;
                     _calcOverall();
                   });
                   break;
@@ -1849,7 +1849,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   bestShow = stageTime;
                   setState(() {
                     bestClassShow = _calcBestClass(peakShow, stageTime);
-                    newBestColorShow = Color(0xFF00681B);
+                    newBestColorShow = Colors.green;
                     _calcOverall();
                   });
 
@@ -1872,7 +1872,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClassSH = _calcBestClass(peakSH, stageTime);
                   });
-                  newBestColorSH = Color(0xFF00681B);
+                  newBestColorSH = Colors.green;
                   _calcOverall();
 
                   break;
@@ -1894,7 +1894,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClassOL = _calcBestClass(peakOL, stageTime);
                   });
-                  newBestColorOL = Color(0xFF00681B);
+                  newBestColorOL = Colors.green;
                   _calcOverall();
 
                   break;
@@ -1916,7 +1916,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClassAcc = _calcBestClass(peakAcc, stageTime);
                   });
-                  newBestColorAcc = Color(0xFF00681B);
+                  newBestColorAcc = Colors.green;
                   _calcOverall();
 
                   break;
@@ -1938,7 +1938,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClassPend = _calcBestClass(peakPend, stageTime);
                   });
-                  newBestColorPend = Color(0xFF00681B);
+                  newBestColorPend = Colors.green;
                   _calcOverall();
 
                   break;
@@ -1960,7 +1960,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClassSpeed = _calcBestClass(peakSpeed, stageTime);
                   });
-                  newBestColorSpeed = Color(0xFF00681B);
+                  newBestColorSpeed = Colors.green;
                   _calcOverall();
 
                   break;
@@ -1982,7 +1982,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   setState(() {
                     bestClassRound = _calcBestClass(peakRound, stageTime);
                   });
-                  newBestColorRound = Color(0xFF00681B);
+                  newBestColorRound = Colors.green;
                   _calcOverall();
 
                   break;
