@@ -5,6 +5,7 @@ import 'help_screen.dart';
 import 'match_tracker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'resources.dart';
+import 'division_summary.dart';
 
 class MatchTrackerHomePage extends StatefulWidget {
   @override
@@ -251,7 +252,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   ),
 
                   Text(
-                    'Version 2.1.1',
+                    'Version 2.2',
                     style: TextStyle(fontSize: 14.0),
                   ),
                 ],
@@ -316,6 +317,15 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       } else {
         saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
       }
+    } else if (choice == 'Classification Summary') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return DivisionSummary();
+          },
+        ),
+      );
     } else if (choice == 'Resources') {
       //Navigate to the Resources page with useful links
 
@@ -400,24 +410,4 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       ],
     ).show();
   }
-
-//  _noRecentGunsAlert(context) {
-//    Alert(
-//      context: context,
-//      type: AlertType.warning,
-//      title: "",
-//      desc: "You have no recent guns to save.",
-//      buttons: [
-//        DialogButton(
-//          color: Colors.green,
-//          child: Text(
-//            "OK",
-//            style: TextStyle(color: Colors.white, fontSize: 20),
-//          ),
-//          onPressed: () => Navigator.pop(context),
-//          width: 120,
-//        )
-//      ],
-//    ).show();
-//  }
 }

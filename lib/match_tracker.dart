@@ -54,7 +54,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   bool ignoreChange = false;
 
   String showToday;
-  String overridenClass = '';
+  String overriddenClass = '';
 
   String best5 = '';
   String bestShow = '';
@@ -156,7 +156,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     //Check if class has been overwritten
     _getClassOverride(widget.currentDivision).then((value) {
       setState(() {
-        overridenClass = value;
+        overriddenClass = value;
       });
     });
 
@@ -2257,33 +2257,33 @@ class _MatchTrackerState extends State<MatchTracker> {
             (double.parse(overallPeak) / double.parse(overallTime) * 100)
                 .toStringAsFixed(2);
 
-        overallClass = overridenClass;
+        overallClass = overriddenClass;
 
-        if (overridenClass != '') {
+        if (overriddenClass != '') {
           if (double.parse(overallPct) < 40.0 &&
-              overridenClass != 'C' &&
-              overridenClass != 'B' &&
-              overridenClass != 'A' &&
-              overridenClass != 'M' &&
-              overridenClass != 'GM') {
+              overriddenClass != 'C' &&
+              overriddenClass != 'B' &&
+              overriddenClass != 'A' &&
+              overriddenClass != 'M' &&
+              overriddenClass != 'GM') {
             overallClass = 'D';
           } else if (double.parse(overallPct) < 60.0 &&
-              overridenClass != 'B' &&
-              overridenClass != 'A' &&
-              overridenClass != 'M' &&
-              overridenClass != 'GM') {
+              overriddenClass != 'B' &&
+              overriddenClass != 'A' &&
+              overriddenClass != 'M' &&
+              overriddenClass != 'GM') {
             overallClass = 'C';
           } else if (double.parse(overallPct) < 75.0 &&
-              overridenClass != 'A' &&
-              overridenClass != 'M' &&
-              overridenClass != 'GM') {
+              overriddenClass != 'A' &&
+              overriddenClass != 'M' &&
+              overriddenClass != 'GM') {
             overallClass = 'B';
           } else if (double.parse(overallPct) < 85.0 &&
-              overridenClass != 'M' &&
-              overridenClass != 'GM') {
+              overriddenClass != 'M' &&
+              overriddenClass != 'GM') {
             overallClass = 'A';
           } else if (double.parse(overallPct) < 95.0 &&
-              overridenClass != 'GM') {
+              overriddenClass != 'GM') {
             overallClass = 'M';
           } else {
             overallClass = 'GM';
@@ -2515,7 +2515,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   _setClassOverride(widget.currentDivision, 'GM');
                   setState(() {
-                    overridenClass = 'GM';
+                    overriddenClass = 'GM';
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
@@ -2543,7 +2543,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   _setClassOverride(widget.currentDivision, 'M');
                   setState(() {
-                    overridenClass = 'M';
+                    overriddenClass = 'M';
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
@@ -2570,7 +2570,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   _setClassOverride(widget.currentDivision, 'A');
                   setState(() {
-                    overridenClass = 'A';
+                    overriddenClass = 'A';
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
@@ -2597,7 +2597,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   _setClassOverride(widget.currentDivision, 'B');
                   setState(() {
-                    overridenClass = 'B';
+                    overriddenClass = 'B';
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
@@ -2624,7 +2624,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   _setClassOverride(widget.currentDivision, 'C');
                   setState(() {
-                    overridenClass = 'C';
+                    overriddenClass = 'C';
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
@@ -3068,6 +3068,8 @@ class _MatchTrackerState extends State<MatchTracker> {
               timeCuts = '';
 
               timeShaved = 0.0;
+
+              _setClassOverride(widget.currentDivision, '');
             });
             _saveStageTimes();
             _clearStringTimes();

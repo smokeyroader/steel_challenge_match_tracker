@@ -41,22 +41,48 @@ class _ResourcesState extends State<Resources> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 18.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _teamMT();
-                      },
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18.0, bottom: 8.0),
                       child: GestureDetector(
                         onTap: () {
-                          launchURL("http://www.teammatchtracker.com");
+                          _teamMT();
+                        },
+                        child: GestureDetector(
+                          onTap: () {
+                            launchURL("http://www.teammatchtracker.com");
+                          },
+                          child: Text(
+                            'Team Match Tracker Info and Signup',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF00681B),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return CurrentClassification();
+                              },
+                            ),
+                          );
                         },
                         child: Text(
-                          'Team Match Tracker Info and Signup',
-                          textAlign: TextAlign.center,
+                          'My Current Classifications',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -65,149 +91,109 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return CurrentClassification();
-                            },
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchURL(
+                              "http://www.ultimatesteelshooter.libsyn.com/website");
+                        },
+                        child: Text(
+                          'The Ultimate Steel Shooter Podcast',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
                           ),
-                        );
-                      },
-                      child: Text(
-                        'My Current Classifications',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        launchURL(
-                            "http://www.ultimatesteelshooter.libsyn.com/website");
-                      },
-                      child: Text(
-                        'The Ultimate Steel Shooter Podcast',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchURL(
+                              "https://www.amazon.com/You-Feel-Need-Speed-Challenge/dp/1548141046/ref=sr_1_1?s=books&ie=UTF8&qid=1510059473&sr=1-1&keywords=do+you+feel+the+need+for+speed");
+                        },
+                        child: Text(
+                          'Steel Challenge Training Manual',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        launchURL(
-                            "https://www.amazon.com/You-Feel-Need-Speed-Challenge/dp/1548141046/ref=sr_1_1?s=books&ie=UTF8&qid=1510059473&sr=1-1&keywords=do+you+feel+the+need+for+speed");
-                      },
-                      child: Text(
-                        'Steel Challenge Training Manual',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchURL(
+                              "http://www.steelshootbanners.com/index.html");
+                        },
+                        child: Text(
+                          'Steel Challenge Training Aids',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        launchURL(
-                            "http://www.steelshootbanners.com/index.html");
-                      },
-                      child: Text(
-                        'Steel Challenge Training Aids',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchURL(
+                              "https://www.ssusa.org/articles/2018/7/5/steel-challenge-lets-talk-about-classification/");
+                        },
+                        child: Text(
+                          'The SCSA Classification System',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        launchURL(
-                            "https://www.ssusa.org/articles/2018/7/5/steel-challenge-lets-talk-about-classification/");
-                      },
-                      child: Text(
-                        'The SCSA Classification System',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchURL(
+                              "https://steelchallenge.com/steel-challenge-Rules-Home.php");
+                        },
+                        child: Text(
+                          'Steel Challenge Online Rule Book',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        launchURL(
-                            "https://steelchallenge.com/steel-challenge-Rules-Home.php");
-                      },
-                      child: Text(
-                        'Steel Challenge Online Rule Book',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchURL("https://practiscore.com");
+                        },
+                        child: Text(
+                          'Practiscore Home',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        launchURL(
-                            "https://steelchallenge.com/steel-challenge-world-records.php");
-                      },
-                      child: Text(
-                        'Steel Challenge World Records',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        launchURL("https://practiscore.com");
-                      },
-                      child: Text(
-                        'Practiscore Home',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

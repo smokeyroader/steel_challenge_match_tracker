@@ -4,6 +4,7 @@ class Constants {
   static const List<String> mainMenuChoices = <String>[
     'Clear Recent Guns',
     'Save Recent Guns',
+    'Classification Summary',
     'Resources',
     'Help',
   ];

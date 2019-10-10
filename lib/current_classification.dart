@@ -70,7 +70,8 @@ class CurrentClassification extends StatelessWidget {
 
                   _saveMemberNum('${_controller.text}');
                   launchURL(
-                      "https://www.steelchallenge.com/steel-challenge-classification.php?action=lookup&scsa=${_controller.text}");
+                      'https://scsa.org/classification/${_controller.text}');
+//                      "https://www.steelchallenge.com/steel-challenge-classification.php?action=lookup&scsa=c");
 
                   Navigator.pop(context);
                 },
