@@ -70,7 +70,6 @@ class _DivisionSummaryState extends State<DivisionSummary> {
 
   @override
   void initState() {
-
     __getSummary('Rimfire Rifle Open (RFRO)');
     __getSummary('Rimfire Rifle Irons (RFRI)');
     __getSummary('Pistol-Caliber Carbine Optic (PCCO)');
@@ -162,12 +161,13 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div1 ',
                         textAlign: TextAlign.left,
                         style: TextStyle(
+//                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
                         ),
@@ -179,12 +179,13 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div1Pct ',
                         textAlign: TextAlign.left,
                         style: TextStyle(
+//                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
                         ),
@@ -196,12 +197,13 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div1Class ',
                         textAlign: TextAlign.left,
                         style: TextStyle(
+//                          fontSize: 14.0,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
                         ),
@@ -223,7 +225,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div2 ',
@@ -240,7 +242,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div2Pct ',
@@ -257,7 +259,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div2Class ',
@@ -284,7 +286,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div3 ',
@@ -301,7 +303,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div3Pct ',
@@ -318,7 +320,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div3Class ',
@@ -345,7 +347,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div4 ',
@@ -362,7 +364,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div4Pct ',
@@ -379,7 +381,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div4Class ',
@@ -406,7 +408,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div5 ',
@@ -423,7 +425,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div5Pct ',
@@ -440,7 +442,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div5Class ',
@@ -467,7 +469,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div6 ',
@@ -484,7 +486,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div6Pct ',
@@ -501,7 +503,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div6Class ',
@@ -528,7 +530,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div7 ',
@@ -545,7 +547,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div7Pct ',
@@ -562,7 +564,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div7Class ',
@@ -589,7 +591,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div8 ',
@@ -606,7 +608,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div8Pct ',
@@ -623,7 +625,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div8Class ',
@@ -650,7 +652,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div9 ',
@@ -667,7 +669,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div9Pct ',
@@ -684,7 +686,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div9Class ',
@@ -711,7 +713,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div10 ',
@@ -728,7 +730,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div10Pct ',
@@ -745,7 +747,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div10Class ',
@@ -772,7 +774,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div11 ',
@@ -789,7 +791,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div11Pct ',
@@ -806,7 +808,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div11Class ',
@@ -833,7 +835,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div12 ',
@@ -850,7 +852,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div12Pct ',
@@ -867,7 +869,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div12Class ',
@@ -894,7 +896,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   ),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div13 ',
@@ -911,7 +913,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div13Pct ',
@@ -928,7 +930,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
                     width: 95.0,
-                    height: 20.0,
+                    height: 22.0,
                     child: FittedBox(
                       child: Text(
                         ' $div13Class',
@@ -945,13 +947,13 @@ class _DivisionSummaryState extends State<DivisionSummary> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 30.0),
+            padding: const EdgeInsets.only(top: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
                   width: 50.0,
-                  height: 20.0,
+                  height: 22.0,
                   child: FittedBox(
                     child: Text(
                       'GM',
