@@ -96,23 +96,36 @@ class _DivisionSummaryState extends State<DivisionSummary> {
         ),
         backgroundColor: Color(0xFF00681B),
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 24.0),
-            child: Container(
-              height: 20.0,
-              color: Color(0xFF00681B),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Container(
+                height: 20.0,
+                color: Color(0xFF00681B),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Container(
+                        child: FittedBox(
+                          child: Text(
+                            'Division',
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
                       child: FittedBox(
                         child: Text(
-                          'Division',
+                          'Current Percent',
                           style: TextStyle(
                               fontSize: 14.0,
                               fontWeight: FontWeight.bold,
@@ -120,28 +133,81 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    child: FittedBox(
-                      child: Text(
-                        'Current Percent',
-                        style: TextStyle(
-                            fontSize: 14.0,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Container(
+                        child: FittedBox(
+                          child: Text(
+                            'Current Class',
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div1 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+//                          fontSize: 14.0,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: Color(0xFF00681B),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div1Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+//                          fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
                     child: Container(
+                      width: 95.0,
+                      height: 22.0,
                       child: FittedBox(
                         child: Text(
-                          'Current Class',
+                          ' $div1Class ',
+                          textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+//                          fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
@@ -149,815 +215,781 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                 ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div1 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-//                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div2 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div1Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-//                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div2Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div1Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-//                          fontSize: 14.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div2Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div2 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div3 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div2Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div3Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div2Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div3Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div3 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div4 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div3Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div4Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div3Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div4Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div4 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div5 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div4Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div5Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div4Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div5Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div5 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div6 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div5Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div6Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div5Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div6Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div6 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div7 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div6Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div7Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div6Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div7Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div7 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div8 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div7Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div8Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div7Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div8Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div8 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div9 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div8Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div9Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div8Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div9Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div9 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div10 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div9Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div10Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div9Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div10Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div10 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div11 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div10Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div11Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div10Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div11Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div11 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div12 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div11Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div12Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div11Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div12Class ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div12 ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div13 ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div12Pct ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div13Pct ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div12Class ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Container(
+                      width: 95.0,
+                      height: 22.0,
+                      child: FittedBox(
+                        child: Text(
+                          ' $div13Class',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 4.0,
-                  ),
-                  child: Container(
-                    width: 95.0,
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 50.0,
                     height: 22.0,
                     child: FittedBox(
                       child: Text(
-                        ' $div13 ',
+                        'GM',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
+                  Container(
+                    width: 85.0,
+                    height: 20.0,
                     child: FittedBox(
                       child: Text(
-                        ' $div13Pct ',
-                        textAlign: TextAlign.left,
+                        '>= 95%',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 95.0,
-                    height: 22.0,
-                    child: FittedBox(
-                      child: Text(
-                        ' $div13Class',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
                   width: 50.0,
-                  height: 22.0,
+                  height: 20.0,
                   child: FittedBox(
                     child: Text(
-                      'GM',
-                      textAlign: TextAlign.left,
+                      'M',
+                      textAlign: TextAlign.right,
                       style: TextStyle(
                         color: Color(0xFF00681B),
                       ),
@@ -969,7 +1001,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   height: 20.0,
                   child: FittedBox(
                     child: Text(
-                      '>= 95%',
+                      '>= 85%',
                       style: TextStyle(
                         color: Color(0xFF00681B),
                       ),
@@ -978,158 +1010,128 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                 ),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: 50.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    'M',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 50.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      'A',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                width: 85.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    '>= 85%',
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+                Container(
+                  width: 85.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      '>= 75%',
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: 50.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    'A',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 50.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      'B',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                width: 85.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    '>= 75%',
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+                Container(
+                  width: 85.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      '>= 60%',
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: 50.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    'B',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 50.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      'C',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                width: 85.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    '>= 60%',
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+                Container(
+                  width: 85.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      '>= 40%',
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: 50.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    'C',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  width: 50.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      'D',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                width: 85.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    '>= 40%',
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
+                Container(
+                  width: 85.0,
+                  height: 20.0,
+                  child: FittedBox(
+                    child: Text(
+                      '>= 0%',
+                      style: TextStyle(
+                        color: Color(0xFF00681B),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: 50.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    'D',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                width: 85.0,
-                height: 20.0,
-                child: FittedBox(
-                  child: Text(
-                    '>= 0%',
-                    style: TextStyle(
-                      color: Color(0xFF00681B),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

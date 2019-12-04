@@ -37,19 +37,19 @@ class Constants {
   static double getPeak5(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
-        return 10.5;
+        return 9.5;
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 11.0;
+        return 10.0;
         break;
 
       case 'Pistol-Caliber Carbine Optic (PCCO)':
-        return 10.5;
+        return 9.5;
         break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
-        return 11.5;
+        return 11.0;
         break;
 
       case 'Rimfire Pistol Open (RFPO)':
@@ -77,11 +77,11 @@ class Constants {
         break;
 
       case 'Single Stack (SS)':
-        return 13.5;
+        return 13.25;
         break;
 
       case 'Optical Sight Revolver (OSR)':
-        return 12.0;
+        return 12.25;
         break;
 
       case 'Iron Sight Revolver (ISR)':
@@ -94,19 +94,19 @@ class Constants {
   static double getPeakShow(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
-        return 7.5;
+        return 7.0;
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 8.5;
+        return 7.5;
         break;
 
       case 'Pistol-Caliber Carbine Optic (PCCO)':
-        return 8.0;
+        return 7.0;
         break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
-        return 9.0;
+        return 8.5;
         break;
 
       case 'Rimfire Pistol Open (RFPO)':
@@ -155,7 +155,7 @@ class Constants {
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 8.0;
+        return 7.5;
         break;
 
       case 'Pistol-Caliber Carbine Optic (PCCO)':
@@ -163,7 +163,7 @@ class Constants {
         break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
-        return 8.5;
+        return 8.0;
         break;
 
       case 'Rimfire Pistol Open (RFPO)':
@@ -191,7 +191,7 @@ class Constants {
         break;
 
       case 'Single Stack (SS)':
-        return 10.5;
+        return 10.25;
         break;
 
       case 'Optical Sight Revolver (OSR)':
@@ -208,11 +208,11 @@ class Constants {
   static double getPeakOL(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
-        return 11.5;
+        return 11.0;
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 12.5;
+        return 12.0;
         break;
 
       case 'Pistol-Caliber Carbine Optic (PCCO)':
@@ -248,15 +248,15 @@ class Constants {
         break;
 
       case 'Single Stack (SS)':
-        return 14.5;
+        return 14.75;
         break;
 
       case 'Optical Sight Revolver (OSR)':
-        return 14.0;
+        return 14.25;
         break;
 
       case 'Iron Sight Revolver (ISR)':
-        return 15.0;
+        return 15.75;
         break;
     }
     return 0.0;
@@ -265,15 +265,15 @@ class Constants {
   static double getPeakAcc(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
-        return 9.0;
+        return 8.5;
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 9.5;
+        return 9.0;
         break;
 
       case 'Pistol-Caliber Carbine Optic (PCCO)':
-        return 9.0;
+        return 8.75;
         break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
@@ -305,11 +305,11 @@ class Constants {
         break;
 
       case 'Single Stack (SS)':
-        return 11.5;
+        return 11.75;
         break;
 
       case 'Optical Sight Revolver (OSR)':
-        return 13.5;
+        return 12.75;
         break;
 
       case 'Iron Sight Revolver (ISR)':
@@ -322,19 +322,19 @@ class Constants {
   static double getPeakPend(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
-        return 9.5;
+        return 9.0;
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 11.0;
-        break;
-
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
         return 10.0;
         break;
 
+      case 'Pistol-Caliber Carbine Optic (PCCO)':
+        return 9.25;
+        break;
+
       case 'Pistol-Caliber Carbine Irons (PCCI)':
-        return 11.5;
+        return 11.0;
         break;
 
       case 'Rimfire Pistol Open (RFPO)':
@@ -370,7 +370,7 @@ class Constants {
         break;
 
       case 'Iron Sight Revolver (ISR)':
-        return 14.0;
+        return 14.25;
         break;
     }
     return 0.0;
@@ -379,15 +379,15 @@ class Constants {
   static double getPeakSpeed(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
-        return 9.5;
+        return 9.0;
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 10.5;
+        return 10.25;
         break;
 
       case 'Pistol-Caliber Carbine Optic (PCCO)':
-        return 10.0;
+        return 9.5;
         break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
@@ -423,7 +423,7 @@ class Constants {
         break;
 
       case 'Optical Sight Revolver (OSR)':
-        return 12.5;
+        return 12.75;
         break;
 
       case 'Iron Sight Revolver (ISR)':
@@ -436,19 +436,19 @@ class Constants {
   static double getPeakRound(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
-        return 7.5;
+        return 7.0;
         break;
 
       case 'Rimfire Rifle Irons (RFRI)':
-        return 8.5;
+        return 7.75;
         break;
 
       case 'Pistol-Caliber Carbine Optic (PCCO)':
-        return 8.0;
+        return 7.5;
         break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
-        return 9.0;
+        return 8.0;
         break;
 
       case 'Rimfire Pistol Open (RFPO)':
