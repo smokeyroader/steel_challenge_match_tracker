@@ -192,6 +192,23 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchURL(
+                              "https://teammatchtracker.com/upcoming-matches");
+                        },
+                        child: Text(
+                          'Upcoming Major SCSA Matches',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF00681B),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
