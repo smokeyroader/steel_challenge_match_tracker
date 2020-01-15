@@ -455,8 +455,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
-                            style:
-                                TextStyle(fontSize: 14.0, color: newBestColor5),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                color: newBestColor5,
+                                fontWeight: getFontWeight(newBestColor5)),
                             controller: _controller5,
                             focusNode: _focus5,
                             inputFormatters: [
@@ -564,8 +567,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 14.0, color: newBestColorShow),
+                                fontSize: 14.0,
+                                color: newBestColorShow,
+                                fontWeight: getFontWeight(newBestColorShow)),
                             controller: _controllerShow,
                             focusNode: _focusShow,
                             decoration: InputDecoration.collapsed(
@@ -677,8 +683,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 14.0, color: newBestColorSH),
+                                fontSize: 14.0,
+                                color: newBestColorSH,
+                                fontWeight: getFontWeight(newBestColorSH)),
                             controller: _controllerSH,
                             focusNode: _focusSH,
                             decoration: InputDecoration.collapsed(
@@ -789,8 +798,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 14.0, color: newBestColorOL),
+                                fontSize: 14.0,
+                                color: newBestColorOL,
+                                fontWeight: getFontWeight(newBestColorOL)),
                             controller: _controllerOL,
                             focusNode: _focusOL,
                             decoration: InputDecoration.collapsed(
@@ -898,8 +910,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 14.0, color: newBestColorAcc),
+                                fontSize: 14.0,
+                                color: newBestColorAcc,
+                                fontWeight: getFontWeight(newBestColorAcc)),
                             controller: _controllerAcc,
                             focusNode: _focusAcc,
                             decoration: InputDecoration.collapsed(
@@ -1011,8 +1026,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 14.0, color: newBestColorPend),
+                                fontSize: 14.0,
+                                color: newBestColorPend,
+                                fontWeight: getFontWeight(newBestColorPend)),
                             controller: _controllerPend,
                             focusNode: _focusPend,
                             decoration: InputDecoration.collapsed(
@@ -1122,8 +1140,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 14.0, color: newBestColorSpeed),
+                                fontSize: 14.0,
+                                color: newBestColorSpeed,
+                                fontWeight: getFontWeight(newBestColorSpeed)),
                             controller: _controllerSpeed,
                             focusNode: _focusSpeed,
                             decoration: InputDecoration.collapsed(
@@ -1231,8 +1252,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Container(
                           width: 48.0,
                           child: TextField(
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 14.0, color: newBestColorRound),
+                                fontSize: 14.0,
+                                color: newBestColorRound,
+                                fontWeight: getFontWeight(newBestColorRound)),
                             controller: _controllerRound,
                             focusNode: _focusRound,
                             decoration: InputDecoration.collapsed(
@@ -2004,6 +2028,13 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
       ],
     ).show();
+  }
+
+  FontWeight getFontWeight(Color currentColor) {
+    if (currentColor == Colors.green) {
+      return FontWeight.bold;
+    }
+    return FontWeight.normal;
   }
 
 ///////Call functions to update today and overall totals when TextField loses focus///////////////
@@ -2862,7 +2893,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (best5 != '') {
           bestClass5 = _calcBestClass(peak5, best5);
           if (best5 == _controller5.text) {
-            newBestColor5 = Color(0xFF00681B);
+            newBestColor5 = Colors.green;
           }
         }
 
@@ -2872,7 +2903,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (bestShow != '') {
           bestClassShow = _calcBestClass(peakShow, bestShow);
           if (bestShow == _controllerShow.text) {
-            newBestColorShow = Color(0xFF00681B);
+            newBestColorShow = Colors.green;
           }
         }
 
@@ -2880,7 +2911,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (bestSH != '') {
           bestClassSH = _calcBestClass(peakSH, bestSH);
           if (bestSH == _controllerSH.text) {
-            newBestColorSH = Color(0xFF00681B);
+            newBestColorSH = Colors.green;
           }
         }
 
@@ -2888,7 +2919,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (bestOL != '') {
           bestClassOL = _calcBestClass(peakOL, bestOL);
           if (bestOL == _controllerOL.text) {
-            newBestColorOL = Color(0xFF00681B);
+            newBestColorOL = Colors.green;
           }
         }
 
@@ -2898,7 +2929,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (bestAcc != '') {
           bestClassAcc = _calcBestClass(peakAcc, bestAcc);
           if (bestAcc == _controllerAcc.text) {
-            newBestColorAcc = Color(0xFF00681B);
+            newBestColorAcc = Colors.green;
           }
         }
 
@@ -2908,7 +2939,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (bestPend != '') {
           bestClassPend = _calcBestClass(peakPend, bestPend);
           if (bestPend == _controllerPend.text) {
-            newBestColorPend = Color(0xFF00681B);
+            newBestColorPend = Colors.green;
           }
         }
 
@@ -2918,7 +2949,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (bestSpeed != '') {
           bestClassSpeed = _calcBestClass(peakSpeed, bestSpeed);
           if (bestSpeed == _controllerSpeed.text) {
-            newBestColorSpeed = Color(0xFF00681B);
+            newBestColorSpeed = Colors.green;
           }
         }
 
@@ -2928,7 +2959,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         if (bestRound != '') {
           bestClassRound = _calcBestClass(peakRound, bestRound);
           if (bestRound == _controllerRound.text) {
-            newBestColorRound = Color(0xFF00681B);
+            newBestColorRound = Colors.green;
           }
         }
 

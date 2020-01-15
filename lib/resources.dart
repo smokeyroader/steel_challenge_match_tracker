@@ -39,7 +39,8 @@ class _ResourcesState extends State<Resources> {
         },
         child: FittedBox(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
@@ -82,7 +83,7 @@ class _ResourcesState extends State<Resources> {
                           );
                         },
                         child: Text(
-                          'My Current Classifications',
+                          'My SCSA Classification Record',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

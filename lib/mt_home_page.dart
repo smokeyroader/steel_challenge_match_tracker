@@ -252,7 +252,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   ),
 
                   Text(
-                    'Version 2.2.1',
+                    'Version 2.2.2',
                     style: TextStyle(fontSize: 14.0),
                   ),
                 ],
