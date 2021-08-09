@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'best_strings.dart';
 import 'constants.dart';
 import 'database_helper.dart';
 import 'track_class.dart';
 import 'stage_diagrams.dart';
+import 'todayTextField.dart';
 
 class MatchTracker extends StatefulWidget {
   //Set current division sent from mt_home_page.dart
@@ -115,7 +117,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   String timeCuts;
 
-//  Permit changing today time font to green if a new personal best is entered
+//  Permit changing today time font to green and bold if a new personal best is entered
   Color newBestColor5;
   Color newBestColorShow;
   Color newBestColorSH;
@@ -130,12 +132,6 @@ class _MatchTrackerState extends State<MatchTracker> {
   @override
   void initState() {
     super.initState();
-
-    //Keep screen from rotating to landscape
-//    SystemChrome.setPreferredOrientations([
-//      DeviceOrientation.portraitUp,
-//      DeviceOrientation.portraitDown,
-//    ]);
 
     _focus5 = FocusNode();
     _focusShow = FocusNode();
@@ -161,61 +157,9 @@ class _MatchTrackerState extends State<MatchTracker> {
     });
 
     //Set division abbreviation to be used to access the correct table when saving and retrieving times
-    setState(() {
-      switch (widget.currentDivision) {
-        case 'Rimfire Rifle Open (RFRO)':
-          divAbbrev = 'RFRO';
-          break;
 
-        case 'Rimfire Rifle Irons (RFRI)':
-          divAbbrev = 'RFRI';
-          break;
+    divAbbrev = Constants.getDivAbbrev(widget.currentDivision);
 
-        case 'Pistol-Caliber Carbine Optic (PCCO)':
-          divAbbrev = 'PCCO';
-          break;
-
-        case 'Pistol-Caliber Carbine Irons (PCCI)':
-          divAbbrev = 'PCCI';
-          break;
-
-        case 'Rimfire Pistol Open (RFPO)':
-          divAbbrev = 'RFPO';
-          break;
-
-        case 'Rimfire Pistol Irons (RFPI)':
-          divAbbrev = 'RFPI';
-          break;
-
-        case 'Open (OPN)':
-          divAbbrev = 'OPN';
-          break;
-
-        case 'Carry Optics (CO)':
-          divAbbrev = 'CO';
-          break;
-
-        case 'Production (PROD)':
-          divAbbrev = 'PROD';
-          break;
-
-        case 'Limited (LTD)':
-          divAbbrev = 'LTD';
-          break;
-
-        case 'Single Stack (SS)':
-          divAbbrev = 'SS';
-          break;
-
-        case 'Optical Sight Revolver (OSR)':
-          divAbbrev = 'OSR';
-          break;
-
-        case 'Iron Sight Revolver (ISR)':
-          divAbbrev = 'ISR';
-          break;
-      }
-    });
     //Get and set best and today times from database
     _getStageTimes();
 
@@ -452,34 +396,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColor5,
-                                fontWeight: getFontWeight(newBestColor5)),
-                            controller: _controller5,
-                            focusNode: _focus5,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controller5);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColor5,
+                          _controller5,
+                          _focus5,
                         ),
                       ),
                       Padding(
@@ -514,8 +434,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     builder: (context) {
                                       return StageDiagram(
                                           'Showdown', 'images/showdown.jpg');
-//                                      return Image.asset(
-//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -564,34 +482,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColorShow,
-                                fontWeight: getFontWeight(newBestColorShow)),
-                            controller: _controllerShow,
-                            focusNode: _focusShow,
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controllerShow);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColorShow,
+                          _controllerShow,
+                          _focusShow,
                         ),
                       ),
                       Padding(
@@ -604,10 +498,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                       ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                     ],
                   ),
                 ),
@@ -630,8 +520,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     builder: (context) {
                                       return StageDiagram('Smoke & Hope',
                                           'images/smoke_n_hope.jpg');
-//                                      return Image.asset(
-//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -680,34 +568,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColorSH,
-                                fontWeight: getFontWeight(newBestColorSH)),
-                            controller: _controllerSH,
-                            focusNode: _focusSH,
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controllerSH);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColorSH,
+                          _controllerSH,
+                          _focusSH,
                         ),
                       ),
                       Padding(
@@ -720,8 +584,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                       ),
-
-//
                     ],
                   ),
                 ),
@@ -732,7 +594,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-//                      color: Colors.blue,
                         width: 117.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -745,8 +606,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     builder: (context) {
                                       return StageDiagram('Outer Limits',
                                           'images/outer_limits.jpg');
-//                                      return Image.asset(
-//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -795,34 +654,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColorOL,
-                                fontWeight: getFontWeight(newBestColorOL)),
-                            controller: _controllerOL,
-                            focusNode: _focusOL,
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controllerOL);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColorOL,
+                          _controllerOL,
+                          _focusOL,
                         ),
                       ),
                       Padding(
@@ -857,8 +692,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     builder: (context) {
                                       return StageDiagram('Accelerator',
                                           'images/accelerator.jpg');
-//                                      return Image.asset(
-//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -907,34 +740,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColorAcc,
-                                fontWeight: getFontWeight(newBestColorAcc)),
-                            controller: _controllerAcc,
-                            focusNode: _focusAcc,
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controllerAcc);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColorAcc,
+                          _controllerAcc,
+                          _focusAcc,
                         ),
                       ),
                       Padding(
@@ -947,10 +756,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                       ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                     ],
                   ),
                 ),
@@ -973,8 +778,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     builder: (context) {
                                       return StageDiagram('The Pendulum',
                                           'images/pendulum.jpg');
-//                                      return Image.asset(
-//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -1023,34 +826,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColorPend,
-                                fontWeight: getFontWeight(newBestColorPend)),
-                            controller: _controllerPend,
-                            focusNode: _focusPend,
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controllerPend);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColorPend,
+                          _controllerPend,
+                          _focusPend,
                         ),
                       ),
                       Padding(
@@ -1063,8 +842,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                       ),
-
-//
                     ],
                   ),
                 ),
@@ -1087,8 +864,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     builder: (context) {
                                       return StageDiagram('Speed Option',
                                           'images/speed_option.jpg');
-//                                      return Image.asset(
-//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -1137,34 +912,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColorSpeed,
-                                fontWeight: getFontWeight(newBestColorSpeed)),
-                            controller: _controllerSpeed,
-                            focusNode: _focusSpeed,
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controllerSpeed);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColorSpeed,
+                          _controllerSpeed,
+                          _focusSpeed,
                         ),
                       ),
                       Padding(
@@ -1199,8 +950,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     builder: (context) {
                                       return StageDiagram('Roundabout',
                                           'images/roundabout.jpg');
-//                                      return Image.asset(
-//                                          'images/five_to_go.jpg');
                                     },
                                   ),
                                 );
@@ -1249,34 +998,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 48.0,
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                color: newBestColorRound,
-                                fontWeight: getFontWeight(newBestColorRound)),
-                            controller: _controllerRound,
-                            focusNode: _focusRound,
-                            decoration: InputDecoration.collapsed(
-                              hintText: null,
-                              border: OutlineInputBorder(),
-                            ),
-                            textInputAction: TextInputAction.done,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(5),
-                              BlacklistingTextInputFormatter(
-                                RegExp('[\\-|,\\ ]'),
-                              ),
-                            ],
-                            keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                            ),
-                            onChanged: (text) {
-                              autoFormat(_controllerRound);
-                            },
-                          ),
+                        child: TodayTime(
+                          newBestColorRound,
+                          _controllerRound,
+                          _focusRound,
                         ),
                       ),
                       Padding(
@@ -1299,7 +1024,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-//                          Container(width: 25),
                           Container(
                             width: 65.0,
                           ),
@@ -1444,9 +1168,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ],
                       ),
                     ),
-//                    SizedBox(
-//                      height: 15.0,
-//                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 48.0),
                       child: FittedBox(
@@ -1456,11 +1177,12 @@ class _MatchTrackerState extends State<MatchTracker> {
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(left: 4.0),
-                              child: RaisedButton(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    side: BorderSide(color: Color(0xFF00681B))),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    shape: StadiumBorder(),
+                                    side: BorderSide(
+                                        width: 1, color: Color(0xFF00681B)),
+                                    primary: Colors.white),
                                 child: Text(
                                   'Change Gun',
                                   style: TextStyle(
@@ -1488,11 +1210,12 @@ class _MatchTrackerState extends State<MatchTracker> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 4.0),
-                              child: RaisedButton(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    side: BorderSide(color: Color(0xFF00681B))),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    shape: StadiumBorder(),
+                                    side: BorderSide(
+                                        width: 1, color: Color(0xFF00681B)),
+                                    primary: Colors.white),
                                 child: Text(
                                   'Clear Today',
                                   style: TextStyle(
@@ -1516,35 +1239,6 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
       ),
     );
-  }
-
-//Method to automatically add decimal to time inputs
-  void autoFormat(TextEditingController controller) {
-    //Text entry can go into infinite loop under some conditions, with the
-    //system apparently failing to distinguish between system (programmatic)change and user change.
-    //The ignoreChange switch is an attempt to address this. Will monitor the effectiveness of this 'fix.'
-    if (!ignoreChange) {
-      String text = controller.text;
-      if (text != '') {
-        text = text.replaceAll('.', '');
-        text = text.replaceAll(' ', '');
-        if (text.length <= 2) {
-          text = '.' + text;
-        } else {
-          text = text.substring(0, text.length - 2) +
-              '.' +
-              text.substring(text.length - 2, text.length);
-        }
-        ignoreChange = true;
-        setState(() {
-          controller.text = text;
-          //Move cursor to first position after text changed
-          controller.selection = TextSelection.fromPosition(
-              TextPosition(offset: (text ?? '').length));
-        });
-        ignoreChange = false;
-      }
-    }
   }
 
 //Update today and total times when TextFields lose focus.
@@ -1847,8 +1541,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on 5 to Go!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
-
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   best5 = stageTime;
                   setState(() {
                     bestClass5 = _calcBestClass(peak5, stageTime);
@@ -1869,7 +1562,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Showdown!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   bestShow = stageTime;
                   setState(() {
                     bestClassShow = _calcBestClass(peakShow, stageTime);
@@ -1891,7 +1584,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Smoke & Hope!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   bestSH = stageTime;
                   setState(() {
                     bestClassSH = _calcBestClass(peakSH, stageTime);
@@ -1911,9 +1604,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                   final snackBar = SnackBar(
                     backgroundColor: Color(0xFF00681B),
                     content: Text(
-                        'You cut ${diff.toStringAsFixed(2)}seconds from your best time on Outer Limits!'),
+                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Outer Limits!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   bestOL = stageTime;
                   setState(() {
                     bestClassOL = _calcBestClass(peakOL, stageTime);
@@ -1935,7 +1628,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Accelerator!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
                   bestAcc = stageTime;
                   setState(() {
                     bestClassAcc = _calcBestClass(peakAcc, stageTime);
@@ -1957,7 +1651,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Pendulum!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   bestPend = stageTime;
                   setState(() {
                     bestClassPend = _calcBestClass(peakPend, stageTime);
@@ -1979,7 +1673,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Speed Option!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   bestSpeed = stageTime;
                   setState(() {
                     bestClassSpeed = _calcBestClass(peakSpeed, stageTime);
@@ -2001,7 +1695,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Roundabout!'),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   bestRound = stageTime;
                   setState(() {
                     bestClassRound = _calcBestClass(peakRound, stageTime);
@@ -2555,8 +2249,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       'Your ${widget.currentDivision} class has been changed to GM.',
                     ),
                   );
-
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Center(
                   child: const Text(
@@ -2583,7 +2276,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       'Your ${widget.currentDivision} class has been changed to M.',
                     ),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Center(
                   child: const Text(
@@ -2610,7 +2303,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       'Your ${widget.currentDivision} class has been changed to A.',
                     ),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Center(
                   child: const Text(
@@ -2637,7 +2330,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       'Your ${widget.currentDivision} class has been changed to B.',
                     ),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Center(
                   child: const Text(
@@ -2664,7 +2357,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       'Your ${widget.currentDivision} class has been changed to C.',
                     ),
                   );
-                  scaffoldState.currentState.showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Center(
                   child: const Text(
@@ -2695,7 +2388,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
         break;
 
@@ -2709,7 +2402,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
         break;
@@ -2724,7 +2417,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
         break;
@@ -2739,7 +2432,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
         break;
@@ -2754,7 +2447,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
         break;
@@ -2769,7 +2462,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
         break;
@@ -2784,7 +2477,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
         break;
@@ -2799,7 +2492,7 @@ class _MatchTrackerState extends State<MatchTracker> {
               textAlign: TextAlign.center,
             ),
           );
-          scaffoldState.currentState.showSnackBar(snackBar);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
         break;
@@ -3112,7 +2805,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                 textAlign: TextAlign.center,
               ),
             );
-            scaffoldState.currentState.showSnackBar(snackBar);
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
           width: 20,
         ),

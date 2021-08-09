@@ -46,7 +46,7 @@ class CurrentClassification extends StatelessWidget {
                   keyboardType: TextInputType.text,
 
                   inputFormatters: [
-                    BlacklistingTextInputFormatter(
+                    FilteringTextInputFormatter.deny(
                       RegExp('[\\-|,\\ ]'),
                     ),
                   ],
@@ -54,11 +54,11 @@ class CurrentClassification extends StatelessWidget {
 //                        InputDecoration.collapsed(hintText: 'USPSA Member #:'),
                 ),
               ),
-              RaisedButton(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    side: BorderSide(color: Color(0xFF00681B))),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: StadiumBorder(),
+                    side: BorderSide(width: 1, color: Color(0xFF00681B)),
+                    primary: Colors.white),
                 child: Text(
                   'Go',
                   style: TextStyle(

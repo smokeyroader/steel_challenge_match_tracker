@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 //Lock screen orientation on Android devices
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(MyApp());

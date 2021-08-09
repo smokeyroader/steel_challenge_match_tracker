@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'help_screen.dart';
-import 'match_tracker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+import 'match_tracker.dart';
+import 'constants.dart';
+import 'help_screen.dart';
 import 'resources.dart';
 import 'division_summary.dart';
 
@@ -25,25 +26,13 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   bool gunsCleared = false;
 
   //initState and run setData() to populate list of recent guns with saved selections
-//  Also lock orientation to portrait
+
   @override
   void initState() {
     super.initState();
-//    SystemChrome.setPreferredOrientations([
-//      DeviceOrientation.portraitUp,
-//      DeviceOrientation.portraitDown,
-//    ]);
 
     setRecents();
   }
-
-//  Future<bool> firstUse() async {
-//    SharedPreferences preferences = await SharedPreferences.getInstance();
-//    if (preferences.get('firstUse') == null) {
-//      _noDivisionAlert(context);
-//      preferences.setBool('firstUse', false);
-//    }
-//  }
 
 // Methods to retrieve saved recent guns. Need to figure out how to return multiple keys
   Future<String> getRecent1() async {
@@ -93,34 +82,6 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     });
   }
 
-  //Method to add division selections to list of recent guns (up to 4, without duplicates)
-  void showRecents(String div) {
-    if (firstRecent == '') {
-      firstRecent = div;
-      dropdownValue = 'Select Division';
-    } else {
-      if (secondRecent == '' && firstRecent != div) {
-        secondRecent = div;
-        dropdownValue = 'Select Division';
-      } else {
-        if (thirdRecent == '' && firstRecent != div && secondRecent != div) {
-          thirdRecent = div;
-          dropdownValue = 'Select Division';
-        } else {
-          if (fourthRecent == '' &&
-              firstRecent != div &&
-              secondRecent != div &&
-              thirdRecent != div) {
-            fourthRecent = div;
-            dropdownValue = 'Select Division';
-          }
-        }
-      }
-    }
-
-    startTracking(div);
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -156,15 +117,14 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-//            SizedBox(height: 40.0),
                   Padding(
                     padding: const EdgeInsets.only(top: 48.0),
                     child: DropdownButton<String>(
                       value: dropdownValue,
                       onChanged: (String newValue) {
                         if (newValue != 'Select Division') {
+                          dropdownValue = newValue;
                           setState(() {
-                            dropdownValue = newValue;
                             showRecents(newValue);
                           });
                         } else {
@@ -183,9 +143,6 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                       }).toList(),
                     ),
                   ),
-//            SizedBox(
-//              height: 30.0,
-//            ),
                   GestureDetector(
                     onTap: trackFirstDiv,
                     child: Padding(
@@ -250,9 +207,8 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     height: 190.0,
                     child: Image.asset('images/match_tracker_logo_front.jpg'),
                   ),
-
                   Text(
-                    'Version 2.2.2',
+                    'Version 2.2.3',
                     style: TextStyle(fontSize: 14.0),
                   ),
                 ],
@@ -262,6 +218,34 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         ),
       ),
     );
+  }
+
+  //Method to add division selections to list of recent guns (up to 4, without duplicates)
+  void showRecents(String div) {
+    if (firstRecent == '') {
+      firstRecent = div;
+      dropdownValue = 'Select Division';
+    } else {
+      if (secondRecent == '' && firstRecent != div) {
+        secondRecent = div;
+        dropdownValue = 'Select Division';
+      } else {
+        if (thirdRecent == '' && firstRecent != div && secondRecent != div) {
+          thirdRecent = div;
+          dropdownValue = 'Select Division';
+        } else {
+          if (fourthRecent == '' &&
+              firstRecent != div &&
+              secondRecent != div &&
+              thirdRecent != div) {
+            fourthRecent = div;
+            dropdownValue = 'Select Division';
+          }
+        }
+      }
+    }
+
+    startTracking(div);
   }
 
   //Method to use Shared Preferences to save list of recently used (favorite) guns
@@ -281,7 +265,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           textAlign: TextAlign.center,
         ),
       );
-      scaffoldState.currentState.showSnackBar(snackBar);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
     gunsCleared = false;
   }
@@ -312,8 +296,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             textAlign: TextAlign.center,
           ),
         );
-        scaffoldState.currentState.showSnackBar(snackBar);
-//        _noRecentGunsAlert(context);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
       }

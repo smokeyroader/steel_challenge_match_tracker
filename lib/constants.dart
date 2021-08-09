@@ -1,7 +1,7 @@
 class Constants {
   //Main menu items
 
-  static const List<String> mainMenuChoices = <String>[
+  static const List<String> mainMenuChoices = [
     'Clear Recent Guns',
     'Save Recent Guns',
     'Classification Summary',
@@ -9,7 +9,7 @@ class Constants {
     'Help',
   ];
 
-  static const List<String> matchMenuChoices = <String>[
+  static const List<String> matchMenuChoices = [
     'Clear Division Data',
     'Track Class',
     'Override Class',
@@ -17,7 +17,7 @@ class Constants {
     'Show/Hide Today Times',
   ];
 
-  static const List<String> divisions = <String>[
+  static const List<String> divisions = [
     'Select Division',
     'Rimfire Rifle Open (RFRO)',
     'Rimfire Rifle Irons (RFRI)',
@@ -33,6 +33,51 @@ class Constants {
     'Optical Sight Revolver (OSR)',
     'Iron Sight Revolver (ISR)'
   ];
+
+  static String getDivAbbrev(String division) {
+    switch (division) {
+      case 'Rimfire Rifle Open (RFRO)':
+        return 'RFRO';
+
+      case 'Rimfire Rifle Irons (RFRI)':
+        return 'RFRI';
+
+      case 'Pistol-Caliber Carbine Optic (PCCO)':
+        return 'PCCO';
+
+      case 'Pistol-Caliber Carbine Irons (PCCI)':
+        return 'PCCI';
+
+      case 'Rimfire Pistol Open (RFPO)':
+        return 'RFPO';
+
+      case 'Rimfire Pistol Irons (RFPI)':
+        return 'RFPI';
+
+      case 'Open (OPN)':
+        return 'OPN';
+
+      case 'Carry Optics (CO)':
+        return 'CO';
+
+      case 'Production (PROD)':
+        return 'PROD';
+
+      case 'Limited (LTD)':
+        return 'LTD';
+
+      case 'Single Stack (SS)':
+        return 'SS';
+
+      case 'Optical Sight Revolver (OSR)':
+        return 'OSR';
+
+      case 'Iron Sight Revolver (ISR)':
+        return 'ISR';
+    }
+
+    return '';
+  }
 
   static double getPeak5(String division) {
     switch (division) {

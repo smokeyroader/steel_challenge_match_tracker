@@ -1151,7 +1151,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
 
     double totalBest = 0.0;
     double totalPeak = 0.0;
-    double peakPct = 0.0;
+//    double peakPct = 0.0;
 
     switch (div) {
       case 'Rimfire Rifle Open (RFRO)':

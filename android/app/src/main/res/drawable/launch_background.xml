@@ -7,6 +7,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/logo_new" />
-    </item> -->
+            android:src="@drawable/match_tracker_logo_10_15_20" />
+    </item>
 </layer-list>

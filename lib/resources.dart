@@ -1,8 +1,8 @@
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
-import 'current_classification.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
+import 'current_classification.dart';
 
 class Resources extends StatefulWidget {
   @override
@@ -37,14 +37,15 @@ class _ResourcesState extends State<Resources> {
           SystemChannels.textInput.invokeMethod('TextInput.hide');
           return true;
         },
-        child: FittedBox(
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Column(
+        child: Container(
+          width: double.infinity,
+          margin: EdgeInsets.all(6.0),
+          child: FittedBox(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Padding(
@@ -92,23 +93,23 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          launchURL(
-                              "http://www.ultimatesteelshooter.libsyn.com/website");
-                        },
-                        child: Text(
-                          'The Ultimate Steel Shooter Podcast',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+//                    Padding(
+//                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+//                      child: GestureDetector(
+//                        onTap: () {
+//                          launchURL(
+//                              "http://www.ultimatesteelshooter.libsyn.com/website");
+//                        },
+//                        child: Text(
+//                          'The Ultimate Steel Shooter Podcast',
+//                          style: TextStyle(
+//                            fontSize: 18,
+//                            fontWeight: FontWeight.bold,
+//                            color: Color(0xFF00681B),
+//                          ),
+//                        ),
+//                      ),
+//                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
@@ -197,11 +198,10 @@ class _ResourcesState extends State<Resources> {
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
                         onTap: () {
-                          launchURL(
-                              "https://teammatchtracker.com/upcoming-matches");
+                          launchURL("https://mysasp.com");
                         },
                         child: Text(
-                          'Upcoming Major SCSA Matches',
+                          'Scholastic Action Shooting Program',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -212,8 +212,8 @@ class _ResourcesState extends State<Resources> {
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

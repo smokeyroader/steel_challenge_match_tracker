@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:steel_challenge_match_tracker/todayTextField.dart';
 import 'constants.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'database_helper.dart';
+import 'todayTextField.dart';
 
 class BestStrings extends StatefulWidget {
   final String currentDivision;
@@ -265,14 +267,13 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                    color: Colors.orange,
                       width: 95.0,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 2.0),
                           child: Text(
-                            'Stage',
+                            'Stage/Best',
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontSize: 14.0,
@@ -283,7 +284,6 @@ class _BestStringsState extends State<BestStrings> {
                       ),
                     ),
                     Container(
-//                    color: Colors.purple,
                       width: 60.0,
                       child: Text(
                         'Best Avg.',
@@ -296,7 +296,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                    color: Colors.teal,
                       child: Text(
                         'Best Single',
                         textAlign: TextAlign.center,
@@ -308,7 +307,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 85.0,
-//                    color: Colors.amber,
                       child: Text(
                         'Best Stage',
                         style: TextStyle(
@@ -327,7 +325,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -350,7 +347,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -365,35 +361,15 @@ class _BestStringsState extends State<BestStrings> {
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-//                      color: Colors.green,
                         width: 45.0,
-                        child: TextField(
-                          style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColor5),
-                          controller: _controller5STR,
-                          focusNode: _focus5STR,
-                          decoration: InputDecoration.collapsed(
-                            border: OutlineInputBorder(),
-                          ),
-                          keyboardType: TextInputType.numberWithOptions(
-                            decimal: true,
-                          ),
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(4),
-                            BlacklistingTextInputFormatter(
-                              RegExp('[\\-|,\\ ]'),
-                            ),
-                          ],
-                          onChanged: (text) {
-                            autoFormat(_controller5STR);
-                          },
-                        ),
+                        height: 20.0,
+                        child: TodayTime(
+                            Colors.black, _controller5STR, _focus5STR),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-//                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 4.0),
@@ -414,7 +390,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -435,7 +410,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -448,34 +422,14 @@ class _BestStringsState extends State<BestStrings> {
                       )),
                     ),
                     Container(
-//                      color: Colors.green,
                       width: 45.0,
-                      child: TextField(
-                        style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColor5),
-                        controller: _controllerShowSTR,
-                        focusNode: _focusShowSTR,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
-                          ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controllerShowSTR);
-                        },
-                      ),
+                      height: 20.0,
+                      child: TodayTime(
+                          Colors.black, _controllerShowSTR, _focusShowSTR),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-//                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 4.0),
@@ -486,10 +440,6 @@ class _BestStringsState extends State<BestStrings> {
                         ),
                       ),
                     ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                   ],
                 ),
               ),
@@ -500,7 +450,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -521,7 +470,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -534,29 +482,10 @@ class _BestStringsState extends State<BestStrings> {
                       )),
                     ),
                     Container(
-//                      color: Colors.green,
                       width: 45.0,
-                      child: TextField(
-                        style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColorSH),
-                        controller: _controllerSHSTR,
-                        focusNode: _focusSHSTR,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
-                          ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controllerSHSTR);
-                        },
-                      ),
+                      height: 20.0,
+                      child: TodayTime(
+                          Colors.black, _controllerSHSTR, _focusSHSTR),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
@@ -572,10 +501,6 @@ class _BestStringsState extends State<BestStrings> {
                         ),
                       ),
                     ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                   ],
                 ),
               ),
@@ -586,7 +511,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -607,7 +531,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -620,34 +543,14 @@ class _BestStringsState extends State<BestStrings> {
                       )),
                     ),
                     Container(
-//                      color: Colors.green,
                       width: 45.0,
-                      child: TextField(
-                        style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColorOL),
-                        controller: _controllerOLSTR,
-                        focusNode: _focusOLSTR,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
-                          ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controllerOLSTR);
-                        },
-                      ),
+                      height: 20.0,
+                      child: TodayTime(
+                          Colors.black, _controllerOLSTR, _focusOLSTR),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-//                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 4.0),
@@ -658,10 +561,6 @@ class _BestStringsState extends State<BestStrings> {
                         ),
                       ),
                     ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                   ],
                 ),
               ),
@@ -672,7 +571,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -693,7 +591,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -706,29 +603,10 @@ class _BestStringsState extends State<BestStrings> {
                       )),
                     ),
                     Container(
-//                      color: Colors.green,
                       width: 45.0,
-                      child: TextField(
-                        style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColorAcc),
-                        controller: _controllerAccSTR,
-                        focusNode: _focusAccSTR,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
-                          ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controllerAccSTR);
-                        },
-                      ),
+                      height: 20.0,
+                      child: TodayTime(
+                          Colors.black, _controllerAccSTR, _focusAccSTR),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
@@ -744,10 +622,6 @@ class _BestStringsState extends State<BestStrings> {
                         ),
                       ),
                     ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                   ],
                 ),
               ),
@@ -758,7 +632,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -779,7 +652,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -792,34 +664,14 @@ class _BestStringsState extends State<BestStrings> {
                       )),
                     ),
                     Container(
-//                      color: Colors.green,
                       width: 45.0,
-                      child: TextField(
-                        style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColorPend),
-                        controller: _controllerPendSTR,
-                        focusNode: _focusPendSTR,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
-                          ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controllerPendSTR);
-                        },
-                      ),
+                      height: 20.0,
+                      child: TodayTime(
+                          Colors.black, _controllerPendSTR, _focusPendSTR),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-//                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 4.0),
@@ -830,10 +682,6 @@ class _BestStringsState extends State<BestStrings> {
                         ),
                       ),
                     ),
-
-//                  Text(
-//                    '/G',
-//                  ),
                   ],
                 ),
               ),
@@ -844,7 +692,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -865,7 +712,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -878,29 +724,10 @@ class _BestStringsState extends State<BestStrings> {
                       )),
                     ),
                     Container(
-//                      color: Colors.green,
                       width: 45.0,
-                      child: TextField(
-                        style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColorSpeed),
-                        controller: _controllerSpeedSTR,
-                        focusNode: _focusSpeedSTR,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
-                          ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controllerSpeedSTR);
-                        },
-                      ),
+                      height: 20.0,
+                      child: TodayTime(
+                          Colors.black, _controllerSpeedSTR, _focusSpeedSTR),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
@@ -925,7 +752,6 @@ class _BestStringsState extends State<BestStrings> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-//                      color: Colors.blue,
                       width: 120.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -946,7 +772,6 @@ class _BestStringsState extends State<BestStrings> {
                     ),
                     Container(
                       width: 60.0,
-//                      color: Colors.red,
                       child: (Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -959,34 +784,14 @@ class _BestStringsState extends State<BestStrings> {
                       )),
                     ),
                     Container(
-//                      color: Colors.green,
                       width: 45.0,
-                      child: TextField(
-                        style: TextStyle(fontSize: 16.0),
-//                        style: TextStyle(color: newBestColorRound),
-                        controller: _controllerRoundSTR,
-                        focusNode: _focusRoundSTR,
-                        decoration: InputDecoration.collapsed(
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(4),
-                          BlacklistingTextInputFormatter(
-                            RegExp('[\\-|,\\ ]'),
-                          ),
-                        ],
-                        onChanged: (text) {
-                          autoFormat(_controllerRoundSTR);
-                        },
-                      ),
+                      height: 20.0,
+                      child: TodayTime(
+                          Colors.black, _controllerRoundSTR, _focusRoundSTR),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Container(
-//                        color: Colors.yellow,
                         width: 75.0,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 4.0),
@@ -1069,7 +874,6 @@ class _BestStringsState extends State<BestStrings> {
                         child: Text(
                           '$totPeak',
                           style: TextStyle(fontSize: 16.0),
-//                      style: TextStyle(fontWeight: FontWeight.w900),
                         ),
                       ),
                       Container(
@@ -1077,7 +881,6 @@ class _BestStringsState extends State<BestStrings> {
                         child: Text(
                           '$matchPct',
                           style: TextStyle(fontSize: 16.0),
-//                      style: TextStyle(fontWeight: FontWeight.w900),
                         ),
                       ),
                       Container(
@@ -1086,7 +889,6 @@ class _BestStringsState extends State<BestStrings> {
                           '$bestMatchClass',
                           style: TextStyle(fontSize: 16.0),
                           textAlign: TextAlign.left,
-//                      style: TextStyle(fontWeight: FontWeight.w900),
                         ),
                       ),
                     ],
@@ -1096,24 +898,20 @@ class _BestStringsState extends State<BestStrings> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: RaisedButton(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                              side: BorderSide(color: Color(0xFF00681B))),
-//                            shape: RoundedRectangleBorder(
-//                                borderRadius: BorderRadius.circular(30.0)),
-//
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: StadiumBorder(),
+                              side: BorderSide(
+                                  width: 1, color: Color(0xFF00681B)),
+                              primary: Colors.white),
                           child: Text(
                             'Clear',
                             style: TextStyle(
                               color: Color(0xFF00681B),
-//                                fontWeight: FontWeight.w900,
                             ),
                           ),
                           onPressed: () {
                             _clearBestSingles();
-//                       confirmClearToday();
                           },
                         ),
                       ),
@@ -1124,34 +922,6 @@ class _BestStringsState extends State<BestStrings> {
             ])),
       ),
     );
-//              ),
-//            ],
-//          ),
-//        ),
-//      ),
-//    );
-  }
-
-  void autoFormat(TextEditingController controller) {
-    String text = controller.text;
-    if (text != '') {
-      setState(() {
-        text = text.replaceAll('.', '');
-        text = text.replaceAll(' ', '');
-        if (text.length == 1)
-          text = '.' + text;
-        else if (text.length == 2)
-          text = '.' + text;
-        else if (text.length > 2) {
-          text = text.substring(0, text.length - 2) +
-              '.' +
-              text.substring(text.length - 2, text.length);
-        }
-        controller.text = text;
-        controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: (text ?? '').length));
-      });
-    }
   }
 
   Future<Null> _focus5Listener() async {
@@ -1469,7 +1239,7 @@ class _BestStringsState extends State<BestStrings> {
     stringTimes.speedOption = _controllerSpeedSTR.text;
     stringTimes.roundabout = _controllerRoundSTR.text;
 
-    int id = await helper.insertStrings(divAbbrev, stringTimes);
+//    int id = await helper.insertStrings(divAbbrev, stringTimes);
   }
 
   _getStringTimes() async {
