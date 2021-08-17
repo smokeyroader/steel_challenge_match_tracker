@@ -272,7 +272,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 95.0,
+                        width: 65.0,
                         child: FittedBox(
                           child: Text(
                             'Stage',
@@ -335,7 +335,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -423,7 +423,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -509,7 +509,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -595,7 +595,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -681,7 +681,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -767,7 +767,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -853,7 +853,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -939,7 +939,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 117.0,
+                        width: 80.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -1029,34 +1029,47 @@ class _MatchTrackerState extends State<MatchTracker> {
                             width: 65.0,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 6.0),
-                            child: Text(
-                              'Time',
-                              style: TextStyle(
-                                  fontSize: 14.0, fontWeight: FontWeight.w900),
-                            ),
-                          ),
-                          Container(
-                            width: 65.0,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 18.0),
+                            padding: const EdgeInsets.only(right: 18.0),
+                            child: ConstrainedBox(
+                              constraints:
+                                  const BoxConstraints(maxHeight: 20.0),
                               child: Text(
-                                'Peak',
+                                'Time',
                                 style: TextStyle(
-                                    fontSize: 14.0,
+                                    fontSize: 12.0,
                                     fontWeight: FontWeight.w900),
                               ),
                             ),
                           ),
                           Container(
-                            width: 75.0,
+                            width: 60.0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18.0),
+                              child: ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxHeight: 20),
+                                child: Text(
+                                  'Peak',
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w900),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 70.0,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 12.0),
-                              child: Text(
-                                '%Peak',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w900),
+                              child: ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxWidth: 20.0),
+                                child: Text(
+                                  '%Peak',
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w900),
+                                ),
                               ),
                             ),
                           ),
@@ -1064,11 +1077,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             width: 65.0,
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: Text(
-                                'Class',
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w900),
+                              child: ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxHeight: 20),
+                                child: Text(
+                                  'Class',
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w900),
+                                ),
                               ),
                             ),
                           ),
