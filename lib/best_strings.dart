@@ -1241,7 +1241,7 @@ class _BestStringsState extends State<BestStrings> {
     stringTimes.speedOption = _controllerSpeedSTR.text;
     stringTimes.roundabout = _controllerRoundSTR.text;
 
-//    int id = await helper.insertStrings(divAbbrev, stringTimes);
+    int id = await helper.insertStrings(divAbbrev, stringTimes);
   }
 
   _getStringTimes() async {

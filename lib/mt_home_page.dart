@@ -209,7 +209,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     child: Image.asset('images/match_tracker_logo_front.jpg'),
                   ),
                   Text(
-                    'Version 2.2.3',
+                    'Version 2.2.4',
                     style: TextStyle(fontSize: 14.0),
                   ),
                 ],
