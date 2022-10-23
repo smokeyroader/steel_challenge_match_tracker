@@ -7,12 +7,11 @@ import 'package:url_launcher/url_launcher.dart';
 class CurrentClassification extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
-  Future launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url,
-          forceSafariVC: true, forceWebView: false, enableJavaScript: true);
-    } else {
-      print('can\'t launch $url');
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)
+    // mode: LaunchMode.externalApplication,
+    ); {
+      throw 'Could not launch $url';
     }
   }
 
@@ -69,9 +68,7 @@ class CurrentClassification extends StatelessWidget {
                   SystemChannels.textInput.invokeMethod('TextInput.hide');
 
                   _saveMemberNum('${_controller.text}');
-                  launchURL(
-                      'https://scsa.org/classification/${_controller.text}');
-//                      "https://www.steelchallenge.com/steel-challenge-classification.php?action=lookup&scsa=c");
+                  _launchUrl(Uri.parse('https://scsa.org/classification/${_controller.text}'));
 
                   Navigator.pop(context);
                 },

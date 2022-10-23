@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 
     android {
 //        compileSdkVersion 28
-        compileSdkVersion 29
+        compileSdkVersion 33
         lintOptions {
             disable 'InvalidPackage'
         }
@@ -43,8 +43,15 @@ if (keystorePropertiesFile.exists()) {
 
             applicationId "com.precisionwrite.steelchallengeclasstracker"
 
+            minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
+//            minSdkVersion localProperties.getProperty('flutter.targetSdkVersion').toInteger()
+
+
+
+
             minSdkVersion 16
-            targetSdkVersion 29
+            targetSdkVersion 33
+////            targetSdkVersion 31
 //            targetSdkVersion 28
             versionCode flutterVersionCode.toInteger()
             versionName flutterVersionName

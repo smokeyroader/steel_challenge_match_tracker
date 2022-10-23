@@ -62,7 +62,7 @@ class _TodayTimeState extends State<TodayTime> {
       String text = controller.text;
 
       if (text != '') {
-        if (text.substring(0, 2) != '.') {}
+        // if (text.substring(0, 2) != '.') {}
         //Meaningless empty 'if statement' above inserted to make it work. (Digits will be misplaced if not included.)
 
         text = text.replaceAll('.', '');

@@ -23,7 +23,9 @@ class StageDiagram extends StatelessWidget {
         backgroundColor: Color(0xFF00681B),
       ),
       body: Container(
-        child: Image.asset('$image'),
+        child: InteractiveViewer(
+          child: Image.asset('$image'),
+        ),
       ),
     );
   }

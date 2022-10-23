@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
@@ -48,6 +47,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
   String div8 = '';
   String div8Pct = '';
   String div8Class = '';
+
   String div9 = '';
   String div9Pct = '';
   String div9Class = '';
@@ -110,42 +110,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0),
-                      child: Container(
-                        child: FittedBox(
-                          child: Text(
-                            'Division',
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
+                      child: _HeadingContainer(heading: 'Division'),
                     ),
-                    Container(
-                      child: FittedBox(
-                        child: Text(
-                          'Current Percent',
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: _HeadingContainer(heading: 'Current Percent'),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 16.0),
-                      child: Container(
-                        child: FittedBox(
-                          child: Text(
-                            'Current Class',
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
+                      child: _HeadingContainer(heading: 'Current Class'),
                     ),
                   ],
                 ),
@@ -160,56 +133,16 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div1 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-//                          fontSize: 14.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div1),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div1Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-//                          fontSize: 14.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div1Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div1Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-//                          fontSize: 14.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div1Class,
                     ),
                   ),
                 ],
@@ -224,53 +157,20 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div2 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div2,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div2Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div2Pct,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div2Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div2Class,
                     ),
                   ),
                 ],
@@ -285,53 +185,18 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div3 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div3),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div3Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div3Pct,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div3Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div3Class,
                     ),
                   ),
                 ],
@@ -346,54 +211,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div4 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div4),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div4Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div4Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div4Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div4Class),
                   ),
                 ],
               ),
@@ -407,54 +233,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div5 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div5),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div5Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div5Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div5Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div5Class),
                   ),
                 ],
               ),
@@ -468,54 +255,17 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div6 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div6),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div6Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div6Pct,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div6Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div6Class),
                   ),
                 ],
               ),
@@ -529,54 +279,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div7 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div7),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div7Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div7Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div7Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div7Class),
                   ),
                 ],
               ),
@@ -590,54 +301,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div8 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div8),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div8Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div8Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div8Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div8Class),
                   ),
                 ],
               ),
@@ -651,54 +323,17 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div9 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div9,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div9Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div9Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div9Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div9Class),
                   ),
                 ],
               ),
@@ -712,54 +347,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div10 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div10),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div10Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div10Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div10Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div10Class),
                   ),
                 ],
               ),
@@ -773,54 +369,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div11 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div11),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div11Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div11Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div11Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div11Class),
                   ),
                 ],
               ),
@@ -834,54 +391,15 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div12 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div12),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div12Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div12Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div12Class ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div12Class),
                   ),
                 ],
               ),
@@ -895,53 +413,16 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     padding: const EdgeInsets.only(
                       left: 4.0,
                     ),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div13 ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div13),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div13Pct ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: DivisionContainer(contents: div13Pct),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
-                    child: Container(
-                      width: 95.0,
-                      height: 22.0,
-                      child: FittedBox(
-                        child: Text(
-                          ' $div13Class',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
-                          ),
-                        ),
-                      ),
+                    child: DivisionContainer(
+                      contents: div13Class,
                     ),
                   ),
                 ],
@@ -1121,7 +602,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                   height: 20.0,
                   child: FittedBox(
                     child: Text(
-                      '>= 0%',
+                      '< 40%',
                       style: TextStyle(
                         color: Color(0xFF00681B),
                       ),
@@ -1151,7 +632,6 @@ class _DivisionSummaryState extends State<DivisionSummary> {
 
     double totalBest = 0.0;
     double totalPeak = 0.0;
-//    double peakPct = 0.0;
 
     switch (div) {
       case 'Rimfire Rifle Open (RFRO)':
@@ -1406,22 +886,66 @@ class _DivisionSummaryState extends State<DivisionSummary> {
     double peakPct = (peak / best) * 100;
     if (peakPct < 40.0) {
       return 'D';
-//      div1Class = 'D';
     } else if (peakPct < 60.0) {
       return 'C';
-//      div1Class = 'C';
     } else if (peakPct < 75.0) {
       return 'B';
-//      div1Class = 'B';
     } else if (peakPct < 85.0) {
       return 'A';
-//      div1Class = 'A';
     } else if (peakPct < 95.0) {
       return 'M';
-//      div1Class = 'M';
     } else {
       return 'GM';
-//      div1Class = 'GM';
     }
+  }
+}
+
+//Custom container for division details
+class DivisionContainer extends StatelessWidget {
+  const DivisionContainer({
+    Key key,
+    @required this.contents,
+  }) : super(key: key);
+
+  final String contents;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 95.0,
+      height: 22.0,
+      child: FittedBox(
+        child: Text(
+          ' $contents ',
+          textAlign: TextAlign.left,
+          style: TextStyle(
+//                          fontSize: 14.0,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF00681B),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//Custom container for header row
+class _HeadingContainer extends StatelessWidget {
+  const _HeadingContainer({Key key, @required this.heading}) : super(key: key);
+
+  final String heading;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FittedBox(
+        child: Text('$heading',
+            style: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            )),
+      ),
+    );
   }
 }

@@ -147,29 +147,20 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   GestureDetector(
                     onTap: trackFirstDiv,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: FittedBox(
-                        child: Text(
-                          ' $firstRecent ',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
+                        padding: const EdgeInsets.all(8.0),
+                        child: FittedBox(
+                          child: TextRecent(
+                            recent: firstRecent,
                           ),
-                        ),
-                      ),
-                    ),
+                        )),
                   ),
                   GestureDetector(
                     onTap: trackSecondDiv,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: FittedBox(
-                        child: Text(
-                          ' $secondRecent ',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                          ),
+                        child: TextRecent(
+                          recent: secondRecent,
                         ),
                       ),
                     ),
@@ -179,12 +170,8 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: FittedBox(
-                        child: Text(
-                          ' $thirdRecent ',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                          ),
+                        child: TextRecent(
+                          recent: thirdRecent,
                         ),
                       ),
                     ),
@@ -194,12 +181,8 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: FittedBox(
-                        child: Text(
-                          ' $fourthRecent ',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                          ),
+                        child: TextRecent(
+                          recent: fourthRecent,
                         ),
                       ),
                     ),
@@ -209,7 +192,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     child: Image.asset('images/match_tracker_logo_front.jpg'),
                   ),
                   Text(
-                    'Version 2.2.4',
+                    'Version 2.2.5',
                     style: TextStyle(fontSize: 14.0),
                   ),
                 ],
@@ -393,5 +376,27 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         )
       ],
     ).show();
+  }
+}
+
+class TextRecent extends StatelessWidget {
+  const TextRecent({
+    Key key,
+    @required this.recent,
+  }) : super(key: key);
+
+  final String recent;
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      child: Text(
+        ' $recent ',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 20.0,
+        ),
+      ),
+    );
   }
 }
