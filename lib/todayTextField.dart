@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,7 +8,8 @@ class TodayTime extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
 
-  TodayTime(this.color, this.controller, this.focusNode);
+  const TodayTime(this.color, this.controller, this.focusNode, {Key key})
+      : super(key: key);
 
   @override
   _TodayTimeState createState() => _TodayTimeState();
@@ -18,7 +20,7 @@ class _TodayTimeState extends State<TodayTime> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 48,
       height: 20,
       child: TextField(
@@ -32,7 +34,7 @@ class _TodayTimeState extends State<TodayTime> {
         ),
         controller: widget.controller,
         focusNode: widget.focusNode,
-        decoration: InputDecoration.collapsed(
+        decoration: const InputDecoration.collapsed(
           hintText: null,
           border: OutlineInputBorder(),
         ),
@@ -42,7 +44,7 @@ class _TodayTimeState extends State<TodayTime> {
           FilteringTextInputFormatter.deny(RegExp('[\\-|,.\\ ]')),
 //          FilteringTextInputFormatter.allow(RegExp('[0-9]')),
         ],
-        keyboardType: TextInputType.numberWithOptions(decimal: false),
+        keyboardType: const TextInputType.numberWithOptions(decimal: false),
         onChanged: (text) {
           autoFormat(widget.controller);
         },

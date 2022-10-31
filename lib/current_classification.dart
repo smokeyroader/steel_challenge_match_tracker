@@ -7,10 +7,13 @@ import 'package:url_launcher/url_launcher.dart';
 class CurrentClassification extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
+  CurrentClassification({Key key}) : super(key: key);
+
   Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)
-    // mode: LaunchMode.externalApplication,
-    ); {
+        // mode: LaunchMode.externalApplication,
+        ) {}
+    {
       throw 'Could not launch $url';
     }
   }
@@ -24,10 +27,10 @@ class CurrentClassification extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Current Classifications',
         ),
-        backgroundColor: Color(0xFF00681B),
+        backgroundColor: const Color(0xFF00681B),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -35,12 +38,12 @@ class CurrentClassification extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Container(
+              SizedBox(
                 width: 200.0,
                 child: TextField(
                   autofocus: true,
                   controller: _controller,
-                  decoration: InputDecoration(hintText: 'USPSA Member #'),
+                  decoration: const InputDecoration(hintText: 'USPSA Member #'),
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.text,
 
@@ -55,10 +58,10 @@ class CurrentClassification extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(),
-                    side: BorderSide(width: 1, color: Color(0xFF00681B)),
+                    shape: const StadiumBorder(),
+                    side: const BorderSide(width: 1, color: Color(0xFF00681B)),
                     primary: Colors.white),
-                child: Text(
+                child: const Text(
                   'Go',
                   style: TextStyle(
                     color: Color(0xFF00681B),
@@ -67,8 +70,9 @@ class CurrentClassification extends StatelessWidget {
                 onPressed: () {
                   SystemChannels.textInput.invokeMethod('TextInput.hide');
 
-                  _saveMemberNum('${_controller.text}');
-                  _launchUrl(Uri.parse('https://scsa.org/classification/${_controller.text}'));
+                  _saveMemberNum(_controller.text);
+                  _launchUrl(Uri.parse(
+                      'https://scsa.org/classification/${_controller.text}'));
 
                   Navigator.pop(context);
                 },

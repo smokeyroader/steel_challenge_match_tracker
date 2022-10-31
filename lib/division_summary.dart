@@ -5,6 +5,8 @@ import 'constants.dart';
 import 'database_helper.dart';
 
 class DivisionSummary extends StatefulWidget {
+  const DivisionSummary({Key key}) : super(key: key);
+
   @override
   _DivisionSummaryState createState() => _DivisionSummaryState();
 }
@@ -91,33 +93,33 @@ class _DivisionSummaryState extends State<DivisionSummary> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: FittedBox(
+        title: const FittedBox(
           child: Text('Classification Summary'),
         ),
-        backgroundColor: Color(0xFF00681B),
+        backgroundColor: const Color(0xFF00681B),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 24.0),
+              padding: const EdgeInsets.only(top: 8.0),
               child: Container(
                 height: 20.0,
-                color: Color(0xFF00681B),
+                color: const Color(0xFF00681B),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
+                  children: const <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
+                      padding: EdgeInsets.only(left: 16.0),
                       child: _HeadingContainer(heading: 'Division'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
+                      padding: EdgeInsets.only(left: 16.0),
                       child: _HeadingContainer(heading: 'Current Percent'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
+                      padding: EdgeInsets.only(right: 16.0),
                       child: _HeadingContainer(heading: 'Current Class'),
                     ),
                   ],
@@ -429,11 +431,11 @@ class _DivisionSummaryState extends State<DivisionSummary> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 16.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
+                children: const <Widget>[
+                  SizedBox(
                     width: 50.0,
                     height: 22.0,
                     child: FittedBox(
@@ -446,7 +448,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 85.0,
                     height: 20.0,
                     child: FittedBox(
@@ -463,8 +465,8 @@ class _DivisionSummaryState extends State<DivisionSummary> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
+              children: const <Widget>[
+                SizedBox(
                   width: 50.0,
                   height: 20.0,
                   child: FittedBox(
@@ -477,7 +479,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 85.0,
                   height: 20.0,
                   child: FittedBox(
@@ -493,8 +495,8 @@ class _DivisionSummaryState extends State<DivisionSummary> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
+              children: const <Widget>[
+                SizedBox(
                   width: 50.0,
                   height: 20.0,
                   child: FittedBox(
@@ -507,7 +509,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 85.0,
                   height: 20.0,
                   child: FittedBox(
@@ -523,8 +525,8 @@ class _DivisionSummaryState extends State<DivisionSummary> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
+              children: const <Widget>[
+                SizedBox(
                   width: 50.0,
                   height: 20.0,
                   child: FittedBox(
@@ -537,7 +539,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 85.0,
                   height: 20.0,
                   child: FittedBox(
@@ -553,8 +555,8 @@ class _DivisionSummaryState extends State<DivisionSummary> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
+              children: const <Widget>[
+                SizedBox(
                   width: 50.0,
                   height: 20.0,
                   child: FittedBox(
@@ -567,7 +569,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: 85.0,
                   height: 20.0,
                   child: FittedBox(
@@ -581,36 +583,7 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 50.0,
-                  height: 20.0,
-                  child: FittedBox(
-                    child: Text(
-                      'D',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: Color(0xFF00681B),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 85.0,
-                  height: 20.0,
-                  child: FittedBox(
-                    child: Text(
-                      '< 40%',
-                      style: TextStyle(
-                        color: Color(0xFF00681B),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
           ],
         ),
       ),
@@ -911,14 +884,14 @@ class DivisionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 95.0,
       height: 22.0,
       child: FittedBox(
         child: Text(
           ' $contents ',
           textAlign: TextAlign.left,
-          style: TextStyle(
+          style: const TextStyle(
 //                          fontSize: 14.0,
             fontWeight: FontWeight.bold,
             color: Color(0xFF00681B),
@@ -937,15 +910,13 @@ class _HeadingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FittedBox(
-        child: Text('$heading',
-            style: TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            )),
-      ),
+    return FittedBox(
+      child: Text(heading,
+          style: const TextStyle(
+            fontSize: 14.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          )),
     );
   }
 }

@@ -4,12 +4,12 @@ import 'constants.dart';
 
 class TimesNeeded extends StatelessWidget {
   // const TimesNeeded({Key key}) : super(key: key);
-  final division;
-  final stage;
-  final divAbb;
-  final bestAvgStr;
+  final String division;
+  final String stage;
+  final String divAbb;
+  final double bestAvgStr;
 
-  TimesNeeded({
+  const TimesNeeded({
     Key key,
     this.division,
     this.stage,
@@ -34,17 +34,17 @@ class TimesNeeded extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Average String Time Goals",
           ),
-          backgroundColor: Color(0xFF00681B),
+          backgroundColor: const Color(0xFF00681B),
         ),
         body: Container(
           color: Colors.white,
           child: Column(
             children: [
-              SizedBox(
-                height: 40,
+              const SizedBox(
+                height: 15,
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -57,16 +57,16 @@ class TimesNeeded extends StatelessWidget {
                     children: [
                       Text(
                         '$divAbb:',
-                        style: TextStyle(
-                          fontSize: 30,
+                        style: const TextStyle(
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
                         ),
                       ),
                       Text(
                         ' $stage',
-                        style: TextStyle(
-                          fontSize: 30,
+                        style: const TextStyle(
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
                         ),
@@ -75,15 +75,15 @@ class TimesNeeded extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Padding(
-                      padding: const EdgeInsets.only(
+                      padding: EdgeInsets.only(
                         left: 20.0,
                         right: 20.0,
                       ),
@@ -92,14 +92,14 @@ class TimesNeeded extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
-                          fontSize: 30,
+                          fontSize: 24,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               FittedBox(
@@ -112,26 +112,26 @@ class TimesNeeded extends StatelessWidget {
                         right: 20.0,
                       ),
                       child: Text(
-                        '${bestAvgStr.toStringAsFixed(2)}',
-                        style: TextStyle(
+                        bestAvgStr.toStringAsFixed(2),
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
-                          fontSize: 30,
+                          fontSize: 24,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Padding(
-                      padding: const EdgeInsets.only(
+                      padding: EdgeInsets.only(
                         left: 20.0,
                         right: 20.0,
                       ),
@@ -140,15 +140,15 @@ class TimesNeeded extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
-                          fontSize: 30,
+                          fontSize: 24,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
+              const SizedBox(
+                height: 10,
               ),
               FittedBox(
                 child: Row(
@@ -271,8 +271,8 @@ class ClassText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '$classLetter:  $time',
-      style: TextStyle(
-        fontSize: 30,
+      style: const TextStyle(
+        fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Color(0xFF00681B),
       ),

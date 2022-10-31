@@ -4,12 +4,7 @@ class StageDiagram extends StatelessWidget {
   final String stage;
   final String image;
 
-  StageDiagram(
-//    Key key,
-    this.stage,
-    this.image,
-  );
-//      : super(key: key);
+  const StageDiagram(this.stage, this.image, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +12,13 @@ class StageDiagram extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          '$stage',
+          stage,
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF00681B),
+        backgroundColor: const Color(0xFF00681B),
       ),
-      body: Container(
-        child: InteractiveViewer(
-          child: Image.asset('$image'),
-        ),
+      body: InteractiveViewer(
+        child: Image.asset(image),
       ),
     );
   }

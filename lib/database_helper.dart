@@ -4,68 +4,68 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
 // database table and column names
-final String table1Name = 'PROD';
-final String table2Name = 'LTD';
-final String table3Name = 'OPN';
-final String table4Name = 'SS';
-final String table5Name = 'RFPI';
-final String table6Name = 'RFPO';
-final String table7Name = 'RFRI';
-final String table8Name = 'RFRO';
-final String table9Name = 'PCCI';
-final String table10Name = 'PCCO';
-final String table11Name = 'CO';
-final String table12Name = 'ISR';
-final String table13Name = 'OSR';
+const String table1Name = 'PROD';
+const String table2Name = 'LTD';
+const String table3Name = 'OPN';
+const String table4Name = 'SS';
+const String table5Name = 'RFPI';
+const String table6Name = 'RFPO';
+const String table7Name = 'RFRI';
+const String table8Name = 'RFRO';
+const String table9Name = 'PCCI';
+const String table10Name = 'PCCO';
+const String table11Name = 'CO';
+const String table12Name = 'ISR';
+const String table13Name = 'OSR';
 
-final String table14Name = "PRODSTR";
-final String table15Name = "LTDSTR";
-final String table16Name = "OPNSTR";
-final String table17Name = "SSSTR";
-final String table18Name = "RFPISTR";
-final String table19Name = "RFPOSTR";
-final String table20Name = "RFRISTR";
-final String table21Name = "RFROSTR";
-final String table22Name = "PCCISTR";
-final String table23Name = "PCCOSTR";
-final String table24Name = "COSTR";
-final String table25Name = "ISRSTR";
-final String table26Name = "OSRSTR";
+const String table14Name = "PRODSTR";
+const String table15Name = "LTDSTR";
+const String table16Name = "OPNSTR";
+const String table17Name = "SSSTR";
+const String table18Name = "RFPISTR";
+const String table19Name = "RFPOSTR";
+const String table20Name = "RFRISTR";
+const String table21Name = "RFROSTR";
+const String table22Name = "PCCISTR";
+const String table23Name = "PCCOSTR";
+const String table24Name = "COSTR";
+const String table25Name = "ISRSTR";
+const String table26Name = "OSRSTR";
 
-final String columnId = '_id';
-final String column5 = 'FiveToGo';
-final String columnShow = 'Showdown';
-final String columnSH = 'SmokeAndHope';
-final String columnOL = 'OuterLimits';
-final String columnAcc = 'Accelerator';
-final String columnPend = 'Pendulum';
-final String columnSpeed = 'SpeedOption';
-final String columnRound = 'Roundabout';
+const String columnId = '_id';
+const String column5 = 'FiveToGo';
+const String columnShow = 'Showdown';
+const String columnSH = 'SmokeAndHope';
+const String columnOL = 'OuterLimits';
+const String columnAcc = 'Accelerator';
+const String columnPend = 'Pendulum';
+const String columnSpeed = 'SpeedOption';
+const String columnRound = 'Roundabout';
 
-final String columnBest5 = 'Best5';
-final String columnBestShow = 'BestShow';
-final String columnBestSH = 'BestSH';
-final String columnBestOL = 'BestOL';
-final String columnBestAcc = 'BestAcc';
-final String columnBestPend = 'BestPend';
-final String columnBestSpeed = 'BestSpeed';
-final String columnBestRound = 'BestRound';
+const String columnBest5 = 'Best5';
+const String columnBestShow = 'BestShow';
+const String columnBestSH = 'BestSH';
+const String columnBestOL = 'BestOL';
+const String columnBestAcc = 'BestAcc';
+const String columnBestPend = 'BestPend';
+const String columnBestSpeed = 'BestSpeed';
+const String columnBestRound = 'BestRound';
 
-final String columnShaved = 'TimeCutToday';
+const String columnShaved = 'TimeCutToday';
 
-final String table27Name = 'MatchRecord';
-final String columnDate = 'Date';
-final String columnDivision = 'Division';
-final String columnMatchTime = 'Time';
-final String columnClass = 'Class';
+const String table27Name = 'MatchRecord';
+const String columnDate = 'Date';
+const String columnDivision = 'Division';
+const String columnMatchTime = 'Time';
+const String columnClass = 'Class';
 
-final String creationStagesTable =
+const String creationStagesTable =
     '$columnId INTEGER PRIMARY KEY,  $column5 TEXT, $columnShow TEXT, $columnSH TEXT, $columnOL TEXT, $columnAcc TEXT, $columnPend TEXT, $columnSpeed TEXT, $columnRound TEXT, $columnBest5 TEXT, $columnBestShow TEXT, $columnBestSH TEXT, $columnBestOL TEXT, $columnBestAcc TEXT, $columnBestPend TEXT, $columnBestSpeed TEXT, $columnBestRound TEXT, $columnShaved TEXT';
 
-final String creationStringsTable =
+const String creationStringsTable =
     '$columnId INTEGER PRIMARY KEY,  $column5 TEXT, $columnShow TEXT, $columnSH TEXT, $columnOL TEXT, $columnAcc TEXT, $columnPend TEXT, $columnSpeed TEXT, $columnRound TEXT';
 
-final String creationMatchRecord =
+const String creationMatchRecord =
     '$columnDate TEXT, $columnDivision TEXT, $column5 TEXT, $columnShow TEXT, $columnSH TEXT, $columnOL TEXT, $columnAcc TEXT, $columnPend TEXT, $columnSpeed TEXT, $columnRound TEXT, $columnMatchTime TEXT, $columnClass TEXT';
 
 // data model class
@@ -195,9 +195,9 @@ class StringTimes {
 // singleton class to manage the database
 class DatabaseHelper {
   // This is the actual database filename that is saved in the docs directory.
-  static final _databaseName = 'MatchTracker.db';
+  static const _databaseName = 'MatchTracker.db';
   // Increment this version when you need to change the schema.
-  static final _databaseVersion = 1;
+  static const _databaseVersion = 1;
 
   // Make this a singleton class.
   DatabaseHelper._privateConstructor();
@@ -294,7 +294,7 @@ class DatabaseHelper {
         ],
         where: '$columnId = ?',
         whereArgs: [row]);
-    if (maps.length > 0) {
+    if (maps.isNotEmpty) {
       return StageTimes.fromMap(maps.first);
     }
     return null;
@@ -315,7 +315,7 @@ class DatabaseHelper {
         ],
         where: '$columnId = ?',
         whereArgs: [row]);
-    if (maps.length > 0) {
+    if (maps.isNotEmpty) {
       return StringTimes.fromMap(maps.first);
     }
     return null;
@@ -323,7 +323,7 @@ class DatabaseHelper {
 
   Future<int> getCount(String table) async {
     //database connection
-    Database db = await this.database;
+    Database db = await database;
     var rowCount = await db.rawQuery('SELECT COUNT (*) from $table');
 
     return Sqflite.firstIntValue(rowCount);

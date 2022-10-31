@@ -17,7 +17,7 @@ class MatchTracker extends StatefulWidget {
   //Set current division sent from mt_home_page.dart
   final String currentDivision;
 
-  MatchTracker({
+  const MatchTracker({
     Key key,
     this.currentDivision,
   }) : super(key: key);
@@ -34,14 +34,14 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   //Set controllers to retrieve stage times from TextFields
 
-  TextEditingController _controller5 = TextEditingController();
-  TextEditingController _controllerShow = TextEditingController();
-  TextEditingController _controllerSH = TextEditingController();
-  TextEditingController _controllerOL = TextEditingController();
-  TextEditingController _controllerAcc = TextEditingController();
-  TextEditingController _controllerPend = TextEditingController();
-  TextEditingController _controllerSpeed = TextEditingController();
-  TextEditingController _controllerRound = TextEditingController();
+  final TextEditingController _controller5 = TextEditingController();
+  final TextEditingController _controllerShow = TextEditingController();
+  final TextEditingController _controllerSH = TextEditingController();
+  final TextEditingController _controllerOL = TextEditingController();
+  final TextEditingController _controllerAcc = TextEditingController();
+  final TextEditingController _controllerPend = TextEditingController();
+  final TextEditingController _controllerSpeed = TextEditingController();
+  final TextEditingController _controllerRound = TextEditingController();
 
   //Declare focusNodes to detect change in focus of TextFields
 
@@ -202,10 +202,10 @@ class _MatchTrackerState extends State<MatchTracker> {
     //Display UI
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Match Tracker',
         ),
-        backgroundColor: Color(0xFF00681B),
+        backgroundColor: const Color(0xFF00681B),
         actions: <Widget>[
           PopupMenuButton<String>(
             onSelected: _matchMenuChoiceAction,
@@ -231,7 +231,6 @@ class _MatchTrackerState extends State<MatchTracker> {
             currentFocus.unfocus();
           }
         },
-
         //Override both back buttons to also save data when tapped
         child: WillPopScope(
           onWillPop: () async {
@@ -257,8 +256,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                           padding: const EdgeInsets.all(2.0),
                           child: FittedBox(
                             child: Text(
-                              '${widget.currentDivision}',
-                              style: TextStyle(
+                              widget.currentDivision,
+                              style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF00681B),
@@ -271,32 +270,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                   ),
                   Container(
                     height: 20.0,
-                    color: Color(0xFF00681B),
+                    color: const Color(0xFF00681B),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
+                      children: const <Widget>[
+                        SizedBox(
                           width: 65.0,
                           child: _HeadText(
                             text: 'Stage',
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 24.0),
-                          child: Container(
+                          padding: EdgeInsets.only(left: 24.0),
+                          child: SizedBox(
                             width: 60.0,
                             child: _HeadText(
                               text: 'Best',
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 60.0,
                           child: _HeadText(
                             text: 'Today',
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 85.0,
                           child: _HeadText(
                             text: '%/Class',
@@ -311,20 +310,20 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 80.0,
+                        SizedBox(
+                          width: 70.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram('Five to Go',
+                                        return const StageDiagram('Five to Go',
                                             'images/five_to_go.jpg');
 //                                      return Image.asset(
 //                                          'images/five_to_go.jpg');
@@ -332,7 +331,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     '5 to Go',
                                     style: TextStyle(
@@ -343,33 +342,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '101 ($peak5)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
-                            width: 75.0,
+                          child: SizedBox(
+                            width: 80.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Five to Go', best5);
                                   },
                                   child: Text(
-                                    '$best5',
-                                    style: TextStyle(fontSize: 14.0),
+                                    best5,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClass5',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClass5,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.left,
                                 ),
                               ],
@@ -386,11 +385,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPct5',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPct5,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -403,26 +402,26 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 80.0,
+                        SizedBox(
+                          width: 75.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram(
+                                        return const StageDiagram(
                                             'Showdown', 'images/showdown.jpg');
                                       },
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     'Showdown',
                                     style: TextStyle(
@@ -433,33 +432,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '102 ($peakShow)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Showdown', bestShow);
                                   },
                                   child: Text(
-                                    '$bestShow',
-                                    style: TextStyle(fontSize: 14.0),
+                                    bestShow,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClassShow',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClassShow,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.left,
                                 ),
                               ],
@@ -476,11 +475,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPctShow',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPctShow,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -493,26 +492,27 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 80.0,
+                        SizedBox(
+                          width: 75.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram('Smoke & Hope',
+                                        return const StageDiagram(
+                                            'Smoke & Hope',
                                             'images/smoke_n_hope.jpg');
                                       },
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     'Smoke&Hope',
                                     style: TextStyle(
@@ -523,33 +523,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '103 ($peakSH)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Smoke & Hope', bestSH);
                                   },
                                   child: Text(
-                                    '$bestSH',
-                                    style: TextStyle(fontSize: 14.0),
+                                    bestSH,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClassSH',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClassSH,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.left,
                                 ),
                               ],
@@ -566,11 +566,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPctSH',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPctSH,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -583,26 +583,27 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 80.0,
+                        SizedBox(
+                          width: 75.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram('Outer Limits',
+                                        return const StageDiagram(
+                                            'Outer Limits',
                                             'images/outer_limits.jpg');
                                       },
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     'Outer Limits',
                                     style: TextStyle(
@@ -613,33 +614,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '104 ($peakOL)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Outer Limits', bestOL);
                                   },
                                   child: Text(
-                                    '$bestOL',
-                                    style: TextStyle(fontSize: 14.0),
+                                    bestOL,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClassOL',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClassOL,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.right,
                                 ),
                               ],
@@ -656,11 +657,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPctOL',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPctOL,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -673,26 +674,26 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 80.0,
+                        SizedBox(
+                          width: 75.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram('Accelerator',
+                                        return const StageDiagram('Accelerator',
                                             'images/accelerator.jpg');
                                       },
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     'Accelerator',
                                     style: TextStyle(
@@ -703,33 +704,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '105 ($peakAcc)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Accelerator', bestAcc);
                                   },
                                   child: Text(
-                                    '$bestAcc',
-                                    style: TextStyle(fontSize: 14.0),
+                                    bestAcc,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClassAcc',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClassAcc,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.right,
                                 ),
                               ],
@@ -746,11 +747,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPctAcc',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPctAcc,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -763,26 +764,27 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 80.0,
+                        SizedBox(
+                          width: 75.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram('The Pendulum',
+                                        return const StageDiagram(
+                                            'The Pendulum',
                                             'images/pendulum.jpg');
                                       },
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     'Pendulum',
                                     style: TextStyle(
@@ -793,33 +795,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '106 ($peakPend)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Pendulum', bestPend);
                                   },
                                   child: Text(
-                                    '$bestPend',
-                                    style: TextStyle(fontSize: 14.0),
+                                    bestPend,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClassPend',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClassPend,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.right,
                                 ),
                               ],
@@ -836,11 +838,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPctPend',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPctPend,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -853,26 +855,27 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          width: 80.0,
+                        SizedBox(
+                          width: 75.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram('Speed Option',
+                                        return const StageDiagram(
+                                            'Speed Option',
                                             'images/speed_option.jpg');
                                       },
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     'Speed Option',
                                     style: TextStyle(
@@ -883,33 +886,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '107 ($peakSpeed)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Speed Option', bestSpeed);
                                   },
                                   child: Text(
-                                    '$bestSpeed',
-                                    style: TextStyle(fontSize: 14.0),
+                                    bestSpeed,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClassSpeed',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClassSpeed,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.right,
                                 ),
                               ],
@@ -926,11 +929,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPctSpeed',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPctSpeed,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -943,26 +946,26 @@ class _MatchTrackerState extends State<MatchTracker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
+                        SizedBox(
                           width: 80.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               InkWell(
-                                highlightColor: Color(0xFF00681B),
+                                highlightColor: const Color(0xFF00681B),
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return StageDiagram('Roundabout',
+                                        return const StageDiagram('Roundabout',
                                             'images/roundabout.jpg');
                                       },
                                     ),
                                   );
                                 },
-                                child: FittedBox(
+                                child: const FittedBox(
                                   child: Text(
                                     'Roundabout',
                                     style: TextStyle(
@@ -973,33 +976,33 @@ class _MatchTrackerState extends State<MatchTracker> {
                               ),
                               Text(
                                 '108 ($peakRound)',
-                                style: TextStyle(fontSize: 12.0),
+                                style: const TextStyle(fontSize: 12.0),
                               )
                             ],
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 16.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
                                 InkWell(
-                                  highlightColor: Color(0xFF00681B),
+                                  highlightColor: const Color(0xFF00681B),
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () {
                                     _calcBestAvg('Roundabout', bestRound);
                                   },
                                   child: Text(
-                                    '$bestRound',
-                                    style: TextStyle(fontSize: 14.0),
+                                    bestRound,
+                                    style: const TextStyle(fontSize: 14.0),
                                     textAlign: TextAlign.left,
                                   ),
                                 ),
                                 Text(
-                                  '$bestClassRound',
-                                  style: TextStyle(fontSize: 14.0),
+                                  bestClassRound,
+                                  style: const TextStyle(fontSize: 14.0),
                                   textAlign: TextAlign.right,
                                 ),
                               ],
@@ -1016,11 +1019,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 4.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 75.0,
                             child: Text(
-                              '$todayPctRound',
-                              style: TextStyle(fontSize: 14.0),
+                              todayPctRound,
+                              style: const TextStyle(fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -1042,7 +1045,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                               child: ConstrainedBox(
                                 constraints:
                                     const BoxConstraints(maxHeight: 20.0),
-                                child: Text(
+                                child: const Text(
                                   'Time',
                                   style: TextStyle(
                                       fontSize: 12.0,
@@ -1050,14 +1053,14 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 60.0,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 18.0),
                                 child: ConstrainedBox(
                                   constraints:
                                       const BoxConstraints(maxHeight: 20),
-                                  child: Text(
+                                  child: const Text(
                                     'Peak',
                                     style: TextStyle(
                                         fontSize: 12.0,
@@ -1066,14 +1069,14 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 70.0,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 12.0),
                                 child: ConstrainedBox(
                                   constraints:
                                       const BoxConstraints(maxWidth: 20.0),
-                                  child: Text(
+                                  child: const Text(
                                     '%Peak',
                                     style: TextStyle(
                                         fontSize: 12.0,
@@ -1082,14 +1085,14 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 65.0,
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: ConstrainedBox(
                                   constraints:
                                       const BoxConstraints(maxHeight: 20),
-                                  child: Text(
+                                  child: const Text(
                                     'Class',
                                     style: TextStyle(
                                         fontSize: 12.0,
@@ -1111,40 +1114,40 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Container(
-                              width: 65.0,
+                            const SizedBox(
+                              width: 60.0,
                               child: Text(
                                 'Today',
                                 style: TextStyle(fontSize: 14),
                                 textAlign: TextAlign.left,
                               ),
                             ),
-                            Container(
-                              width: 65.0,
+                            SizedBox(
+                              width: 58.0,
                               child: Text(
-                                '$todayTime',
-                                style: TextStyle(fontSize: 14),
+                                todayTime,
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
-                            Container(
-                              width: 65.0,
+                            SizedBox(
+                              width: 58.0,
                               child: Text(
-                                '$todayPeak',
-                                style: TextStyle(fontSize: 14),
+                                todayPeak,
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
-                            Container(
-                              width: 65.0,
+                            SizedBox(
+                              width: 58.0,
                               child: Text(
-                                '$todayPct',
-                                style: TextStyle(fontSize: 14),
+                                todayPct,
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 55.0,
                               child: Text(
-                                '$todayClass',
-                                style: TextStyle(fontSize: 14),
+                                todayClass,
+                                style: const TextStyle(fontSize: 14),
                                 textAlign: TextAlign.left,
                               ),
                             ),
@@ -1156,7 +1159,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Container(
+                            const SizedBox(
                               width: 65.0,
                               child: Text(
                                 'Overall',
@@ -1164,32 +1167,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 textAlign: TextAlign.left,
                               ),
                             ),
-                            Container(
-                              width: 65.0,
+                            SizedBox(
+                              width: 60.0,
                               child: Text(
-                                '$overallTime',
-                                style: TextStyle(fontSize: 14),
+                                overallTime,
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
-                            Container(
-                              width: 65.0,
+                            SizedBox(
+                              width: 60.0,
                               child: Text(
-                                '$overallPeak',
-                                style: TextStyle(fontSize: 14),
+                                overallPeak,
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 65.0,
                               child: Text(
-                                '$overallPct',
-                                style: TextStyle(fontSize: 14),
+                                overallPct,
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 55.0,
                               child: Text(
-                                '$overallClass',
-                                style: TextStyle(fontSize: 14),
+                                overallClass,
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
                           ],
@@ -1206,11 +1209,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 padding: const EdgeInsets.only(left: 4.0),
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      shape: StadiumBorder(),
-                                      side: BorderSide(
+                                      shape: const StadiumBorder(),
+                                      side: const BorderSide(
                                           width: 1, color: Color(0xFF00681B)),
                                       primary: Colors.white),
-                                  child: Text(
+                                  child: const Text(
                                     'Change Gun',
                                     style: TextStyle(
                                       color: Color(0xFF00681B),
@@ -1224,10 +1227,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   },
                                 ),
                               ),
-                              Container(
+                              const SizedBox(
                                 width: 120.0,
                                 child: Text(
-                                  '$timeCuts',
+                                  '',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 14.0,
@@ -1239,11 +1242,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 padding: const EdgeInsets.only(right: 4.0),
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      shape: StadiumBorder(),
-                                      side: BorderSide(
+                                      shape: const StadiumBorder(),
+                                      side: const BorderSide(
                                           width: 1, color: Color(0xFF00681B)),
                                       primary: Colors.white),
-                                  child: Text(
+                                  child: const Text(
                                     'Clear Today',
                                     style: TextStyle(
                                       color: Color(0xFF00681B),
@@ -1271,7 +1274,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
 //Update today and total times when TextFields lose focus.
 
-  Future<Null> _focus5Listener() async {
+  Future<void> _focus5Listener() async {
     if (_focus5.hasFocus) {
       _controller5.selection =
           TextSelection(baseOffset: 0, extentOffset: _controller5.text.length);
@@ -1302,7 +1305,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  Future<Null> _focusShowListener() async {
+  Future<void> _focusShowListener() async {
     if (_focusShow.hasFocus) {
       _controllerShow.selection = TextSelection(
           baseOffset: 0, extentOffset: _controllerShow.text.length);
@@ -1335,7 +1338,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  Future<Null> _focusSHListener() async {
+  Future<void> _focusSHListener() async {
     if (_focusSH.hasFocus) {
       _controllerSH.selection =
           TextSelection(baseOffset: 0, extentOffset: _controllerSH.text.length);
@@ -1367,7 +1370,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  Future<Null> _focusOLListener() async {
+  Future<void> _focusOLListener() async {
     if (_focusOL.hasFocus) {
       _controllerOL.selection =
           TextSelection(baseOffset: 0, extentOffset: _controllerOL.text.length);
@@ -1399,7 +1402,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  Future<Null> _focusAccListener() async {
+  Future<void> _focusAccListener() async {
     if (_focusAcc.hasFocus) {
       _controllerAcc.selection = TextSelection(
           baseOffset: 0, extentOffset: _controllerAcc.text.length);
@@ -1432,7 +1435,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  Future<Null> _focusPendListener() async {
+  Future<void> _focusPendListener() async {
     if (_focusPend.hasFocus) {
       _controllerPend.selection = TextSelection(
           baseOffset: 0, extentOffset: _controllerPend.text.length);
@@ -1465,7 +1468,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  Future<Null> _focusSpeedListener() async {
+  Future<void> _focusSpeedListener() async {
     if (_focusSpeed.hasFocus) {
       _controllerSpeed.selection = TextSelection(
           baseOffset: 0, extentOffset: _controllerSpeed.text.length);
@@ -1498,7 +1501,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  Future<Null> _focusRoundListener() async {
+  Future<void> _focusRoundListener() async {
     if (_focusRound.hasFocus) {
       _controllerRound.selection = TextSelection(
           baseOffset: 0, extentOffset: _controllerRound.text.length);
@@ -1545,7 +1548,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       buttons: [
         DialogButton(
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "Yes",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
@@ -1565,7 +1568,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   });
 
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on 5 to Go!'),
                   );
@@ -1586,7 +1589,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Showdown!'),
                   );
@@ -1608,7 +1611,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Smoke & Hope!'),
                   );
@@ -1630,7 +1633,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Outer Limits!'),
                   );
@@ -1652,7 +1655,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Accelerator!'),
                   );
@@ -1675,7 +1678,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Pendulum!'),
                   );
@@ -1697,7 +1700,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Speed Option!'),
                   );
@@ -1719,7 +1722,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                         'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Roundabout!'),
                   );
@@ -1741,7 +1744,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
         DialogButton(
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "No",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
@@ -1994,8 +1997,9 @@ class _MatchTrackerState extends State<MatchTracker> {
           todayClass = 'A';
         } else if (double.parse(todayPct) < 95.0) {
           todayClass = 'M';
-        } else
+        } else {
           todayClass = 'GM';
+        }
       } else {
         todayPct = '';
         todayClass = '';
@@ -2054,8 +2058,9 @@ class _MatchTrackerState extends State<MatchTracker> {
             overallClass = 'A';
           } else if (double.parse(overallPct) < 95.0) {
             overallClass = 'M';
-          } else
+          } else {
             overallClass = 'GM';
+          }
         }
       });
     }
@@ -2073,7 +2078,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         DialogButton(
           width: 20,
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "Cancel",
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
@@ -2081,7 +2086,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
         DialogButton(
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "Clear",
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
@@ -2258,7 +2263,7 @@ class _MatchTrackerState extends State<MatchTracker> {
             title: Center(
               child: Text(
                 'Tap current $divAbbrev class: ',
-                style: TextStyle(color: Color(0xFF00681B)),
+                style: const TextStyle(color: Color(0xFF00681B)),
               ),
             ),
             children: <Widget>[
@@ -2272,15 +2277,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                       'Your ${widget.currentDivision} class has been changed to GM.',
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
-                child: Center(
-                  child: const Text(
+                child: const Center(
+                  child: Text(
                     'GM',
                     style: TextStyle(
                       color: Color(0xFF00681B),
@@ -2299,15 +2304,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                       'Your ${widget.currentDivision} class has been changed to M.',
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
-                child: Center(
-                  child: const Text(
+                child: const Center(
+                  child: Text(
                     'M',
                     style: TextStyle(
                       color: Color(0xFF00681B),
@@ -2326,15 +2331,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                       'Your ${widget.currentDivision} class has been changed to A.',
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
-                child: Center(
-                  child: const Text(
+                child: const Center(
+                  child: Text(
                     'A',
                     style: TextStyle(
                       color: Color(0xFF00681B),
@@ -2353,15 +2358,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                       'Your ${widget.currentDivision} class has been changed to B.',
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
-                child: Center(
-                  child: const Text(
+                child: const Center(
+                  child: Text(
                     'B',
                     style: TextStyle(
                       color: Color(0xFF00681B),
@@ -2380,15 +2385,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                   });
                   _calcOverallPeak();
                   final snackBar = SnackBar(
-                    backgroundColor: Color(0xFF00681B),
+                    backgroundColor: const Color(0xFF00681B),
                     content: Text(
                       'Your ${widget.currentDivision} class has been changed to C.',
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
-                child: Center(
-                  child: const Text(
+                child: const Center(
+                  child: Text(
                     'C',
                     style: TextStyle(
                       color: Color(0xFF00681B),
@@ -2418,7 +2423,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   // with an action to show best average times needed to advance in classification
   void _snackBarBestAvg(String stage, double bestAvg) {
     final snackBar = SnackBar(
-      backgroundColor: Color(0xFF00681B),
+      backgroundColor: const Color(0xFF00681B),
       content: Text(
         'Best average string $stage is ${bestAvg.toStringAsFixed(2)}',
         textAlign: TextAlign.center,
@@ -2673,7 +2678,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         DialogButton(
           width: 20,
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "Cancel",
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
@@ -2681,7 +2686,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
         DialogButton(
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "Clear",
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
@@ -2745,7 +2750,7 @@ class _MatchTrackerState extends State<MatchTracker> {
             _clearStringTimes();
             Navigator.pop(context);
             final snackBar = SnackBar(
-              backgroundColor: Color(0xFF00681B),
+              backgroundColor: const Color(0xFF00681B),
               content: Text(
                 '$divAbbrev data cleared.',
                 textAlign: TextAlign.center,
@@ -2771,7 +2776,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     stringTimes.speedOption = '';
     stringTimes.roundabout = '';
 
-    await helper.insertStrings('$divAbbrev' + 'STR', stringTimes);
+    await helper.insertStrings(divAbbrev + 'STR', stringTimes);
   }
 
 //Determine if user has scored at least 4 classifier stages before displaying
@@ -2816,7 +2821,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       buttons: [
         DialogButton(
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "OK",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
@@ -2835,9 +2840,9 @@ class _HeadText extends StatelessWidget {
   Widget build(BuildContext context) {
     return FittedBox(
       child: Text(
-        '$text',
+        text,
         textAlign: TextAlign.left,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white),
       ),
     );

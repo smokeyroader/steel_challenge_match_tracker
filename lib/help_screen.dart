@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Help extends StatelessWidget {
+  const Help({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     String bullet = '\u2022';
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Using Match Tracker'),
-          backgroundColor: Color(0xFF00681B),
+          title: const Text('Using Match Tracker'),
+          backgroundColor: const Color(0xFF00681B),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -19,18 +21,18 @@ class Help extends StatelessWidget {
                 children: <Widget>[
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14.0,
 //                      fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                       children: <TextSpan>[
-                        TextSpan(
+                        const TextSpan(
                           text: 'Getting Started\r\n',
                           style: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 20.0),
                         ),
-                        TextSpan(
+                        const TextSpan(
                           style: TextStyle(fontSize: 18.0),
                           text:
                               'Begin by selecting the first division (gun type) you wish to track from the drop-down box '
@@ -40,14 +42,14 @@ class Help extends StatelessWidget {
                               'menu (three dots) at the top right of the screen to clear the list of recent guns or to save '
                               'the list so your favorite divisions will appear each time you open the app.\r\n\n',
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: 'Entering Best Times\r\n',
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 20.0,
                           ),
                         ),
-                        TextSpan(
+                        const TextSpan(
                           style: TextStyle(fontSize: 18.0),
                           text:
                               'After you’ve selected your first division, the scoring screen for that division '
@@ -65,12 +67,12 @@ class Help extends StatelessWidget {
                               'have no match record, just entering your times during your first match will establish best times '
                               'for each stage you shoot. \r\n\n',
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: 'Scoring a Match\r\n',
                           style: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 20.0),
                         ),
-                        TextSpan(
+                        const TextSpan(
                           style: TextStyle(fontSize: 18.0),
                           text:
                               'To score a match and update your overall classification, just enter your '
@@ -85,13 +87,13 @@ class Help extends StatelessWidget {
                               'affected. Total time cuts from your previous best times will also be shown '
                               'at the center bottom of the screen.\r\n\n',
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: 'Cool Features\r\n',
                           style: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 20.0),
                         ),
                         TextSpan(
-                          style: TextStyle(fontSize: 18.0),
+                          style: const TextStyle(fontSize: 18.0),
                           text:
                               '$bullet Tap any stage name to bring up a stage diagram for that stage.\r\n\n$bullet Tap any '
                               '“Best” time to see (in a popup) the average string times it took to '
@@ -109,12 +111,12 @@ class Help extends StatelessWidget {
                               'which you have a classification. \r\n\n$bullet Select “Resources” from the main menu '
                               'to see a list of useful links for Steel Challenge competitors.\r\n\n',
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: 'Contact Us\r\n',
                           style: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 20.0),
                         ),
-                        TextSpan(
+                        const TextSpan(
                           style: TextStyle(fontSize: 18.0),
                           text:
                               'Send bug reports or requests or recommendations for additional '

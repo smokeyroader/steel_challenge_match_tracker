@@ -9,6 +9,8 @@ import 'resources.dart';
 import 'division_summary.dart';
 
 class MatchTrackerHomePage extends StatefulWidget {
+  const MatchTrackerHomePage({Key key}) : super(key: key);
+
   @override
   _MatchTrackerHomePageState createState() => _MatchTrackerHomePageState();
 }
@@ -89,8 +91,10 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       top: false,
       child: Scaffold(
         appBar: AppBar(
-          title: FittedBox(child: Text('Steel Challenge Match Tracker')),
-          backgroundColor: Color(0xFF00681B),
+          title: const FittedBox(
+            child: Text('Steel Challenge Match Tracker'),
+          ),
+          backgroundColor: const Color(0xFF00681B),
           actions: <Widget>[
             FittedBox(
               child: PopupMenuButton<String>(
@@ -101,7 +105,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                       value: choice,
                       child: Text(
                         choice,
-                        style: TextStyle(fontSize: 16.0),
+                        style: const TextStyle(fontSize: 16.0),
                       ),
                     );
                   }).toList();
@@ -138,7 +142,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                           value: value,
                           child: Text(
                             value,
-                            style: TextStyle(fontSize: 14.0),
+                            style: const TextStyle(fontSize: 14.0),
                           ),
                         );
                       }).toList(),
@@ -187,11 +191,11 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 190.0,
                     child: Image.asset('images/match_tracker_logo_front.jpg'),
                   ),
-                  Text(
+                  const Text(
                     'Version 2.2.5',
                     style: TextStyle(fontSize: 14.0),
                   ),
@@ -242,7 +246,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     preferences.setString('recent4', div4);
 
     if (!gunsCleared) {
-      final snackBar = SnackBar(
+      const snackBar = SnackBar(
         backgroundColor: Color(0xFF00681B),
         content: Text(
           'Recent guns saved.',
@@ -273,7 +277,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           secondRecent == '' &&
           thirdRecent == '' &&
           fourthRecent == '') {
-        final snackBar = SnackBar(
+        const snackBar = SnackBar(
           backgroundColor: Color(0xFF00681B),
           content: Text(
             'You have no recent guns to save.',
@@ -289,7 +293,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return DivisionSummary();
+            return const DivisionSummary();
           },
         ),
       );
@@ -300,7 +304,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return Resources();
+            return const Resources();
           },
         ),
       );
@@ -310,7 +314,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return Help();
+            return const Help();
           },
         ),
       );
@@ -320,25 +324,25 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   //Set up a match scoring page depending on which division is selected when user taps one of the saved guns
   void trackFirstDiv() {
     if (firstRecent != '') {
-      startTracking('$firstRecent');
+      startTracking(firstRecent);
     }
   }
 
   void trackSecondDiv() {
     if (secondRecent != '') {
-      startTracking('$secondRecent');
+      startTracking(secondRecent);
     }
   }
 
   void trackThirdDiv() {
     if (thirdRecent != '') {
-      startTracking('$thirdRecent');
+      startTracking(thirdRecent);
     }
   }
 
   void trackFourthDiv() {
     if (fourthRecent != '') {
-      startTracking('$fourthRecent');
+      startTracking(fourthRecent);
     }
   }
 
@@ -350,7 +354,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       MaterialPageRoute(
         builder: (context) {
           return MatchTracker(
-            currentDivision: '$division',
+            currentDivision: division,
           );
         },
       ),
@@ -367,7 +371,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       buttons: [
         DialogButton(
           color: Colors.green,
-          child: Text(
+          child: const Text(
             "OK",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
@@ -392,7 +396,7 @@ class TextRecent extends StatelessWidget {
     return FittedBox(
       child: Text(
         ' $recent ',
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
           fontSize: 20.0,
         ),

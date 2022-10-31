@@ -7,6 +7,8 @@ import 'current_classification.dart';
 
 //
 class Resources extends StatefulWidget {
+  const Resources({Key key}) : super(key: key);
+
   @override
   _ResourcesState createState() => _ResourcesState();
 }
@@ -16,7 +18,7 @@ class _ResourcesState extends State<Resources> {
     if (!await launchUrl(
       url,
       mode: LaunchMode.externalApplication,
-    )) ;
+    )) {}
     {
       // throw 'Could not launch $url';
     }
@@ -27,12 +29,12 @@ class _ResourcesState extends State<Resources> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: FittedBox(
+        title: const FittedBox(
           child: Text(
             'Resources for Steel Challenge Shooters',
           ),
         ),
-        backgroundColor: Color(0xFF00681B),
+        backgroundColor: const Color(0xFF00681B),
       ),
       body: WillPopScope(
         onWillPop: () async {
@@ -42,7 +44,7 @@ class _ResourcesState extends State<Resources> {
         },
         child: Container(
           width: double.infinity,
-          margin: EdgeInsets.all(6.0),
+          margin: const EdgeInsets.all(6.0),
           child: FittedBox(
             child: Row(
               mainAxisSize: MainAxisSize.max,
@@ -61,7 +63,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'Team Match Tracker Info and Signup',
                         ),
                       ),
@@ -79,7 +81,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'My SCSA Classification Record',
                         ),
                       ),
@@ -95,7 +97,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'Steel Challenge Training Manual',
                         ),
                       ),
@@ -110,7 +112,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'Steel Challenge Training Aids',
                         ),
                       ),
@@ -125,7 +127,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'The SCSA Classification System',
                         ),
                       ),
@@ -140,7 +142,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'Steel Challenge Online Rule Book',
                         ),
                       ),
@@ -155,7 +157,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'Practiscore Home',
                         ),
                       ),
@@ -170,7 +172,7 @@ class _ResourcesState extends State<Resources> {
                             ),
                           );
                         },
-                        child: DisplayText(
+                        child: const DisplayText(
                           text: 'Scholastic Action Shooting Program',
                         ),
                       ),
@@ -199,7 +201,7 @@ class DisplayText extends StatelessWidget {
     return Text(
       text,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
         color: Color(0xFF00681B),

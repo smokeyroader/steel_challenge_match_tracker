@@ -6,7 +6,7 @@ class ClassTracker extends StatefulWidget {
   final String totPeak;
   final String currClass;
 
-  ClassTracker({
+  const ClassTracker({
     Key key,
     this.division,
     this.totTime,
@@ -34,18 +34,18 @@ class _ClassTrackerState extends State<ClassTracker> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: FittedBox(
+          title: const FittedBox(
             child: Text(
               'Steel Challenge Class Tracker',
             ),
           ),
-          backgroundColor: Color(0xFF00681B),
+          backgroundColor: const Color(0xFF00681B),
         ),
         body: Container(
           color: Colors.white,
           child: Column(
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
               FittedBox(
@@ -54,8 +54,8 @@ class _ClassTrackerState extends State<ClassTracker> {
                   children: <Widget>[
                     Center(
                       child: Text(
-                        '${widget.division}',
-                        style: TextStyle(
+                        widget.division,
+                        style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF00681B),
@@ -82,7 +82,7 @@ class _ClassTrackerState extends State<ClassTracker> {
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Text(
                       'Current Class:  ${widget.currClass}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF00681B),
@@ -91,12 +91,12 @@ class _ClassTrackerState extends State<ClassTracker> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 75.0,
               ),
               Text(
-                '$timeCuts',
-                style: TextStyle(
+                timeCuts,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF00681B),
@@ -105,8 +105,8 @@ class _ClassTrackerState extends State<ClassTracker> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  '$class1',
-                  style: TextStyle(
+                  class1,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF00681B),
@@ -116,8 +116,8 @@ class _ClassTrackerState extends State<ClassTracker> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  '$class2',
-                  style: TextStyle(
+                  class2,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF00681B),
@@ -127,8 +127,8 @@ class _ClassTrackerState extends State<ClassTracker> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  '$class3',
-                  style: TextStyle(
+                  class3,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF00681B),
@@ -138,8 +138,8 @@ class _ClassTrackerState extends State<ClassTracker> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  '$class4',
-                  style: TextStyle(
+                  class4,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF00681B),
@@ -149,8 +149,8 @@ class _ClassTrackerState extends State<ClassTracker> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
-                  '$class5',
-                  style: TextStyle(
+                  class5,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF00681B),
@@ -160,9 +160,9 @@ class _ClassTrackerState extends State<ClassTracker> {
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
+                  children: const <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Note: At least four classifier stages are required for a valid SCSA classification. The above times will be most valid after all classifier stages have been completed.',
                         style: TextStyle(
