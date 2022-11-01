@@ -583,7 +583,6 @@ class _DivisionSummaryState extends State<DivisionSummary> {
                 ),
               ],
             ),
-
           ],
         ),
       ),
@@ -889,7 +888,7 @@ class DivisionContainer extends StatelessWidget {
       height: 22.0,
       child: FittedBox(
         child: Text(
-          ' $contents ',
+          contents,
           textAlign: TextAlign.left,
           style: const TextStyle(
 //                          fontSize: 14.0,
