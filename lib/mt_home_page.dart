@@ -6,7 +6,7 @@ import 'match_tracker.dart';
 import 'constants.dart';
 import 'help_screen.dart';
 import 'resources.dart';
-import 'division_summary.dart';
+import 'classification_summary.dart';
 
 class MatchTrackerHomePage extends StatefulWidget {
   const MatchTrackerHomePage({Key key}) : super(key: key);
@@ -293,7 +293,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const DivisionSummary();
+            return const ClassificationSummary();
           },
         ),
       );

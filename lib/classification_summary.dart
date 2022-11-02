@@ -4,14 +4,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 import 'database_helper.dart';
 
-class DivisionSummary extends StatefulWidget {
-  const DivisionSummary({Key key}) : super(key: key);
+class ClassificationSummary extends StatefulWidget {
+  const ClassificationSummary({Key key}) : super(key: key);
 
   @override
-  _DivisionSummaryState createState() => _DivisionSummaryState();
+  _ClassificationSummaryState createState() => _ClassificationSummaryState();
 }
 
-class _DivisionSummaryState extends State<DivisionSummary> {
+class _ClassificationSummaryState extends State<ClassificationSummary> {
   DatabaseHelper helper = DatabaseHelper.instance;
 
   String division;
