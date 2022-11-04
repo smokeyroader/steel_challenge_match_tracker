@@ -19,6 +19,8 @@ class TimesNeeded extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String bestStageClass;
+
     //Account for the different number of scored strings for Outer Limits
     int numStrings;
     stage == 'Outer Limits' ? numStrings = 3 : numStrings = 4;
@@ -30,6 +32,20 @@ class TimesNeeded extends StatelessWidget {
     String aTime = ((stagePeak / .75) / numStrings).toStringAsFixed(2);
     String bTime = ((stagePeak / .60) / numStrings).toStringAsFixed(2);
     String cTime = ((stagePeak / .40) / numStrings).toStringAsFixed(2);
+
+    if (bestAvgStr <= (stagePeak / .95) / numStrings) {
+      bestStageClass = 'GM';
+    } else if (bestAvgStr <= (stagePeak / .85) / numStrings) {
+      bestStageClass = 'M';
+    } else if (bestAvgStr <= (stagePeak / .75) / numStrings) {
+      bestStageClass = 'A';
+    } else if (bestAvgStr <= (stagePeak / .60) / numStrings) {
+      bestStageClass = 'B';
+    } else if (bestAvgStr <= (stagePeak / .40) / numStrings) {
+      bestStageClass = 'C';
+    } else {
+      bestStageClass = 'D';
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -109,7 +125,7 @@ class TimesNeeded extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 20.0,
-                        right: 20.0,
+                        right: 4.0,
                       ),
                       child: Text(
                         bestAvgStr.toStringAsFixed(2),
@@ -120,6 +136,19 @@ class TimesNeeded extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 4,
+                      ),
+                      child: Text(
+                        '($bestStageClass)',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF00681B),
+                          fontSize: 24,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -155,10 +184,7 @@ class TimesNeeded extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        right: 16,
-                      ),
+                      padding: const EdgeInsets.all(8.0),
                       child: ClassText(
                         classLetter: 'GM',
                         time: gmTime,
