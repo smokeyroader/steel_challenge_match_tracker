@@ -177,74 +177,57 @@ class TimesNeeded extends StatelessWidget {
                 ),
               ),
               const SizedBox(
+                height: 20,
+              ),
+              ClassTimes(
+                classLetter: 'GM',
+                time: gmTime,
+              ),
+              const SizedBox(
                 height: 10,
               ),
-              FittedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClassText(
-                        classLetter: 'GM',
-                        time: gmTime,
-                      ),
-                    ),
-                  ],
-                ),
+              ClassTimes(
+                classLetter: 'M',
+                time: mTime,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ClassTimes(
+                classLetter: 'A',
+                time: aTime,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ClassTimes(
+                classLetter: 'B',
+                time: bTime,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ClassTimes(
+                classLetter: 'C',
+                time: cTime,
+              ),
+              const SizedBox(
+                height: 70,
               ),
               FittedBox(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClassText(
-                        classLetter: 'M',
-                        time: mTime,
-                      ),
+                child: Row(children: const [
+                  Padding(
+                    padding: EdgeInsets.only(left: 24, right: 24),
+                    child: Text(
+                      'Note: Times may not be precise due to rounding.',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 60,
+                          color: Color(0xFF00681B)),
                     ),
-                  ],
-                ),
-              ),
-              FittedBox(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClassText(
-                        classLetter: 'A',
-                        time: aTime,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              FittedBox(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClassText(
-                        classLetter: 'B',
-                        time: bTime,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              FittedBox(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClassText(
-                        classLetter: 'C',
-                        time: cTime,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  )
+                ]),
+              )
             ],
           ),
         ),
@@ -282,9 +265,9 @@ class TimesNeeded extends StatelessWidget {
   }
 }
 
-//Custom text widget to reduce redundant code
-class ClassText extends StatelessWidget {
-  const ClassText({
+//Custom widget to reduce redundant code
+class ClassTimes extends StatelessWidget {
+  const ClassTimes({
     Key key,
     @required this.classLetter,
     this.time,
@@ -295,13 +278,15 @@ class ClassText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '$classLetter:  $time',
-      style: const TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: Color(0xFF00681B),
-      ),
+    return FittedBox(
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text('$classLetter:  $time',
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF00681B),
+            ))
+      ]),
     );
   }
 }
