@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Constants.dart';
+
 class StageDiagram extends StatelessWidget {
   final String stage;
   final String image;
@@ -15,7 +17,7 @@ class StageDiagram extends StatelessWidget {
           stage,
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF00681B),
+        backgroundColor: Constants.mtGreen,
       ),
       body: InteractiveViewer(
         child: Image.asset(image),

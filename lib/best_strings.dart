@@ -236,7 +236,7 @@ class _BestStringsState extends State<BestStrings> {
             'Track Best Strings',
           ),
         ),
-        backgroundColor: const Color(0xFF00681B),
+        backgroundColor: Constants.mtGreen,
         actions: const <Widget>[],
       ),
 //      key: scaffoldState,
@@ -266,7 +266,7 @@ class _BestStringsState extends State<BestStrings> {
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF00681B),
+                            color: Constants.mtGreen,
                           ),
                         ),
                       ),
@@ -275,7 +275,7 @@ class _BestStringsState extends State<BestStrings> {
                 ),
                 Container(
                   height: 45.0,
-                  color: const Color(0xFF00681B),
+                  color: Constants.mtGreen,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -916,12 +916,14 @@ class _BestStringsState extends State<BestStrings> {
                             style: ElevatedButton.styleFrom(
                                 shape: const StadiumBorder(),
                                 side: const BorderSide(
-                                    width: 1, color: Color(0xFF00681B)),
+                                  width: 1,
+                                  color: Constants.mtGreen,
+                                ),
                                 primary: Colors.white),
                             child: const Text(
                               'Clear',
                               style: TextStyle(
-                                color: Color(0xFF00681B),
+                                color: Constants.mtGreen,
                               ),
                             ),
                             onPressed: () {

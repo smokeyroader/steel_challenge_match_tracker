@@ -94,7 +94,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           title: const FittedBox(
             child: Text('Steel Challenge Match Tracker'),
           ),
-          backgroundColor: const Color(0xFF00681B),
+          backgroundColor: Constants.mtGreen,
           actions: <Widget>[
             FittedBox(
               child: PopupMenuButton<String>(
@@ -247,7 +247,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 
     if (!gunsCleared) {
       const snackBar = SnackBar(
-        backgroundColor: Color(0xFF00681B),
+        backgroundColor: Constants.mtGreen,
         content: Text(
           'Recent guns saved.',
           textAlign: TextAlign.center,
@@ -278,7 +278,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           thirdRecent == '' &&
           fourthRecent == '') {
         const snackBar = SnackBar(
-          backgroundColor: Color(0xFF00681B),
+          backgroundColor: Constants.mtGreen,
           content: Text(
             'You have no recent guns to save.',
             textAlign: TextAlign.center,
@@ -366,13 +366,13 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     Alert(
       context: context,
       type: AlertType.warning,
-      title: "Oops!",
-      desc: "You must select a division or tap a previous division.",
+      title: 'Oops!',
+      desc: 'You must select a division or tap a previous division.',
       buttons: [
         DialogButton(
           color: Colors.green,
           child: const Text(
-            "OK",
+            'OK',
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () => Navigator.pop(context),

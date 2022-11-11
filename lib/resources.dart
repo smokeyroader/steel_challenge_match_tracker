@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 
 import 'current_classification.dart';
+import 'Constants.dart';
 
 //
 class Resources extends StatefulWidget {
@@ -34,7 +35,7 @@ class _ResourcesState extends State<Resources> {
             'Resources for Steel Challenge Shooters',
           ),
         ),
-        backgroundColor: const Color(0xFF00681B),
+        backgroundColor: Constants.mtGreen,
       ),
       body: WillPopScope(
         onWillPop: () async {
@@ -204,7 +205,7 @@ class DisplayText extends StatelessWidget {
       style: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
-        color: Color(0xFF00681B),
+        color: Constants.mtGreen,
       ),
     );
   }

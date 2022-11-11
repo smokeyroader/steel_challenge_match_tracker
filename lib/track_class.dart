@@ -1,12 +1,16 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
-class ClassTracker extends StatefulWidget {
+import 'constants.dart';
+
+class ClassTracker extends StatelessWidget {
   final String division;
   final String totTime;
   final String totPeak;
   final String currClass;
 
-  const ClassTracker({
+  ClassTracker({
     Key key,
     this.division,
     this.totTime,
@@ -14,21 +18,21 @@ class ClassTracker extends StatefulWidget {
     this.currClass,
   }) : super(key: key);
 
-  @override
-  _ClassTrackerState createState() => _ClassTrackerState();
-}
-
-class _ClassTrackerState extends State<ClassTracker> {
-  String timeCuts = 'Time cuts needed to advance to:';
-
   String class1;
   String class2;
   String class3;
   String class4;
   String class5;
 
+  String timeCuts;
+
   @override
   Widget build(BuildContext context) {
+    if (currClass == 'GM') {
+      timeCuts = 'Congratulations on your achievement';
+    } else {
+      timeCuts = 'Time cuts needed to advance to:';
+    }
     showTimes();
 
     return SafeArea(
@@ -39,7 +43,7 @@ class _ClassTrackerState extends State<ClassTracker> {
               'Steel Challenge Class Tracker',
             ),
           ),
-          backgroundColor: const Color(0xFF00681B),
+          backgroundColor: Constants.mtGreen,
         ),
         body: Container(
           color: Colors.white,
@@ -54,38 +58,28 @@ class _ClassTrackerState extends State<ClassTracker> {
                   children: <Widget>[
                     Center(
                       child: Text(
-                        widget.division,
+                        division,
                         style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-//          Center(
-//            child: Text(
-//              '${widget.division}',
-//              style: TextStyle(
-//                fontSize: 18.0,
-//                fontWeight: FontWeight.bold,
-//                color: Color(0xFF00681B),
-//              ),
-//            ),
-//          ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Text(
-                      'Current Class:  ${widget.currClass}',
+                      'Current Class:  $currClass',
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -94,67 +88,37 @@ class _ClassTrackerState extends State<ClassTracker> {
               const SizedBox(
                 height: 75.0,
               ),
-              Text(
-                timeCuts,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF00681B),
+              _ClassText(
+                contents: timeCuts,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: _ClassText(
+                  contents: class1,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  class1,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF00681B),
-                  ),
+                child: _ClassText(
+                  contents: class2,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  class2,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF00681B),
-                  ),
+                child: _ClassText(
+                  contents: class3,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  class3,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF00681B),
-                  ),
+                child: _ClassText(
+                  contents: class4,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  class4,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF00681B),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  class5,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF00681B),
-                  ),
+                child: _ClassText(
+                  contents: class5,
                 ),
               ),
               Expanded(
@@ -168,7 +132,7 @@ class _ClassTrackerState extends State<ClassTracker> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                         ),
                       ),
                     ),
@@ -183,86 +147,105 @@ class _ClassTrackerState extends State<ClassTracker> {
   }
 
   void showTimes() {
-    switch (widget.currClass) {
+    switch (currClass) {
       case 'D':
-        setState(() {
-          class1 =
-              'C:    ${((double.parse(widget.totPeak) / .40) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class2 =
-              'B:    ${((double.parse(widget.totPeak) / .60) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class3 =
-              'A:    ${((double.parse(widget.totPeak) / .75) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class4 =
-              'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class5 =
-              'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-        });
+        // setState(() {
+        class1 =
+            'C:    ${((double.parse(totPeak) / .40) - double.parse(totTime)).toStringAsFixed(2)}';
+        class2 =
+            'B:    ${((double.parse(totPeak) / .60) - double.parse(totTime)).toStringAsFixed(2)}';
+        class3 =
+            'A:    ${((double.parse(totPeak) / .75) - double.parse(totTime)).toStringAsFixed(2)}';
+        class4 =
+            'M:    ${((double.parse(totPeak) / .85) - double.parse(totTime)).toStringAsFixed(2)}';
+        class5 =
+            'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
+        // });
 
         break;
 
       case 'C':
-        setState(() {
-          class1 =
-              'B:    ${((double.parse(widget.totPeak) / .60) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class2 =
-              'A:    ${((double.parse(widget.totPeak) / .75) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class3 =
-              'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class4 =
-              'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class5 = '';
-        });
+        // setState(() {
+        class1 =
+            'B:    ${((double.parse(totPeak) / .60) - double.parse(totTime)).toStringAsFixed(2)}';
+        class2 =
+            'A:    ${((double.parse(totPeak) / .75) - double.parse(totTime)).toStringAsFixed(2)}';
+        class3 =
+            'M:    ${((double.parse(totPeak) / .85) - double.parse(totTime)).toStringAsFixed(2)}';
+        class4 =
+            'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
+        class5 = '';
+        // });
 
         break;
 
       case 'B':
-        setState(() {
-          class1 =
-              'A:    ${((double.parse(widget.totPeak) / .75) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class2 =
-              'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class3 =
-              'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class4 = '';
-          class5 = '';
-        });
+        // setState(() {
+        class1 =
+            'A:    ${((double.parse(totPeak) / .75) - double.parse(totTime)).toStringAsFixed(2)}';
+        class2 =
+            'M:    ${((double.parse(totPeak) / .85) - double.parse(totTime)).toStringAsFixed(2)}';
+        class3 =
+            'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
+        class4 = '';
+        class5 = '';
+        // });
 
         break;
 
       case 'A':
-        setState(() {
-          class1 =
-              'M:    ${((double.parse(widget.totPeak) / .85) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class2 =
-              'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class3 = '';
-          class4 = '';
-          class5 = '';
-        });
+        // setState(() {
+        class1 =
+            'M:    ${((double.parse(totPeak) / .85) - double.parse(totTime)).toStringAsFixed(2)}';
+        class2 =
+            'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
+        class3 = '';
+        class4 = '';
+        class5 = '';
+        // });
 
         break;
 
       case 'M':
-        setState(() {
-          class1 =
-              'GM:    ${((double.parse(widget.totPeak) / .95) - double.parse(widget.totTime)).toStringAsFixed(2)}';
-          class2 = '';
-          class3 = '';
-          class4 = '';
-          class5 = '';
-        });
+        // setState(() {
+        class1 =
+            'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
+        class2 = '';
+        class3 = '';
+        class4 = '';
+        class5 = '';
+        // });
         break;
 
       case 'GM':
-        setState(() {
-          class1 = '';
-          class2 = '';
-          class3 = '';
-          class4 = '';
-          class5 = '';
-          timeCuts = 'Congratulations on your achievement!';
-        });
+        // setState(() {
+        class1 = '';
+        class2 = '';
+        class3 = '';
+        class4 = '';
+        class5 = '';
+        // timeCuts = 'Congratulations on your achievement!';
+        // });
         break;
     }
+  }
+}
+
+//Custom widget for displaying time cuts needed for advancement
+class _ClassText extends StatelessWidget {
+  const _ClassText({Key key, @required this.contents}) : super(key: key);
+
+  final String contents;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      contents,
+      style: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Constants.mtGreen,
+      ),
+    );
   }
 }

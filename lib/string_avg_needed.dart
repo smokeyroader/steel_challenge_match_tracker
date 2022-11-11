@@ -25,7 +25,7 @@ class TimesNeeded extends StatelessWidget {
     int numStrings;
     stage == 'Outer Limits' ? numStrings = 3 : numStrings = 4;
 
-    //Calculate the minimum average string times needed for each class for this stage and division
+    //Calculate and show the minimum average string times needed for each class for this stage and division
     double stagePeak = getStagePeak(stage, division);
     String gmTime = ((stagePeak / .95) / numStrings).toStringAsFixed(2);
     String mTime = ((stagePeak / .85) / numStrings).toStringAsFixed(2);
@@ -53,7 +53,7 @@ class TimesNeeded extends StatelessWidget {
           title: const Text(
             "Average String Time Goals",
           ),
-          backgroundColor: const Color(0xFF00681B),
+          backgroundColor: Constants.mtGreen,
         ),
         body: Container(
           color: Colors.white,
@@ -76,7 +76,7 @@ class TimesNeeded extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                         ),
                       ),
                       Text(
@@ -84,7 +84,7 @@ class TimesNeeded extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                         ),
                       ),
                     ],
@@ -107,7 +107,7 @@ class TimesNeeded extends StatelessWidget {
                         'Your best average string time:',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                           fontSize: 24,
                         ),
                       ),
@@ -131,7 +131,7 @@ class TimesNeeded extends StatelessWidget {
                         bestAvgStr.toStringAsFixed(2),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                           fontSize: 24,
                         ),
                       ),
@@ -144,7 +144,7 @@ class TimesNeeded extends StatelessWidget {
                         '($bestStageClass)',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                           fontSize: 24,
                         ),
                       ),
@@ -168,7 +168,7 @@ class TimesNeeded extends StatelessWidget {
                         'Average string time needed for:',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                           fontSize: 24,
                         ),
                       ),
@@ -221,9 +221,10 @@ class TimesNeeded extends StatelessWidget {
                     child: Text(
                       'Note: Times may not be precise due to rounding.',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 60,
-                          color: Color(0xFF00681B)),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 60,
+                        color: Constants.mtGreen,
+                      ),
                     ),
                   )
                 ]),
@@ -284,7 +285,7 @@ class ClassTimes extends StatelessWidget {
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF00681B),
+              color: Constants.mtGreen,
             ))
       ]),
     );

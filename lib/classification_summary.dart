@@ -96,7 +96,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
         title: const FittedBox(
           child: Text('Classification Summary'),
         ),
-        backgroundColor: const Color(0xFF00681B),
+        backgroundColor: Constants.mtGreen,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -105,7 +105,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Container(
                 height: 20.0,
-                color: const Color(0xFF00681B),
+                color: Constants.mtGreen,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -443,7 +443,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                         'GM',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                         ),
                       ),
                     ),
@@ -455,7 +455,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                       child: Text(
                         '>= 95%',
                         style: TextStyle(
-                          color: Color(0xFF00681B),
+                          color: Constants.mtGreen,
                         ),
                       ),
                     ),
@@ -474,7 +474,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                       'M',
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -486,7 +486,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                     child: Text(
                       '>= 85%',
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -504,7 +504,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                       'A',
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -516,7 +516,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                     child: Text(
                       '>= 75%',
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -534,7 +534,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                       'B',
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -546,7 +546,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                     child: Text(
                       '>= 60%',
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -564,7 +564,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                       'C',
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -576,7 +576,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                     child: Text(
                       '>= 40%',
                       style: TextStyle(
-                        color: Color(0xFF00681B),
+                        color: Constants.mtGreen,
                       ),
                     ),
                   ),
@@ -893,7 +893,7 @@ class DivisionContainer extends StatelessWidget {
           style: const TextStyle(
 //                          fontSize: 14.0,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF00681B),
+            color: Constants.mtGreen,
           ),
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Constants.dart';
+
 class Help extends StatelessWidget {
   const Help({Key key}) : super(key: key);
 
@@ -10,7 +12,7 @@ class Help extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Using Match Tracker'),
-          backgroundColor: const Color(0xFF00681B),
+          backgroundColor: Constants.mtGreen,
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -30,7 +32,10 @@ class Help extends StatelessWidget {
                         const TextSpan(
                           text: 'Getting Started\r\n',
                           style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20.0),
+                            color: Constants.mtGreen,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20.0,
+                          ),
                         ),
                         const TextSpan(
                           style: TextStyle(fontSize: 18.0),
@@ -45,6 +50,7 @@ class Help extends StatelessWidget {
                         const TextSpan(
                           text: 'Entering Best Times\r\n',
                           style: TextStyle(
+                            color: Constants.mtGreen,
                             fontWeight: FontWeight.w900,
                             fontSize: 20.0,
                           ),
@@ -70,7 +76,10 @@ class Help extends StatelessWidget {
                         const TextSpan(
                           text: 'Scoring a Match\r\n',
                           style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20.0),
+                            color: Constants.mtGreen,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20.0,
+                          ),
                         ),
                         const TextSpan(
                           style: TextStyle(fontSize: 18.0),
@@ -90,7 +99,10 @@ class Help extends StatelessWidget {
                         const TextSpan(
                           text: 'Cool Features\r\n',
                           style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20.0),
+                            color: Constants.mtGreen,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20.0,
+                          ),
                         ),
                         TextSpan(
                           style: const TextStyle(fontSize: 18.0),
@@ -114,10 +126,15 @@ class Help extends StatelessWidget {
                         const TextSpan(
                           text: 'Contact Us\r\n',
                           style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20.0),
+                            color: Constants.mtGreen,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20.0,
+                          ),
                         ),
                         const TextSpan(
-                          style: TextStyle(fontSize: 18.0),
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
                           text:
                               'Send bug reports or requests or recommendations for additional '
                               'features to scmatchtracker@gmail.com.',

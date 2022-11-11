@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'Constants.dart';
+
 class CurrentClassification extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
@@ -30,7 +32,7 @@ class CurrentClassification extends StatelessWidget {
         title: const Text(
           'Current Classifications',
         ),
-        backgroundColor: const Color(0xFF00681B),
+        backgroundColor: Constants.mtGreen,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -59,12 +61,12 @@ class CurrentClassification extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     shape: const StadiumBorder(),
-                    side: const BorderSide(width: 1, color: Color(0xFF00681B)),
+                    side: const BorderSide(width: 1, color: Constants.mtGreen),
                     primary: Colors.white),
                 child: const Text(
                   'Go',
                   style: TextStyle(
-                    color: Color(0xFF00681B),
+                    color: Constants.mtGreen,
                   ),
                 ),
                 onPressed: () {

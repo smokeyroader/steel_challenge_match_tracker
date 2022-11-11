@@ -1,6 +1,10 @@
-class Constants {
-  //Main menu items
+import 'package:flutter/material.dart';
 
+class Constants {
+  //Match Tracker basic theme color
+  static const Color mtGreen = Color(0xFF00681B);
+
+  //Main menu items
   static const List<String> mainMenuChoices = [
     'Clear Recent Guns',
     'Save Recent Guns',

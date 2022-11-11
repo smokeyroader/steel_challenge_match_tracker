@@ -1,6 +1,10 @@
-class Constants {
-  //Main menu items
+import 'package:flutter/material.dart';
 
+class Constants {
+  //Match Tracker basic theme color
+  static const Color mtGreen = Color(0xFF00681B);
+
+  //Main menu items
   static const List<String> mainMenuChoices = [
     'Clear Recent Guns',
     'Save Recent Guns',
@@ -36,7 +40,6 @@ class Constants {
 
   static String getDivAbbrev(String division) {
     switch (division) {
-
       case 'Rimfire Rifle Open (RFRO)':
         return 'RFRO';
 
@@ -84,7 +87,6 @@ class Constants {
   //5 to Go (101)
   static double getPeak5(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 12.76;
         break;
@@ -136,7 +138,6 @@ class Constants {
       case 'Single Stack (SS)':
         return 13.35;
         break;
-
     }
     return 0.0;
   }
@@ -144,7 +145,6 @@ class Constants {
   //Showdown (102)
   static double getPeakShow(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 10.1;
         break;
@@ -196,14 +196,13 @@ class Constants {
       case 'Single Stack (SS)':
         return 10.6;
         break;
-
     }
     return 0.0;
   }
+
   //Smoke & Hope (103)
   static double getPeakSH(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 9.83;
         break;
@@ -255,7 +254,6 @@ class Constants {
       case 'Single Stack (SS)':
         return 10.35;
         break;
-
     }
     return 0.0;
   }
@@ -263,7 +261,6 @@ class Constants {
   //Outer Limits (104)
   static double getPeakOL(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 14.0;
         break;
@@ -315,7 +312,6 @@ class Constants {
       case 'Single Stack (SS)':
         return 14.85;
         break;
-
     }
     return 0.0;
   }
@@ -323,7 +319,6 @@ class Constants {
   //Accelerator (105)
   static double getPeakAcc(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 11.1;
         break;
@@ -375,7 +370,6 @@ class Constants {
       case 'Single Stack (SS)':
         return 11.85;
         break;
-
     }
     return 0.0;
   }
@@ -383,7 +377,6 @@ class Constants {
   //Pendulum (106)
   static double getPeakPend(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 13.1;
         break;
@@ -435,7 +428,6 @@ class Constants {
       case 'Single Stack (SS)':
         return 13.6;
         break;
-
     }
     return 0.0;
   }
@@ -443,7 +435,6 @@ class Constants {
   //Speed Option (107)
   static double getPeakSpeed(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 13.0;
         break;
@@ -495,7 +486,6 @@ class Constants {
       case 'Single Stack (SS)':
         return 13.6;
         break;
-
     }
     return 0.0;
   }
@@ -503,7 +493,6 @@ class Constants {
   //Roundabout (108)
   static double getPeakRound(String division) {
     switch (division) {
-
       case 'Carry Optics (CO)':
         return 10.1;
         break;
@@ -555,7 +544,6 @@ class Constants {
       case 'Single Stack (SS)':
         return 10.6;
         break;
-
     }
     return 0.0;
   }
