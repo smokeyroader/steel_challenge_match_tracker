@@ -23,19 +23,19 @@ class Constants {
 
   static const List<String> divisions = [
     'Select Division',
-    'Rimfire Rifle Open (RFRO)',
-    'Rimfire Rifle Irons (RFRI)',
-    'Pistol-Caliber Carbine Optic (PCCO)',
-    'Pistol-Caliber Carbine Irons (PCCI)',
-    'Rimfire Pistol Open (RFPO)',
-    'Rimfire Pistol Irons (RFPI)',
-    'Open (OPN)',
     'Carry Optics (CO)',
-    'Production (PROD)',
+    'Iron Sight Revolver (ISR)',
     'Limited (LTD)',
-    'Single Stack (SS)',
+    'Open (OPN)',
     'Optical Sight Revolver (OSR)',
-    'Iron Sight Revolver (ISR)'
+    'Pistol-Caliber Carbine Irons (PCCI)',
+    'Pistol-Caliber Carbine Optic (PCCO)',
+    'Production (PROD)',
+    'Rimfire Pistol Irons (RFPI)',
+    'Rimfire Pistol Open (RFPO)',
+    'Rimfire Rifle Irons (RFRI)',
+    'Rimfire Rifle Open (RFRO)',
+    'Single Stack (SS)',
   ];
 
   static String getDivAbbrev(String division) {

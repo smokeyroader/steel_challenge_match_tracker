@@ -4,6 +4,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 import 'database_helper.dart';
 
+//This probably should have been set up as a Stateless Widget since it simply
+// displays info with no user interaction. However, after setting it up initially
+// as Stateful, I later attempted to convert it to Stateless but could not get
+// it to work. Decided to leave it alone.
+
 class ClassificationSummary extends StatefulWidget {
   const ClassificationSummary({Key key}) : super(key: key);
 
@@ -70,21 +75,22 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
   String div13Pct = '';
   String div13Class = '';
 
+  //Call method to find and display all of the user's current classifications
   @override
   void initState() {
-    __getSummary('Rimfire Rifle Open (RFRO)');
-    __getSummary('Rimfire Rifle Irons (RFRI)');
-    __getSummary('Pistol-Caliber Carbine Optic (PCCO)');
-    __getSummary('Pistol-Caliber Carbine Irons (PCCI)');
-    __getSummary('Rimfire Pistol Open (RFPO)');
-    __getSummary('Rimfire Pistol Irons (RFPI)');
-    __getSummary('Open (OPN)');
     __getSummary('Carry Optics (CO)');
-    __getSummary('Production (PROD)');
-    __getSummary('Limited (LTD)');
-    __getSummary('Single Stack (SS)');
-    __getSummary('Optical Sight Revolver (OSR)');
     __getSummary('Iron Sight Revolver (ISR)');
+    __getSummary('Limited (LTD)');
+    __getSummary('Open (OPN)');
+    __getSummary('Optical Sight Revolver (OSR)');
+    __getSummary('Pistol-Caliber Carbine Irons (PCCI)');
+    __getSummary('Pistol-Caliber Carbine Optic (PCCO)');
+    __getSummary('Production (PROD)');
+    __getSummary('Rimfire Pistol Irons (RFPI)');
+    __getSummary('Rimfire Pistol Open (RFPO)');
+    __getSummary('Rimfire Rifle Irons (RFRI)');
+    __getSummary('Rimfire Rifle Open (RFRO)');
+    __getSummary('Single Stack (SS)');
 
     super.initState();
   }
@@ -605,6 +611,10 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
     double totalBest = 0.0;
     double totalPeak = 0.0;
 
+    int numClassifiers = 0;
+
+    //Check to see if user has overridden his calculated class and, if so,
+    // use this class instead of the one calculated based on current best times.
     switch (div) {
       case 'Rimfire Rifle Open (RFRO)':
         divAbbrev = 'RFRO';
@@ -698,179 +708,195 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
         break;
     }
 
+    // Get number of rows in the division table to avoid a null result.
     int numRows = await helper.getCount(divAbbrev);
 
     StageTimes stageTimes = await helper.queryStageTimes(divAbbrev, numRows);
-    if (numRows >= 5) {
-      if (stageTimes.best5 != '' && stageTimes.best5 != null) {
+
+    //Make sure the table itself is not null (has at least one row).
+    if (numRows >= 1) {
+      if (stageTimes.best5 != '') {
         totalBest += double.parse(stageTimes.best5);
         totalPeak += peak5;
+        numClassifiers += 1;
       }
-      if (stageTimes.bestShow != '' && stageTimes.bestShow != null) {
+      if (stageTimes.bestShow != '') {
         totalBest += double.parse(stageTimes.bestShow);
         totalPeak += peakShow;
+        numClassifiers += 1;
       }
-      if (stageTimes.bestSH != '' && stageTimes.bestSH != null) {
+      if (stageTimes.bestSH != '') {
         totalBest += double.parse(stageTimes.bestSH);
         totalPeak += peakSH;
+        numClassifiers += 1;
       }
-      if (stageTimes.bestOL != '' && stageTimes.bestOL != null) {
+      if (stageTimes.bestOL != '') {
         totalBest += double.parse(stageTimes.bestOL);
         totalPeak += peakOL;
+        numClassifiers += 1;
       }
-      if (stageTimes.bestAcc != '' && stageTimes.bestAcc != null) {
+      if (stageTimes.bestAcc != '') {
         totalBest += double.parse(stageTimes.bestAcc);
         totalPeak += peakAcc;
+        numClassifiers += 1;
       }
-      if (stageTimes.bestPend != '' && stageTimes.bestPend != null) {
-        totalBest += double.parse(stageTimes.bestPend);
+      if (stageTimes.bestPend != '') {
         totalPeak += peakPend;
+        numClassifiers += 1;
       }
-      if (stageTimes.bestSpeed != '' && stageTimes.bestSpeed != null) {
+      if (stageTimes.bestSpeed != '') {
         totalBest += double.parse(stageTimes.bestSpeed);
         totalPeak += peakSpeed;
+        numClassifiers += 1;
       }
-      if (stageTimes.bestRound != '' && stageTimes.bestRound != null) {
+      if (stageTimes.bestRound != '') {
         totalBest += double.parse(stageTimes.bestRound);
         totalPeak += peakRound;
-      }
-
-      if (totalBest > 0) {
-        setState(() {
-          if (div1 == '') {
-            div1 = divAbbrev;
-            div1Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div1Class = overriddenClass;
-            } else {
-              div1Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div2 == '') {
-            div2 = divAbbrev;
-            div2Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div2Class = overriddenClass;
-            } else {
-              div2Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div3 == '') {
-            div3 = divAbbrev;
-            div3Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div3Class = overriddenClass;
-            } else {
-              div3Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div4 == '') {
-            div4 = divAbbrev;
-            div4Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div4Class = overriddenClass;
-            } else {
-              div4Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div5 == '') {
-            div5 = divAbbrev;
-            div5Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div5Class = overriddenClass;
-            } else {
-              div5Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div6 == '') {
-            div6 = divAbbrev;
-            div6Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div6Class = overriddenClass;
-            } else {
-              div6Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div7 == '') {
-            div7 = divAbbrev;
-            div7Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div7Class = overriddenClass;
-            } else {
-              div7Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div8 == '') {
-            div8 = divAbbrev;
-            div8Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div8Class = overriddenClass;
-            } else {
-              div8Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div9 == '') {
-            div9 = divAbbrev;
-            div9Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div9Class = overriddenClass;
-            } else {
-              div9Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div10 == '') {
-            div10 = divAbbrev;
-            div10Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div10Class = overriddenClass;
-            } else {
-              div10Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div11 == '') {
-            div11 = divAbbrev;
-            div11Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div11Class = overriddenClass;
-            } else {
-              div11Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div12 == '') {
-            div12 = divAbbrev;
-            div12Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div12Class = overriddenClass;
-            } else {
-              div12Class = _calcClass(totalPeak, totalBest);
-            }
-          } else if (div13 == '') {
-            div13 = divAbbrev;
-            div13Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-            if (overriddenClass != '' && overriddenClass != null) {
-              div13Class = overriddenClass;
-            } else {
-              div13Class = _calcClass(totalPeak, totalBest);
-            }
-          }
-        });
+        numClassifiers += 1;
       }
     }
-  }
-
-  //Get overridden class (if any) for this division from SharedPreferences
-  Future<String> _getClassOverride(String div) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-
-    return preferences.getString(div) ?? '';
-  }
-
-  String _calcClass(double peak, double best) {
-    double peakPct = (peak / best) * 100;
-    if (peakPct < 40.0) {
-      return 'D';
-    } else if (peakPct < 60.0) {
-      return 'C';
-    } else if (peakPct < 75.0) {
-      return 'B';
-    } else if (peakPct < 85.0) {
-      return 'A';
-    } else if (peakPct < 95.0) {
-      return 'M';
-    } else {
-      return 'GM';
+    //Show only divisions in which at least 4 classifier stages have been shot
+    if (numClassifiers >= 4) {
+      setState(() {
+        //Find the next open spot in the list and show this division
+        if (div1 == '') {
+          div1 = divAbbrev;
+          div1Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div1Class = overriddenClass;
+          } else {
+            div1Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div2 == '') {
+          div2 = divAbbrev;
+          div2Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div2Class = overriddenClass;
+          } else {
+            div2Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div3 == '') {
+          div3 = divAbbrev;
+          div3Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div3Class = overriddenClass;
+          } else {
+            div3Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div4 == '') {
+          div4 = divAbbrev;
+          div4Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div4Class = overriddenClass;
+          } else {
+            div4Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div5 == '') {
+          div5 = divAbbrev;
+          div5Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div5Class = overriddenClass;
+          } else {
+            div5Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div6 == '') {
+          div6 = divAbbrev;
+          div6Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div6Class = overriddenClass;
+          } else {
+            div6Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div7 == '') {
+          div7 = divAbbrev;
+          div7Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div7Class = overriddenClass;
+          } else {
+            div7Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div8 == '') {
+          div8 = divAbbrev;
+          div8Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div8Class = overriddenClass;
+          } else {
+            div8Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div9 == '') {
+          div9 = divAbbrev;
+          div9Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div9Class = overriddenClass;
+          } else {
+            div9Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div10 == '') {
+          div10 = divAbbrev;
+          div10Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div10Class = overriddenClass;
+          } else {
+            div10Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div11 == '') {
+          div11 = divAbbrev;
+          div11Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div11Class = overriddenClass;
+          } else {
+            div11Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div12 == '') {
+          div12 = divAbbrev;
+          div12Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div12Class = overriddenClass;
+          } else {
+            div12Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div13 == '') {
+          div13 = divAbbrev;
+          div13Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
+          if (overriddenClass != '' && overriddenClass != null) {
+            div13Class = overriddenClass;
+          } else {
+            div13Class = _calcClass(totalPeak, totalBest);
+          }
+        }
+      });
     }
   }
 }
+// }
+
+//Get overridden class (if any) for this division from SharedPreferences
+Future<String> _getClassOverride(String div) async {
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+
+  //if getString is null, return result as empty string
+  return preferences.getString(div) ?? '';
+}
+
+//If class hasn't been overidden, calculate class based on best times vs. peak times.
+String _calcClass(double peak, double best) {
+  double peakPct = (peak / best) * 100;
+  if (peakPct < 40.0) {
+    return 'D';
+  } else if (peakPct < 60.0) {
+    return 'C';
+  } else if (peakPct < 75.0) {
+    return 'B';
+  } else if (peakPct < 85.0) {
+    return 'A';
+  } else if (peakPct < 95.0) {
+    return 'M';
+  } else {
+    return 'GM';
+  }
+}
+
+// }
 
 //Custom container for division details
 class DivisionContainer extends StatelessWidget {
@@ -891,7 +917,6 @@ class DivisionContainer extends StatelessWidget {
           contents,
           textAlign: TextAlign.left,
           style: const TextStyle(
-//                          fontSize: 14.0,
             fontWeight: FontWeight.bold,
             color: Constants.mtGreen,
           ),
