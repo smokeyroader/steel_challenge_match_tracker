@@ -708,9 +708,11 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
         break;
     }
 
-    // Get number of rows in the division table to avoid a null result.
+    // Get the number of rows in the division table to avoid a null result and
+    //to make sure we're querying the last row in the table.
     int numRows = await helper.getCount(divAbbrev);
 
+    //Get stage times from the last (most recently added) row in the table.
     StageTimes stageTimes = await helper.queryStageTimes(divAbbrev, numRows);
 
     //Make sure the table itself is not null (has at least one row).
@@ -741,6 +743,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
         numClassifiers += 1;
       }
       if (stageTimes.bestPend != '') {
+        totalBest += double.parse(stageTimes.bestPend);
         totalPeak += peakPend;
         numClassifiers += 1;
       }
@@ -755,10 +758,11 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
         numClassifiers += 1;
       }
     }
-    //Show only divisions in which at least 4 classifier stages have been shot
+    //Show only divisions in which at least 4 classifier stages have been shot.
     if (numClassifiers >= 4) {
+      //Find the next open spot in the list and show this division along with
+      // overidden class (if any); otherwise call _calcClass() to get class.
       setState(() {
-        //Find the next open spot in the list and show this division
         if (div1 == '') {
           div1 = divAbbrev;
           div1Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
@@ -868,7 +872,6 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
     }
   }
 }
-// }
 
 //Get overridden class (if any) for this division from SharedPreferences
 Future<String> _getClassOverride(String div) async {
@@ -895,8 +898,6 @@ String _calcClass(double peak, double best) {
     return 'GM';
   }
 }
-
-// }
 
 //Custom container for division details
 class DivisionContainer extends StatelessWidget {
