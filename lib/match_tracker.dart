@@ -1168,8 +1168,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         setState(() {
           todayPct5 = _calcTodayPercent(peak5, _controller5.text);
         });
-
-        if (best5 == '' || best5 == '') {
+        if (best5 == '') {
           setState(() {
             best5 = _controller5.text;
             bestClass5 = _calcBestClass(peak5, _controller5.text);
@@ -1434,14 +1433,13 @@ class _MatchTrackerState extends State<MatchTracker> {
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
-//            Navigator.pop(context);
             setState(() {
               switch (bestID) {
                 case '5':
                   //Calculate the time cut from previous best
                   diff = (double.parse(best5) - double.parse(stageTime));
                   //Add time cuts to previous time cut value and display at bottom center of screen
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =
@@ -1463,7 +1461,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   break;
                 case 'Show':
                   diff = (double.parse(bestShow) - double.parse(stageTime));
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =
@@ -1485,7 +1483,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   break;
                 case 'SH':
                   diff = (double.parse(bestSH) - double.parse(stageTime));
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =
@@ -1507,7 +1505,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   break;
                 case 'OL':
                   diff = (double.parse(bestOL) - double.parse(stageTime));
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =
@@ -1529,7 +1527,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   break;
                 case 'Acc':
                   diff = (double.parse(bestAcc) - double.parse(stageTime));
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =
@@ -1552,7 +1550,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   break;
                 case 'Pend':
                   diff = (double.parse(bestPend) - double.parse(stageTime));
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =
@@ -1574,7 +1572,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   break;
                 case 'Speed':
                   diff = (double.parse(bestSpeed) - double.parse(stageTime));
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =
@@ -1596,7 +1594,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   break;
                 case 'Round':
                   diff = (double.parse(bestRound) - double.parse(stageTime));
-                  timeShaved = timeShaved + diff;
+                  timeShaved += diff;
 
                   setState(() {
                     timeCuts =

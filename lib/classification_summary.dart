@@ -765,104 +765,106 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
       setState(() {
         if (div1 == '') {
           div1 = divAbbrev;
-          div1Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div1Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+
+          if (overriddenClass != '') {
             div1Class = overriddenClass;
           } else {
             div1Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div2 == '') {
           div2 = divAbbrev;
-          div2Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div2Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div2Class = overriddenClass;
           } else {
             div2Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div3 == '') {
           div3 = divAbbrev;
-          div3Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div3Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div3Class = overriddenClass;
           } else {
             div3Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div4 == '') {
           div4 = divAbbrev;
-          div4Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div4Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div4Class = overriddenClass;
           } else {
             div4Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div5 == '') {
           div5 = divAbbrev;
-          div5Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div5Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div5Class = overriddenClass;
           } else {
             div5Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div6 == '') {
           div6 = divAbbrev;
-          div6Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div6Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div6Class = overriddenClass;
           } else {
             div6Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div7 == '') {
           div7 = divAbbrev;
-          div7Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div7Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div7Class = overriddenClass;
           } else {
             div7Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div8 == '') {
           div8 = divAbbrev;
-          div8Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div8Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div8Class = overriddenClass;
           } else {
             div8Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div9 == '') {
           div9 = divAbbrev;
-          div9Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div9Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div9Class = overriddenClass;
           } else {
             div9Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div10 == '') {
           div10 = divAbbrev;
-          div10Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div10Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div10Class = overriddenClass;
           } else {
             div10Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div11 == '') {
           div11 = divAbbrev;
-          div11Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div11Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+
+          if (overriddenClass != '') {
             div11Class = overriddenClass;
           } else {
             div11Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div12 == '') {
           div12 = divAbbrev;
-          div12Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div12Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div12Class = overriddenClass;
           } else {
             div12Class = _calcClass(totalPeak, totalBest);
           }
         } else if (div13 == '') {
           div13 = divAbbrev;
-          div13Pct = ((totalPeak / totalBest * 100)).toStringAsFixed(2);
-          if (overriddenClass != '' && overriddenClass != null) {
+          div13Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
             div13Class = overriddenClass;
           } else {
             div13Class = _calcClass(totalPeak, totalBest);
@@ -873,11 +875,11 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
   }
 }
 
-//Get overridden class (if any) for this division from SharedPreferences
+//Get overridden class (if any) for this division from SharedPreferences.
 Future<String> _getClassOverride(String div) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
 
-  //if getString is null, return result as empty string
+  //if getString result is null (class not overidden), return empty string.
   return preferences.getString(div) ?? '';
 }
 
@@ -899,7 +901,7 @@ String _calcClass(double peak, double best) {
   }
 }
 
-//Custom container for division details
+//Custom container widget for division details
 class DivisionContainer extends StatelessWidget {
   const DivisionContainer({
     Key key,
@@ -927,7 +929,7 @@ class DivisionContainer extends StatelessWidget {
   }
 }
 
-//Custom container for header row
+//Custom container widget for header row
 class _HeadingContainer extends StatelessWidget {
   const _HeadingContainer({Key key, @required this.heading}) : super(key: key);
 
