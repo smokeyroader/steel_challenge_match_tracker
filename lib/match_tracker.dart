@@ -12,7 +12,6 @@ import 'track_class.dart';
 import 'stage_diagrams.dart';
 import 'today_text_field.dart';
 
-//
 class MatchTracker extends StatefulWidget {
   //Set current division sent from mt_home_page.dart
   final String currentDivision;
@@ -54,7 +53,6 @@ class _MatchTrackerState extends State<MatchTracker> {
   FocusNode _focusSpeed;
   FocusNode _focusRound;
 
-//  bool savedClass = false;
   bool ignoreChange = false;
 
   String showToday;
@@ -925,7 +923,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                               padding: const EdgeInsets.only(right: 18.0),
                               child: ConstrainedBox(
                                 constraints:
-                                    const BoxConstraints(maxHeight: 20.0),
+                                const BoxConstraints(maxHeight: 20.0),
                                 child: const Text(
                                   'Time',
                                   style: TextStyle(
@@ -940,7 +938,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 padding: const EdgeInsets.only(left: 18.0),
                                 child: ConstrainedBox(
                                   constraints:
-                                      const BoxConstraints(maxHeight: 20),
+                                  const BoxConstraints(maxHeight: 20),
                                   child: const Text(
                                     'Peak',
                                     style: TextStyle(
@@ -956,7 +954,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 padding: const EdgeInsets.only(left: 12.0),
                                 child: ConstrainedBox(
                                   constraints:
-                                      const BoxConstraints(maxWidth: 20.0),
+                                  const BoxConstraints(maxWidth: 20.0),
                                   child: const Text(
                                     '%Peak',
                                     style: TextStyle(
@@ -972,7 +970,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: ConstrainedBox(
                                   constraints:
-                                      const BoxConstraints(maxHeight: 20),
+                                  const BoxConstraints(maxHeight: 20),
                                   child: const Text(
                                     'Class',
                                     style: TextStyle(
@@ -1436,14 +1434,14 @@ class _MatchTrackerState extends State<MatchTracker> {
             setState(() {
               switch (bestID) {
                 case '5':
-                  //Calculate the time cut from previous best
+                //Calculate the time cut from previous best
                   diff = (double.parse(best5) - double.parse(stageTime));
                   //Add time cuts to previous time cut value and display at bottom center of screen
                   timeShaved += diff;
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
 
                   final snackBar = SnackBar(
@@ -1465,7 +1463,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
@@ -1487,7 +1485,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
@@ -1509,7 +1507,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
@@ -1531,7 +1529,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
@@ -1554,7 +1552,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
@@ -1576,7 +1574,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
@@ -1598,7 +1596,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
                   setState(() {
                     timeCuts =
-                        'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
                   });
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
@@ -1893,39 +1891,8 @@ class _MatchTrackerState extends State<MatchTracker> {
             (double.parse(overallPeak) / double.parse(overallTime) * 100)
                 .toStringAsFixed(2);
 
-        overallClass = overriddenClass;
-
         if (overriddenClass != '') {
-          if (double.parse(overallPct) < 40.0 &&
-              overriddenClass != 'C' &&
-              overriddenClass != 'B' &&
-              overriddenClass != 'A' &&
-              overriddenClass != 'M' &&
-              overriddenClass != 'GM') {
-            overallClass = 'D';
-          } else if (double.parse(overallPct) < 60.0 &&
-              overriddenClass != 'B' &&
-              overriddenClass != 'A' &&
-              overriddenClass != 'M' &&
-              overriddenClass != 'GM') {
-            overallClass = 'C';
-          } else if (double.parse(overallPct) < 75.0 &&
-              overriddenClass != 'A' &&
-              overriddenClass != 'M' &&
-              overriddenClass != 'GM') {
-            overallClass = 'B';
-          } else if (double.parse(overallPct) < 85.0 &&
-              overriddenClass != 'M' &&
-              overriddenClass != 'GM') {
-            overallClass = 'A';
-          } else if (double.parse(overallPct) < 95.0 &&
-              overriddenClass != 'GM') {
-            overallClass = 'M';
-          } else {
-            overallClass = 'GM';
-          }
-
-          _setClassOverride(widget.currentDivision, overallClass);
+          overallClass = overriddenClass;
         } else {
           if (double.parse(overallPct) < 40.0) {
             overallClass = 'D';
@@ -2149,12 +2116,11 @@ class _MatchTrackerState extends State<MatchTracker> {
               SimpleDialogOption(
                 onPressed: () {
                   Navigator.pop(context);
-
-                  _setClassOverride(widget.currentDivision, 'GM');
-                  setState(() {
-                    overriddenClass = 'GM';
-                  });
                   _calcOverallPeak();
+                  _setClassOverride(widget.currentDivision, 'GM');
+
+                  overallClass = 'GM';
+
                   final snackBar = SnackBar(
                     backgroundColor: Constants.mtGreen,
                     content: Text(
@@ -2176,19 +2142,29 @@ class _MatchTrackerState extends State<MatchTracker> {
               SimpleDialogOption(
                 onPressed: () {
                   Navigator.pop(context);
-
-                  _setClassOverride(widget.currentDivision, 'M');
-                  setState(() {
-                    overriddenClass = 'M';
-                  });
                   _calcOverallPeak();
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                      'Your ${widget.currentDivision} class has been changed to M.',
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  if (double.parse(overallPct) < 95.0) {
+                    _setClassOverride(widget.currentDivision, 'M');
+
+                    overallClass = 'M';
+
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class has been changed to M.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } else {
+                    _setClassOverride(widget.currentDivision, '');
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class is already M or higher.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 },
                 child: const Center(
                   child: Text(
@@ -2203,19 +2179,29 @@ class _MatchTrackerState extends State<MatchTracker> {
               SimpleDialogOption(
                 onPressed: () {
                   Navigator.pop(context);
-
-                  _setClassOverride(widget.currentDivision, 'A');
-                  setState(() {
-                    overriddenClass = 'A';
-                  });
                   _calcOverallPeak();
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                      'Your ${widget.currentDivision} class has been changed to A.',
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  if (double.parse(overallPct) < 75.0) {
+                    _setClassOverride(widget.currentDivision, 'A');
+
+                    overallClass = 'A';
+
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class has been changed to A.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } else {
+                    _setClassOverride(widget.currentDivision, '');
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class is already A or higher.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 },
                 child: const Center(
                   child: Text(
@@ -2230,19 +2216,29 @@ class _MatchTrackerState extends State<MatchTracker> {
               SimpleDialogOption(
                 onPressed: () {
                   Navigator.pop(context);
-
-                  _setClassOverride(widget.currentDivision, 'B');
-                  setState(() {
-                    overriddenClass = 'B';
-                  });
                   _calcOverallPeak();
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                      'Your ${widget.currentDivision} class has been changed to B.',
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  if (double.parse(overallPct) < 60.0) {
+                    _setClassOverride(widget.currentDivision, 'B');
+
+                    overallClass = 'B';
+
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class has been changed to B.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } else {
+                    _setClassOverride(widget.currentDivision, '');
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class is already B or higher.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 },
                 child: const Center(
                   child: Text(
@@ -2257,19 +2253,29 @@ class _MatchTrackerState extends State<MatchTracker> {
               SimpleDialogOption(
                 onPressed: () {
                   Navigator.pop(context);
-
-                  _setClassOverride(widget.currentDivision, 'C');
-                  setState(() {
-                    overriddenClass = 'C';
-                  });
                   _calcOverallPeak();
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                      'Your ${widget.currentDivision} class has been changed to C.',
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  if (double.parse(overallPct) < 40.0) {
+                    _setClassOverride(widget.currentDivision, 'C');
+
+                    overallClass = 'C';
+
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class has been changed to C.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } else {
+                    _setClassOverride(widget.currentDivision, '');
+                    final snackBar = SnackBar(
+                      backgroundColor: Constants.mtGreen,
+                      content: Text(
+                        'Your ${widget.currentDivision} class is already C or higher.',
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 },
                 child: const Center(
                   child: Text(
@@ -2280,7 +2286,35 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                 ),
-              )
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.pop(context);
+
+                  _setClassOverride(widget.currentDivision, '');
+
+                  overriddenClass = '';
+
+                  _calcOverallPeak();
+                  final snackBar = SnackBar(
+                    backgroundColor: Constants.mtGreen,
+                    content: Text(
+                      'Your ${widget.currentDivision} class override has been removed.',
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+                child: const Center(
+                  child: Text(
+                    'Remove class override',
+                    style: TextStyle(
+                      color: Constants.mtGreen,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+              ),
             ],
           );
         });
@@ -2427,12 +2461,12 @@ class _MatchTrackerState extends State<MatchTracker> {
         _controllerSpeed.text = stageTimes.speedOption;
         stageTimes.speedOption != ''
             ? todayPctSpeed =
-                _calcTodayPercent(peakSpeed, stageTimes.speedOption)
+            _calcTodayPercent(peakSpeed, stageTimes.speedOption)
             : todayPctSpeed = '';
         _controllerRound.text = stageTimes.roundabout;
         stageTimes.roundabout != ''
             ? todayPctRound =
-                _calcTodayPercent(peakRound, stageTimes.roundabout)
+            _calcTodayPercent(peakRound, stageTimes.roundabout)
             : todayPctRound = '';
 
         stageTimes.best5 != null && stageTimes.best5 != ''
@@ -2581,7 +2615,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       type: AlertType.none,
       title: "Confirm...",
       desc:
-          "This will clear all $divAbbrev data, including best stage and best string times, and cannot be undone.",
+      "This will clear all $divAbbrev data, including best stage and best string times, and cannot be undone.",
       buttons: [
         DialogButton(
           width: 20,
@@ -2725,7 +2759,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       type: AlertType.info,
       title: "",
       desc:
-          'You have not entered a minimum of four classifier stage scores for this division.',
+      'You have not entered a minimum of four classifier stage scores for this division.',
       buttons: [
         DialogButton(
           color: Constants.mtGreen,
