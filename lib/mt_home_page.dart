@@ -60,26 +60,20 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 
 //Retrieve saved recent guns and display in list
   setRecents() {
-    getRecent1().then((value) {
-      setState(() {
+    setState(() {
+      getRecent1().then((value) {
         firstRecent = value;
       });
-    });
 
-    getRecent2().then((value) {
-      setState(() {
+      getRecent2().then((value) {
         secondRecent = value;
       });
-    });
 
-    getRecent3().then((value) {
-      setState(() {
+      getRecent3().then((value) {
         thirdRecent = value;
       });
-    });
 
-    getRecent4().then((value) {
-      setState(() {
+      getRecent4().then((value) {
         fourthRecent = value;
       });
     });
@@ -98,6 +92,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           actions: <Widget>[
             FittedBox(
               child: PopupMenuButton<String>(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 onSelected: mainMenuChoiceAction,
                 itemBuilder: (BuildContext context) {
                   return Constants.mainMenuChoices.map((String choice) {
@@ -365,20 +362,11 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   _noDivisionAlert(context) {
     Alert(
       context: context,
-      type: AlertType.warning,
+      style: const AlertStyle(
+          isButtonVisible: false,
+          titleStyle: TextStyle(color: Constants.mtGreen)),
       title: 'Oops!',
       desc: 'You must select a division or tap a previous division.',
-      buttons: [
-        DialogButton(
-          color: Colors.green,
-          child: const Text(
-            'OK',
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
     ).show();
   }
 }

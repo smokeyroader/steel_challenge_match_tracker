@@ -53,8 +53,6 @@ class _MatchTrackerState extends State<MatchTracker> {
   FocusNode _focusSpeed;
   FocusNode _focusRound;
 
-  bool ignoreChange = false;
-
   String showToday;
   String overriddenClass = '';
 
@@ -110,7 +108,8 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   String timeCuts = '';
 
-//  Permit changing today time font to green and bold if a new personal best is entered
+// Permit changing today time font to green and bold if a new personal
+//best is entered
   Color newBestColor5;
   Color newBestColorShow;
   Color newBestColorSH;
@@ -135,28 +134,24 @@ class _MatchTrackerState extends State<MatchTracker> {
     _focusSpeed = FocusNode();
     _focusRound = FocusNode();
 
-//    Check if today times are shown (true) or hidden (false)
+    //Check if today times are shown (true) or hidden (false)
     _getShowHide().then((value) {
-      setState(() {
-        showToday = value;
-      });
+      showToday = value;
     });
 
     //Check if class has been overridden
     _getClassOverride(widget.currentDivision).then((value) {
-      setState(() {
-        overriddenClass = value;
-      });
+      overriddenClass = value;
     });
 
-    //Set division abbreviation to be used to access the correct table when saving and retrieving times
-
+    //Set division abbreviation to be used to access the correct table when
+    //saving and retrieving times
     divAbbrev = Constants.getDivAbbrev(widget.currentDivision);
 
     //Get and set best and today times from database
     _getStageTimes();
 
-//Call method to calculate and show all current total times after
+    //Call method to calculate and show all current total times after
     //retrieval from database
     _calcTotals();
 
@@ -204,8 +199,13 @@ class _MatchTrackerState extends State<MatchTracker> {
           'Match Tracker',
         ),
         backgroundColor: Constants.mtGreen,
+        //Create popup menu (stacked dots at the right of AppBar)
+        //Menu is populated with a list from the Constants.dart file
         actions: <Widget>[
           PopupMenuButton<String>(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             onSelected: _matchMenuChoiceAction,
             itemBuilder: (BuildContext context) {
               return Constants.matchMenuChoices.map((String choice) {
@@ -220,7 +220,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       ),
       key: scaffoldState,
 
-      //GestureDetector added to dismiss keyboard by tapping outside any text field
+      //GestureDetector to dismiss keyboard by tapping outside any text field
       // (to account for ios keyboard that does not have a "Done" or check key).
       body: GestureDetector(
         onTap: () {
@@ -234,13 +234,17 @@ class _MatchTrackerState extends State<MatchTracker> {
         child: WillPopScope(
           onWillPop: () async {
             _saveStageTimes();
-            SystemChannels.textInput.invokeMethod('TextInput.hide');
+            // SystemChannels.textInput.invokeMethod('TextInput.hide');
             return true;
           },
           //Add ScrollView so that keyboard doesn't cover data fields
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+              padding: const EdgeInsets.only(
+                top: 8.0,
+                left: 8.0,
+                right: 8.0,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -252,7 +256,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(
+                            2.0,
+                          ),
                           child: FittedBox(
                             child: Text(
                               widget.currentDivision,
@@ -280,7 +286,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 24.0),
+                          padding: EdgeInsets.only(
+                            left: 24.0,
+                          ),
                           child: SizedBox(
                             width: 60.0,
                             child: _HeadText(
@@ -304,7 +312,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.only(
+                      top: 8.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -322,8 +332,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return const StageDiagram('Five to Go',
-                                            'images/five_to_go.jpg');
+                                        return const StageDiagram(
+                                          'Five to Go',
+                                          'images/five_to_go.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -332,20 +344,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     '5 to Go',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '101 ($peak5)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 80.0,
                             child: (Row(
@@ -358,7 +375,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColor5,
                             _controller5,
@@ -366,12 +385,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPct5,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -379,7 +402,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -398,7 +423,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return const StageDiagram(
-                                            'Showdown', 'images/showdown.jpg');
+                                          'Showdown',
+                                          'images/showdown.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -407,20 +434,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     'Showdown',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '102 ($peakShow)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: (Row(
@@ -433,7 +465,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColorShow,
                             _controllerShow,
@@ -441,12 +475,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPctShow,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -454,7 +492,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -473,8 +513,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return const StageDiagram(
-                                            'Smoke & Hope',
-                                            'images/smoke_n_hope.jpg');
+                                          'Smoke & Hope',
+                                          'images/smoke_n_hope.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -483,20 +524,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     'Smoke&Hope',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '103 ($peakSH)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: (Row(
@@ -509,7 +555,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColorSH,
                             _controllerSH,
@@ -517,12 +565,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPctSH,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -530,7 +582,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -549,8 +603,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return const StageDiagram(
-                                            'Outer Limits',
-                                            'images/outer_limits.jpg');
+                                          'Outer Limits',
+                                          'images/outer_limits.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -559,20 +614,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     'Outer Limits',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '104 ($peakOL)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: (Row(
@@ -585,7 +645,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColorOL,
                             _controllerOL,
@@ -593,12 +655,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPctOL,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -606,7 +672,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -624,8 +692,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return const StageDiagram('Accelerator',
-                                            'images/accelerator.jpg');
+                                        return const StageDiagram(
+                                          'Accelerator',
+                                          'images/accelerator.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -634,20 +704,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     'Accelerator',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '105 ($peakAcc)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: (Row(
@@ -660,7 +735,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColorAcc,
                             _controllerAcc,
@@ -668,12 +745,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPctAcc,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -681,7 +762,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -700,8 +783,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return const StageDiagram(
-                                            'The Pendulum',
-                                            'images/pendulum.jpg');
+                                          'The Pendulum',
+                                          'images/pendulum.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -710,20 +794,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     'Pendulum',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '106 ($peakPend)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: (Row(
@@ -736,7 +825,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColorPend,
                             _controllerPend,
@@ -744,12 +835,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPctPend,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -757,7 +852,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -776,8 +873,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return const StageDiagram(
-                                            'Speed Option',
-                                            'images/speed_option.jpg');
+                                          'Speed Option',
+                                          'images/speed_option.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -786,20 +884,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     'Speed Option',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '107 ($peakSpeed)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: (Row(
@@ -813,7 +916,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColorSpeed,
                             _controllerSpeed,
@@ -821,12 +926,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPctSpeed,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -834,7 +943,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4.0),
+                    padding: const EdgeInsets.only(
+                      top: 4.0,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -852,8 +963,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return const StageDiagram('Roundabout',
-                                            'images/roundabout.jpg');
+                                        return const StageDiagram(
+                                          'Roundabout',
+                                          'images/roundabout.jpg',
+                                        );
                                       },
                                     ),
                                   );
@@ -862,20 +975,25 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: Text(
                                     'Roundabout',
                                     style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                               Text(
                                 '108 ($peakRound)',
-                                style: const TextStyle(fontSize: 12.0),
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                ),
                               )
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 16.0),
+                          padding: const EdgeInsets.only(
+                            right: 16.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: (Row(
@@ -889,7 +1007,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                          padding: const EdgeInsets.only(
+                            right: 8.0,
+                          ),
                           child: TodayTime(
                             newBestColorRound,
                             _controllerRound,
@@ -897,12 +1017,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
+                          padding: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: SizedBox(
                             width: 75.0,
                             child: Text(
                               todayPctRound,
-                              style: const TextStyle(fontSize: 14.0),
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
                             ),
                           ),
                         ),
@@ -912,7 +1036,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                   Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
+                        padding: const EdgeInsets.only(
+                          top: 8.0,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -920,30 +1046,38 @@ class _MatchTrackerState extends State<MatchTracker> {
                               width: 65.0,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 18.0),
+                              padding: const EdgeInsets.only(
+                                right: 18.0,
+                              ),
                               child: ConstrainedBox(
-                                constraints:
-                                const BoxConstraints(maxHeight: 20.0),
+                                constraints: const BoxConstraints(
+                                  maxHeight: 20.0,
+                                ),
                                 child: const Text(
                                   'Time',
                                   style: TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w900),
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w900,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
                               width: 60.0,
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 18.0),
+                                padding: const EdgeInsets.only(
+                                  left: 18.0,
+                                ),
                                 child: ConstrainedBox(
-                                  constraints:
-                                  const BoxConstraints(maxHeight: 20),
+                                  constraints: const BoxConstraints(
+                                    maxHeight: 20,
+                                  ),
                                   child: const Text(
                                     'Peak',
                                     style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w900),
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -951,15 +1085,19 @@ class _MatchTrackerState extends State<MatchTracker> {
                             SizedBox(
                               width: 70.0,
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 12.0),
+                                padding: const EdgeInsets.only(
+                                  left: 12.0,
+                                ),
                                 child: ConstrainedBox(
-                                  constraints:
-                                  const BoxConstraints(maxWidth: 20.0),
+                                  constraints: const BoxConstraints(
+                                    maxWidth: 20.0,
+                                  ),
                                   child: const Text(
                                     '%Peak',
                                     style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w900),
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -967,15 +1105,19 @@ class _MatchTrackerState extends State<MatchTracker> {
                             SizedBox(
                               width: 65.0,
                               child: Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
+                                padding: const EdgeInsets.only(
+                                  right: 8.0,
+                                ),
                                 child: ConstrainedBox(
-                                  constraints:
-                                  const BoxConstraints(maxHeight: 20),
+                                  constraints: const BoxConstraints(
+                                    maxHeight: 20,
+                                  ),
                                   child: const Text(
                                     'Class',
                                     style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w900),
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -989,7 +1131,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
+                        padding: const EdgeInsets.only(
+                          top: 4.0,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -997,7 +1141,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                               width: 60.0,
                               child: Text(
                                 'Today',
-                                style: TextStyle(fontSize: 14),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
                                 textAlign: TextAlign.left,
                               ),
                             ),
@@ -1005,28 +1151,36 @@ class _MatchTrackerState extends State<MatchTracker> {
                               width: 58.0,
                               child: Text(
                                 todayTime,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: 58.0,
                               child: Text(
                                 todayPeak,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: 58.0,
                               child: Text(
                                 todayPct,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: 55.0,
                               child: Text(
                                 todayClass,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                                 textAlign: TextAlign.left,
                               ),
                             ),
@@ -1034,7 +1188,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
+                        padding: const EdgeInsets.only(
+                          top: 4.0,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -1042,7 +1198,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                               width: 65.0,
                               child: Text(
                                 'Overall',
-                                style: TextStyle(fontSize: 14),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
                                 textAlign: TextAlign.left,
                               ),
                             ),
@@ -1050,47 +1208,61 @@ class _MatchTrackerState extends State<MatchTracker> {
                               width: 60.0,
                               child: Text(
                                 overallTime,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: 60.0,
                               child: Text(
                                 overallPeak,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: 65.0,
                               child: Text(
                                 overallPct,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: 55.0,
                               child: Text(
                                 overallClass,
-                                style: const TextStyle(fontSize: 14),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 48.0),
+                        padding: const EdgeInsets.only(
+                          top: 48.0,
+                        ),
                         child: FittedBox(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.only(left: 4.0),
+                                padding: const EdgeInsets.only(
+                                  left: 4.0,
+                                ),
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       shape: const StadiumBorder(),
                                       side: const BorderSide(
-                                          width: 1, color: Constants.mtGreen),
+                                        width: 1,
+                                        color: Constants.mtGreen,
+                                      ),
                                       primary: Colors.white),
                                   child: const Text(
                                     'Change Gun',
@@ -1099,7 +1271,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    //Hide keypad. (Leaving the page [Navigator.pop(context)] automatically saves the data.)
+                                    //Hide keypad when leaving the page.
+                                    //Navigator.pop(context)] automatically
+                                    //saves the data.
                                     SystemChannels.textInput
                                         .invokeMethod('TextInput.hide');
                                     Navigator.pop(context);
@@ -1118,12 +1292,16 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 4.0),
+                                padding: const EdgeInsets.only(
+                                  right: 4.0,
+                                ),
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       shape: const StadiumBorder(),
                                       side: const BorderSide(
-                                          width: 1, color: Constants.mtGreen),
+                                        width: 1,
+                                        color: Constants.mtGreen,
+                                      ),
                                       primary: Colors.white),
                                   child: const Text(
                                     'Clear Today',
@@ -1159,23 +1337,17 @@ class _MatchTrackerState extends State<MatchTracker> {
           TextSelection(baseOffset: 0, extentOffset: _controller5.text.length);
     } else {
       if (_controller5.text == '') {
-        setState(() {
-          todayPct5 = '';
-        });
+        todayPct5 = '';
       } else {
-        setState(() {
-          todayPct5 = _calcTodayPercent(peak5, _controller5.text);
-        });
+        todayPct5 = _calcTodayPercent(peak5, _controller5.text);
+
         if (best5 == '') {
-          setState(() {
-            best5 = _controller5.text;
-            bestClass5 = _calcBestClass(peak5, _controller5.text);
-          });
+          best5 = _controller5.text;
+          bestClass5 = _calcBestClass(peak5, _controller5.text);
         } else if ((double.parse(_controller5.text) < double.parse(best5))) {
           _confirmNewBestTime(context, '5 to Go', _controller5.text, '5');
-          setState(() {
-            _calcBestClass(peak5, best5);
-          });
+
+          _calcBestClass(peak5, best5);
         }
       }
       _calcTotals();
@@ -1189,26 +1361,19 @@ class _MatchTrackerState extends State<MatchTracker> {
           baseOffset: 0, extentOffset: _controllerShow.text.length);
     } else {
       if (_controllerShow.text == '') {
-        setState(() {
-          todayPctShow = '';
-        });
+        todayPctShow = '';
       } else {
-        setState(() {
-          todayPctShow = _calcTodayPercent(peakShow, _controllerShow.text);
-        });
+        todayPctShow = _calcTodayPercent(peakShow, _controllerShow.text);
 
         if (bestShow == '') {
-          setState(() {
-            bestShow = _controllerShow.text;
-            bestClassShow = _calcBestClass(peakShow, _controllerShow.text);
-          });
+          bestShow = _controllerShow.text;
+          bestClassShow = _calcBestClass(peakShow, _controllerShow.text);
         } else if ((double.parse(_controllerShow.text) <
             double.parse(bestShow))) {
           _confirmNewBestTime(
               context, 'Showdown', _controllerShow.text, 'Show');
-          setState(() {
-            _calcBestClass(peakShow, bestShow);
-          });
+
+          _calcBestClass(peakShow, bestShow);
         }
       }
       _calcTotals();
@@ -1222,25 +1387,18 @@ class _MatchTrackerState extends State<MatchTracker> {
           TextSelection(baseOffset: 0, extentOffset: _controllerSH.text.length);
     } else {
       if (_controllerSH.text == '') {
-        setState(() {
-          todayPctSH = '';
-        });
+        todayPctSH = '';
       } else {
-        setState(() {
-          todayPctSH = _calcTodayPercent(peakSH, _controllerSH.text);
-        });
+        todayPctSH = _calcTodayPercent(peakSH, _controllerSH.text);
 
         if (bestSH == '') {
-          setState(() {
-            bestSH = _controllerSH.text;
-            bestClassSH = _calcBestClass(peakSH, _controllerSH.text);
-          });
+          bestSH = _controllerSH.text;
+          bestClassSH = _calcBestClass(peakSH, _controllerSH.text);
         } else if ((double.parse(_controllerSH.text) < double.parse(bestSH))) {
           _confirmNewBestTime(
               context, 'Smoke & Hope', _controllerSH.text, 'SH');
-          setState(() {
-            _calcBestClass(peakSH, bestSH);
-          });
+
+          _calcBestClass(peakSH, bestSH);
         }
       }
       _calcTotals();
@@ -1254,25 +1412,18 @@ class _MatchTrackerState extends State<MatchTracker> {
           TextSelection(baseOffset: 0, extentOffset: _controllerOL.text.length);
     } else {
       if (_controllerOL.text == '') {
-        setState(() {
-          todayPctOL = '';
-        });
+        todayPctOL = '';
       } else {
-        setState(() {
-          todayPctOL = _calcTodayPercent(peakOL, _controllerOL.text);
-        });
+        todayPctOL = _calcTodayPercent(peakOL, _controllerOL.text);
 
         if (bestOL == '') {
-          setState(() {
-            bestOL = _controllerOL.text;
-            bestClassOL = _calcBestClass(peakOL, _controllerOL.text);
-          });
+          bestOL = _controllerOL.text;
+          bestClassOL = _calcBestClass(peakOL, _controllerOL.text);
         } else if ((double.parse(_controllerOL.text) < double.parse(bestOL))) {
           _confirmNewBestTime(
               context, 'Outer Limits', _controllerOL.text, 'OL');
-          setState(() {
-            _calcBestClass(peakOL, bestOL);
-          });
+
+          _calcBestClass(peakOL, bestOL);
         }
       }
       _calcTotals();
@@ -1286,26 +1437,19 @@ class _MatchTrackerState extends State<MatchTracker> {
           baseOffset: 0, extentOffset: _controllerAcc.text.length);
     } else {
       if (_controllerAcc.text == '') {
-        setState(() {
-          todayPctAcc = '';
-        });
+        todayPctAcc = '';
       } else {
-        setState(() {
-          todayPctAcc = _calcTodayPercent(peakAcc, _controllerAcc.text);
-        });
+        todayPctAcc = _calcTodayPercent(peakAcc, _controllerAcc.text);
 
         if (bestAcc == '') {
-          setState(() {
-            bestAcc = _controllerAcc.text;
-            bestClassAcc = _calcBestClass(peakAcc, _controllerAcc.text);
-          });
+          bestAcc = _controllerAcc.text;
+          bestClassAcc = _calcBestClass(peakAcc, _controllerAcc.text);
         } else if ((double.parse(_controllerAcc.text) <
             double.parse(bestAcc))) {
           _confirmNewBestTime(
               context, 'Accelerator', _controllerAcc.text, 'Acc');
-          setState(() {
-            _calcBestClass(peakAcc, bestAcc);
-          });
+
+          _calcBestClass(peakAcc, bestAcc);
         }
       }
       _calcTotals();
@@ -1319,26 +1463,19 @@ class _MatchTrackerState extends State<MatchTracker> {
           baseOffset: 0, extentOffset: _controllerPend.text.length);
     } else {
       if (_controllerPend.text == '') {
-        setState(() {
-          todayPctPend = '';
-        });
+        todayPctPend = '';
       } else {
-        setState(() {
-          todayPctPend = _calcTodayPercent(peakPend, _controllerPend.text);
-        });
+        todayPctPend = _calcTodayPercent(peakPend, _controllerPend.text);
 
         if (bestPend == '') {
-          setState(() {
-            bestPend = _controllerPend.text;
-            bestClassPend = _calcBestClass(peakPend, _controllerPend.text);
-          });
+          bestPend = _controllerPend.text;
+          bestClassPend = _calcBestClass(peakPend, _controllerPend.text);
         } else if ((double.parse(_controllerPend.text) <
             double.parse(bestPend))) {
           _confirmNewBestTime(
               context, 'Pendulum', _controllerPend.text, 'Pend');
-          setState(() {
-            _calcBestClass(peakPend, bestPend);
-          });
+
+          _calcBestClass(peakPend, bestPend);
         }
       }
       _calcTotals();
@@ -1352,26 +1489,19 @@ class _MatchTrackerState extends State<MatchTracker> {
           baseOffset: 0, extentOffset: _controllerSpeed.text.length);
     } else {
       if (_controllerSpeed.text == '') {
-        setState(() {
-          todayPctSpeed = '';
-        });
+        todayPctSpeed = '';
       } else {
-        setState(() {
-          todayPctSpeed = _calcTodayPercent(peakSpeed, _controllerSpeed.text);
-        });
+        todayPctSpeed = _calcTodayPercent(peakSpeed, _controllerSpeed.text);
 
         if (bestSpeed == '') {
-          setState(() {
-            bestSpeed = _controllerSpeed.text;
-            bestClassSpeed = _calcBestClass(peakSpeed, _controllerSpeed.text);
-          });
+          bestSpeed = _controllerSpeed.text;
+          bestClassSpeed = _calcBestClass(peakSpeed, _controllerSpeed.text);
         } else if ((double.parse(_controllerSpeed.text) <
             double.parse(bestSpeed))) {
           _confirmNewBestTime(
               context, 'Speed Option', _controllerSpeed.text, 'Speed');
-          setState(() {
-            _calcBestClass(peakSpeed, bestSpeed);
-          });
+
+          _calcBestClass(peakSpeed, bestSpeed);
         }
       }
       _calcTotals();
@@ -1385,26 +1515,19 @@ class _MatchTrackerState extends State<MatchTracker> {
           baseOffset: 0, extentOffset: _controllerRound.text.length);
     } else {
       if (_controllerRound.text == '') {
-        setState(() {
-          todayPctRound = '';
-        });
+        todayPctRound = '';
       } else {
-        setState(() {
-          todayPctRound = _calcTodayPercent(peakRound, _controllerRound.text);
-        });
+        todayPctRound = _calcTodayPercent(peakRound, _controllerRound.text);
 
         if (bestRound == '') {
-          setState(() {
-            bestRound = _controllerRound.text;
-            bestClassRound = _calcBestClass(peakRound, _controllerRound.text);
-          });
+          bestRound = _controllerRound.text;
+          bestClassRound = _calcBestClass(peakRound, _controllerRound.text);
         } else if ((double.parse(_controllerRound.text) <
             double.parse(bestRound))) {
           _confirmNewBestTime(
               context, 'Roundabout', _controllerRound.text, 'Round');
-          setState(() {
-            _calcBestClass(peakRound, bestRound);
-          });
+
+          _calcBestClass(peakRound, bestRound);
         }
       }
       _calcTotals();
@@ -1412,7 +1535,8 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-  //If shooter enters a time lower than the previous best, confirm that previous best should be replaced
+  //If shooter enters a time lower than the previous best, confirm that previous
+  //best should be replaced
   _confirmNewBestTime(context, String name, String time, String textID) {
     String stageName = name;
     String stageTime = time;
@@ -1428,192 +1552,159 @@ class _MatchTrackerState extends State<MatchTracker> {
           color: Constants.mtGreen,
           child: const Text(
             "Yes",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
           onPressed: () {
-            setState(() {
-              switch (bestID) {
-                case '5':
-                //Calculate the time cut from previous best
-                  diff = (double.parse(best5) - double.parse(stageTime));
-                  //Add time cuts to previous time cut value and display at bottom center of screen
-                  timeShaved += diff;
+            //Calculate the time cut from previous best, and add time cuts
+            //to previous time cut value and display total time cuts at
+            //bottom center of screen
+            switch (bestID) {
+              case '5':
+                diff = (double.parse(best5) - double.parse(stageTime));
 
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on 5 to Go!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                best5 = stageTime;
+                bestClass5 = _calcBestClass(peak5, stageTime);
+                newBestColor5 = Colors.green;
+                _calcOverall();
 
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on 5 to Go!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  best5 = stageTime;
-                  setState(() {
-                    bestClass5 = _calcBestClass(peak5, stageTime);
-                    newBestColor5 = Colors.green;
-                    _calcOverall();
-                  });
-                  break;
-                case 'Show':
-                  diff = (double.parse(bestShow) - double.parse(stageTime));
-                  timeShaved += diff;
+                break;
 
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Showdown!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  bestShow = stageTime;
-                  setState(() {
-                    bestClassShow = _calcBestClass(peakShow, stageTime);
-                    newBestColorShow = Colors.green;
-                    _calcOverall();
-                  });
+              case 'Show':
+                diff = (double.parse(bestShow) - double.parse(stageTime));
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on Showdown!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                bestShow = stageTime;
+                bestClassShow = _calcBestClass(peakShow, stageTime);
+                newBestColorShow = Colors.green;
+                _calcOverall();
 
-                  break;
-                case 'SH':
-                  diff = (double.parse(bestSH) - double.parse(stageTime));
-                  timeShaved += diff;
+                break;
 
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Smoke & Hope!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  bestSH = stageTime;
-                  setState(() {
-                    bestClassSH = _calcBestClass(peakSH, stageTime);
-                  });
-                  newBestColorSH = Colors.green;
-                  _calcOverall();
+              case 'SH':
+                diff = (double.parse(bestSH) - double.parse(stageTime));
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on Smoke & Hope!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                bestSH = stageTime;
+                bestClassSH = _calcBestClass(peakSH, stageTime);
+                newBestColorSH = Colors.green;
+                _calcOverall();
 
-                  break;
-                case 'OL':
-                  diff = (double.parse(bestOL) - double.parse(stageTime));
-                  timeShaved += diff;
+                break;
+              case 'OL':
+                diff = (double.parse(bestOL) - double.parse(stageTime));
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on Outer Limits!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                bestOL = stageTime;
+                bestClassOL = _calcBestClass(peakOL, stageTime);
+                newBestColorOL = Colors.green;
+                _calcOverall();
 
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Outer Limits!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  bestOL = stageTime;
-                  setState(() {
-                    bestClassOL = _calcBestClass(peakOL, stageTime);
-                  });
-                  newBestColorOL = Colors.green;
-                  _calcOverall();
+                break;
 
-                  break;
-                case 'Acc':
-                  diff = (double.parse(bestAcc) - double.parse(stageTime));
-                  timeShaved += diff;
+              case 'Acc':
+                diff = (double.parse(bestAcc) - double.parse(stageTime));
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on Accelerator!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                bestAcc = stageTime;
+                bestClassAcc = _calcBestClass(peakAcc, stageTime);
+                newBestColorAcc = Colors.green;
+                _calcOverall();
 
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Accelerator!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                break;
 
-                  bestAcc = stageTime;
-                  setState(() {
-                    bestClassAcc = _calcBestClass(peakAcc, stageTime);
-                  });
-                  newBestColorAcc = Colors.green;
-                  _calcOverall();
+              case 'Pend':
+                diff = (double.parse(bestPend) - double.parse(stageTime));
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on Pendulum!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                bestPend = stageTime;
+                bestClassPend = _calcBestClass(peakPend, stageTime);
+                newBestColorPend = Colors.green;
+                _calcOverall();
 
-                  break;
-                case 'Pend':
-                  diff = (double.parse(bestPend) - double.parse(stageTime));
-                  timeShaved += diff;
+                break;
 
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Pendulum!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  bestPend = stageTime;
-                  setState(() {
-                    bestClassPend = _calcBestClass(peakPend, stageTime);
-                  });
-                  newBestColorPend = Colors.green;
-                  _calcOverall();
+              case 'Speed':
+                diff = (double.parse(bestSpeed) - double.parse(stageTime));
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on Speed Option!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                bestSpeed = stageTime;
+                bestClassSpeed = _calcBestClass(peakSpeed, stageTime);
+                newBestColorSpeed = Colors.green;
+                _calcOverall();
 
-                  break;
-                case 'Speed':
-                  diff = (double.parse(bestSpeed) - double.parse(stageTime));
-                  timeShaved += diff;
+                break;
+              case 'Round':
+                diff = (double.parse(bestRound) - double.parse(stageTime));
+                timeShaved += diff;
+                timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+                final snackBar = SnackBar(
+                  backgroundColor: Constants.mtGreen,
+                  content: Text(
+                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                      ' time on Roundabout!'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                bestRound = stageTime;
+                bestClassRound = _calcBestClass(peakRound, stageTime);
+                newBestColorRound = Colors.green;
+                _calcOverall();
 
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Speed Option!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  bestSpeed = stageTime;
-                  setState(() {
-                    bestClassSpeed = _calcBestClass(peakSpeed, stageTime);
-                  });
-                  newBestColorSpeed = Colors.green;
-                  _calcOverall();
-
-                  break;
-                case 'Round':
-                  diff = (double.parse(bestRound) - double.parse(stageTime));
-                  timeShaved += diff;
-
-                  setState(() {
-                    timeCuts =
-                    'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-                  });
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                        'You cut ${diff.toStringAsFixed(2)} seconds from your best time on Roundabout!'),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  bestRound = stageTime;
-                  setState(() {
-                    bestClassRound = _calcBestClass(peakRound, stageTime);
-                  });
-                  newBestColorRound = Colors.green;
-                  _calcOverall();
-
-                  break;
-              }
-            });
+                break;
+            }
             _saveStageTimes();
             Navigator.pop(context);
           },
@@ -1639,7 +1730,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     return FontWeight.normal;
   }
 
-///////Call functions to update today and overall totals when TextField loses focus///////////////
+  ///Call functions to update today and overall totals when TextField loses focus
 
   void _calcOverall() {
     _addOverallTimes();
@@ -1859,56 +1950,53 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   void _calcTodayPeak() {
-    setState(() {
-      if (todayPeak != '') {
-        todayPct = (double.parse(todayPeak) / double.parse(todayTime) * 100)
-            .toStringAsFixed(2);
+    if (todayPeak != '') {
+      todayPct = (double.parse(todayPeak) / double.parse(todayTime) * 100)
+          .toStringAsFixed(2);
 
-        if (double.parse(todayPct) < 40.0) {
-          todayClass = 'D';
-        } else if (double.parse(todayPct) < 60.0) {
-          todayClass = 'C';
-        } else if (double.parse(todayPct) < 75.0) {
-          todayClass = 'B';
-        } else if (double.parse(todayPct) < 85.0) {
-          todayClass = 'A';
-        } else if (double.parse(todayPct) < 95.0) {
-          todayClass = 'M';
-        } else {
-          todayClass = 'GM';
-        }
+      if (double.parse(todayPct) < 40.0) {
+        todayClass = 'D';
+      } else if (double.parse(todayPct) < 60.0) {
+        todayClass = 'C';
+      } else if (double.parse(todayPct) < 75.0) {
+        todayClass = 'B';
+      } else if (double.parse(todayPct) < 85.0) {
+        todayClass = 'A';
+      } else if (double.parse(todayPct) < 95.0) {
+        todayClass = 'M';
       } else {
-        todayPct = '';
-        todayClass = '';
+        todayClass = 'GM';
       }
-    });
+    } else {
+      todayPct = '';
+      todayClass = '';
+    }
+    setState(() {});
   }
 
   void _calcOverallPeak() {
     if (overallPeak != '') {
-      setState(() {
-        overallPct =
-            (double.parse(overallPeak) / double.parse(overallTime) * 100)
-                .toStringAsFixed(2);
+      overallPct = (double.parse(overallPeak) / double.parse(overallTime) * 100)
+          .toStringAsFixed(2);
 
-        if (overriddenClass != '') {
-          overallClass = overriddenClass;
+      if (overriddenClass != '') {
+        overallClass = overriddenClass;
+      } else {
+        if (double.parse(overallPct) < 40.0) {
+          overallClass = 'D';
+        } else if (double.parse(overallPct) < 60.0) {
+          overallClass = 'C';
+        } else if (double.parse(overallPct) < 75.0) {
+          overallClass = 'B';
+        } else if (double.parse(overallPct) < 85.0) {
+          overallClass = 'A';
+        } else if (double.parse(overallPct) < 95.0) {
+          overallClass = 'M';
         } else {
-          if (double.parse(overallPct) < 40.0) {
-            overallClass = 'D';
-          } else if (double.parse(overallPct) < 60.0) {
-            overallClass = 'C';
-          } else if (double.parse(overallPct) < 75.0) {
-            overallClass = 'B';
-          } else if (double.parse(overallPct) < 85.0) {
-            overallClass = 'A';
-          } else if (double.parse(overallPct) < 95.0) {
-            overallClass = 'M';
-          } else {
-            overallClass = 'GM';
-          }
+          overallClass = 'GM';
         }
-      });
+      }
+      setState(() {});
     }
   }
 
@@ -1991,10 +2079,12 @@ class _MatchTrackerState extends State<MatchTracker> {
 //Determine whether user has chosen to show or hide today times
   Future<String> _getShowHide() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
+//if showToday is null, return 'On'
     return preferences.getString('showToday') ?? 'On';
   }
 
-//If user has overridden class in this division, save the updated class using SharedPreferences
+//If user has overridden the class in this division, use SharedPreferences to
+//save he updated class
   Future<void> _setClassOverride(String div, String value) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(div, value);
@@ -2003,11 +2093,11 @@ class _MatchTrackerState extends State<MatchTracker> {
 //Get overridden class (if any) for this division from SharedPreferences
   Future<String> _getClassOverride(String div) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-
+    //if overridden class is null, return empty string
     return preferences.getString(div) ?? '';
   }
 
-//Respond to user selection from overflow menu
+//Respond to user selection from overflow popup menu
   void _matchMenuChoiceAction(String menuChoice) {
     switch (menuChoice) {
       case 'Clear Division Data':
@@ -2073,24 +2163,18 @@ class _MatchTrackerState extends State<MatchTracker> {
 
             _setShowHide('Off');
             _getShowHide().then((value) {
-              setState(() {
-                _setShowHide('Off');
-                showToday = value;
-              });
+              _setShowHide('Off');
+              showToday = value;
             });
           });
         } else if (showToday == 'Off') {
-          setState(() {
-            _addTodayTimes();
-            _addTodayPeak();
-            _calcTodayPeak();
+          _addTodayTimes();
+          _addTodayPeak();
+          _calcTodayPeak();
 
-            _setShowHide('On');
-            _getShowHide().then((value) {
-              setState(() {
-                showToday = value;
-              });
-            });
+          _setShowHide('On');
+          _getShowHide().then((value) {
+            showToday = value;
           });
         }
 
@@ -2098,8 +2182,8 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-//Allow user to override the calculated class if it is not correct because of current peak percent
-  //that is lower than the highest class ever attained.
+//If the current peak percent doesn't support a class previously attained,
+//allow user to override the calculated class and display the correct class.
   Future<void> _overrideClass(BuildContext context) async {
     return await showDialog<String>(
         context: context,
@@ -2288,29 +2372,34 @@ class _MatchTrackerState extends State<MatchTracker> {
                 ),
               ),
               SimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context);
+                child: Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: const StadiumBorder(),
+                        side: const BorderSide(
+                            width: 1, color: Constants.mtGreen),
+                        primary: Constants.mtGreen),
+                    onPressed: () {
+                      Navigator.pop(context);
 
-                  _setClassOverride(widget.currentDivision, '');
+                      _setClassOverride(widget.currentDivision, '');
 
-                  overriddenClass = '';
+                      overriddenClass = '';
 
-                  _calcOverallPeak();
-                  final snackBar = SnackBar(
-                    backgroundColor: Constants.mtGreen,
-                    content: Text(
-                      'Your ${widget.currentDivision} class override has been removed.',
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                },
-                child: const Center(
-                  child: Text(
-                    'Remove class override',
-                    style: TextStyle(
-                      color: Constants.mtGreen,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 18.0,
+                      _calcOverallPeak();
+                      final snackBar = SnackBar(
+                        backgroundColor: Constants.mtGreen,
+                        content: Text(
+                          'Any ${widget.currentDivision} class override has been removed.',
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: const Text(
+                      'Remove class override',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -2363,7 +2452,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     );
   }
 
-  //Custom snackbar called from _calcBestAvg above to display best average strings times
+  //Snackbar called from _calcBestAvg above to display best average strings times
   // with an action to show best average times needed to advance in classification
   void _snackBarBestAvg(String stage, double bestAvg) {
     final snackBar = SnackBar(
@@ -2433,137 +2522,131 @@ class _MatchTrackerState extends State<MatchTracker> {
     if (numRows == 0) {
       timeCuts = '';
     } else {
-      setState(() {
-        _controller5.text = stageTimes.fiveToGo;
-        stageTimes.fiveToGo != ''
-            ? todayPct5 = _calcTodayPercent(peak5, stageTimes.fiveToGo)
-            : todayPct5 = '';
-        _controllerShow.text = stageTimes.showdown;
-        stageTimes.showdown != ''
-            ? todayPctShow = _calcTodayPercent(peakShow, stageTimes.showdown)
-            : todayPctShow = '';
-        _controllerSH.text = stageTimes.smokeAndHope;
-        stageTimes.smokeAndHope != ''
-            ? todayPctSH = _calcTodayPercent(peakSH, stageTimes.smokeAndHope)
-            : todayPctSH = '';
-        _controllerOL.text = stageTimes.outerLimits;
-        stageTimes.outerLimits != ''
-            ? todayPctOL = _calcTodayPercent(peakOL, stageTimes.outerLimits)
-            : todayPctOL = '';
-        _controllerAcc.text = stageTimes.accelerator;
-        stageTimes.accelerator != ''
-            ? todayPctAcc = _calcTodayPercent(peakAcc, stageTimes.accelerator)
-            : todayPctAcc = '';
-        _controllerPend.text = stageTimes.pendulum;
-        stageTimes.pendulum != ''
-            ? todayPctPend = _calcTodayPercent(peakPend, stageTimes.pendulum)
-            : todayPctPend = '';
-        _controllerSpeed.text = stageTimes.speedOption;
-        stageTimes.speedOption != ''
-            ? todayPctSpeed =
-            _calcTodayPercent(peakSpeed, stageTimes.speedOption)
-            : todayPctSpeed = '';
-        _controllerRound.text = stageTimes.roundabout;
-        stageTimes.roundabout != ''
-            ? todayPctRound =
-            _calcTodayPercent(peakRound, stageTimes.roundabout)
-            : todayPctRound = '';
+      _controller5.text = stageTimes.fiveToGo;
+      stageTimes.fiveToGo != ''
+          ? todayPct5 = _calcTodayPercent(peak5, stageTimes.fiveToGo)
+          : todayPct5 = '';
+      _controllerShow.text = stageTimes.showdown;
+      stageTimes.showdown != ''
+          ? todayPctShow = _calcTodayPercent(peakShow, stageTimes.showdown)
+          : todayPctShow = '';
+      _controllerSH.text = stageTimes.smokeAndHope;
+      stageTimes.smokeAndHope != ''
+          ? todayPctSH = _calcTodayPercent(peakSH, stageTimes.smokeAndHope)
+          : todayPctSH = '';
+      _controllerOL.text = stageTimes.outerLimits;
+      stageTimes.outerLimits != ''
+          ? todayPctOL = _calcTodayPercent(peakOL, stageTimes.outerLimits)
+          : todayPctOL = '';
+      _controllerAcc.text = stageTimes.accelerator;
+      stageTimes.accelerator != ''
+          ? todayPctAcc = _calcTodayPercent(peakAcc, stageTimes.accelerator)
+          : todayPctAcc = '';
+      _controllerPend.text = stageTimes.pendulum;
+      stageTimes.pendulum != ''
+          ? todayPctPend = _calcTodayPercent(peakPend, stageTimes.pendulum)
+          : todayPctPend = '';
+      _controllerSpeed.text = stageTimes.speedOption;
+      stageTimes.speedOption != ''
+          ? todayPctSpeed = _calcTodayPercent(peakSpeed, stageTimes.speedOption)
+          : todayPctSpeed = '';
+      _controllerRound.text = stageTimes.roundabout;
+      stageTimes.roundabout != ''
+          ? todayPctRound = _calcTodayPercent(peakRound, stageTimes.roundabout)
+          : todayPctRound = '';
 
-        stageTimes.best5 != null && stageTimes.best5 != ''
-            ? best5 = stageTimes.best5
-            : best5 = '';
+      stageTimes.best5 != null && stageTimes.best5 != ''
+          ? best5 = stageTimes.best5
+          : best5 = '';
 
-        if (best5 != '') {
-          bestClass5 = _calcBestClass(peak5, best5);
-          if (best5 == _controller5.text) {
-            newBestColor5 = Colors.green;
-          }
+      if (best5 != '') {
+        bestClass5 = _calcBestClass(peak5, best5);
+        if (best5 == _controller5.text) {
+          newBestColor5 = Colors.green;
         }
+      }
 
-        stageTimes.bestShow != null
-            ? bestShow = stageTimes.bestShow
-            : bestShow = '';
-        if (bestShow != '') {
-          bestClassShow = _calcBestClass(peakShow, bestShow);
-          if (bestShow == _controllerShow.text) {
-            newBestColorShow = Colors.green;
-          }
+      stageTimes.bestShow != null
+          ? bestShow = stageTimes.bestShow
+          : bestShow = '';
+      if (bestShow != '') {
+        bestClassShow = _calcBestClass(peakShow, bestShow);
+        if (bestShow == _controllerShow.text) {
+          newBestColorShow = Colors.green;
         }
+      }
 
-        stageTimes.bestSH != null ? bestSH = stageTimes.bestSH : bestSH = '';
-        if (bestSH != '') {
-          bestClassSH = _calcBestClass(peakSH, bestSH);
-          if (bestSH == _controllerSH.text) {
-            newBestColorSH = Colors.green;
-          }
+      stageTimes.bestSH != null ? bestSH = stageTimes.bestSH : bestSH = '';
+      if (bestSH != '') {
+        bestClassSH = _calcBestClass(peakSH, bestSH);
+        if (bestSH == _controllerSH.text) {
+          newBestColorSH = Colors.green;
         }
+      }
 
-        stageTimes.bestOL != null ? bestOL = stageTimes.bestOL : bestOL = '';
-        if (bestOL != '') {
-          bestClassOL = _calcBestClass(peakOL, bestOL);
-          if (bestOL == _controllerOL.text) {
-            newBestColorOL = Colors.green;
-          }
+      stageTimes.bestOL != null ? bestOL = stageTimes.bestOL : bestOL = '';
+      if (bestOL != '') {
+        bestClassOL = _calcBestClass(peakOL, bestOL);
+        if (bestOL == _controllerOL.text) {
+          newBestColorOL = Colors.green;
         }
+      }
 
-        stageTimes.bestAcc != null
-            ? bestAcc = stageTimes.bestAcc
-            : bestAcc = '';
-        if (bestAcc != '') {
-          bestClassAcc = _calcBestClass(peakAcc, bestAcc);
-          if (bestAcc == _controllerAcc.text) {
-            newBestColorAcc = Colors.green;
-          }
+      stageTimes.bestAcc != null ? bestAcc = stageTimes.bestAcc : bestAcc = '';
+      if (bestAcc != '') {
+        bestClassAcc = _calcBestClass(peakAcc, bestAcc);
+        if (bestAcc == _controllerAcc.text) {
+          newBestColorAcc = Colors.green;
         }
+      }
 
-        stageTimes.bestPend != null
-            ? bestPend = stageTimes.bestPend
-            : bestPend = '';
-        if (bestPend != '') {
-          bestClassPend = _calcBestClass(peakPend, bestPend);
-          if (bestPend == _controllerPend.text) {
-            newBestColorPend = Colors.green;
-          }
+      stageTimes.bestPend != null
+          ? bestPend = stageTimes.bestPend
+          : bestPend = '';
+      if (bestPend != '') {
+        bestClassPend = _calcBestClass(peakPend, bestPend);
+        if (bestPend == _controllerPend.text) {
+          newBestColorPend = Colors.green;
         }
+      }
 
-        stageTimes.bestSpeed != null
-            ? bestSpeed = stageTimes.bestSpeed
-            : bestSpeed = '';
-        if (bestSpeed != '') {
-          bestClassSpeed = _calcBestClass(peakSpeed, bestSpeed);
-          if (bestSpeed == _controllerSpeed.text) {
-            newBestColorSpeed = Colors.green;
-          }
+      stageTimes.bestSpeed != null
+          ? bestSpeed = stageTimes.bestSpeed
+          : bestSpeed = '';
+      if (bestSpeed != '') {
+        bestClassSpeed = _calcBestClass(peakSpeed, bestSpeed);
+        if (bestSpeed == _controllerSpeed.text) {
+          newBestColorSpeed = Colors.green;
         }
+      }
 
-        stageTimes.bestRound != null
-            ? bestRound = stageTimes.bestRound
-            : bestRound = '';
-        if (bestRound != '') {
-          bestClassRound = _calcBestClass(peakRound, bestRound);
-          if (bestRound == _controllerRound.text) {
-            newBestColorRound = Colors.green;
-          }
+      stageTimes.bestRound != null
+          ? bestRound = stageTimes.bestRound
+          : bestRound = '';
+      if (bestRound != '') {
+        bestClassRound = _calcBestClass(peakRound, bestRound);
+        if (bestRound == _controllerRound.text) {
+          newBestColorRound = Colors.green;
         }
+      }
 
-        best5 = stageTimes.best5;
-        bestShow = stageTimes.bestShow;
-        bestSH = stageTimes.bestSH;
-        bestOL = stageTimes.bestOL;
-        bestAcc = stageTimes.bestAcc;
-        bestPend = stageTimes.bestPend;
-        bestSpeed = stageTimes.bestSpeed;
-        bestRound = stageTimes.bestRound;
+      best5 = stageTimes.best5;
+      bestShow = stageTimes.bestShow;
+      bestSH = stageTimes.bestSH;
+      bestOL = stageTimes.bestOL;
+      bestAcc = stageTimes.bestAcc;
+      bestPend = stageTimes.bestPend;
+      bestSpeed = stageTimes.bestSpeed;
+      bestRound = stageTimes.bestRound;
 
-        if (stageTimes.shavedTime == null || stageTimes.shavedTime == '') {
-          timeShaved = 0.0;
-          timeCuts = '';
-        } else {
-          timeShaved = double.parse(stageTimes.shavedTime);
+      if (stageTimes.shavedTime == null || stageTimes.shavedTime == '') {
+        timeShaved = 0.0;
+        timeCuts = '';
+      } else {
+        timeShaved = double.parse(stageTimes.shavedTime);
 
-          timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
-        }
-      });
+        timeCuts = 'Time cut today : -${timeShaved.toStringAsFixed(2)}';
+      }
     }
     _calcTotals();
   }
@@ -2590,7 +2673,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 //Calculate and display the percent and class for each today stage time entered
   static String _calcTodayPercent(double peak, String timeText) {
     double todayPercent = (peak / double.parse(timeText) * 100);
-//    setState(() {
+
     if (todayPercent < 40.0) {
       return '${todayPercent.toStringAsFixed(2)}/D';
     } else if (todayPercent < 60.0) {
@@ -2604,7 +2687,6 @@ class _MatchTrackerState extends State<MatchTracker> {
     } else {
       return '${todayPercent.toStringAsFixed(2)}/G';
     }
-//    });
   }
 
 //Confirm that user really wants to clear all division data. If so, clear
@@ -2615,7 +2697,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       type: AlertType.none,
       title: "Confirm...",
       desc:
-      "This will clear all $divAbbrev data, including best stage and best string times, and cannot be undone.",
+          "This will clear all $divAbbrev data, including best stage and best string times, and cannot be undone.",
       buttons: [
         DialogButton(
           width: 20,
@@ -2633,61 +2715,59 @@ class _MatchTrackerState extends State<MatchTracker> {
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
           onPressed: () {
-            setState(() {
-              _controller5.text = '';
-              _controllerShow.text = '';
-              _controllerSH.text = '';
-              _controllerOL.text = '';
-              _controllerAcc.text = '';
-              _controllerPend.text = '';
-              _controllerSpeed.text = '';
-              _controllerRound.text = '';
+            _controller5.text = '';
+            _controllerShow.text = '';
+            _controllerSH.text = '';
+            _controllerOL.text = '';
+            _controllerAcc.text = '';
+            _controllerPend.text = '';
+            _controllerSpeed.text = '';
+            _controllerRound.text = '';
 
-              todayPct5 = '';
-              todayPctShow = '';
-              todayPctSH = '';
-              todayPctOL = '';
-              todayPctAcc = '';
-              todayPctPend = '';
-              todayPctSpeed = '';
-              todayPctRound = '';
+            todayPct5 = '';
+            todayPctShow = '';
+            todayPctSH = '';
+            todayPctOL = '';
+            todayPctAcc = '';
+            todayPctPend = '';
+            todayPctSpeed = '';
+            todayPctRound = '';
 
-              todayTime = '';
-              todayPeak = '';
-              todayPct = '';
-              todayClass = '';
+            todayTime = '';
+            todayPeak = '';
+            todayPct = '';
+            todayClass = '';
 
-              overallTime = '';
-              overallPeak = '';
-              overallPct = '';
-              overallClass = '';
+            overallTime = '';
+            overallPeak = '';
+            overallPct = '';
+            overallClass = '';
 
-              best5 = '';
-              bestClass5 = '';
-              bestShow = '';
-              bestClassShow = '';
-              bestSH = '';
-              bestClassSH = '';
-              bestOL = '';
-              bestClassOL = '';
-              bestAcc = '';
-              bestClassAcc = '';
-              bestPend = '';
-              bestClassPend = '';
-              bestSpeed = '';
-              bestClassSpeed = '';
-              bestRound = '';
-              bestClassRound = '';
+            best5 = '';
+            bestClass5 = '';
+            bestShow = '';
+            bestClassShow = '';
+            bestSH = '';
+            bestClassSH = '';
+            bestOL = '';
+            bestClassOL = '';
+            bestAcc = '';
+            bestClassAcc = '';
+            bestPend = '';
+            bestClassPend = '';
+            bestSpeed = '';
+            bestClassSpeed = '';
+            bestRound = '';
+            bestClassRound = '';
 
-              timeCuts = '';
+            timeCuts = '';
 
-              timeShaved = 0.0;
+            timeShaved = 0.0;
 
-              _setClassOverride(widget.currentDivision, '');
-              setState(() {
-                overriddenClass = '';
-              });
-            });
+            _setClassOverride(widget.currentDivision, '');
+
+            overriddenClass = '';
+
             _saveStageTimes();
             _clearStringTimes();
             Navigator.pop(context);
@@ -2708,15 +2788,24 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   _clearStringTimes() async {
     StringTimes stringTimes = StringTimes();
-
-    stringTimes.fiveToGo = '';
-    stringTimes.showdown = '';
-    stringTimes.smokeAndHope = '';
-    stringTimes.outerLimits = '';
-    stringTimes.accelerator = '';
-    stringTimes.pendulum = '';
-    stringTimes.speedOption = '';
-    stringTimes.roundabout = '';
+    setState(() {
+      stringTimes.fiveToGo = '';
+      stringTimes.showdown = '';
+      stringTimes.smokeAndHope = '';
+      stringTimes.outerLimits = '';
+      stringTimes.accelerator = '';
+      stringTimes.pendulum = '';
+      stringTimes.speedOption = '';
+      stringTimes.roundabout = '';
+    });
+    // stringTimes.fiveToGo = '';
+    // stringTimes.showdown = '';
+    // stringTimes.smokeAndHope = '';
+    // stringTimes.outerLimits = '';
+    // stringTimes.accelerator = '';
+    // stringTimes.pendulum = '';
+    // stringTimes.speedOption = '';
+    // stringTimes.roundabout = '';
 
     await helper.insertStrings(divAbbrev + 'STR', stringTimes);
   }
@@ -2759,7 +2848,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       type: AlertType.info,
       title: "",
       desc:
-      'You have not entered a minimum of four classifier stage scores for this division.',
+          'You have not entered a minimum of four classifier stage scores for this division.',
       buttons: [
         DialogButton(
           color: Constants.mtGreen,

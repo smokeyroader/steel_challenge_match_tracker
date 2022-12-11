@@ -4,7 +4,7 @@ class Constants {
   //Match Tracker basic theme color
   static const Color mtGreen = Color(0xFF00681B);
 
-  //Main menu items
+  //Home screen main menu items
   static const List<String> mainMenuChoices = [
     'Clear Recent Guns',
     'Save Recent Guns',
@@ -13,14 +13,7 @@ class Constants {
     'Help',
   ];
 
-  static const List<String> matchMenuChoices = [
-    'Clear Division Data',
-    'Track Class',
-    'Override Class',
-    'Track Best Strings',
-    'Show/Hide Today Times',
-  ];
-
+//Home screen dropdown list items
   static const List<String> divisions = [
     'Select Division',
     'Carry Optics (CO)',
@@ -38,6 +31,16 @@ class Constants {
     'Single Stack (SS)',
   ];
 
+//Match scoring screen menu items
+  static const List<String> matchMenuChoices = [
+    'Clear Division Data',
+    'Track Class',
+    'Override Class',
+    'Track Best Strings',
+    'Show/Hide Today Times',
+  ];
+
+//Function to return abbreviation for the division to be scored
   static String getDivAbbrev(String division) {
     switch (division) {
       case 'Rimfire Rifle Open (RFRO)':
