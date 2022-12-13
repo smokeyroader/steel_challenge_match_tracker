@@ -375,7 +375,7 @@ class _BestStringsState extends State<BestStrings> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: SizedBox(
-                          width: 45.0,
+                          width: 60.0,
                           height: 20.0,
                           child: TodayTime(
                               Colors.black, _controller5STR, _focus5STR),
@@ -436,7 +436,7 @@ class _BestStringsState extends State<BestStrings> {
                         )),
                       ),
                       SizedBox(
-                        width: 45.0,
+                        width: 60.0,
                         height: 20.0,
                         child: TodayTime(
                             Colors.black, _controllerShowSTR, _focusShowSTR),
@@ -496,7 +496,7 @@ class _BestStringsState extends State<BestStrings> {
                         )),
                       ),
                       SizedBox(
-                        width: 45.0,
+                        width: 60.0,
                         height: 20.0,
                         child: TodayTime(
                             Colors.black, _controllerSHSTR, _focusSHSTR),
@@ -557,7 +557,7 @@ class _BestStringsState extends State<BestStrings> {
                         )),
                       ),
                       SizedBox(
-                        width: 45.0,
+                        width: 60.0,
                         height: 20.0,
                         child: TodayTime(
                             Colors.black, _controllerOLSTR, _focusOLSTR),
@@ -617,7 +617,7 @@ class _BestStringsState extends State<BestStrings> {
                         )),
                       ),
                       SizedBox(
-                        width: 45.0,
+                        width: 60.0,
                         height: 20.0,
                         child: TodayTime(
                             Colors.black, _controllerAccSTR, _focusAccSTR),
@@ -678,7 +678,7 @@ class _BestStringsState extends State<BestStrings> {
                         )),
                       ),
                       SizedBox(
-                        width: 45.0,
+                        width: 60.0,
                         height: 20.0,
                         child: TodayTime(
                             Colors.black, _controllerPendSTR, _focusPendSTR),
@@ -738,7 +738,7 @@ class _BestStringsState extends State<BestStrings> {
                         )),
                       ),
                       SizedBox(
-                        width: 45.0,
+                        width: 60.0,
                         height: 20.0,
                         child: TodayTime(
                             Colors.black, _controllerSpeedSTR, _focusSpeedSTR),
@@ -798,7 +798,7 @@ class _BestStringsState extends State<BestStrings> {
                         )),
                       ),
                       SizedBox(
-                        width: 45.0,
+                        width: 60.0,
                         height: 20.0,
                         child: TodayTime(
                             Colors.black, _controllerRoundSTR, _focusRoundSTR),
