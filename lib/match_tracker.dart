@@ -350,10 +350,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '101 ($peak5)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '101 ($peak5)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -440,10 +443,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '102 ($peakShow)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '102 ($peakShow)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -530,10 +536,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '103 ($peakSH)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '103 ($peakSH)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -620,10 +629,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '104 ($peakOL)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '104 ($peakOL)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -710,10 +722,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '105 ($peakAcc)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '105 ($peakAcc)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -800,10 +815,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '106 ($peakPend)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '106 ($peakPend)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -890,10 +908,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '107 ($peakSpeed)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '107 ($peakSpeed)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -981,10 +1002,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                '108 ($peakRound)',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '108 ($peakRound)',
+                                  style: const TextStyle(
+                                    fontSize: 12.0,
+                                  ),
                                 ),
                               )
                             ],
@@ -1071,6 +1095,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 child: ConstrainedBox(
                                   constraints: const BoxConstraints(
                                     maxHeight: 20,
+                                    maxWidth: 50,
                                   ),
                                   child: const Text(
                                     'Peak',
@@ -1090,7 +1115,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 ),
                                 child: ConstrainedBox(
                                   constraints: const BoxConstraints(
-                                    maxWidth: 20.0,
+                                    maxHeight: 20.0,
+                                    maxWidth: 50,
                                   ),
                                   child: const Text(
                                     '%Peak',

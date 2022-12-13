@@ -19,7 +19,7 @@ class _TodayTimeState extends State<TodayTime> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 48,
+      width: 60,
       height: 20,
       child: TextField(
         textAlign: TextAlign.center,
@@ -66,7 +66,6 @@ class _TodayTimeState extends State<TodayTime> {
         //Meaningless empty 'if statement' above inserted to make it work. (Digits will be misplaced if not included.)
 
         text = text.replaceAll('.', '');
-
         if (text.length <= 2) {
           text = '.' + text;
         } else {
