@@ -73,7 +73,7 @@ class ClassTracker extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: Text(
                       'Current Class:  $currClass',
                       style: const TextStyle(
@@ -86,7 +86,7 @@ class ClassTracker extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 75.0,
+                height: 40.0,
               ),
               _ClassText(
                 contents: timeCuts,
@@ -98,25 +98,25 @@ class ClassTracker extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: _ClassText(
                   contents: class2,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: _ClassText(
                   contents: class3,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: _ClassText(
                   contents: class4,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: _ClassText(
                   contents: class5,
                 ),
@@ -130,7 +130,7 @@ class ClassTracker extends StatelessWidget {
                       child: Text(
                         'Note: At least four classifier stages are required for a valid SCSA classification. The above times will be most valid after all classifier stages have been completed.',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: Constants.mtGreen,
                         ),
@@ -149,7 +149,6 @@ class ClassTracker extends StatelessWidget {
   void showTimes() {
     switch (currClass) {
       case 'D':
-        // setState(() {
         class1 =
             'C:    ${((double.parse(totPeak) / .40) - double.parse(totTime)).toStringAsFixed(2)}';
         class2 =
@@ -160,12 +159,10 @@ class ClassTracker extends StatelessWidget {
             'M:    ${((double.parse(totPeak) / .85) - double.parse(totTime)).toStringAsFixed(2)}';
         class5 =
             'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
-        // });
 
         break;
 
       case 'C':
-        // setState(() {
         class1 =
             'B:    ${((double.parse(totPeak) / .60) - double.parse(totTime)).toStringAsFixed(2)}';
         class2 =
@@ -175,12 +172,10 @@ class ClassTracker extends StatelessWidget {
         class4 =
             'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
         class5 = '';
-        // });
 
         break;
 
       case 'B':
-        // setState(() {
         class1 =
             'A:    ${((double.parse(totPeak) / .75) - double.parse(totTime)).toStringAsFixed(2)}';
         class2 =
@@ -189,12 +184,10 @@ class ClassTracker extends StatelessWidget {
             'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
         class4 = '';
         class5 = '';
-        // });
 
         break;
 
       case 'A':
-        // setState(() {
         class1 =
             'M:    ${((double.parse(totPeak) / .85) - double.parse(totTime)).toStringAsFixed(2)}';
         class2 =
@@ -202,30 +195,26 @@ class ClassTracker extends StatelessWidget {
         class3 = '';
         class4 = '';
         class5 = '';
-        // });
 
         break;
 
       case 'M':
-        // setState(() {
         class1 =
             'GM:    ${((double.parse(totPeak) / .95) - double.parse(totTime)).toStringAsFixed(2)}';
         class2 = '';
         class3 = '';
         class4 = '';
         class5 = '';
-        // });
+
         break;
 
       case 'GM':
-        // setState(() {
         class1 = '';
         class2 = '';
         class3 = '';
         class4 = '';
         class5 = '';
-        // timeCuts = 'Congratulations on your achievement!';
-        // });
+
         break;
     }
   }

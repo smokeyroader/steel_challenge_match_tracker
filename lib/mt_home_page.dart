@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'match_tracker.dart';
 import 'constants.dart';
@@ -15,10 +17,12 @@ class MatchTrackerHomePage extends StatefulWidget {
   _MatchTrackerHomePageState createState() => _MatchTrackerHomePageState();
 }
 
-//
 class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   //Provide for use of snackbar.
   final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
+
+  AudioPlayer player; //Declare audio player for playing app sounds
+
 //Stings to hold recently used divisions
   String dropdownValue = 'Select Division';
   String firstRecent = '';
@@ -26,56 +30,86 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   String thirdRecent = '';
   String fourthRecent = '';
 
+  String appSounds;
+
   bool gunsCleared = false;
 
   //initState and run setData() to populate list of recent guns with saved selections
 
   @override
   void initState() {
-    super.initState();
-
+    player = AudioPlayer(); //Initialize audio player (from just_audio package.)
+    //  Check whether application sounds have been turned off
+    getSoundStatus().then((value) {
+      appSounds = value;
+    });
     setRecents();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
   }
 
 // Methods to retrieve saved recent guns. Need to figure out how to return multiple keys
-  Future<String> getRecent1() async {
+  Future<String> getSavedRecent1() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
+    //If setting is null (no savedguns), return empty string
     return preferences.get('recent1') ?? '';
   }
 
-  Future<String> getRecent2() async {
+  Future<String> getSavedRecent2() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.get('recent2') ?? '';
   }
 
-  Future<String> getRecent3() async {
+  Future<String> getSavedRecent3() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.get('recent3') ?? '';
   }
 
-  Future<String> getRecent4() async {
+  Future<String> getSavedRecent4() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.get('recent4') ?? '';
   }
 
-//Retrieve saved recent guns and display in list
+  Future<void> setSoundStatus(String value) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('SoundStatus', value);
+  }
+
+  Future<String> getSoundStatus() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    //if SoundStatus is null (hasn't been set), return 'On'
+    return preferences.getString('SoundStatus') ?? 'On';
+  }
+
+  //Retrieve saved recent guns and display in list
   setRecents() {
-    setState(() {
-      getRecent1().then((value) {
-        firstRecent = value;
-      });
+    getSavedRecent1().then((value) {
+      if (value != '') {
+        setState(() => firstRecent = value);
+      }
+    });
 
-      getRecent2().then((value) {
-        secondRecent = value;
-      });
+    getSavedRecent2().then((value) {
+      if (value != '') {
+        setState(() => secondRecent = value);
+      }
+    });
 
-      getRecent3().then((value) {
-        thirdRecent = value;
-      });
+    getSavedRecent3().then((value) {
+      if (value != '') {
+        setState(() => thirdRecent = value);
+      }
+    });
 
-      getRecent4().then((value) {
-        fourthRecent = value;
-      });
+    getSavedRecent4().then((value) {
+      if (value != '') {
+        setState(() => fourthRecent = value);
+      }
     });
   }
 
@@ -126,9 +160,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                       onChanged: (String newValue) {
                         if (newValue != 'Select Division') {
                           dropdownValue = newValue;
-                          setState(() {
-                            showRecents(newValue);
-                          });
+                          setState(() => showRecents(newValue));
                         } else {
                           _noDivisionAlert(context);
                         }
@@ -147,6 +179,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   ),
                   GestureDetector(
                     onTap: trackFirstDiv,
+                    onLongPressStart: (details) {
+                      _divDeleteAlert(context, firstRecent);
+                    },
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: FittedBox(
@@ -157,6 +192,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   ),
                   GestureDetector(
                     onTap: trackSecondDiv,
+                    onLongPressStart: (details) {
+                      _divDeleteAlert(context, secondRecent);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: FittedBox(
@@ -168,6 +206,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   ),
                   GestureDetector(
                     onTap: trackThirdDiv,
+                    onLongPressStart: (details) {
+                      _divDeleteAlert(context, thirdRecent);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: FittedBox(
@@ -179,6 +220,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   ),
                   GestureDetector(
                     onTap: trackFourthDiv,
+                    onLongPressStart: (details) {
+                      _divDeleteAlert(context, fourthRecent);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: FittedBox(
@@ -241,80 +285,148 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     preferences.setString('recent2', div2);
     preferences.setString('recent3', div3);
     preferences.setString('recent4', div4);
-
-    if (!gunsCleared) {
-      const snackBar = SnackBar(
-        backgroundColor: Constants.mtGreen,
-        content: Text(
-          'Recent guns saved.',
-          textAlign: TextAlign.center,
-        ),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-    gunsCleared = false;
   }
 
-  //Take actions in response to selections from main menu
-  void mainMenuChoiceAction(String choice) {
-    if (choice == 'Clear Recent Guns') {
-      gunsCleared = true;
-      //Clear any guns from the list and save the empty list to Shared Preferences
-      setState(() {
-        firstRecent = '';
-        secondRecent = '';
-        thirdRecent = '';
-        fourthRecent = '';
-        dropdownValue = 'Select Division';
-        saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
-      });
-    } else if (choice == 'Save Recent Guns') {
-      //Save recent guns so they will be displayed when user opens the app again
-      if (firstRecent == '' &&
-          secondRecent == '' &&
-          thirdRecent == '' &&
-          fourthRecent == '') {
+  //Take actions in response to selections from home screen main menu
+  Future<void> mainMenuChoiceAction(String choice) async {
+    switch (choice) {
+      case 'Clear Recent/Saved Guns':
+        gunsCleared = true;
+        //Clear any guns from the list and save the empty list to Shared Preferences
+        setState(() {
+          firstRecent = '';
+          secondRecent = '';
+          thirdRecent = '';
+          fourthRecent = '';
+          dropdownValue = 'Select Division';
+          saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
+        });
         const snackBar = SnackBar(
           backgroundColor: Constants.mtGreen,
           content: Text(
-            'You have no recent guns to save.',
+            'Recent and saved guns cleared.',
             textAlign: TextAlign.center,
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      } else {
-        saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
-      }
-    } else if (choice == 'Classification Summary') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const ClassificationSummary();
-          },
-        ),
-      );
-    } else if (choice == 'Resources') {
-      //Navigate to the Resources page with useful links
+        if (appSounds == 'On') {
+          await player.setAsset('sounds/ding.mp3');
+          player.play();
+        }
+        // saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const Resources();
-          },
-        ),
-      );
-    } else {
-      //Navigate to the Help page for instructions for using the app
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const Help();
-          },
-        ),
-      );
+        break;
+
+      case 'Save Recent Guns':
+        {
+          const snackBar = SnackBar(
+            backgroundColor: Constants.mtGreen,
+            content: Text(
+              'Recent guns saved.',
+              textAlign: TextAlign.center,
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          if (appSounds == 'On') {
+            await player.setAsset('sounds/ding.mp3');
+            player.play();
+          }
+          saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
+        }
+        break;
+
+      case 'Classification Summary':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const ClassificationSummary();
+            },
+          ),
+        );
+        break;
+
+      case 'App Sounds On/Off':
+        {
+          if (appSounds == 'On') {
+            //If sound is on, turn it off
+            setSoundStatus('Off');
+
+            var snackbar = SnackBar(
+              backgroundColor: Constants.mtGreen,
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('App sounds off', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: SizedBox(
+                      height: 20,
+                      width: 50,
+                      child: FaIcon(Icons.volume_off_sharp),
+                    ),
+                  ),
+                ],
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
+            await player.setAsset('sounds/sound_off.mp3');
+            player.play();
+          } else {
+            //If it's not on, it must be off, so turn it on
+            setSoundStatus('On');
+            var snackBar = SnackBar(
+              backgroundColor: Constants.mtGreen,
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('App sounds on', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: SizedBox(
+                      height: 20,
+                      width: 30,
+                      child: FaIcon(Icons.volume_up_sharp),
+                    ),
+                  ),
+                  // ),
+                ],
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            await player.setAsset('sounds/ding.mp3');
+            player.play();
+          }
+          getSoundStatus().then((value) {
+            appSounds = value;
+          });
+        }
+
+        break;
+
+      case 'Resources':
+        //Navigate to the Resources page with useful links
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const Resources();
+            },
+          ),
+        );
+        break;
+
+      case 'Help':
+        //Navigate to the Help page for instructions for using the app
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const Help();
+            },
+          ),
+        );
     }
   }
 
@@ -343,8 +455,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     }
   }
 
-  //Method to open match tracker page with division selected
-
+  //Method to open match_tracker.dart, passing the division and the appSounds status (on/off)
   void startTracking(String division) {
     Navigator.push(
       context,
@@ -352,13 +463,14 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         builder: (context) {
           return MatchTracker(
             currentDivision: division,
+            appSounds: appSounds,
           );
         },
       ),
     );
   }
 
-  //Show alert if a division isn't selected before pressing 'Continue'
+  //Show alert if a division isn't selected
   _noDivisionAlert(context) {
     Alert(
       context: context,
@@ -368,6 +480,67 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       title: 'Oops!',
       desc: 'You must select a division or tap a previous division.',
     ).show();
+  }
+
+//Method to allow competitors to remove guns from the list of recent
+//or saved guns. This does not affect any saved guns unless the user
+//saves the new list of guns (without the deleted ones). Method is called
+//by pressing and holding the name of the division to be removed.
+
+  _divDeleteAlert(context, String division) {
+    division = division;
+    Alert(context: context, desc: 'Remove $division from this list?', buttons: [
+      DialogButton(
+        width: 10,
+        color: Constants.mtGreen,
+        child: const Text(
+          "No",
+          style: TextStyle(color: Colors.white, fontSize: 14),
+        ),
+        onPressed: () => Navigator.pop(context),
+      ),
+      DialogButton(
+        width: 20,
+        color: Constants.mtGreen,
+        child: const Text(
+          "Yes",
+          style: TextStyle(color: Colors.white, fontSize: 14),
+        ),
+        onPressed: () {
+          //Remove the selected division and adjust the list accordingly.
+          if (division == firstRecent) {
+            //Dismiss dialog
+            Navigator.pop(context);
+
+            setState(() {
+              firstRecent = secondRecent;
+              secondRecent = thirdRecent;
+              thirdRecent = fourthRecent;
+              fourthRecent = '';
+            });
+          }
+          if (division == secondRecent) {
+            Navigator.pop(context);
+            setState(() {
+              secondRecent = thirdRecent;
+              thirdRecent = fourthRecent;
+              fourthRecent = '';
+            });
+          }
+          if (division == thirdRecent) {
+            Navigator.pop(context);
+            setState(() {
+              thirdRecent = fourthRecent;
+              fourthRecent = '';
+            });
+          }
+          if (division == fourthRecent) {
+            Navigator.pop(context);
+            setState(() => fourthRecent = '');
+          }
+        },
+      )
+    ]).show();
   }
 }
 

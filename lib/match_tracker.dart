@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:steel_challenge_match_tracker/string_avg_needed.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:steel_challenge_match_tracker/string_avg_needed.dart';
 
+import 'string_avg_needed.dart';
 import 'best_strings.dart';
 import 'constants.dart';
 import 'database_helper.dart';
@@ -15,10 +18,12 @@ import 'today_text_field.dart';
 class MatchTracker extends StatefulWidget {
   //Set current division sent from mt_home_page.dart
   final String currentDivision;
+  final String appSounds; //Determines whether user has turned off app sounds
 
   const MatchTracker({
     Key key,
     this.currentDivision,
+    this.appSounds, //If 'On,' sounds will play; if 'Off,' sounds will be muted
   }) : super(key: key);
 
   @override
@@ -26,13 +31,15 @@ class MatchTracker extends StatefulWidget {
 }
 
 class _MatchTrackerState extends State<MatchTracker> {
+  AudioPlayer player; //Declare audio player for playing app sounds
+
   //Establish connection with MatchTracker.db
   DatabaseHelper helper = DatabaseHelper.instance;
 
+  //Line below needed to display Snackbars
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
   //Set controllers to retrieve stage times from TextFields
-
   final TextEditingController _controller5 = TextEditingController();
   final TextEditingController _controllerShow = TextEditingController();
   final TextEditingController _controllerSH = TextEditingController();
@@ -43,7 +50,6 @@ class _MatchTrackerState extends State<MatchTracker> {
   final TextEditingController _controllerRound = TextEditingController();
 
   //Declare focusNodes to detect change in focus of TextFields
-
   FocusNode _focus5;
   FocusNode _focusShow;
   FocusNode _focusSH;
@@ -123,6 +129,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   @override
   void initState() {
+    player = AudioPlayer(); //Initialize audio player (from just_audio pkg.)
     super.initState();
 
     _focus5 = FocusNode();
@@ -134,12 +141,12 @@ class _MatchTrackerState extends State<MatchTracker> {
     _focusSpeed = FocusNode();
     _focusRound = FocusNode();
 
-    //Check if today times are shown (true) or hidden (false)
+    //Check whether today times are shown (true) or hidden (false)
     _getShowHide().then((value) {
       showToday = value;
     });
 
-    //Check if class has been overridden
+    //Check whether class has been overridden
     _getClassOverride(widget.currentDivision).then((value) {
       overriddenClass = value;
     });
@@ -156,7 +163,6 @@ class _MatchTrackerState extends State<MatchTracker> {
     _calcTotals();
 
     //Assign listeners to each TextField to detect changes.
-
     _focus5.addListener(_focus5Listener);
     _focusShow.addListener(_focusShowListener);
     _focusSH.addListener(_focusSHListener);
@@ -169,6 +175,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   @override
   void dispose() {
+    player.dispose();
     _focus5.dispose();
     _focusShow.dispose();
     _focusSH.dispose();
@@ -177,6 +184,16 @@ class _MatchTrackerState extends State<MatchTracker> {
     _focusPend.dispose();
     _focusSpeed.dispose();
     _focusRound.dispose();
+
+    _controller5.dispose();
+    _controllerShow.dispose();
+    _controllerSH.dispose();
+    _controllerOL.dispose();
+    _controllerPend.dispose();
+    _controllerAcc.dispose();
+    _controllerSpeed.dispose();
+    _controllerRound.dispose();
+
     super.dispose();
   }
 
@@ -234,7 +251,8 @@ class _MatchTrackerState extends State<MatchTracker> {
         child: WillPopScope(
           onWillPop: () async {
             _saveStageTimes();
-            // SystemChannels.textInput.invokeMethod('TextInput.hide');
+            //Make sure keyboard is dismissed when returning to home page
+            SystemChannels.textInput.invokeMethod('TextInput.hide');
             return true;
           },
           //Add ScrollView so that keyboard doesn't cover data fields
@@ -324,10 +342,20 @@ class _MatchTrackerState extends State<MatchTracker> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              //Briefly show color when user taps a stage name
+                              //to display the stage diagram (and play a sound
+                              //of shooting the stage if app sounds is turned on)
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  //Only play a sound if app sounds is 'On'
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/five_to_go.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -420,7 +448,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/showdown.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -513,7 +547,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/smoke_n_hope.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -606,7 +646,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/outer_limits.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -699,7 +745,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/accelerator.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -792,7 +844,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/pendulum.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -885,7 +943,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/speed_option.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -899,6 +963,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   );
                                 },
                                 child: const FittedBox(
+                                  fit: BoxFit.fitWidth,
                                   child: Text(
                                     'Speed Option',
                                     style: TextStyle(
@@ -979,7 +1044,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                               InkWell(
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
-                                onTap: () {
+                                onTap: () async {
+                                  if (widget.appSounds == 'On') {
+                                    await player
+                                        .setAsset('sounds/roundabout.mp3');
+                                    player.play();
+                                  }
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -1570,7 +1641,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
     Alert(
       context: context,
-      type: AlertType.info,
+      type: AlertType.none,
       title: "Confirm...",
       desc: "Enter a new best time of $stageTime for $stageName?",
       buttons: [
@@ -1583,9 +1654,14 @@ class _MatchTrackerState extends State<MatchTracker> {
               fontSize: 20,
             ),
           ),
-          onPressed: () {
-            //Calculate the time cut from previous best, and add time cuts
-            //to previous time cut value and display total time cuts at
+          onPressed: () async {
+            if (widget.appSounds == 'On') {
+              await player.setAsset('sounds/success.mp3');
+              player.play();
+            }
+
+            //Calculate the day's time cuts from previous best, and add time cuts
+            //to previous time cut value and display total time cuts today at
             //bottom center of screen
             switch (bestID) {
               case '5':
@@ -2110,7 +2186,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
 //If user has overridden the class in this division, use SharedPreferences to
-//save he updated class
+//save the updated class
   Future<void> _setClassOverride(String div, String value) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(div, value);
@@ -2123,8 +2199,19 @@ class _MatchTrackerState extends State<MatchTracker> {
     return preferences.getString(div) ?? '';
   }
 
+  // Future<void> _setSoundStatus(String value) async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   preferences.setString('SoundStatus', value);
+  // }
+
+  // Future<String> _getSoundStatus() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   //if SoundStatus is null, return 'On'
+  //   return preferences.getString('SoundStatus') ?? 'On';
+  // }
+
 //Respond to user selection from overflow popup menu
-  void _matchMenuChoiceAction(String menuChoice) {
+  void _matchMenuChoiceAction(String menuChoice) async {
     switch (menuChoice) {
       case 'Clear Division Data':
         _clearDivisionData();
@@ -2188,9 +2275,33 @@ class _MatchTrackerState extends State<MatchTracker> {
             todayClass = '';
 
             _setShowHide('Off');
-            _getShowHide().then((value) {
-              _setShowHide('Off');
+            _getShowHide().then((value) async {
               showToday = value;
+
+              var snackBar = SnackBar(
+                backgroundColor: Constants.mtGreen,
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text('Today times hidden', textAlign: TextAlign.center),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: SizedBox(
+                        height: 20,
+                        width: 50,
+                        child: FaIcon(Icons.visibility_off_sharp),
+                      ),
+                    ),
+                  ],
+                ),
+                // content:
+                //     Text('Today times hidden', textAlign: TextAlign.center),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              if (widget.appSounds == 'On') {
+                await player.setAsset('sounds/ding.mp3');
+                player.play();
+              }
             });
           });
         } else if (showToday == 'Off') {
@@ -2199,8 +2310,30 @@ class _MatchTrackerState extends State<MatchTracker> {
           _calcTodayPeak();
 
           _setShowHide('On');
-          _getShowHide().then((value) {
+          _getShowHide().then((value) async {
             showToday = value;
+            var snackBar = SnackBar(
+              backgroundColor: Constants.mtGreen,
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Today times showing', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: SizedBox(
+                      height: 20,
+                      width: 50,
+                      child: FaIcon(Icons.visibility),
+                    ),
+                  ),
+                ],
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            if (widget.appSounds == 'On') {
+              await player.setAsset('sounds/ding.mp3');
+              player.play();
+            }
           });
         }
 
@@ -2210,6 +2343,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
 //If the current peak percent doesn't support a class previously attained,
 //allow user to override the calculated class and display the correct class.
+//Do not allow choice of a class lower than supported by the current percentage
   Future<void> _overrideClass(BuildContext context) async {
     return await showDialog<String>(
         context: context,
@@ -2224,7 +2358,7 @@ class _MatchTrackerState extends State<MatchTracker> {
             ),
             children: <Widget>[
               SimpleDialogOption(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.pop(context);
                   _calcOverallPeak();
                   _setClassOverride(widget.currentDivision, 'GM');
@@ -2238,6 +2372,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                  if (widget.appSounds == 'On') {
+                    await player.setAsset('sounds/ding.mp3');
+                    player.play();
+                  }
                 },
                 child: const Center(
                   child: Text(
@@ -2250,7 +2389,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                 ),
               ),
               SimpleDialogOption(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.pop(context);
                   _calcOverallPeak();
                   if (double.parse(overallPct) < 95.0) {
@@ -2265,6 +2404,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/ding.mp3');
+                      player.play();
+                    }
                   } else {
                     _setClassOverride(widget.currentDivision, '');
                     final snackBar = SnackBar(
@@ -2274,6 +2417,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/error.mp3');
+                      player.play();
+                    }
                   }
                 },
                 child: const Center(
@@ -2287,7 +2434,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                 ),
               ),
               SimpleDialogOption(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.pop(context);
                   _calcOverallPeak();
                   if (double.parse(overallPct) < 75.0) {
@@ -2302,6 +2449,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/ding.mp3');
+                      player.play();
+                    }
                   } else {
                     _setClassOverride(widget.currentDivision, '');
                     final snackBar = SnackBar(
@@ -2311,6 +2462,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/error.mp3');
+                      player.play();
+                    }
                   }
                 },
                 child: const Center(
@@ -2324,7 +2479,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                 ),
               ),
               SimpleDialogOption(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.pop(context);
                   _calcOverallPeak();
                   if (double.parse(overallPct) < 60.0) {
@@ -2339,6 +2494,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/ding.mp3');
+                      player.play();
+                    }
                   } else {
                     _setClassOverride(widget.currentDivision, '');
                     final snackBar = SnackBar(
@@ -2348,6 +2507,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/error.mp3');
+                      player.play();
+                    }
                   }
                 },
                 child: const Center(
@@ -2361,7 +2524,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                 ),
               ),
               SimpleDialogOption(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.pop(context);
                   _calcOverallPeak();
                   if (double.parse(overallPct) < 40.0) {
@@ -2376,6 +2539,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/ding.mp3');
+                      player.play();
+                    }
                   } else {
                     _setClassOverride(widget.currentDivision, '');
                     final snackBar = SnackBar(
@@ -2385,6 +2552,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (widget.appSounds == 'On') {
+                      await player.setAsset('sounds/error.mp3');
+                      player.play();
+                    }
                   }
                 },
                 child: const Center(
@@ -2405,7 +2576,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         side: const BorderSide(
                             width: 1, color: Constants.mtGreen),
                         primary: Constants.mtGreen),
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.pop(context);
 
                       _setClassOverride(widget.currentDivision, '');
@@ -2420,6 +2591,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                         ),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      if (widget.appSounds == 'On') {
+                        await player.setAsset('sounds/ding.mp3');
+                        player.play();
+                      }
                     },
                     child: const Text(
                       'Remove class override',
@@ -2436,7 +2611,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
 //If user taps best time, calculate average string time to achieve that score
-  //and display it in Snackbar (definition follows method)
+  //and display it in Snackbar (Snackbar definition follows method)
   void _calcBestAvg(String stage, String bestTime) {
     double bestAvg;
     if (stage == 'Outer Limits') {
@@ -2447,12 +2622,16 @@ class _MatchTrackerState extends State<MatchTracker> {
     _snackBarBestAvg(stage, bestAvg);
   }
 
-//Same as above if user taps best class instead of best time
   InkWell bestStage(String stage, String bestStage) {
     return InkWell(
       highlightColor: Constants.mtGreen,
       borderRadius: BorderRadius.circular(20),
-      onTap: () {
+      onTap: () async {
+        if (widget.appSounds == 'On') {
+          await player.setAsset('sounds/ding.mp3');
+          player.play();
+        }
+
         _calcBestAvg(stage, bestStage);
       },
       child: Text(
@@ -2463,11 +2642,17 @@ class _MatchTrackerState extends State<MatchTracker> {
     );
   }
 
+//Same as above if user taps best class instead of best time
   InkWell bestClass(String stage, String bestString, String bestClass) {
     return InkWell(
       highlightColor: Constants.mtGreen,
       borderRadius: BorderRadius.circular(20),
-      onTap: () {
+      onTap: () async {
+        if (widget.appSounds == 'On') {
+          await player.setAsset('sounds/ding.mp3');
+          player.play();
+        }
+
         _calcBestAvg(stage, bestString);
       },
       child: Text(
@@ -2740,7 +2925,7 @@ class _MatchTrackerState extends State<MatchTracker> {
             "Clear",
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
-          onPressed: () {
+          onPressed: () async {
             _controller5.text = '';
             _controllerShow.text = '';
             _controllerSH.text = '';
@@ -2805,6 +2990,10 @@ class _MatchTrackerState extends State<MatchTracker> {
               ),
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            if (widget.appSounds == 'On') {
+              await player.setAsset('sounds/ding.mp3');
+              player.play();
+            }
           },
           width: 20,
         ),
@@ -2824,14 +3013,6 @@ class _MatchTrackerState extends State<MatchTracker> {
       stringTimes.speedOption = '';
       stringTimes.roundabout = '';
     });
-    // stringTimes.fiveToGo = '';
-    // stringTimes.showdown = '';
-    // stringTimes.smokeAndHope = '';
-    // stringTimes.outerLimits = '';
-    // stringTimes.accelerator = '';
-    // stringTimes.pendulum = '';
-    // stringTimes.speedOption = '';
-    // stringTimes.roundabout = '';
 
     await helper.insertStrings(divAbbrev + 'STR', stringTimes);
   }
@@ -2868,11 +3049,11 @@ class _MatchTrackerState extends State<MatchTracker> {
     return count;
   }
 
-  _noClassification(context) {
+  _noClassification(context) async {
+    await player.setAsset('sounds/error.mp3');
+    player.play();
     Alert(
       context: context,
-      type: AlertType.info,
-      title: "",
       desc:
           'You have not entered a minimum of four classifier stage scores for this division.',
       buttons: [

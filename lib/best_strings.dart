@@ -7,8 +7,6 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'database_helper.dart';
 import 'today_text_field.dart';
 
-//
-
 class BestStrings extends StatefulWidget {
   final String currentDivision;
   final String bestStr5;
@@ -947,17 +945,12 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controller5STR.text.length);
     } else {
       if (_controller5STR.text != '') {
-        setState(() {
-          bestStage5 = _calcBestStage(peak5, _controller5STR.text, 4);
-        });
+        setState(
+            () => bestStage5 = _calcBestStage(peak5, _controller5STR.text, 4));
       } else {
-        setState(() {
-          bestStage5 = '';
-        });
+        setState(() => bestStage5 = '');
       }
-//      setState(() {
       _calcBestMatch();
-//      });
 
       _saveStringTimes();
     }
@@ -969,13 +962,10 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerShowSTR.text.length);
     } else {
       if (_controllerShowSTR.text != '') {
-        setState(() {
-          bestStageShow = _calcBestStage(peakShow, _controllerShowSTR.text, 4);
-        });
+        setState(() => bestStageShow =
+            _calcBestStage(peakShow, _controllerShowSTR.text, 4));
       } else {
-        setState(() {
-          bestStageShow = '';
-        });
+        setState(() => bestStageShow = '');
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -988,13 +978,10 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerSHSTR.text.length);
     } else {
       if (_controllerSHSTR.text != '') {
-        setState(() {
-          bestStageSH = _calcBestStage(peakSH, _controllerSHSTR.text, 4);
-        });
+        setState(() =>
+            bestStageSH = _calcBestStage(peakSH, _controllerSHSTR.text, 4));
       } else {
-        setState(() {
-          bestStageSH = '';
-        });
+        setState(() => bestStageSH = '');
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1007,13 +994,10 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerOLSTR.text.length);
     } else {
       if (_controllerOLSTR.text != '') {
-        setState(() {
-          bestStageOL = _calcBestStage(peakOL, _controllerOLSTR.text, 3);
-        });
+        setState(() =>
+            bestStageOL = _calcBestStage(peakOL, _controllerOLSTR.text, 3));
       } else {
-        setState(() {
-          bestStageOL = '';
-        });
+        setState(() => bestStageOL = '');
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1026,13 +1010,10 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerAccSTR.text.length);
     } else {
       if (_controllerAccSTR.text != '') {
-        setState(() {
-          bestStageAcc = _calcBestStage(peakAcc, _controllerAccSTR.text, 4);
-        });
+        setState(() =>
+            bestStageAcc = _calcBestStage(peakAcc, _controllerAccSTR.text, 4));
       } else {
-        setState(() {
-          bestStageAcc = '';
-        });
+        setState(() => bestStageAcc = '');
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1045,13 +1026,10 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerPendSTR.text.length);
     } else {
       if (_controllerPendSTR.text != '') {
-        setState(() {
-          bestStagePend = _calcBestStage(peakPend, _controllerPendSTR.text, 4);
-        });
+        setState(() => bestStagePend =
+            _calcBestStage(peakPend, _controllerPendSTR.text, 4));
       } else {
-        setState(() {
-          bestStagePend = '';
-        });
+        setState(() => bestStagePend = '');
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1064,14 +1042,10 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerSpeedSTR.text.length);
     } else {
       if (_controllerSpeedSTR.text != '') {
-        setState(() {
-          bestStageSpeed =
-              _calcBestStage(peakSpeed, _controllerSpeedSTR.text, 4);
-        });
+        setState(() => bestStageSpeed =
+            _calcBestStage(peakSpeed, _controllerSpeedSTR.text, 4));
       } else {
-        setState(() {
-          bestStageSpeed = '';
-        });
+        setState(() => bestStageSpeed = '');
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1084,14 +1058,10 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerRoundSTR.text.length);
     } else {
       if (_controllerRoundSTR.text != '') {
-        setState(() {
-          bestStageRound =
-              _calcBestStage(peakRound, _controllerRoundSTR.text, 4);
-        });
+        setState(() => bestStageRound =
+            _calcBestStage(peakRound, _controllerRoundSTR.text, 4));
       } else {
-        setState(() {
-          bestStageRound = '';
-        });
+        setState(() => bestStageRound = '');
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1175,7 +1145,7 @@ class _BestStringsState extends State<BestStrings> {
       buttons: [
         DialogButton(
           width: 20,
-          color: Colors.green,
+          color: Constants.mtGreen,
           child: const Text(
             "Cancel",
             style: TextStyle(color: Colors.white, fontSize: 14),
@@ -1184,7 +1154,7 @@ class _BestStringsState extends State<BestStrings> {
 //          width: 60,
         ),
         DialogButton(
-          color: Colors.green,
+          color: Constants.mtGreen,
           child: const Text(
             "Clear",
             style: TextStyle(color: Colors.white, fontSize: 14),
@@ -1217,7 +1187,6 @@ class _BestStringsState extends State<BestStrings> {
               _saveStringTimes();
             });
             Navigator.pop(context);
-//            calcBestMatch();
           },
           width: 20,
         ),
@@ -1228,7 +1197,7 @@ class _BestStringsState extends State<BestStrings> {
   String _calcBestStage(double peak, String timeText, int stringNum) {
     double bestStage = double.parse(timeText) * stringNum;
     double bestPct = (peak / bestStage) * 100;
-//    setState(() {
+
     if (bestPct < 40.0) {
       return '${bestStage.toStringAsFixed(2)}/D';
     } else if (bestPct < 60.0) {
@@ -1242,7 +1211,6 @@ class _BestStringsState extends State<BestStrings> {
     } else {
       return '${bestStage.toStringAsFixed(2)}/G';
     }
-//    });
   }
 
   _saveStringTimes() async {

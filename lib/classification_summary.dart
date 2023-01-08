@@ -19,10 +19,6 @@ class ClassificationSummary extends StatefulWidget {
 class _ClassificationSummaryState extends State<ClassificationSummary> {
   DatabaseHelper helper = DatabaseHelper.instance;
 
-  String division;
-  String percent;
-  String currClass;
-
   String div1 = '';
   String div1Pct = '';
   String div1Class = '';

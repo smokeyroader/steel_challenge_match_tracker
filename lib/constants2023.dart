@@ -9,6 +9,7 @@ class Constants {
     'Clear Recent Guns',
     'Save Recent Guns',
     'Classification Summary',
+    'App Sounds On/Off'
     'Resources',
     'Help',
   ];

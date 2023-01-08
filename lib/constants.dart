@@ -6,9 +6,10 @@ class Constants {
 
   //Home screen main menu items
   static const List<String> mainMenuChoices = [
-    'Clear Recent Guns',
     'Save Recent Guns',
+    'Clear Recent/Saved Guns',
     'Classification Summary',
+    'App Sounds On/Off',
     'Resources',
     'Help',
   ];

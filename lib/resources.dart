@@ -69,6 +69,8 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
+
+
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
@@ -87,7 +89,8 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
-//
+
+
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
@@ -103,6 +106,8 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
+
+
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
@@ -114,10 +119,43 @@ class _ResourcesState extends State<Resources> {
                           );
                         },
                         child: const DisplayText(
-                          text: 'Steel Challenge Training Aids',
+                          text: 'Steel Challenge Dry Fire Banners',
                         ),
                       ),
                     ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          _launchUrl(
+                            Uri.parse(
+                              'https://gofastdontsuck.net/swag-store/search?keyword=steel%20challenge',
+                            ),
+                          );
+                        },
+                        child: const DisplayText(
+                          text: 'Steel Challenge Dry Fire Stickers',
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          _launchUrl(
+                            Uri.parse(
+                              'https://www.lasershot.com/products/product/81-steel-challenge',
+                            ),
+                          );
+                        },
+                        child: const DisplayText(
+                          text: 'Steel Challenge Laser Dry Fire',
+                        ),
+                      ),
+                    ),
+
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
@@ -133,6 +171,8 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
+
+
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
@@ -148,6 +188,8 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
+
+
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(
@@ -163,6 +205,8 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
+
+
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(

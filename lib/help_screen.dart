@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Constants.dart';
+import 'constants.dart';
 
 class Help extends StatelessWidget {
   const Help({Key key}) : super(key: key);
@@ -25,7 +25,6 @@ class Help extends StatelessWidget {
                     text: TextSpan(
                       style: const TextStyle(
                         fontSize: 14.0,
-//                      fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                       children: <TextSpan>[
@@ -43,7 +42,8 @@ class Help extends StatelessWidget {
                               'Begin by selecting the first division (gun type) you wish to track from the drop-down box '
                               'on the home page. As you select divisions, the home page will display each division you '
                               'have selected (up to four) in any one session. As you change guns during a match, you may '
-                              'tap one of these to select your division without using the drop-down list. Use the overflow '
+                              'tap one of these to select your division without using the drop-down list. New with '
+                              'Version 2.2.5: Press and hold any division you want to remove from your working list. Use the overflow '
                               'menu (three dots) at the top right of the screen to clear the list of recent guns or to save '
                               'the list so your favorite divisions will appear each time you open the app.\r\n\n',
                         ),
@@ -107,7 +107,8 @@ class Help extends StatelessWidget {
                         TextSpan(
                           style: const TextStyle(fontSize: 18.0),
                           text:
-                              '$bullet Tap any stage name to bring up a stage diagram for that stage.\r\n\n$bullet Tap any '
+                              '$bullet Tap any stage name to bring up a stage diagram for that stage and (new in Version 2.2.5) hear '
+                              'what the stage sounds like being shot by a professional or top GM shooter (if app sounds have not been turned off).\r\n\n$bullet Tap any '
                               '“Best” time to see (in a popup) the average string times it took to '
                               'achieve that stage score. New in Version 2.2.5: Tap "More" in the popup to see the average '
                               'string times needed for each class for that division and stage. \r\n\n$bullet Select “Track Class” from any division menu to '
@@ -115,13 +116,13 @@ class Help extends StatelessWidget {
                               'higher classifications in that division (the time cuts shown will be '
                               'most valid after you have shot all eight SCSA classification stages). \r\n\n'
                               '$bullet Select "Override Class" from the division menu if your current percentage does '
-                              'not support your official classification in that division. \r\n\n$bullet Select '
+                              'not support your official classification in that division. You may also remove any previous overrides.\r\n\n$bullet Select '
                               '“Track Best Strings” from the division menu to record your best strings for '
                               'each stage. \r\n\n$bullet Select "Show/Hide Today Times" to toggle display of current match '
                               'times on or off. \r\n\n$bullet From the home screen menu, select "Classification Summary" '
                               'to see your current percentage and class for every division for '
-                              'which you have a classification. \r\n\n$bullet Select “Resources” from the main menu '
-                              'to see a list of useful links for Steel Challenge competitors.\r\n\n',
+                              'which you have a classification. \r\n\n$bullet From the home screen menu, select "App Sounds On/Off to enable or disable app sounds. \r\n\n$bullet Select '
+                              '"Resources" from the main menu to see a list of useful links for Steel Challenge competitors.\r\n\n',
                         ),
                         const TextSpan(
                           text: 'Contact Us\r\n',
@@ -137,7 +138,25 @@ class Help extends StatelessWidget {
                           ),
                           text:
                               'Send bug reports or requests or recommendations for additional '
-                              'features to scmatchtracker@gmail.com.',
+                              'features to scmatchtracker@gmail.com.\r\n\n',
+                        ),
+                        const TextSpan(
+                          text: 'Disclaimer\r\n',
+                          style: TextStyle(
+                            color: Constants.mtGreen,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        const TextSpan(
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
+                          text:
+                              'The Steel Challenge Match Tracker app is not supported or '
+                              'endorsed by or officially associated in any way '
+                              'with the Steel Challenge Shooting Association (SCSA) or the '
+                              'United States Practical Shooting Association (USPSA).',
                         ),
                       ],
                     ),
