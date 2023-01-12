@@ -24,34 +24,38 @@ class _TodayTimeState extends State<TodayTime> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 60,
-      height: 20,
-      child: TextField(
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 14.0,
-          color: widget.color,
-          fontWeight: widget.color == Colors.green
-              ? FontWeight.bold
-              : FontWeight.normal,
-        ),
-        controller: widget.controller,
-        focusNode: widget.focusNode,
-        decoration: const InputDecoration.collapsed(
-          hintText: null,
-          border: OutlineInputBorder(),
-        ),
-        textInputAction: TextInputAction.done,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(5),
-          FilteringTextInputFormatter.deny(RegExp('[\\-|,.\\ ]')),
+    return FittedBox(
+      fit: BoxFit.contain,
+      child: SizedBox(
+        height: 20,
+        width: 60,
+        child: TextField(
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          style: TextStyle(
+            fontSize: 16.0,
+            color: widget.color,
+            fontWeight: widget.color == Colors.green
+                ? FontWeight.bold
+                : FontWeight.normal,
+          ),
+          controller: widget.controller,
+          focusNode: widget.focusNode,
+          decoration: const InputDecoration.collapsed(
+            hintText: null,
+            border: OutlineInputBorder(),
+          ),
+          textInputAction: TextInputAction.done,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(5),
+            FilteringTextInputFormatter.deny(RegExp('[\\-|,.\\ ]')),
 //          FilteringTextInputFormatter.allow(RegExp('[0-9]')),
-        ],
-        keyboardType: const TextInputType.numberWithOptions(decimal: false),
-        onChanged: (text) {
-          autoFormat(widget.controller);
-        },
+          ],
+          keyboardType: const TextInputType.numberWithOptions(decimal: false),
+          onChanged: (text) {
+            autoFormat(widget.controller);
+          },
+        ),
       ),
     );
   }

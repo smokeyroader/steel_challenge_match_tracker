@@ -110,20 +110,41 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 color: Constants.mtGreen,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: const <Widget>[
                     Padding(
                       padding: EdgeInsets.only(left: 16.0),
-                      child: _HeadingContainer(heading: 'Division'),
+                      child: SizedBox(
+                        height: 20,
+                        child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: _HeadingContainer(heading: 'Division')),
+                      ),
+                    ),
+                    // SizedBox(
+                    //   width: 10,
+                    // ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30.0),
+                      child: SizedBox(
+                        height: 20,
+                        child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: _HeadingContainer(heading: 'Current %')),
+                      ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 16.0),
-                      child: _HeadingContainer(heading: 'Current Percent'),
+                      padding: EdgeInsets.only(left: 12.0),
+                      child: SizedBox(
+                        height: 20,
+                        child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: _HeadingContainer(heading: 'Current Class')),
+                      ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 16.0),
-                      child: _HeadingContainer(heading: 'Current Class'),
-                    ),
+                    // SizedBox(
+                    //   width: 30,
+                    // )
                   ],
                 ),
               ),
@@ -934,6 +955,7 @@ class _HeadingContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FittedBox(
+      fit: BoxFit.fitHeight,
       child: Text(heading,
           style: const TextStyle(
             fontSize: 14.0,

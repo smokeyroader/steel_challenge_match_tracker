@@ -5,7 +5,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:steel_challenge_match_tracker/string_avg_needed.dart';
 
 import 'string_avg_needed.dart';
 import 'best_strings.dart';
@@ -338,7 +337,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 70.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -349,7 +348,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 highlightColor: Constants.mtGreen,
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () async {
-                                  //Only play a sound if app sounds is 'On'
+                                  //Only play a sound if app sounds are 'On'
                                   if (widget.appSounds == 'On') {
                                     await player
                                         .setAsset('sounds/five_to_go.mp3');
@@ -368,22 +367,29 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  child: Text(
-                                    '5 to Go',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '5 to Go',
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '101 ($peak5)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '101 ($peak5)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -395,7 +401,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 16.0,
                           ),
                           child: SizedBox(
-                            width: 80.0,
+                            width: 75.0,
                             child: (Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
@@ -420,11 +426,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPct5,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPct5,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -441,7 +451,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 75.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -467,22 +477,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  child: Text(
-                                    'Showdown',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        'Showdown',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '102 ($peakShow)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '102 ($peakShow)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -519,11 +539,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPctShow,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPctShow,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -540,7 +564,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 75.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -566,22 +590,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  child: Text(
-                                    'Smoke&Hope',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 40.0),
+                                      child: Text(
+                                        'Smoke&Hope',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '103 ($peakSH)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '103 ($peakSH)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -618,11 +652,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPctSH,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPctSH,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -639,7 +677,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 75.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -665,22 +703,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  child: Text(
-                                    'Outer Limits',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 26.0),
+                                      child: Text(
+                                        'Outer Limits',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '104 ($peakOL)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '104 ($peakOL)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -717,11 +765,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPctOL,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPctOL,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -738,7 +790,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 75.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -764,22 +816,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  child: Text(
-                                    'Accelerator',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 22.0),
+                                      child: Text(
+                                        'Accelerator',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '105 ($peakAcc)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '105 ($peakAcc)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -816,11 +878,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPctAcc,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPctAcc,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -837,7 +903,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 75.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -863,22 +929,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  child: Text(
-                                    'Pendulum',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 12.0),
+                                      child: Text(
+                                        'Pendulum',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '106 ($peakPend)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '106 ($peakPend)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -915,11 +991,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPctPend,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPctPend,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -936,7 +1016,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 75.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -962,23 +1042,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  fit: BoxFit.fitWidth,
-                                  child: Text(
-                                    'Speed Option',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 40.0),
+                                      child: Text(
+                                        'Speed Option',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '107 ($peakSpeed)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '107 ($peakSpeed)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -1016,11 +1105,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPctSpeed,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPctSpeed,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -1037,7 +1130,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         SizedBox(
-                          width: 75.0,
+                          width: 65.0,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -1063,22 +1156,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     ),
                                   );
                                 },
-                                child: const FittedBox(
-                                  child: Text(
-                                    'Roundabout',
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
+                                child: const SizedBox(
+                                  height: 20,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 26.0),
+                                      child: Text(
+                                        'Roundabout',
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                              FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  '108 ($peakRound)',
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
+                              SizedBox(
+                                height: 15,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    '108 ($peakRound)',
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ),
                               )
@@ -1116,11 +1219,15 @@ class _MatchTrackerState extends State<MatchTracker> {
                             right: 4.0,
                           ),
                           child: SizedBox(
-                            width: 75.0,
-                            child: Text(
-                              todayPctRound,
-                              style: const TextStyle(
-                                fontSize: 14.0,
+                            height: 20,
+                            width: 65.0,
+                            child: FittedBox(
+                              fit: BoxFit.fitHeight,
+                              child: Text(
+                                todayPctRound,
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
                               ),
                             ),
                           ),
@@ -1138,37 +1245,36 @@ class _MatchTrackerState extends State<MatchTracker> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Container(
-                              width: 65.0,
+                              width: 60.0,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
+                            const Padding(
+                              padding: EdgeInsets.only(
                                 right: 18.0,
                               ),
-                              child: ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  maxHeight: 20.0,
-                                ),
-                                child: const Text(
-                                  'Time',
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w900,
+                              child: SizedBox(
+                                height: 18,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 12.0),
+                                    child: Text(
+                                      'Time',
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: 60.0,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 18.0,
-                                ),
-                                child: ConstrainedBox(
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 20,
-                                    maxWidth: 50,
-                                  ),
-                                  child: const Text(
+                            const SizedBox(
+                              width: 40,
+                              child: SizedBox(
+                                height: 18,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
                                     'Peak',
                                     style: TextStyle(
                                       fontSize: 12.0,
@@ -1178,18 +1284,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 70.0,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 12.0,
-                                ),
-                                child: ConstrainedBox(
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 20.0,
-                                    maxWidth: 50,
-                                  ),
-                                  child: const Text(
+                              child: SizedBox(
+                                height: 18,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
                                     '%Peak',
                                     style: TextStyle(
                                       fontSize: 12.0,
@@ -1199,21 +1300,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 65.0,
                               child: Padding(
-                                padding: const EdgeInsets.only(
+                                padding: EdgeInsets.only(
                                   right: 8.0,
                                 ),
-                                child: ConstrainedBox(
-                                  constraints: const BoxConstraints(
-                                    maxHeight: 20,
-                                  ),
-                                  child: const Text(
-                                    'Class',
-                                    style: TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w900,
+                                child: SizedBox(
+                                  height: 18,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      'Class',
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w900,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -1235,50 +1337,70 @@ class _MatchTrackerState extends State<MatchTracker> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             const SizedBox(
+                              height: 20,
                               width: 60.0,
-                              child: Text(
-                                'Today',
-                                style: TextStyle(
-                                  fontSize: 14,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  'Today',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
-                                textAlign: TextAlign.left,
                               ),
                             ),
                             SizedBox(
+                              height: 20,
                               width: 58.0,
-                              child: Text(
-                                todayTime,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayTime,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
+                              height: 20,
                               width: 58.0,
-                              child: Text(
-                                todayPeak,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPeak,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
+                              height: 20,
                               width: 58.0,
-                              child: Text(
-                                todayPct,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPct,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              width: 55.0,
-                              child: Text(
-                                todayClass,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              height: 20,
+                              width: 70.0,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayClass,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
-                                textAlign: TextAlign.left,
                               ),
                             ),
                           ],
@@ -1292,48 +1414,68 @@ class _MatchTrackerState extends State<MatchTracker> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             const SizedBox(
-                              width: 65.0,
-                              child: Text(
-                                'Overall',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                            SizedBox(
+                              height: 20,
                               width: 60.0,
-                              child: Text(
-                                overallTime,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  'Overall',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
                               ),
                             ),
                             SizedBox(
-                              width: 60.0,
-                              child: Text(
-                                overallPeak,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              height: 20,
+                              width: 58.0,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  overallTime,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              width: 65.0,
-                              child: Text(
-                                overallPct,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              height: 20,
+                              width: 58.0,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  overallPeak,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              width: 55.0,
-                              child: Text(
-                                overallClass,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                              height: 20,
+                              width: 58.0,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  overallPct,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                              width: 70.0,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  overallClass,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
@@ -2634,10 +2776,20 @@ class _MatchTrackerState extends State<MatchTracker> {
 
         _calcBestAvg(stage, bestStage);
       },
-      child: Text(
-        bestStage,
-        style: const TextStyle(fontSize: 14.0),
-        textAlign: TextAlign.left,
+      child: SizedBox(
+        height: 20,
+        width: 40,
+        child: FittedBox(
+          fit: BoxFit.fitHeight,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text(
+              bestStage,
+              style: const TextStyle(fontSize: 14.0),
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -2655,10 +2807,20 @@ class _MatchTrackerState extends State<MatchTracker> {
 
         _calcBestAvg(stage, bestString);
       },
-      child: Text(
-        bestClass,
-        style: const TextStyle(fontSize: 14.0),
-        textAlign: TextAlign.left,
+      child: SizedBox(
+        height: 20,
+        width: 22,
+        child: FittedBox(
+          fit: BoxFit.fitHeight,
+          child: Padding(
+            padding: const EdgeInsets.only( left: 16.0),
+            child: Text(
+              bestClass,
+              style: const TextStyle(fontSize: 14.0),
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -2875,7 +3037,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     } else if (bestClass < 85) {
       return '/A';
     } else if (bestClass < 95) {
-      return '/M';
+      return ' /M';
     } else {
       return '/G';
     }

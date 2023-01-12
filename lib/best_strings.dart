@@ -331,28 +331,40 @@ class _BestStringsState extends State<BestStrings> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(
+                    top: 8.0,
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const FittedBox(
-                              child: Text(
-                                '5 to Go',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  '5 to Go',
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
-                            Text(
-                              widget.bestStr5,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStr5,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -362,10 +374,19 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvg5,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 4.0),
+                                  child: Text(
+                                    _bestAvg5,
+                                    style: const TextStyle(fontSize: 14.0),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -385,9 +406,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStage5,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStage5,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -402,20 +429,31 @@ class _BestStringsState extends State<BestStrings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const FittedBox(
-                              child: Text(
-                                'Showdown',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  'Showdown',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                            Text(
-                              widget.bestStrShow,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStrShow,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -425,10 +463,16 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvgShow,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  _bestAvgShow,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -445,9 +489,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStageShow,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageShow,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -462,20 +512,34 @@ class _BestStringsState extends State<BestStrings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const FittedBox(
-                              child: Text(
-                                'Smoke&Hope',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 16.0),
+                                  child: Text(
+                                    'Smoke&Hope',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               ),
                             ),
-                            Text(
-                              widget.bestStrSH,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStrSH,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -485,10 +549,16 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvgSH,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  _bestAvgSH,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -506,9 +576,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStageSH,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageSH,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -523,20 +599,30 @@ class _BestStringsState extends State<BestStrings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const FittedBox(
-                              child: Text(
-                                'Outer Limits',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                child: Text(
+                                  'Outer Limits',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                            Text(
-                              widget.bestStrOL,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStrOL,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -546,10 +632,16 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvgOL,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  _bestAvgOL,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -566,9 +658,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStageOL,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageOL,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -583,20 +681,31 @@ class _BestStringsState extends State<BestStrings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const FittedBox(
-                              child: Text(
-                                'Accelerator',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  'Accelerator',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                            Text(
-                              widget.bestStrAcc,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStrAcc,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -606,10 +715,16 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvgAcc,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  _bestAvgAcc,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -627,9 +742,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStageAcc,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageAcc,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -644,20 +765,31 @@ class _BestStringsState extends State<BestStrings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const FittedBox(
-                              child: Text(
-                                'Pendulum',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  'Pendulum',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                            Text(
-                              widget.bestStrPend,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStrPend,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -667,10 +799,16 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvgPend,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  _bestAvgPend,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -687,9 +825,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStagePend,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStagePend,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -704,20 +848,34 @@ class _BestStringsState extends State<BestStrings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const FittedBox(
-                              child: Text(
-                                'Speed Option',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 16.0),
+                                  child: Text(
+                                    'Speed Option',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               ),
                             ),
-                            Text(
-                              widget.bestStrSpeed,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStrSpeed,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -727,10 +885,16 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvgSpeed,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  _bestAvgSpeed,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -747,9 +911,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStageSpeed,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageSpeed,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -764,20 +934,31 @@ class _BestStringsState extends State<BestStrings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(
-                        width: 120.0,
+                        width: 90.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const FittedBox(
-                              child: Text(
-                                'Roundabout',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                            const SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  'Roundabout',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                            Text(
-                              widget.bestStrRound,
-                              style: const TextStyle(fontSize: 14.0),
+                            SizedBox(
+                              height: 15,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  widget.bestStrRound,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -787,10 +968,16 @@ class _BestStringsState extends State<BestStrings> {
                         child: (Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              _bestAvgRound,
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.left,
+                            SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  _bestAvgRound,
+                                  style: const TextStyle(fontSize: 14.0),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ),
                           ],
                         )),
@@ -807,9 +994,15 @@ class _BestStringsState extends State<BestStrings> {
                           width: 75.0,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Text(
-                              bestStageRound,
-                              style: const TextStyle(fontSize: 14.0),
+                            child: SizedBox(
+                              height: 20,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageRound,
+                                  style: const TextStyle(fontSize: 14.0),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -823,21 +1016,25 @@ class _BestStringsState extends State<BestStrings> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Container(width: 75.0),
+                        Container(width: 65.0),
                         const SizedBox(
                           width: 65.0,
                           child: Text(
                             'Time',
                             style: TextStyle(
                                 fontSize: 14.0, fontWeight: FontWeight.w900),
+                            textAlign: TextAlign.left,
                           ),
                         ),
                         const SizedBox(
-                          width: 65.0,
+                          width: 60.0,
                           child: Text(
                             'Peak',
                             style: TextStyle(
-                                fontSize: 14.0, fontWeight: FontWeight.w900),
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w900,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
                         ),
                         const SizedBox(
@@ -867,40 +1064,60 @@ class _BestStringsState extends State<BestStrings> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         const SizedBox(
-                          width: 65.0,
-                          child: Text(
-                            'Best Match',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 16.0),
+                          height: 40,
+                          width: 50.0,
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              'Best\r\nMatch',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 16.0),
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: 65.0,
-                          child: Text(
-                            bestMatchTime,
-                            style: const TextStyle(fontSize: 16.0),
+                          height: 20,
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              bestMatchTime,
+                              style: const TextStyle(fontSize: 16.0),
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: 65.0,
-                          child: Text(
-                            totPeak,
-                            style: const TextStyle(fontSize: 16.0),
+                          height: 20,
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              totPeak,
+                              style: const TextStyle(fontSize: 16.0),
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: 65.0,
-                          child: Text(
-                            matchPct,
-                            style: const TextStyle(fontSize: 16.0),
+                          height: 20,
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              matchPct,
+                              style: const TextStyle(fontSize: 16.0),
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: 55.0,
-                          child: Text(
-                            bestMatchClass,
-                            style: const TextStyle(fontSize: 16.0),
-                            textAlign: TextAlign.left,
+                          height: 20,
+                          child: FittedBox(
+                            fit: BoxFit.fitHeight,
+                            child: Text(
+                              bestMatchClass,
+                              style: const TextStyle(fontSize: 16.0),
+                              textAlign: TextAlign.left,
+                            ),
                           ),
                         ),
                       ],
