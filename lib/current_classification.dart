@@ -12,9 +12,7 @@ class CurrentClassification extends StatelessWidget {
   CurrentClassification({Key key}) : super(key: key);
 
   Future<void> _launchUrl(Uri url) async {
-    if (!await launchUrl(url)
-        // mode: LaunchMode.externalApplication,
-        ) {}
+    if (!await launchUrl(url)) {}
     {
       throw 'Could not launch $url';
     }
@@ -48,14 +46,11 @@ class CurrentClassification extends StatelessWidget {
                   decoration: const InputDecoration(hintText: 'USPSA Member #'),
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.text,
-
                   inputFormatters: [
                     FilteringTextInputFormatter.deny(
                       RegExp('[\\-|,\\ ]'),
                     ),
                   ],
-//                    decoration:
-//                        InputDecoration.collapsed(hintText: 'USPSA Member #:'),
                 ),
               ),
               ElevatedButton(

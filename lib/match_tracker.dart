@@ -15,14 +15,14 @@ import 'stage_diagrams.dart';
 import 'today_text_field.dart';
 
 class MatchTracker extends StatefulWidget {
-  //Set current division sent from mt_home_page.dart
+  //Set current division sent from mt_home_page.dart.
   final String currentDivision;
-  final String appSounds; //Determines whether user has turned off app sounds
+  final String appSounds; //Determines whether user has turned off app sounds.
 
   const MatchTracker({
     Key key,
     this.currentDivision,
-    this.appSounds, //If 'On,' sounds will play; if 'Off,' sounds will be muted
+    this.appSounds, //If 'On,' sounds will play; if 'Off,' sounds will be muted.
   }) : super(key: key);
 
   @override
@@ -30,12 +30,12 @@ class MatchTracker extends StatefulWidget {
 }
 
 class _MatchTrackerState extends State<MatchTracker> {
-  AudioPlayer player; //Declare audio player for playing app sounds
+  AudioPlayer player; //Declare audio player for playing app sounds.
 
-  //Establish connection with MatchTracker.db
+  //Establish connection with MatchTracker.db.
   DatabaseHelper helper = DatabaseHelper.instance;
 
-  //Line below needed to display Snackbars
+  //Line below needed to display Snackbars.
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
   //Set controllers to retrieve stage times from TextFields
@@ -48,7 +48,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   final TextEditingController _controllerSpeed = TextEditingController();
   final TextEditingController _controllerRound = TextEditingController();
 
-  //Declare focusNodes to detect change in focus of TextFields
+  //Declare focusNodes to detect change in focus of TextFields.
   FocusNode _focus5;
   FocusNode _focusShow;
   FocusNode _focusSH;
@@ -114,7 +114,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   String timeCuts = '';
 
 // Permit changing today time font to green and bold if a new personal
-//best is entered
+//best is entered.
   Color newBestColor5;
   Color newBestColorShow;
   Color newBestColorSH;
@@ -128,7 +128,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   @override
   void initState() {
-    player = AudioPlayer(); //Initialize audio player (from just_audio pkg.)
+    player = AudioPlayer(); //Initialize audio player (from just_audio pkg.).
     super.initState();
 
     _focus5 = FocusNode();
@@ -140,25 +140,25 @@ class _MatchTrackerState extends State<MatchTracker> {
     _focusSpeed = FocusNode();
     _focusRound = FocusNode();
 
-    //Check whether today times are shown (true) or hidden (false)
+    //Check whether today times are shown (true) or hidden (false).
     _getShowHide().then((value) {
       showToday = value;
     });
 
-    //Check whether class has been overridden
+    //Check whether class has been overridden.
     _getClassOverride(widget.currentDivision).then((value) {
       overriddenClass = value;
     });
 
     //Set division abbreviation to be used to access the correct table when
-    //saving and retrieving times
+    //saving and retrieving times.
     divAbbrev = Constants.getDivAbbrev(widget.currentDivision);
 
-    //Get and set best and today times from database
+    //Get and set best and today times from database.
     _getStageTimes();
 
     //Call method to calculate and show all current total times after
-    //retrieval from database
+    //retrieval from database.
     _calcTotals();
 
     //Assign listeners to each TextField to detect changes.
@@ -198,7 +198,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   @override
   Widget build(BuildContext context) {
-    //Get peak times for the division from constants class
+    //Get peak times for the division from constants class.
     peak5 = Constants.getPeak5(widget.currentDivision);
     peakShow = Constants.getPeakShow(widget.currentDivision);
     peakSH = Constants.getPeakSH(widget.currentDivision);
@@ -216,7 +216,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
         backgroundColor: Constants.mtGreen,
         //Create popup menu (stacked dots at the right of AppBar)
-        //Menu is populated with a list from the Constants.dart file
+        //Menu is populated with a list from the Constants.dart file.
         actions: <Widget>[
           PopupMenuButton<String>(
             shape: RoundedRectangleBorder(
@@ -246,1320 +246,1329 @@ class _MatchTrackerState extends State<MatchTracker> {
             currentFocus.unfocus();
           }
         },
-        //Override both back buttons to also save data when tapped
+        //Override both back buttons to also save data when tapped.
         child: WillPopScope(
           onWillPop: () async {
             _saveStageTimes();
-            //Make sure keyboard is dismissed when returning to home page
-            SystemChannels.textInput.invokeMethod('TextInput.hide');
+
             return true;
           },
-          //Add ScrollView so that keyboard doesn't cover data fields
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 8.0,
-                left: 8.0,
-                right: 8.0,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  FittedBox(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(
-                            2.0,
-                          ),
-                          child: FittedBox(
-                            child: Text(
-                              widget.currentDivision,
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                color: Constants.mtGreen,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  left: 8.0,
+                  right: 8.0,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    FittedBox(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(
+                              2.0,
+                            ),
+                            child: FittedBox(
+                              child: Text(
+                                widget.currentDivision,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Constants.mtGreen,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 20.0,
-                    color: Constants.mtGreen,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: _HeadText(
-                            text: 'Stage',
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 24.0,
-                          ),
-                          child: SizedBox(
-                            width: 60.0,
+                    Container(
+                      height: 20,
+                      color: Constants.mtGreen,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const <Widget>[
+                          SizedBox(
+                            width: 65,
                             child: _HeadText(
-                              text: 'Best',
+                              text: 'Stage',
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 60.0,
-                          child: _HeadText(
-                            text: 'Today',
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 24.0,
+                            ),
+                            child: SizedBox(
+                              width: 60,
+                              child: _HeadText(
+                                text: 'Best',
+                              ),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 85.0,
-                          child: _HeadText(
-                            text: '%/Class',
+                          Padding(
+                            padding: EdgeInsets.only(left: 6.0),
+                            child: SizedBox(
+                              width: 60,
+                              child: _HeadText(
+                                text: 'Today',
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 75,
+                            child: _HeadText(
+                              text: '%/Class',
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              //Briefly show color when user taps a stage name
-                              //to display the stage diagram (and play a sound
-                              //of shooting the stage if app sounds is turned on)
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  //Only play a sound if app sounds are 'On'
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/five_to_go.mp3');
-                                    player.play();
-                                  }
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 8.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                //Briefly show color when user taps a stage name
+                                //to display the stage diagram (and play a sound
+                                //of shooting the stage if app sounds is turned on).
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    //Only play a sound if app sounds are 'On.'
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/five_to_go.mp3');
+                                      player.play();
+                                    }
 
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
-                                          'Five to Go',
-                                          'images/five_to_go.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
-                                  child: FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: Text(
-                                      '5 to Go',
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.bold,
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'Five to Go',
+                                            'images/five_to_go.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Text(
+                                        '5 to Go',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '101 ($peak5)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
+                                SizedBox(
+                                  height: 15,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '101 ($peak5)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Five to Go', best5),
-                                bestClass('Five to Go', best5, bestClass5),
+                                )
                               ],
-                            )),
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Five to Go', best5),
+                                  bestClass('Five to Go', best5, bestClass5),
+                                ],
+                              )),
+                            ),
                           ),
-                          child: TodayTime(
-                            newBestColor5,
-                            _controller5,
-                            _focus5,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColor5,
+                              _controller5,
+                              _focus5,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPct5,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPct5,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/showdown.mp3');
-                                    player.play();
-                                  }
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/showdown.mp3');
+                                      player.play();
+                                    }
 
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'Showdown',
+                                            'images/showdown.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 4.0),
+                                        child: Text(
                                           'Showdown',
-                                          'images/showdown.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
-                                  child: FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                        'Showdown',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '102 ($peakShow)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Showdown', bestShow),
-                                bestClass('Showdown', bestShow, bestClassShow),
-                              ],
-                            )),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          child: TodayTime(
-                            newBestColorShow,
-                            _controllerShow,
-                            _focusShow,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPctShow,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/smoke_n_hope.mp3');
-                                    player.play();
-                                  }
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
-                                          'Smoke & Hope',
-                                          'images/smoke_n_hope.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
+                                SizedBox(
+                                  height: 15,
                                   child: FittedBox(
                                     fit: BoxFit.fitHeight,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 40.0),
-                                      child: Text(
-                                        'Smoke&Hope',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '103 ($peakSH)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Smoke & Hope', bestSH),
-                                bestClass('Smoke & Hope', bestSH, bestClassSH),
-                              ],
-                            )),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          child: TodayTime(
-                            newBestColorSH,
-                            _controllerSH,
-                            _focusSH,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPctSH,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/outer_limits.mp3');
-                                    player.play();
-                                  }
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
-                                          'Outer Limits',
-                                          'images/outer_limits.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
-                                  child: FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 26.0),
-                                      child: Text(
-                                        'Outer Limits',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '104 ($peakOL)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Outer Limits', bestOL),
-                                bestClass('Outer Limits', bestOL, bestClassOL),
-                              ],
-                            )),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          child: TodayTime(
-                            newBestColorOL,
-                            _controllerOL,
-                            _focusOL,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPctOL,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/accelerator.mp3');
-                                    player.play();
-                                  }
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
-                                          'Accelerator',
-                                          'images/accelerator.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
-                                  child: FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 22.0),
-                                      child: Text(
-                                        'Accelerator',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '105 ($peakAcc)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Accelerator', bestAcc),
-                                bestClass('Accelerator', bestAcc, bestClassAcc),
-                              ],
-                            )),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          child: TodayTime(
-                            newBestColorAcc,
-                            _controllerAcc,
-                            _focusAcc,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPctAcc,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/pendulum.mp3');
-                                    player.play();
-                                  }
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
-                                          'The Pendulum',
-                                          'images/pendulum.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
-                                  child: FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 12.0),
-                                      child: Text(
-                                        'Pendulum',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '106 ($peakPend)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Pendulum', bestPend),
-                                bestClass('Pendulum', bestPend, bestClassPend),
-                              ],
-                            )),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          child: TodayTime(
-                            newBestColorPend,
-                            _controllerPend,
-                            _focusPend,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPctPend,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/speed_option.mp3');
-                                    player.play();
-                                  }
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
-                                          'Speed Option',
-                                          'images/speed_option.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
-                                  child: FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 40.0),
-                                      child: Text(
-                                        'Speed Option',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '107 ($peakSpeed)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Speed Option', bestSpeed),
-                                bestClass(
-                                    'Speed Option', bestSpeed, bestClassSpeed),
-                              ],
-                            )),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          child: TodayTime(
-                            newBestColorSpeed,
-                            _controllerSpeed,
-                            _focusSpeed,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPctSpeed,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 4.0,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        SizedBox(
-                          width: 65.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              InkWell(
-                                highlightColor: Constants.mtGreen,
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
-                                  if (widget.appSounds == 'On') {
-                                    await player
-                                        .setAsset('sounds/roundabout.mp3');
-                                    player.play();
-                                  }
-
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return const StageDiagram(
-                                          'Roundabout',
-                                          'images/roundabout.jpg',
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const SizedBox(
-                                  height: 20,
-                                  child: FittedBox(
-                                    fit: BoxFit.fitHeight,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 26.0),
-                                      child: Text(
-                                        'Roundabout',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '108 ($peakRound)',
-                                    style: const TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 16.0,
-                          ),
-                          child: SizedBox(
-                            width: 75.0,
-                            child: (Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                bestStage('Roundabout', bestRound),
-                                bestClass(
-                                    'Roundabout', bestRound, bestClassRound),
-                              ],
-                            )),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          child: TodayTime(
-                            newBestColorRound,
-                            _controllerRound,
-                            _focusRound,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            right: 4.0,
-                          ),
-                          child: SizedBox(
-                            height: 20,
-                            width: 65.0,
-                            child: FittedBox(
-                              fit: BoxFit.fitHeight,
-                              child: Text(
-                                todayPctRound,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8.0,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Container(
-                              width: 60.0,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(
-                                right: 18.0,
-                              ),
-                              child: SizedBox(
-                                height: 18,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 12.0),
                                     child: Text(
-                                      'Time',
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w900,
+                                      '102 ($peakShow)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Showdown', bestShow),
+                                  bestClass(
+                                      'Showdown', bestShow, bestClassShow),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColorShow,
+                              _controllerShow,
+                              _focusShow,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPctShow,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/smoke_n_hope.mp3');
+                                      player.play();
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'Smoke & Hope',
+                                            'images/smoke_n_hope.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 24.0),
+                                        child: Text(
+                                          'Smoke&Hope',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 40,
-                              child: SizedBox(
-                                height: 18,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    'Peak',
-                                    style: TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w900,
+                                SizedBox(
+                                  height: 15,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '103 ($peakSH)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
                                     ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Smoke & Hope', bestSH),
+                                  bestClass(
+                                      'Smoke & Hope', bestSH, bestClassSH),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColorSH,
+                              _controllerSH,
+                              _focusSH,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPctSH,
+                                  style: const TextStyle(
+                                    fontSize: 14,
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 70.0,
-                              child: SizedBox(
-                                height: 18,
-                                child: FittedBox(
-                                  fit: BoxFit.fitHeight,
-                                  child: Text(
-                                    '%Peak',
-                                    style: TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w900,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/outer_limits.mp3');
+                                      player.play();
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'Outer Limits',
+                                            'images/outer_limits.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 16.0),
+                                        child: Text(
+                                          'Outer Limits',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
                                     ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '104 ($peakOL)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Outer Limits', bestOL),
+                                  bestClass(
+                                      'Outer Limits', bestOL, bestClassOL),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColorOL,
+                              _controllerOL,
+                              _focusOL,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPctOL,
+                                  style: const TextStyle(
+                                    fontSize: 14,
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 65.0,
-                              child: Padding(
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/accelerator.mp3');
+                                      player.play();
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'Accelerator',
+                                            'images/accelerator.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 12.0),
+                                        child: Text(
+                                          'Accelerator',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '105 ($peakAcc)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Accelerator', bestAcc),
+                                  bestClass(
+                                      'Accelerator', bestAcc, bestClassAcc),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColorAcc,
+                              _controllerAcc,
+                              _focusAcc,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPctAcc,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/pendulum.mp3');
+                                      player.play();
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'The Pendulum',
+                                            'images/pendulum.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 2.0),
+                                        child: Text(
+                                          'Pendulum',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '106 ($peakPend)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Pendulum', bestPend),
+                                  bestClass(
+                                      'Pendulum', bestPend, bestClassPend),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColorPend,
+                              _controllerPend,
+                              _focusPend,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPctPend,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/speed_option.mp3');
+                                      player.play();
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'Speed Option',
+                                            'images/speed_option.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 24.0),
+                                        child: Text(
+                                          'Speed Option',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '107 ($peakSpeed)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Speed Option', bestSpeed),
+                                  bestClass('Speed Option', bestSpeed,
+                                      bestClassSpeed),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColorSpeed,
+                              _controllerSpeed,
+                              _focusSpeed,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPctSpeed,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 4.0,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                            width: 80,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                InkWell(
+                                  highlightColor: Constants.mtGreen,
+                                  borderRadius: BorderRadius.circular(20),
+                                  onTap: () async {
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/roundabout.mp3');
+                                      player.play();
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return const StageDiagram(
+                                            'Roundabout',
+                                            'images/roundabout.jpg',
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const SizedBox(
+                                    height: 20,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left: 16.0),
+                                        child: Text(
+                                          'Roundabout',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '108 ($peakRound)',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 16.0,
+                            ),
+                            child: SizedBox(
+                              width: 75,
+                              child: (Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  bestStage('Roundabout', bestRound),
+                                  bestClass(
+                                      'Roundabout', bestRound, bestClassRound),
+                                ],
+                              )),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 8.0,
+                            ),
+                            child: TodayTime(
+                              newBestColorRound,
+                              _controllerRound,
+                              _focusRound,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              right: 4.0,
+                            ),
+                            child: SizedBox(
+                              height: 20,
+                              width: 65,
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  todayPctRound,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 8.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                width: 60,
+                              ),
+                              const Padding(
                                 padding: EdgeInsets.only(
-                                  right: 8.0,
+                                  right: 18.0,
                                 ),
                                 child: SizedBox(
                                   height: 18,
                                   child: FittedBox(
                                     fit: BoxFit.fitHeight,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 12.0),
+                                      child: Text(
+                                        'Time',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 40,
+                                child: SizedBox(
+                                  height: 18,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
                                     child: Text(
-                                      'Class',
+                                      'Peak',
                                       style: TextStyle(
-                                        fontSize: 12.0,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.w900,
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 4.0,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              width: 60.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  'Today',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 58.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  todayTime,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 58.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  todayPeak,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 58.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  todayPct,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 70.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  todayClass,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 4.0,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              width: 60.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  'Overall',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 58.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  overallTime,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 58.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  overallPeak,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 58.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  overallPct,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 70.0,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  overallClass,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 48.0,
-                        ),
-                        child: FittedBox(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 4.0,
-                                ),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      shape: const StadiumBorder(),
-                                      side: const BorderSide(
-                                        width: 1,
-                                        color: Constants.mtGreen,
+                              const SizedBox(
+                                width: 70,
+                                child: SizedBox(
+                                  height: 18,
+                                  child: FittedBox(
+                                    fit: BoxFit.fitHeight,
+                                    child: Text(
+                                      '%Peak',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w900,
                                       ),
-                                      primary: Colors.white),
-                                  child: const Text(
-                                    'Change Gun',
-                                    style: TextStyle(
-                                      color: Constants.mtGreen,
                                     ),
                                   ),
-                                  onPressed: () {
-                                    //Hide keypad when leaving the page.
-                                    //Navigator.pop(context)] automatically
-                                    //saves the data.
-                                    SystemChannels.textInput
-                                        .invokeMethod('TextInput.hide');
-                                    Navigator.pop(context);
-                                  },
                                 ),
                               ),
-                              SizedBox(
-                                width: 120.0,
-                                child: Text(
-                                  timeCuts,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
+                              const SizedBox(
+                                width: 65,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    right: 8.0,
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  right: 4.0,
-                                ),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      shape: const StadiumBorder(),
-                                      side: const BorderSide(
-                                        width: 1,
-                                        color: Constants.mtGreen,
+                                  child: SizedBox(
+                                    height: 18,
+                                    child: FittedBox(
+                                      fit: BoxFit.fitHeight,
+                                      child: Text(
+                                        'Class',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w900,
+                                        ),
                                       ),
-                                      primary: Colors.white),
-                                  child: const Text(
-                                    'Clear Today',
-                                    style: TextStyle(
-                                      color: Constants.mtGreen,
                                     ),
                                   ),
-                                  onPressed: () {
-                                    _confirmClearToday();
-                                  },
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 4.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                width: 60,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    'Today',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 58,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    todayTime,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 58,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    todayPeak,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 58,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    todayPct,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 70,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    todayClass,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 4.0,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                width: 60,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    'Overall',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 58,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    overallTime,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 58,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    overallPeak,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 58,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    overallPct,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                                width: 70,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    overallClass,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 48,
+                          ),
+                          child: FittedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 4.0,
+                                  ),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        shape: const StadiumBorder(),
+                                        side: const BorderSide(
+                                          width: 1,
+                                          color: Constants.mtGreen,
+                                        ),
+                                        primary: Colors.white),
+                                    child: const Text(
+                                      'Change Gun',
+                                      style: TextStyle(
+                                        color: Constants.mtGreen,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      //Hide keypad when leaving the page.
+                                      //Navigator.pop(context)] automatically
+                                      //saves the data.
+                                      SystemChannels.textInput
+                                          .invokeMethod('TextInput.hide');
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 120,
+                                  child: Text(
+                                    timeCuts,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    right: 4.0,
+                                  ),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        shape: const StadiumBorder(),
+                                        side: const BorderSide(
+                                          width: 1,
+                                          color: Constants.mtGreen,
+                                        ),
+                                        primary: Colors.white),
+                                    child: const Text(
+                                      'Clear Today',
+                                      style: TextStyle(
+                                        color: Constants.mtGreen,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      _confirmClearToday();
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -1775,7 +1784,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   //If shooter enters a time lower than the previous best, confirm that previous
-  //best should be replaced
+  //best should be replaced.
   _confirmNewBestTime(context, String name, String time, String textID) {
     String stageName = name;
     String stageTime = time;
@@ -1804,7 +1813,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 
             //Calculate the day's time cuts from previous best, and add time cuts
             //to previous time cut value and display total time cuts today at
-            //bottom center of screen
+            //bottom center of screen.
             switch (bestID) {
               case '5':
                 diff = (double.parse(best5) - double.parse(stageTime));
@@ -1814,8 +1823,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on 5 to Go!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on 5 to Go!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 best5 = stageTime;
@@ -1832,8 +1843,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on Showdown!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on Showdown!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 bestShow = stageTime;
@@ -1850,8 +1863,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on Smoke & Hope!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on Smoke & Hope!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 bestSH = stageTime;
@@ -1867,8 +1882,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on Outer Limits!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on Outer Limits!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 bestOL = stageTime;
@@ -1885,8 +1902,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on Accelerator!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on Accelerator!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 bestAcc = stageTime;
@@ -1903,8 +1922,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on Pendulum!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on Pendulum!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 bestPend = stageTime;
@@ -1921,8 +1942,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on Speed Option!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on Speed Option!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 bestSpeed = stageTime;
@@ -1938,8 +1961,10 @@ class _MatchTrackerState extends State<MatchTracker> {
                 final snackBar = SnackBar(
                   backgroundColor: Constants.mtGreen,
                   content: Text(
-                      'You cut ${diff.toStringAsFixed(2)} seconds from your best'
-                      ' time on Roundabout!'),
+                    'You cut ${diff.toStringAsFixed(2)} seconds from your best'
+                    ' time on Roundabout!',
+                    textAlign: TextAlign.center,
+                  ),
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 bestRound = stageTime;
@@ -1974,7 +1999,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     return FontWeight.normal;
   }
 
-  ///Call functions to update today and overall totals when TextField loses focus
+  ///Call functions to update today and overall totals when TextField loses focus.
 
   void _calcOverall() {
     _addOverallTimes();
@@ -2314,45 +2339,34 @@ class _MatchTrackerState extends State<MatchTracker> {
     ).show();
   }
 
-//Save user's choice to show or hide today times using SharedPreferences
+//Save user's choice to show or hide today times using SharedPreferences.
   Future<void> _setShowHide(String value) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('showToday', value);
   }
 
-//Determine whether user has chosen to show or hide today times
+//Determine whether user has chosen to show or hide today times.
   Future<String> _getShowHide() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-//if showToday is null, return 'On'
+//if showToday is null, return 'On.'
     return preferences.getString('showToday') ?? 'On';
   }
 
 //If user has overridden the class in this division, use SharedPreferences to
-//save the updated class
+//save the updated class.
   Future<void> _setClassOverride(String div, String value) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(div, value);
   }
 
-//Get overridden class (if any) for this division from SharedPreferences
+//Get overridden class (if any) for this division from SharedPreferences.
   Future<String> _getClassOverride(String div) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    //if overridden class is null, return empty string
+    //if overridden class is null, return empty string.
     return preferences.getString(div) ?? '';
   }
 
-  // Future<void> _setSoundStatus(String value) async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   preferences.setString('SoundStatus', value);
-  // }
-
-  // Future<String> _getSoundStatus() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   //if SoundStatus is null, return 'On'
-  //   return preferences.getString('SoundStatus') ?? 'On';
-  // }
-
-//Respond to user selection from overflow popup menu
+//Respond to user selection from overflow popup menu.
   void _matchMenuChoiceAction(String menuChoice) async {
     switch (menuChoice) {
       case 'Clear Division Data':
@@ -2394,14 +2408,14 @@ class _MatchTrackerState extends State<MatchTracker> {
             builder: (context) {
               return BestStrings(
                 currentDivision: widget.currentDivision,
-                bestStr5: best5,
-                bestStrShow: bestShow,
-                bestStrSH: bestSH,
-                bestStrOL: bestOL,
-                bestStrAcc: bestAcc,
-                bestStrPend: bestPend,
-                bestStrSpeed: bestSpeed,
-                bestStrRound: bestRound,
+                currBest5: best5,
+                currBestShow: bestShow,
+                currBestSH: bestSH,
+                currBestOL: bestOL,
+                currBestAcc: bestAcc,
+                currBestPend: bestPend,
+                currBestSpeed: bestSpeed,
+                currBestRound: bestRound,
               );
             },
           ),
@@ -2436,8 +2450,6 @@ class _MatchTrackerState extends State<MatchTracker> {
                     ),
                   ],
                 ),
-                // content:
-                //     Text('Today times hidden', textAlign: TextAlign.center),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
               if (widget.appSounds == 'On') {
@@ -2485,13 +2497,18 @@ class _MatchTrackerState extends State<MatchTracker> {
 
 //If the current peak percent doesn't support a class previously attained,
 //allow user to override the calculated class and display the correct class.
-//Do not allow choice of a class lower than supported by the current percentage
+//Do not allow choice of a class lower than supported by the current percentage.
   Future<void> _overrideClass(BuildContext context) async {
     return await showDialog<String>(
         context: context,
         barrierDismissible: true,
         builder: (BuildContext context) {
           return SimpleDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20.0),
+              ),
+            ),
             title: Center(
               child: Text(
                 'Tap current $divAbbrev class: ',
@@ -2511,6 +2528,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                     backgroundColor: Constants.mtGreen,
                     content: Text(
                       'Your ${widget.currentDivision} class has been changed to GM.',
+                      textAlign: TextAlign.center,
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2524,6 +2542,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   child: Text(
                     'GM',
                     style: TextStyle(
+                      fontSize: 18,
                       color: Constants.mtGreen,
                       fontWeight: FontWeight.w900,
                     ),
@@ -2543,6 +2562,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class has been changed to M.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2556,6 +2576,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class is already M or higher.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2569,6 +2590,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   child: Text(
                     'M',
                     style: TextStyle(
+                      fontSize: 18,
                       color: Constants.mtGreen,
                       fontWeight: FontWeight.w900,
                     ),
@@ -2588,6 +2610,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class has been changed to A.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2601,6 +2624,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class is already A or higher.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2614,6 +2638,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   child: Text(
                     'A',
                     style: TextStyle(
+                      fontSize: 18,
                       color: Constants.mtGreen,
                       fontWeight: FontWeight.w900,
                     ),
@@ -2633,6 +2658,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class has been changed to B.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2646,6 +2672,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class is already B or higher.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2659,6 +2686,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   child: Text(
                     'B',
                     style: TextStyle(
+                      fontSize: 18,
                       color: Constants.mtGreen,
                       fontWeight: FontWeight.w900,
                     ),
@@ -2678,6 +2706,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class has been changed to C.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2691,6 +2720,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                       backgroundColor: Constants.mtGreen,
                       content: Text(
                         'Your ${widget.currentDivision} class is already C or higher.',
+                        textAlign: TextAlign.center,
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2704,6 +2734,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                   child: Text(
                     'C',
                     style: TextStyle(
+                      fontSize: 18,
                       color: Constants.mtGreen,
                       fontWeight: FontWeight.w900,
                     ),
@@ -2730,6 +2761,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         backgroundColor: Constants.mtGreen,
                         content: Text(
                           'Any ${widget.currentDivision} class override has been removed.',
+                          textAlign: TextAlign.center,
                         ),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -2738,10 +2770,13 @@ class _MatchTrackerState extends State<MatchTracker> {
                         player.play();
                       }
                     },
-                    child: const Text(
-                      'Remove class override',
-                      style: TextStyle(
-                        color: Colors.white,
+                    child: const FittedBox(
+                      child: Text(
+                        'Remove class override',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -2752,8 +2787,8 @@ class _MatchTrackerState extends State<MatchTracker> {
         });
   }
 
-//If user taps best time, calculate average string time to achieve that score
-  //and display it in Snackbar (Snackbar definition follows method)
+//If user presses and holds a populated best time field, calculate average string
+// time to achieve that score and display it in Snackbar (Snackbar definition follows method).
   void _calcBestAvg(String stage, String bestTime) {
     double bestAvg;
     if (stage == 'Outer Limits') {
@@ -2767,14 +2802,25 @@ class _MatchTrackerState extends State<MatchTracker> {
   InkWell bestStage(String stage, String bestStage) {
     return InkWell(
       highlightColor: Constants.mtGreen,
-      borderRadius: BorderRadius.circular(20),
-      onTap: () async {
-        if (widget.appSounds == 'On') {
-          await player.setAsset('sounds/ding.mp3');
-          player.play();
+      borderRadius: BorderRadius.circular(5),
+      //A tap (instead of press and hold) of a populated or unpopulated best time
+      //field will dismiss the keyboard and calculate totals (the expected behavior).
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
         }
-
-        _calcBestAvg(stage, bestStage);
+      },
+      //A press and hold (instead of a tap) of a populated field will trigger a
+      //snackbar to show average string time.
+      onLongPress: () async {
+        if (bestStage != '') {
+          if (widget.appSounds == 'On') {
+            await player.setAsset('sounds/ding.mp3');
+            player.play();
+            _calcBestAvg(stage, bestStage);
+          }
+        }
       },
       child: SizedBox(
         height: 20,
@@ -2794,18 +2840,25 @@ class _MatchTrackerState extends State<MatchTracker> {
     );
   }
 
-//Same as above if user taps best class instead of best time
-  InkWell bestClass(String stage, String bestString, String bestClass) {
+//Same as above if user presses and holds best class instead of best time.
+  InkWell bestClass(String stage, String bestStage, String bestClass) {
     return InkWell(
       highlightColor: Constants.mtGreen,
-      borderRadius: BorderRadius.circular(20),
-      onTap: () async {
-        if (widget.appSounds == 'On') {
-          await player.setAsset('sounds/ding.mp3');
-          player.play();
+      borderRadius: BorderRadius.circular(5),
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
         }
-
-        _calcBestAvg(stage, bestString);
+      },
+      onLongPress: () async {
+        if (bestClass != '') {
+          if (widget.appSounds == 'On') {
+            await player.setAsset('sounds/ding.mp3');
+            player.play();
+            _calcBestAvg(stage, bestStage);
+          }
+        }
       },
       child: SizedBox(
         height: 20,
@@ -2813,7 +2866,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         child: FittedBox(
           fit: BoxFit.fitHeight,
           child: Padding(
-            padding: const EdgeInsets.only( left: 16.0),
+            padding: const EdgeInsets.only(left: 16.0),
             child: Text(
               bestClass,
               style: const TextStyle(fontSize: 14.0),
@@ -2826,7 +2879,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
   //Snackbar called from _calcBestAvg above to display best average strings times
-  // with an action to show best average times needed to advance in classification
+  // with an action to show best average times needed to advance in classification.
   void _snackBarBestAvg(String stage, double bestAvg) {
     final snackBar = SnackBar(
       backgroundColor: Constants.mtGreen,
@@ -2887,7 +2940,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     await helper.insertStages(divAbbrev, stageTimes);
   }
 
-//Restore from database all previously entered and displayed times when user revisits screen
+//Restore from database all previously entered and displayed times when user revisits screen.
   _getStageTimes() async {
     int numRows = await helper.getCount(divAbbrev);
 
@@ -3024,7 +3077,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     _calcTotals();
   }
 
-//Calculate and display the class represented by the best stage time for the division
+//Calculate and display the class represented by the best stage time for the division.
   String _calcBestClass(double peak, String timeText) {
     double bestClass = (peak / double.parse(timeText) * 100);
 
@@ -3043,7 +3096,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     }
   }
 
-//Calculate and display the percent and class for each today stage time entered
+//Calculate and display the percent and class for each today stage time entered.
   static String _calcTodayPercent(double peak, String timeText) {
     double todayPercent = (peak / double.parse(timeText) * 100);
 
@@ -3063,14 +3116,14 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
 //Confirm that user really wants to clear all division data. If so, clear
-// data by saving empty strings to database
+// data by saving empty strings to database and clearing all current data.
   void _clearDivisionData() {
     Alert(
       context: context,
       type: AlertType.none,
       title: "Confirm...",
       desc:
-          "This will clear all $divAbbrev data, including best stage and best string times, and cannot be undone.",
+          "This will clear all $divAbbrev data, including best stage and string times, and cannot be undone.",
       buttons: [
         DialogButton(
           width: 20,
@@ -3134,8 +3187,16 @@ class _MatchTrackerState extends State<MatchTracker> {
             bestClassRound = '';
 
             timeCuts = '';
-
             timeShaved = 0.0;
+
+            newBestColor5 = Colors.black;
+            newBestColorShow = Colors.black;
+            newBestColorSH = Colors.black;
+            newBestColorOL = Colors.black;
+            newBestColorAcc = Colors.black;
+            newBestColorPend = Colors.black;
+            newBestColorSpeed = Colors.black;
+            newBestColorRound = Colors.black;
 
             _setClassOverride(widget.currentDivision, '');
 
@@ -3180,7 +3241,7 @@ class _MatchTrackerState extends State<MatchTracker> {
   }
 
 //Determine if user has scored at least 4 classifier stages before displaying
-  //Track Class screen
+  //Track Class screen.
   int _getClassifierCount() {
     int count = 0;
 

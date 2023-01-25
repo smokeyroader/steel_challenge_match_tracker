@@ -108,7 +108,7 @@ class Help extends StatelessWidget {
                           style: const TextStyle(fontSize: 18.0),
                           text:
                               '$bullet Tap any stage name to bring up a stage diagram for that stage and (new in Version 2.2.5) hear '
-                              'what the stage sounds like being shot by a professional or top GM shooter (if app sounds have not been turned off).\r\n\n$bullet Tap any '
+                              'what the stage sounds like being shot by a professional or top GM shooter (if app sounds have not been turned off).\r\n\n$bullet Tap and hold any '
                               '“Best” time to see (in a popup) the average string times it took to '
                               'achieve that stage score. New in Version 2.2.5: Tap "More" in the popup to see the average '
                               'string times needed for each class for that division and stage. \r\n\n$bullet Select “Track Class” from any division menu to '

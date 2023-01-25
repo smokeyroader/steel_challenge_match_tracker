@@ -20,9 +20,7 @@ class _ResourcesState extends State<Resources> {
       url,
       mode: LaunchMode.externalApplication,
     )) {}
-    {
-      // throw 'Could not launch $url';
-    }
+    {}
   }
 
   @override
@@ -69,8 +67,6 @@ class _ResourcesState extends State<Resources> {
                         ),
                       ),
                     ),
-
-
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                       child: GestureDetector(

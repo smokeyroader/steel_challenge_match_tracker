@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class TimesNeeded extends StatelessWidget {
-  // const TimesNeeded({Key key}) : super(key: key);
   final String division;
   final String stage;
   final String divAbb;
@@ -21,11 +20,11 @@ class TimesNeeded extends StatelessWidget {
   Widget build(BuildContext context) {
     String bestStageClass;
 
-    //Account for the different number of scored strings for Outer Limits
+    //Account for the different number of scored strings for Outer Limits.
     int numStrings;
     stage == 'Outer Limits' ? numStrings = 3 : numStrings = 4;
 
-    //Calculate and show the minimum average string times needed for each class for this stage and division
+    //Calculate and show the minimum average string times needed for each class for this stage and division.
     double stagePeak = getStagePeak(stage, division);
     String gmTime = ((stagePeak / .95) / numStrings).toStringAsFixed(2);
     String mTime = ((stagePeak / .85) / numStrings).toStringAsFixed(2);

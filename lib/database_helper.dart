@@ -96,7 +96,6 @@ class StageTimes {
 
   // convenience constructor to create a StageTimes object
   StageTimes.fromMap(Map<String, dynamic> map) {
-//    id = map[columnId];
     fiveToGo = map[column5];
     showdown = map[columnShow];
     smokeAndHope = map[columnSH];

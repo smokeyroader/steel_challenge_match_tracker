@@ -49,7 +49,6 @@ class _TodayTimeState extends State<TodayTime> {
           inputFormatters: [
             LengthLimitingTextInputFormatter(5),
             FilteringTextInputFormatter.deny(RegExp('[\\-|,.\\ ]')),
-//          FilteringTextInputFormatter.allow(RegExp('[0-9]')),
           ],
           keyboardType: const TextInputType.numberWithOptions(decimal: false),
           onChanged: (text) {
@@ -68,13 +67,11 @@ class _TodayTimeState extends State<TodayTime> {
     //system apparently failing to distinguish between system (programmatic)change and user change.
     //The ignoreChange switch is an attempt to address this.
 
-    //If ignore change is false
+    //If ignore change is false...
     if (!ignoreChange) {
       String text = controller.text;
 
       if (text != '') {
-        // if (text.substring(0, 2) != '.') {}
-
         text = text.replaceAll('.', '');
         if (text.length <= 2) {
           text = '.' + text;
@@ -90,7 +87,10 @@ class _TodayTimeState extends State<TodayTime> {
         controller.text = text;
         //Move cursor to first position after text changed
         controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: (text ?? '').length));
+          TextPosition(
+            offset: (text ?? '').length,
+          ),
+        );
       });
     }
     //Turn off ignore change to prepare for next text change

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-
 import 'constants.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'database_helper.dart';
@@ -9,26 +8,26 @@ import 'today_text_field.dart';
 
 class BestStrings extends StatefulWidget {
   final String currentDivision;
-  final String bestStr5;
-  final String bestStrShow;
-  final String bestStrSH;
-  final String bestStrOL;
-  final String bestStrAcc;
-  final String bestStrPend;
-  final String bestStrSpeed;
-  final String bestStrRound;
+  final String currBest5;
+  final String currBestShow;
+  final String currBestSH;
+  final String currBestOL;
+  final String currBestAcc;
+  final String currBestPend;
+  final String currBestSpeed;
+  final String currBestRound;
 
   const BestStrings({
     Key key,
     this.currentDivision,
-    this.bestStr5,
-    this.bestStrShow,
-    this.bestStrSH,
-    this.bestStrOL,
-    this.bestStrAcc,
-    this.bestStrPend,
-    this.bestStrSpeed,
-    this.bestStrRound,
+    this.currBest5,
+    this.currBestShow,
+    this.currBestSH,
+    this.currBestOL,
+    this.currBestAcc,
+    this.currBestPend,
+    this.currBestSpeed,
+    this.currBestRound,
   }) : super(key: key);
 
   @override
@@ -89,7 +88,6 @@ class _BestStringsState extends State<BestStrings> {
   double peakSpeed;
   double peakRound;
 
-//  double totPeak;
   double matchPeak;
 
   @override
@@ -118,32 +116,32 @@ class _BestStringsState extends State<BestStrings> {
     _focusSpeedSTR.addListener(_focusSpeedListener);
     _focusRoundSTR.addListener(_focusRoundListener);
 
-    if (widget.bestStr5 != '') {
-      _bestAvg5 = (double.parse(widget.bestStr5) / 4).toStringAsFixed(2);
+    if (widget.currBest5 != '') {
+      _bestAvg5 = (double.parse(widget.currBest5) / 4).toStringAsFixed(2);
     }
 
-    if (widget.bestStrShow != '') {
-      _bestAvgShow = (double.parse(widget.bestStrShow) / 4).toStringAsFixed(2);
+    if (widget.currBestShow != '') {
+      _bestAvgShow = (double.parse(widget.currBestShow) / 4).toStringAsFixed(2);
     }
-    if (widget.bestStrSH != '') {
-      _bestAvgSH = (double.parse(widget.bestStrSH) / 4).toStringAsFixed(2);
+    if (widget.currBestSH != '') {
+      _bestAvgSH = (double.parse(widget.currBestSH) / 4).toStringAsFixed(2);
     }
-    if (widget.bestStrOL != '') {
-      _bestAvgOL = (double.parse(widget.bestStrOL) / 3).toStringAsFixed(2);
+    if (widget.currBestOL != '') {
+      _bestAvgOL = (double.parse(widget.currBestOL) / 3).toStringAsFixed(2);
     }
-    if (widget.bestStrAcc != '') {
-      _bestAvgAcc = (double.parse(widget.bestStrAcc) / 4).toStringAsFixed(2);
+    if (widget.currBestAcc != '') {
+      _bestAvgAcc = (double.parse(widget.currBestAcc) / 4).toStringAsFixed(2);
     }
-    if (widget.bestStrPend != '') {
-      _bestAvgPend = (double.parse(widget.bestStrPend) / 4).toStringAsFixed(2);
+    if (widget.currBestPend != '') {
+      _bestAvgPend = (double.parse(widget.currBestPend) / 4).toStringAsFixed(2);
     }
-    if (widget.bestStrSpeed != '') {
+    if (widget.currBestSpeed != '') {
       _bestAvgSpeed =
-          (double.parse(widget.bestStrSpeed) / 4).toStringAsFixed(2);
+          (double.parse(widget.currBestSpeed) / 4).toStringAsFixed(2);
     }
-    if (widget.bestStrRound != '') {
+    if (widget.currBestRound != '') {
       _bestAvgRound =
-          (double.parse(widget.bestStrRound) / 4).toStringAsFixed(2);
+          (double.parse(widget.currBestRound) / 4).toStringAsFixed(2);
     }
 
     peak5 = Constants.getPeak5(widget.currentDivision);
@@ -222,6 +220,15 @@ class _BestStringsState extends State<BestStrings> {
     _focusPendSTR.dispose();
     _focusSpeedSTR.dispose();
     _focusRoundSTR.dispose();
+
+    _controller5STR.dispose();
+    _controllerShowSTR.dispose();
+    _controllerSHSTR.dispose();
+    _controllerOLSTR.dispose();
+    _controllerAccSTR.dispose();
+    _controllerPendSTR.dispose();
+    _controllerSpeedSTR.dispose();
+    _controllerRoundSTR.dispose();
     super.dispose();
   }
 
@@ -237,9 +244,9 @@ class _BestStringsState extends State<BestStrings> {
         backgroundColor: Constants.mtGreen,
         actions: const <Widget>[],
       ),
-//      key: scaffoldState,
 
-      //GestureDetector added to dismiss keyboard when tapping outside a text input field
+      //GestureDetector to dismiss keyboard by tapping outside any text field
+      // (to account for ios keyboard that does not have a "Done" or check key).
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -248,909 +255,746 @@ class _BestStringsState extends State<BestStrings> {
             currentFocus.unfocus();
           }
         },
-        child: SingleChildScrollView(
-          child: Container(
-              margin: const EdgeInsets.all(8.0),
-              child: Column(children: <Widget>[
-                FittedBox(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Text(
-                          widget.currentDivision,
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                            color: Constants.mtGreen,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          child: SingleChildScrollView(
+            child: Container(
+                margin: const EdgeInsets.all(8.0),
+                child: Column(children: <Widget>[
+                  FittedBox(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Text(
+                            widget.currentDivision,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Constants.mtGreen,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  height: 45.0,
-                  color: Constants.mtGreen,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      const SizedBox(
-                        width: 95.0,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 8.0),
+                  Container(
+                    height: 45,
+                    color: Constants.mtGreen,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const <Widget>[
+                        SizedBox(
+                          width: 95,
                           child: Padding(
-                            padding: EdgeInsets.only(bottom: 2.0),
-                            child: Text(
-                              'Stage/Curr. Best',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                            padding: EdgeInsets.only(left: 8.0),
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 2.0),
+                              child: Text(
+                                'Stage/\r\n  Best',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 60.0,
-                        child: Text(
-                          'Best Avg.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        SizedBox(
+                          width: 60,
+                          child: Text(
+                            'Best Avg.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 60.0,
-                        child: Text(
-                          'Best Single',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        SizedBox(
+                          width: 60,
+                          child: Text(
+                            'Best Single',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
-                      ),
-                      // ignore: sized_box_for_whitespace
-                      Container(
-                        width: 85.0,
-                        child: const Text(
-                          'Best Stage',
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        SizedBox(
+                          width: 85,
+                          child: Text(
+                            'Stage\r\nTarget',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 8.0,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  '5 to Go',
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStr5,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 4.0),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
                                   child: Text(
-                                    _bestAvg5,
-                                    style: const TextStyle(fontSize: 14.0),
-                                    textAlign: TextAlign.left,
+                                    '5 to Go',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          width: 60.0,
-                          height: 20.0,
+                              Text(
+                                widget.currBest5,
+                                style: const TextStyle(fontSize: 14),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvg5,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
                           child: TodayTime(
                               Colors.black, _controller5STR, _focus5STR),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
                               child: FittedBox(
                                 fit: BoxFit.fitHeight,
                                 child: Text(
                                   bestStage5,
-                                  style: const TextStyle(fontSize: 14.0),
+                                  style: const TextStyle(fontSize: 16.0),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  'Showdown',
-                                  style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
+                                  child: Text(
+                                    'Showdown',
+                                    style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStrShow,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            )
-                          ],
+                              Text(
+                                widget.currBestShow,
+                                style: const TextStyle(fontSize: 14),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  _bestAvgShow,
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.left,
-                                ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvgShow,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
                               ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        height: 20.0,
-                        child: TodayTime(
+                            ],
+                          )),
+                        ),
+                        TodayTime(
                             Colors.black, _controllerShowSTR, _focusShowSTR),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
                               child: FittedBox(
                                 fit: BoxFit.fitHeight,
                                 child: Text(
                                   bestStageShow,
-                                  style: const TextStyle(fontSize: 14.0),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 12.0),
+                                    child: Text(
+                                      'Smoke&Hope',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                widget.currBestSH,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvgSH,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )),
+                        ),
+                        TodayTime(Colors.black, _controllerSHSTR, _focusSHSTR),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75.0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
                               child: FittedBox(
                                 fit: BoxFit.fitHeight,
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 16.0),
+                                child: Text(
+                                  bestStageSH,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
                                   child: Text(
-                                    'Smoke&Hope',
+                                    'Outer Limits',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                widget.currBestOL,
+                                style: const TextStyle(fontSize: 14),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvgOL,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )),
+                        ),
+                        TodayTime(Colors.black, _controllerOLSTR, _focusOLSTR),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75.0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageOL,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    'Accelerator',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                widget.currBestAcc,
+                                style: const TextStyle(fontSize: 14),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvgAcc,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )),
+                        ),
+                        TodayTime(
+                            Colors.black, _controllerAccSTR, _focusAccSTR),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child: FittedBox(
+                                fit: BoxFit.fitHeight,
+                                child: Text(
+                                  bestStageAcc,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Text(
+                                    'Pendulum',
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStrSH,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  _bestAvgSH,
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        height: 20.0,
-                        child: TodayTime(
-                            Colors.black, _controllerSHSTR, _focusSHSTR),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          //                        color: Colors.yellow,
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  bestStageSH,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            ),
+                              Text(
+                                widget.currBestPend,
+                                style: const TextStyle(fontSize: 14),
+                              )
+                            ],
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                child: Text(
-                                  'Outer Limits',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvgPend,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
                               ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStrOL,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            )
-                          ],
+                            ],
+                          )),
                         ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  _bestAvgOL,
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        height: 20.0,
-                        child: TodayTime(
-                            Colors.black, _controllerOLSTR, _focusOLSTR),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  bestStageOL,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  'Accelerator',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStrAcc,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  _bestAvgAcc,
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        height: 20.0,
-                        child: TodayTime(
-                            Colors.black, _controllerAccSTR, _focusAccSTR),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          //                        color: Colors.yellow,
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  bestStageAcc,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  'Pendulum',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStrPend,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  _bestAvgPend,
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.left,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        height: 20.0,
-                        child: TodayTime(
+                        TodayTime(
                             Colors.black, _controllerPendSTR, _focusPendSTR),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75.0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
                               child: FittedBox(
                                 fit: BoxFit.fitHeight,
                                 child: Text(
                                   bestStagePend,
-                                  style: const TextStyle(fontSize: 14.0),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 16.0),
-                                  child: Text(
-                                    'Speed Option',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
+                                  fit: BoxFit.fitHeight,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 12.0),
+                                    child: Text(
+                                      'Speed Option',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStrSpeed,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
+                              Text(
+                                widget.currBestSpeed,
+                                style: const TextStyle(fontSize: 14),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  _bestAvgSpeed,
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.left,
-                                ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvgSpeed,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
                               ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        height: 20.0,
-                        child: TodayTime(
+                            ],
+                          )),
+                        ),
+                        TodayTime(
                             Colors.black, _controllerSpeedSTR, _focusSpeedSTR),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
                               child: FittedBox(
                                 fit: BoxFit.fitHeight,
                                 child: Text(
                                   bestStageSpeed,
-                                  style: const TextStyle(fontSize: 14.0),
+                                  style: const TextStyle(fontSize: 14),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SizedBox(
-                        width: 90.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  'Roundabout',
-                                  style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SizedBox(
+                          width: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                                child: FittedBox(
+                                  child: Text(
+                                    'Roundabout',
+                                    style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  widget.bestStrRound,
-                                  style: const TextStyle(fontSize: 14.0),
-                                ),
-                              ),
-                            )
-                          ],
+                              Text(
+                                widget.currBestRound,
+                                style: const TextStyle(fontSize: 14),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        child: (Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                              child: FittedBox(
-                                fit: BoxFit.fitHeight,
-                                child: Text(
-                                  _bestAvgRound,
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.left,
-                                ),
+                        SizedBox(
+                          width: 60,
+                          child: (Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                _bestAvgRound,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.left,
                               ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      SizedBox(
-                        width: 60.0,
-                        height: 20.0,
-                        child: TodayTime(
+                            ],
+                          )),
+                        ),
+                        TodayTime(
                             Colors.black, _controllerRoundSTR, _focusRoundSTR),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SizedBox(
-                          width: 75.0,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
-                            child: SizedBox(
-                              height: 20,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SizedBox(
+                            height: 20,
+                            width: 75,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
                               child: FittedBox(
                                 fit: BoxFit.fitHeight,
                                 child: Text(
                                   bestStageRound,
-                                  style: const TextStyle(fontSize: 14.0),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: FittedBox(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Container(width: 65.0),
-                        const SizedBox(
-                          width: 65.0,
-                          child: Text(
-                            'Time',
-                            style: TextStyle(
-                                fontSize: 14.0, fontWeight: FontWeight.w900),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 60.0,
-                          child: Text(
-                            'Peak',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w900,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 75.0,
-                          child: Text(
-                            '%Peak',
-                            style: TextStyle(
-                                fontSize: 14.0, fontWeight: FontWeight.w900),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 65.0,
-                          child: Text(
-                            'Class',
-                            style: TextStyle(
-                                fontSize: 14.0, fontWeight: FontWeight.w900),
-                          ),
-                        ),
                       ],
                     ),
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        const SizedBox(
-                          height: 40,
-                          width: 50.0,
-                          child: FittedBox(
-                            fit: BoxFit.fitHeight,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(width: 75),
+                          const SizedBox(
+                            width: 65,
                             child: Text(
-                              'Best\r\nMatch',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 16.0),
+                              'Time',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 65.0,
-                          height: 20,
-                          child: FittedBox(
-                            fit: BoxFit.fitHeight,
+                          const SizedBox(
+                            width: 60,
+                            child: Text(
+                              'Peak',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 75,
+                            child: Text(
+                              '%Peak',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 65,
+                            child: Text(
+                              'Class',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          const SizedBox(
+                            width: 65,
+                            child: Text(
+                              'Best Match',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 65,
                             child: Text(
                               bestMatchTime,
-                              style: const TextStyle(fontSize: 16.0),
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 65.0,
-                          height: 20,
-                          child: FittedBox(
-                            fit: BoxFit.fitHeight,
+                          SizedBox(
+                            width: 65,
                             child: Text(
                               totPeak,
-                              style: const TextStyle(fontSize: 16.0),
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 65.0,
-                          height: 20,
-                          child: FittedBox(
-                            fit: BoxFit.fitHeight,
+                          SizedBox(
+                            width: 65,
                             child: Text(
                               matchPct,
-                              style: const TextStyle(fontSize: 16.0),
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 55.0,
-                          height: 20,
-                          child: FittedBox(
-                            fit: BoxFit.fitHeight,
+                          SizedBox(
+                            width: 55,
                             child: Text(
                               bestMatchClass,
-                              style: const TextStyle(fontSize: 16.0),
+                              style: const TextStyle(fontSize: 16),
                               textAlign: TextAlign.left,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const StadiumBorder(),
-                                side: const BorderSide(
-                                  width: 1,
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: const StadiumBorder(),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    color: Constants.mtGreen,
+                                  ),
+                                  primary: Colors.white),
+                              child: const Text(
+                                'Clear',
+                                style: TextStyle(
                                   color: Constants.mtGreen,
                                 ),
-                                primary: Colors.white),
-                            child: const Text(
-                              'Clear',
-                              style: TextStyle(
-                                color: Constants.mtGreen,
                               ),
+                              onPressed: () {
+                                _clearBestSingles();
+                              },
                             ),
-                            onPressed: () {
-                              _clearBestSingles();
-                            },
                           ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ])),
+                        ],
+                      )
+                    ],
+                  ),
+                ])),
+          ),
         ),
       ),
     );
@@ -1162,10 +1006,13 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controller5STR.text.length);
     } else {
       if (_controller5STR.text != '') {
-        setState(
-            () => bestStage5 = _calcBestStage(peak5, _controller5STR.text, 4));
+        setState(() {
+          bestStage5 = _calcBestStage(peak5, _controller5STR.text, 4);
+        });
       } else {
-        setState(() => bestStage5 = '');
+        setState(() {
+          bestStage5 = '';
+        });
       }
       _calcBestMatch();
 
@@ -1179,10 +1026,13 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerShowSTR.text.length);
     } else {
       if (_controllerShowSTR.text != '') {
-        setState(() => bestStageShow =
-            _calcBestStage(peakShow, _controllerShowSTR.text, 4));
+        setState(() {
+          bestStageShow = _calcBestStage(peakShow, _controllerShowSTR.text, 4);
+        });
       } else {
-        setState(() => bestStageShow = '');
+        setState(() {
+          bestStageShow = '';
+        });
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1195,10 +1045,13 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerSHSTR.text.length);
     } else {
       if (_controllerSHSTR.text != '') {
-        setState(() =>
-            bestStageSH = _calcBestStage(peakSH, _controllerSHSTR.text, 4));
+        setState(() {
+          bestStageSH = _calcBestStage(peakSH, _controllerSHSTR.text, 4);
+        });
       } else {
-        setState(() => bestStageSH = '');
+        setState(() {
+          bestStageSH = '';
+        });
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1211,10 +1064,13 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerOLSTR.text.length);
     } else {
       if (_controllerOLSTR.text != '') {
-        setState(() =>
-            bestStageOL = _calcBestStage(peakOL, _controllerOLSTR.text, 3));
+        setState(() {
+          bestStageOL = _calcBestStage(peakOL, _controllerOLSTR.text, 3);
+        });
       } else {
-        setState(() => bestStageOL = '');
+        setState(() {
+          bestStageOL = '';
+        });
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1227,10 +1083,13 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerAccSTR.text.length);
     } else {
       if (_controllerAccSTR.text != '') {
-        setState(() =>
-            bestStageAcc = _calcBestStage(peakAcc, _controllerAccSTR.text, 4));
+        setState(() {
+          bestStageAcc = _calcBestStage(peakAcc, _controllerAccSTR.text, 4);
+        });
       } else {
-        setState(() => bestStageAcc = '');
+        setState(() {
+          bestStageAcc = '';
+        });
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1243,10 +1102,13 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerPendSTR.text.length);
     } else {
       if (_controllerPendSTR.text != '') {
-        setState(() => bestStagePend =
-            _calcBestStage(peakPend, _controllerPendSTR.text, 4));
+        setState(() {
+          bestStagePend = _calcBestStage(peakPend, _controllerPendSTR.text, 4);
+        });
       } else {
-        setState(() => bestStagePend = '');
+        setState(() {
+          bestStagePend = '';
+        });
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1259,10 +1121,14 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerSpeedSTR.text.length);
     } else {
       if (_controllerSpeedSTR.text != '') {
-        setState(() => bestStageSpeed =
-            _calcBestStage(peakSpeed, _controllerSpeedSTR.text, 4));
+        setState(() {
+          bestStageSpeed =
+              _calcBestStage(peakSpeed, _controllerSpeedSTR.text, 4);
+        });
       } else {
-        setState(() => bestStageSpeed = '');
+        setState(() {
+          bestStageSpeed = '';
+        });
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1275,10 +1141,14 @@ class _BestStringsState extends State<BestStrings> {
           baseOffset: 0, extentOffset: _controllerRoundSTR.text.length);
     } else {
       if (_controllerRoundSTR.text != '') {
-        setState(() => bestStageRound =
-            _calcBestStage(peakRound, _controllerRoundSTR.text, 4));
+        setState(() {
+          bestStageRound =
+              _calcBestStage(peakRound, _controllerRoundSTR.text, 4);
+        });
       } else {
-        setState(() => bestStageRound = '');
+        setState(() {
+          bestStageRound = '';
+        });
       }
       _calcBestMatch();
       _saveStringTimes();
@@ -1362,16 +1232,15 @@ class _BestStringsState extends State<BestStrings> {
       buttons: [
         DialogButton(
           width: 20,
-          color: Constants.mtGreen,
+          color: Colors.green,
           child: const Text(
             "Cancel",
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
           onPressed: () => Navigator.pop(context),
-//          width: 60,
         ),
         DialogButton(
-          color: Constants.mtGreen,
+          color: Colors.green,
           child: const Text(
             "Clear",
             style: TextStyle(color: Colors.white, fontSize: 14),
@@ -1443,8 +1312,6 @@ class _BestStringsState extends State<BestStrings> {
     stringTimes.roundabout = _controllerRoundSTR.text;
 
     await helper.insertStrings(divAbbrev, stringTimes);
-
-    // int id = await helper.insertStrings(divAbbrev, stringTimes);
   }
 
   _getStringTimes() async {

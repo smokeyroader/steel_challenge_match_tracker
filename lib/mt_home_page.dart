@@ -21,7 +21,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   //Provide for use of snackbar.
   final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
-  AudioPlayer player; //Declare audio player for playing app sounds
+  AudioPlayer player; //Declare audio player for playing app sounds.
 
 //Stings to hold recently used divisions
   String dropdownValue = 'Select Division';
@@ -34,12 +34,12 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 
   bool gunsCleared = false;
 
-  //initState and run setData() to populate list of recent guns with saved selections
+  //initState and run setData() to populate list of recent guns with saved selections.
 
   @override
   void initState() {
     player = AudioPlayer(); //Initialize audio player (from just_audio package.)
-    //  Check whether application sounds have been turned off
+    //  Check whether application sounds have been turned off.
     getSoundStatus().then((value) {
       appSounds = value;
     });
@@ -56,7 +56,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 // Methods to retrieve saved recent guns. Need to figure out how to return multiple keys
   Future<String> getSavedRecent1() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    //If setting is null (no savedguns), return empty string
+    //If setting is null (no savedguns), return empty string.
     return preferences.get('recent1') ?? '';
   }
 
@@ -86,7 +86,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     return preferences.getString('SoundStatus') ?? 'On';
   }
 
-  //Retrieve saved recent guns and display in list
+  //Retrieve saved recent guns and display in list.
   setRecents() {
     getSavedRecent1().then((value) {
       if (value != '') {
@@ -171,7 +171,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                           value: value,
                           child: Text(
                             value,
-                            style: const TextStyle(fontSize: 14.0),
+                            style: const TextStyle(fontSize: 16.0),
                           ),
                         );
                       }).toList(),
@@ -249,7 +249,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     );
   }
 
-  //Method to add division selections to list of recent guns (up to 4, without duplicates)
+  //Method to add division selections to list of recent guns (up to 4, without duplicates).
   void showRecents(String div) {
     if (firstRecent == '') {
       firstRecent = div;
@@ -287,12 +287,12 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     preferences.setString('recent4', div4);
   }
 
-  //Take actions in response to selections from home screen main menu
+  //Take actions in response to selections from home screen main menu.
   Future<void> mainMenuChoiceAction(String choice) async {
     switch (choice) {
       case 'Clear Recent/Saved Guns':
         gunsCleared = true;
-        //Clear any guns from the list and save the empty list to Shared Preferences
+        //Clear any guns from the list and save the empty list to Shared Preferences.
         setState(() {
           firstRecent = '';
           secondRecent = '';
@@ -313,7 +313,6 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           await player.setAsset('sounds/ding.mp3');
           player.play();
         }
-        // saveRecents(firstRecent, secondRecent, thirdRecent, fourthRecent);
 
         break;
 
@@ -349,7 +348,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
       case 'App Sounds On/Off':
         {
           if (appSounds == 'On') {
-            //If sound is on, turn it off
+            //If sounds are on, turn them off.
             setSoundStatus('Off');
 
             var snackbar = SnackBar(
@@ -374,7 +373,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             await player.setAsset('sounds/sound_off.mp3');
             player.play();
           } else {
-            //If it's not on, it must be off, so turn it on
+            //If they're not on, they must be off, so turn them on.
             setSoundStatus('On');
             var snackBar = SnackBar(
               backgroundColor: Constants.mtGreen,
@@ -406,7 +405,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         break;
 
       case 'Resources':
-        //Navigate to the Resources page with useful links
+        //Navigate to the Resources page with useful links.
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -418,7 +417,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
         break;
 
       case 'Help':
-        //Navigate to the Help page for instructions for using the app
+        //Navigate to the Help page for instructions for using the app.
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -430,7 +429,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     }
   }
 
-  //Set up a match scoring page depending on which division is selected when user taps one of the saved guns
+  //Set up a match scoring page depending on which division is selected when user taps one of the saved guns.
   void trackFirstDiv() {
     if (firstRecent != '') {
       startTracking(firstRecent);
@@ -455,7 +454,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     }
   }
 
-  //Method to open match_tracker.dart, passing the division and the appSounds status (on/off)
+  //Method to open match_tracker.dart, passing the division and the appSounds status (on/off).
   void startTracking(String division) {
     Navigator.push(
       context,
@@ -470,7 +469,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
     );
   }
 
-  //Show alert if a division isn't selected
+  //Show alert if a division isn't selected.
   _noDivisionAlert(context) {
     Alert(
       context: context,

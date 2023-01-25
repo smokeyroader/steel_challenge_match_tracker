@@ -121,9 +121,6 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                             child: _HeadingContainer(heading: 'Division')),
                       ),
                     ),
-                    // SizedBox(
-                    //   width: 10,
-                    // ),
                     Padding(
                       padding: EdgeInsets.only(left: 30.0),
                       child: SizedBox(
@@ -142,9 +139,6 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                             child: _HeadingContainer(heading: 'Current Class')),
                       ),
                     ),
-                    // SizedBox(
-                    //   width: 30,
-                    // )
                   ],
                 ),
               ),
