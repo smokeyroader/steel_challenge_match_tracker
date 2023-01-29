@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'match_tracker.dart';
 import 'constants.dart';
 import 'help_screen.dart';
+import 'privacy_policy.dart';
 import 'resources.dart';
 import 'classification_summary.dart';
 
@@ -426,6 +427,42 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             },
           ),
         );
+        break;
+
+      case 'About':
+        //Access required privacy policy
+        showAboutDialog(
+            context: context,
+            // applicationIcon: Image.asset('images/mt_logo_small.png'),
+            applicationName: 'Steel Challenge Match Tracker',
+            applicationVersion: 'Version 2.2.5 (February 2023)',
+            applicationLegalese:
+                'Copyright \u00a9 2018-2023 Smokey Road Software',
+            children: <Widget>[
+              const SizedBox(
+                height: 40,
+              ),
+              SizedBox(
+                height: 20,
+                width: 20,
+                child: FittedBox(
+                  fit: BoxFit.fitHeight,
+                  child: GestureDetector(
+                      child: const Text(
+                        'View Privacy Policy',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.blue),
+                      ),
+                      onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const Privacy();
+                              },
+                            ),
+                          )),
+                ),
+              )
+            ]);
     }
   }
 

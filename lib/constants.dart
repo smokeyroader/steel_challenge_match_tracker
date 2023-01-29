@@ -12,6 +12,7 @@ class Constants {
     'App Sounds On/Off',
     'Resources',
     'Help',
+    'About',
   ];
 
 //Home screen dropdown list items
@@ -44,44 +45,44 @@ class Constants {
 //Function to return abbreviation for the division to be scored
   static String getDivAbbrev(String division) {
     switch (division) {
-      case 'Rimfire Rifle Open (RFRO)':
-        return 'RFRO';
-
-      case 'Rimfire Rifle Irons (RFRI)':
-        return 'RFRI';
-
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
-        return 'PCCO';
-
-      case 'Pistol-Caliber Carbine Irons (PCCI)':
-        return 'PCCI';
-
-      case 'Rimfire Pistol Open (RFPO)':
-        return 'RFPO';
-
-      case 'Rimfire Pistol Irons (RFPI)':
-        return 'RFPI';
-
-      case 'Open (OPN)':
-        return 'OPN';
-
       case 'Carry Optics (CO)':
         return 'CO';
 
-      case 'Production (PROD)':
-        return 'PROD';
+      case 'Iron Sight Revolver (ISR)':
+        return 'ISR';
 
       case 'Limited (LTD)':
         return 'LTD';
 
-      case 'Single Stack (SS)':
-        return 'SS';
+      case 'Open (OPN)':
+        return 'OPN';
 
       case 'Optical Sight Revolver (OSR)':
         return 'OSR';
 
-      case 'Iron Sight Revolver (ISR)':
-        return 'ISR';
+      case 'Pistol-Caliber Carbine Irons (PCCI)':
+        return 'PCCI';
+
+      case 'Pistol-Caliber Carbine Optic (PCCO)':
+        return 'PCCO';
+
+      case 'Production (PROD)':
+        return 'PROD';
+
+      case 'Rimfire Pistol Irons (RFPI)':
+        return 'RFPI';
+
+      case 'Rimfire Pistol Open (RFPO)':
+        return 'RFPO';
+
+      case 'Rimfire Rifle Irons (RFRI)':
+        return 'RFRI';
+
+      case 'Rimfire Rifle Open (RFRO)':
+        return 'RFRO';
+
+      case 'Single Stack (SS)':
+        return 'SS';
     }
 
     return '';
