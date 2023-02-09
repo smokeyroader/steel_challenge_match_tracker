@@ -371,7 +371,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             );
             ScaffoldMessenger.of(context).showSnackBar(snackbar);
 
-            await player.setAsset('sounds/sound_off.mp3');
+            await player.setAsset('sounds/sound_off_2.mp3');
             player.play();
           } else {
             //If they're not on, they must be off, so turn them on.
@@ -450,7 +450,10 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                   child: GestureDetector(
                       child: const Text(
                         'View Privacy Policy',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.blue),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.blue),
                       ),
                       onTap: () => Navigator.push(
                             context,

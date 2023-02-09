@@ -354,7 +354,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                                     //Only play a sound if app sounds are 'On.'
                                     if (widget.appSounds == 'On') {
                                       await player
-                                          .setAsset('sounds/five_to_go.mp3');
+                                          .setAsset('sounds/five_to_go_2.mp3');
                                       player.play();
                                     }
 
