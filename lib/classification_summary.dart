@@ -80,7 +80,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
     __getSummary('Open (OPN)');
     __getSummary('Optical Sight Revolver (OSR)');
     __getSummary('Pistol-Caliber Carbine Irons (PCCI)');
-    __getSummary('Pistol-Caliber Carbine Optic (PCCO)');
+    __getSummary('Pistol-Caliber Carbine Open (PCCO)');
     __getSummary('Production (PROD)');
     __getSummary('Rimfire Pistol Irons (RFPI)');
     __getSummary('Rimfire Pistol Open (RFPO)');
@@ -641,9 +641,9 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
         });
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         divAbbrev = 'PCCO';
-        _getClassOverride('Pistol-Caliber Carbine Optic (PCCO)').then((value) {
+        _getClassOverride('Pistol-Caliber Carbine Open (PCCO)').then((value) {
           overriddenClass = value;
         });
         break;

@@ -162,7 +162,7 @@ class _BestStringsState extends State<BestStrings> {
         divAbbrev = 'RFRISTR';
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         divAbbrev = 'PCCOSTR';
         break;
 

@@ -6,12 +6,13 @@ class Constants {
 
   //Home screen main menu items
   static const List<String> mainMenuChoices = [
-    'Clear Recent Guns',
     'Save Recent Guns',
+    'Clear Recent/Saved Guns',
     'Classification Summary',
-    'App Sounds On/Off'
+    'App Sounds On/Off',
     'Resources',
     'Help',
+    'About',
   ];
 
 //Home screen dropdown list items
@@ -23,7 +24,7 @@ class Constants {
     'Open (OPN)',
     'Optical Sight Revolver (OSR)',
     'Pistol-Caliber Carbine Irons (PCCI)',
-    'Pistol-Caliber Carbine Optic (PCCO)',
+    'Pistol-Caliber Carbine Open (PCCO)',
     'Production (PROD)',
     'Rimfire Pistol Irons (RFPI)',
     'Rimfire Pistol Open (RFPO)',
@@ -44,44 +45,44 @@ class Constants {
 //Function to return abbreviation for the division to be scored
   static String getDivAbbrev(String division) {
     switch (division) {
-      case 'Rimfire Rifle Open (RFRO)':
-        return 'RFRO';
-
-      case 'Rimfire Rifle Irons (RFRI)':
-        return 'RFRI';
-
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
-        return 'PCCO';
-
-      case 'Pistol-Caliber Carbine Irons (PCCI)':
-        return 'PCCI';
-
-      case 'Rimfire Pistol Open (RFPO)':
-        return 'RFPO';
-
-      case 'Rimfire Pistol Irons (RFPI)':
-        return 'RFPI';
-
-      case 'Open (OPN)':
-        return 'OPN';
-
       case 'Carry Optics (CO)':
         return 'CO';
 
-      case 'Production (PROD)':
-        return 'PROD';
+      case 'Iron Sight Revolver (ISR)':
+        return 'ISR';
 
       case 'Limited (LTD)':
         return 'LTD';
 
-      case 'Single Stack (SS)':
-        return 'SS';
+      case 'Open (OPN)':
+        return 'OPN';
 
       case 'Optical Sight Revolver (OSR)':
         return 'OSR';
 
-      case 'Iron Sight Revolver (ISR)':
-        return 'ISR';
+      case 'Pistol-Caliber Carbine Irons (PCCI)':
+        return 'PCCI';
+
+      case 'Pistol-Caliber Carbine Open (PCCO)':
+        return 'PCCO';
+
+      case 'Production (PROD)':
+        return 'PROD';
+
+      case 'Rimfire Pistol Irons (RFPI)':
+        return 'RFPI';
+
+      case 'Rimfire Pistol Open (RFPO)':
+        return 'RFPO';
+
+      case 'Rimfire Rifle Irons (RFRI)':
+        return 'RFRI';
+
+      case 'Rimfire Rifle Open (RFRO)':
+        return 'RFRO';
+
+      case 'Single Stack (SS)':
+        return 'SS';
     }
 
     return '';
@@ -115,7 +116,7 @@ class Constants {
         return 10.75;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 9.5;
         break;
 
@@ -173,7 +174,7 @@ class Constants {
         return 8.5;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 7.0;
         break;
 
@@ -231,7 +232,7 @@ class Constants {
         return 7.63;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 6.83;
         break;
 
@@ -289,7 +290,7 @@ class Constants {
         return 12.29;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 11.5;
         break;
 
@@ -347,7 +348,7 @@ class Constants {
         return 9.83;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 8.64;
         break;
 
@@ -359,12 +360,12 @@ class Constants {
         return 9.5;
         break;
 
-      case 'Rimfire Rifle Irons (RFRI)':
-        return 9.0;
-        break;
-
       case 'Rimfire Pistol Open (RFPO)':
         return 8.33;
+        break;
+
+      case 'Rimfire Rifle Irons (RFRI)':
+        return 9.0;
         break;
 
       case 'Rimfire Rifle Open (RFRO)':
@@ -405,7 +406,7 @@ class Constants {
         return 11.0;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 9.06;
         break;
 
@@ -463,7 +464,7 @@ class Constants {
         return 10.8;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 9.5;
         break;
 
@@ -521,7 +522,7 @@ class Constants {
         return 7.86;
         break;
 
-      case 'Pistol-Caliber Carbine Optic (PCCO)':
+      case 'Pistol-Caliber Carbine Open (PCCO)':
         return 7.5;
         break;
 
