@@ -113,6 +113,8 @@ class _MatchTrackerState extends State<MatchTracker> {
 
   String timeCuts = '';
 
+  bool dialogShowing = false;
+
 // Permit changing today time font to green and bold if a new personal
 //best is entered.
   Color newBestColor5;
@@ -246,10 +248,15 @@ class _MatchTrackerState extends State<MatchTracker> {
             currentFocus.unfocus();
           }
         },
-        //Override both back buttons to also save data when tapped.
+        //Override both back buttons to save data when tapped
+        //even if the user has not tapped outside the last time text field.
         child: WillPopScope(
           onWillPop: () async {
-            _saveStageTimes();
+            FocusScopeNode currentFocus = FocusScope.of(context);
+
+            if (!currentFocus.hasPrimaryFocus) {
+              currentFocus.unfocus();
+            }
 
             return true;
           },
@@ -1521,9 +1528,32 @@ class _MatchTrackerState extends State<MatchTracker> {
                                       //Hide keypad when leaving the page.
                                       //Navigator.pop(context)] automatically
                                       //saves the data.
+
+                                      //If the user has not tapped outside the active field before
+                                      //attempting to change guns, remove focus programmatically to
+                                      //activate the _saveStageTimes method.
+                                      FocusScopeNode currentFocus =
+                                          FocusScope.of(context);
+
+                                      if (!currentFocus.hasPrimaryFocus) {
+                                        currentFocus.unfocus();
+                                      }
                                       SystemChannels.textInput
                                           .invokeMethod('TextInput.hide');
-                                      Navigator.pop(context);
+
+                                      //If the user has not tapped outside the acvtive field after entering a time
+                                      //that would be a new best time for that stage, delay the excution of
+                                      //the code that follows to allow time for the _confirmNewBestTime method to
+                                      //display the new best time alert (and set the dialogShowing flag to true).
+                                      //Otherwise, the screen will pop to the home page before the alert can display
+                                      //and the app will freeze.
+                                      Timer(const Duration(milliseconds: 300),
+                                          () {
+                                        //Only leave the page if the new best time alert dialog is not showing
+                                        if (!dialogShowing) {
+                                          Navigator.pop(context);
+                                        }
+                                      });
                                     },
                                   ),
                                 ),
@@ -1789,6 +1819,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     String stageName = name;
     String stageTime = time;
     String bestID = textID;
+    dialogShowing = true;
 
     Alert(
       context: context,
@@ -1806,6 +1837,7 @@ class _MatchTrackerState extends State<MatchTracker> {
             ),
           ),
           onPressed: () async {
+            dialogShowing = false;
             if (widget.appSounds == 'On') {
               await player.setAsset('sounds/success.mp3');
               player.play();
@@ -1985,7 +2017,10 @@ class _MatchTrackerState extends State<MatchTracker> {
             "No",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            dialogShowing = false;
+            Navigator.pop(context);
+          },
           width: 120,
         ),
       ],

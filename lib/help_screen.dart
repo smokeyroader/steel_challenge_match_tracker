@@ -85,15 +85,16 @@ class Help extends StatelessWidget {
                           style: TextStyle(fontSize: 18.0),
                           text:
                               'To score a match and update your overall classification, just enter your '
-                              'times for each stage as you shoot. If you’re shooting more than one gun '
-                              'in a match, tap the “Change Guns” button or either back button to go back to the '
+                              'times for each stage as you shoot, being sure to tap outside the field to '
+                              'complete the entry. If you’re shooting more than one gun '
+                              'in a match, tap the “Change Guns” button or a back (arrow) button to return to the '
                               'home page and select another division. If you enter a '
                               'time for a stage that is lower than your previous best time, you will be '
                               'asked to confirm that you want to set a new best time for that stage. As '
                               'the match progresses, you can track your total time and class rating for '
                               'the match. Any new best times you set will be calculated into your best '
                               'overall scores so you can immediately see how your classification will be '
-                              'affected. Total time cuts from your previous best times will also be shown '
+                              'affected. Total time cuts from your previous best times for that division will also be shown '
                               'at the center bottom of the screen.\r\n\n',
                         ),
                         const TextSpan(
