@@ -45,14 +45,14 @@ class _BestStringsState extends State<BestStrings> {
   final TextEditingController _controllerSpeedSTR = TextEditingController();
   final TextEditingController _controllerRoundSTR = TextEditingController();
 
-  FocusNode _focus5STR;
-  FocusNode _focusShowSTR;
-  FocusNode _focusSHSTR;
-  FocusNode _focusOLSTR;
-  FocusNode _focusAccSTR;
-  FocusNode _focusPendSTR;
-  FocusNode _focusSpeedSTR;
-  FocusNode _focusRoundSTR;
+  final FocusNode _focus5STR = FocusNode();
+  final FocusNode _focusShowSTR = FocusNode();
+  final FocusNode _focusSHSTR = FocusNode();
+  final FocusNode _focusOLSTR = FocusNode();
+  final FocusNode _focusAccSTR = FocusNode();
+  final FocusNode _focusPendSTR = FocusNode();
+  final FocusNode _focusSpeedSTR = FocusNode();
+  final FocusNode _focusRoundSTR = FocusNode();
 
   String divAbbrev;
 
@@ -79,16 +79,16 @@ class _BestStringsState extends State<BestStrings> {
   String totPeak = '';
   String bestMatchClass = '';
 
-  double peak5;
-  double peakShow;
-  double peakSH;
-  double peakOL;
-  double peakAcc;
-  double peakPend;
-  double peakSpeed;
-  double peakRound;
+  double peak5 = 0.0;
+  double peakShow = 0.0;
+  double peakSH = 0.0;
+  double peakOL = 0.0;
+  double peakAcc = 0.0;
+  double peakPend = 0.0;
+  double peakSpeed = 0.0;
+  double peakRound = 0.0;
 
-  double matchPeak;
+  double matchPeak = 0.0;
 
   @override
   void initState() {
@@ -97,15 +97,6 @@ class _BestStringsState extends State<BestStrings> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
-    _focus5STR = FocusNode();
-    _focusShowSTR = FocusNode();
-    _focusSHSTR = FocusNode();
-    _focusOLSTR = FocusNode();
-    _focusAccSTR = FocusNode();
-    _focusPendSTR = FocusNode();
-    _focusSpeedSTR = FocusNode();
-    _focusRoundSTR = FocusNode();
 
     _focus5STR.addListener(_focus5Listener);
     _focusShowSTR.addListener(_focusShowListener);

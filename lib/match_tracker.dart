@@ -3339,7 +3339,10 @@ class _HeadText extends StatelessWidget {
         text,
         textAlign: TextAlign.left,
         style: const TextStyle(
-            fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white),
+          fontSize: 14.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
       ),
     );
   }

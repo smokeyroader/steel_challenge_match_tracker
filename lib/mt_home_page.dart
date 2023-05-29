@@ -22,14 +22,13 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   //Provide for use of snackbar.
   final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
-  AudioPlayer player; //Declare audio player for playing app sounds.
+  AudioPlayer player = AudioPlayer(); //Declare audio player for playing app sounds.
 
 //Stings to hold recently used divisions
   String dropdownValue = 'Select Division';
   String firstRecent = '';
   String secondRecent = '';
-  String thirdRecent = '';
-  String fourthRecent = '';
+  String thirdRecent = '';  String fourthRecent = '';
 
   String appSounds;
 
@@ -39,7 +38,8 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 
   @override
   void initState() {
-    player = AudioPlayer(); //Initialize audio player (from just_audio package.)
+    // AudioPlayer player = AudioPlayer();
+    // player = AudioPlayer(); //Initialize audio player (from just_audio package.)
     //  Check whether application sounds have been turned off.
     getSoundStatus().then((value) {
       appSounds = value;
@@ -238,7 +238,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     child: Image.asset('images/match_tracker_logo_front.jpg'),
                   ),
                   const Text(
-                    'Version 2.2.5',
+                    'Version 2.2.6',
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ],
@@ -435,7 +435,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             context: context,
             // applicationIcon: Image.asset('images/mt_logo_small.png'),
             applicationName: 'Steel Challenge Match Tracker',
-            applicationVersion: 'Version 2.2.5 (February 2023)',
+            applicationVersion: 'Version 2.2.6 (March 2023)',
             applicationLegalese:
                 'Copyright \u00a9 2018-2023 Smokey Road Software',
             children: <Widget>[

@@ -90,6 +90,8 @@ class Constants {
   ////////////////////////////Peak Times///////////////////////////////
 
 //Function to return peak stage times for the division to be scored
+
+  //Five to Go
   static double getPeak5(String division) {
     switch (division) {
       case 'Carry Optics (CO)':
