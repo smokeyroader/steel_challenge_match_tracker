@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Constants.dart';
+
 class Privacy extends StatelessWidget {
   const Privacy({Key key}) : super(key: key);
 
@@ -8,7 +10,7 @@ class Privacy extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Privacy Policy'),
-          // backgroundColor: Constants.mtGreen,
+          backgroundColor: Constants.mtGreen,
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),

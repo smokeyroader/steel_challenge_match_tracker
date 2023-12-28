@@ -1309,8 +1309,8 @@ class _BestStringsState extends State<BestStrings> {
     int numRows = await helper.getCount(divAbbrev);
 
     StringTimes stringTimes = await helper.queryStringTimes(divAbbrev, numRows);
-    if (numRows == 0) {
-    } else {
+
+    if (numRows != 0) {
       setState(() {
         if (stringTimes.fiveToGo != '' && stringTimes.fiveToGo != null) {
           _controller5STR.text = stringTimes.fiveToGo;

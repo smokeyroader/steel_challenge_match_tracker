@@ -2923,7 +2923,8 @@ class _MatchTrackerState extends State<MatchTracker> {
         textAlign: TextAlign.center,
       ),
       action: SnackBarAction(
-        label: 'More',
+        textColor: Colors.white,
+        label: 'More...',
         onPressed: () {
           Navigator.push(
             context,

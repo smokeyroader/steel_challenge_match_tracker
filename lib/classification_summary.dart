@@ -4,11 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'constants.dart';
 import 'database_helper.dart';
 
-//This probably should have been set up as a Stateless Widget since it simply
-// displays info with no user interaction. However, after setting it up initially
-// as Stateful, I later attempted to convert it to Stateless but could not get
-// it to work. Decided to leave it alone.
-
 class ClassificationSummary extends StatefulWidget {
   const ClassificationSummary({Key key}) : super(key: key);
 
