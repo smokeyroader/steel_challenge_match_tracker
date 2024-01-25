@@ -1,7 +1,7 @@
 name: steel_challenge_match_tracker
 description: A new Flutter application.
 
-version: 2.2.7+22
+version: 2.2.7+23
 
 environment:
 # sdk: ">=2.2.0 <3.0.0"
@@ -18,7 +18,8 @@ dependencies:
   url_launcher: ^6.0.9
   sqflite: ^2.0.0+3
   path_provider: ^2.0.2
-  just_audio: ^0.9.34
+#  just_audio: ^0.9.34
+  just_audio: ^0.9.32
   font_awesome_flutter: ^10.3.0
 
 dev_dependencies:
