@@ -1,13 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode='22'
+    android:versionCode='23'
     android:versionName='2.2.7'
     xmlns:tools="http://schemas.android.com/tools"
     package="com.precisionwrite.steelchallengeclasstracker">
 
 
     <uses-sdk android:minSdkVersion="16"
-        android:targetSdkVersion="33"
-        android:maxSdkVersion="33" />
+        android:targetSdkVersion="34"
+        android:maxSdkVersion="34" />
 
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
