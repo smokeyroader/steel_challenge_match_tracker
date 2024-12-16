@@ -236,11 +236,14 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 190.0,
-                    child: Image.asset('images/match_tracker_logo_front.jpg'),
+                    height: 160.0,
+                    child: Image.asset('images/mt_logo_home.png'),
+                  ),
+                  const SizedBox(
+                    height: 14,
                   ),
                   const Text(
-                    'Version 2.2.7',
+                    'Next Android Version (2.2.8+24)',
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ],
@@ -437,9 +440,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             context: context,
             // applicationIcon: Image.asset('images/mt_logo_small.png'),
             applicationName: 'Steel Challenge Match Tracker',
-            applicationVersion: 'Version 2.2.7 (January 2024)',
+            applicationVersion: 'Version 2.2.8 (January 2025)',
             applicationLegalese:
-                'Copyright \u00a9 2018-2024 Smokey Road Software',
+                'Copyright \u00a9 2018-2025 Smokey Road Software',
             children: <Widget>[
               const SizedBox(
                 height: 40,

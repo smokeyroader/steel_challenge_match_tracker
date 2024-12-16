@@ -57,12 +57,20 @@ class ClassTracker extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Center(
-                      child: Text(
-                        division,
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Constants.mtGreen,
+                      child: Card(
+                        elevation: 8,
+                        shadowColor: Constants.mtGreen,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 4, bottom: 4, left: 8, right: 8),
+                          child: Text(
+                            division,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Constants.mtGreen,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -74,12 +82,20 @@ class ClassTracker extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Current Class:  $currClass',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Constants.mtGreen,
+                    child: Card(
+                      elevation: 8,
+                      shadowColor: Constants.mtGreen,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 4, bottom: 4, left: 8, right: 8),
+                        child: Text(
+                          'Current Class:  $currClass',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Constants.mtGreen,
+                          ),
+                        ),
                       ),
                     ),
                   ),

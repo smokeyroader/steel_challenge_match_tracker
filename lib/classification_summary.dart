@@ -66,11 +66,16 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
   String div13Pct = '';
   String div13Class = '';
 
+  String div14 = '';
+  String div14Pct = '';
+  String div14Class = '';
+
   //Call method to find and display all of the user's current classifications
   @override
   void initState() {
     __getSummary('Carry Optics (CO)');
     __getSummary('Iron Sight Revolver (ISR)');
+    __getSummary('Limited Optics (LO)');
     __getSummary('Limited (LTD)');
     __getSummary('Open (OPN)');
     __getSummary('Optical Sight Revolver (OSR)');
@@ -418,6 +423,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 ],
               ),
             ),
+            //
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Row(
@@ -443,7 +449,31 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4.0),
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: DivisionContainer(contents: div14),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: DivisionContainer(contents: div14Pct),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: DivisionContainer(
+                      contents: div14Class,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
@@ -595,6 +625,19 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 ),
               ],
             ),
+            const SizedBox(
+              width: 150.0,
+              height: 50.0,
+              child: FittedBox(
+                child: Text(
+                  '*Overridden class',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Constants.mtGreen,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -681,6 +724,13 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
       case 'Production (PROD)':
         divAbbrev = 'PROD';
         _getClassOverride('Production (PROD)').then((value) {
+          overriddenClass = value;
+        });
+        break;
+
+      case 'Limited Optics (LO)':
+        divAbbrev = 'LO';
+        _getClassOverride('Limited Optics (LO)').then((value) {
           overriddenClass = value;
         });
         break;
@@ -774,7 +824,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div1Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
 
           if (overriddenClass != '') {
-            div1Class = overriddenClass;
+            div1Class = overriddenClass + '*';
           } else {
             div1Class = _calcClass(totalPeak, totalBest);
           }
@@ -782,7 +832,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div2 = divAbbrev;
           div2Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div2Class = overriddenClass;
+            div2Class = overriddenClass + '*';
           } else {
             div2Class = _calcClass(totalPeak, totalBest);
           }
@@ -790,7 +840,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div3 = divAbbrev;
           div3Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div3Class = overriddenClass;
+            div3Class = overriddenClass + '*';
           } else {
             div3Class = _calcClass(totalPeak, totalBest);
           }
@@ -798,7 +848,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div4 = divAbbrev;
           div4Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div4Class = overriddenClass;
+            div4Class = overriddenClass + '*';
           } else {
             div4Class = _calcClass(totalPeak, totalBest);
           }
@@ -806,7 +856,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div5 = divAbbrev;
           div5Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div5Class = overriddenClass;
+            div5Class = overriddenClass + '*';
           } else {
             div5Class = _calcClass(totalPeak, totalBest);
           }
@@ -814,7 +864,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div6 = divAbbrev;
           div6Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div6Class = overriddenClass;
+            div6Class = overriddenClass + '*';
           } else {
             div6Class = _calcClass(totalPeak, totalBest);
           }
@@ -822,7 +872,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div7 = divAbbrev;
           div7Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div7Class = overriddenClass;
+            div7Class = overriddenClass + '*';
           } else {
             div7Class = _calcClass(totalPeak, totalBest);
           }
@@ -830,7 +880,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div8 = divAbbrev;
           div8Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div8Class = overriddenClass;
+            div8Class = overriddenClass + '*';
           } else {
             div8Class = _calcClass(totalPeak, totalBest);
           }
@@ -838,7 +888,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div9 = divAbbrev;
           div9Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div9Class = overriddenClass;
+            div9Class = overriddenClass + '*';
           } else {
             div9Class = _calcClass(totalPeak, totalBest);
           }
@@ -846,7 +896,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div10 = divAbbrev;
           div10Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div10Class = overriddenClass;
+            div10Class = overriddenClass + '*';
           } else {
             div10Class = _calcClass(totalPeak, totalBest);
           }
@@ -855,7 +905,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div11Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
 
           if (overriddenClass != '') {
-            div11Class = overriddenClass;
+            div11Class = overriddenClass + '*';
           } else {
             div11Class = _calcClass(totalPeak, totalBest);
           }
@@ -863,7 +913,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div12 = divAbbrev;
           div12Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div12Class = overriddenClass;
+            div12Class = overriddenClass + '*';
           } else {
             div12Class = _calcClass(totalPeak, totalBest);
           }
@@ -871,9 +921,17 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div13 = divAbbrev;
           div13Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div13Class = overriddenClass;
+            div13Class = overriddenClass + '*';
           } else {
             div13Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div14 == '') {
+          div14 = divAbbrev;
+          div14Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
+            div14Class = overriddenClass + '*';
+          } else {
+            div14Class = _calcClass(totalPeak, totalBest);
           }
         }
       });

@@ -284,12 +284,20 @@ class _MatchTrackerState extends State<MatchTracker> {
                               2.0,
                             ),
                             child: FittedBox(
-                              child: Text(
-                                widget.currentDivision,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Constants.mtGreen,
+                              child: Card(
+                                elevation: 8,
+                                shadowColor: Constants.mtGreen,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 4, bottom: 4, left: 8, right: 8),
+                                  child: Text(
+                                    widget.currentDivision,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Constants.mtGreen,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -2921,6 +2929,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       content: Text(
         'Best average string $stage is ${bestAvg.toStringAsFixed(2)}',
         textAlign: TextAlign.center,
+        style: const TextStyle(color: Colors.white),
       ),
       action: SnackBarAction(
         textColor: Colors.white,

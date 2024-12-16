@@ -20,6 +20,7 @@ class Constants {
     'Select Division',
     'Carry Optics (CO)',
     'Iron Sight Revolver (ISR)',
+    'Limited Optics (LO)',
     'Limited (LTD)',
     'Open (OPN)',
     'Optical Sight Revolver (OSR)',
@@ -50,6 +51,9 @@ class Constants {
 
       case 'Iron Sight Revolver (ISR)':
         return 'ISR';
+
+      case 'Limited Optics (LO)':
+        return 'LO';
 
       case 'Limited (LTD)':
         return 'LTD';
@@ -96,51 +100,42 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 12.5;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 13.5;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 11.75;
 
       case 'Limited (LTD)':
         return 12.5;
-        break;
 
       case 'Open (OPN)':
         return 11.25;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 12.25;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 10.75;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
         return 9.5;
-        break;
 
       case 'Production (PROD)':
         return 13.0;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
         return 10.5;
-        break;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 8.75;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 9.75;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
         return 9.5;
-        break;
 
       case 'Single Stack (SS)':
         return 13.25;
@@ -154,55 +149,45 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 9.75;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 12.0;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 9.5;
 
       case 'Limited (LTD)':
         return 9.5;
-        break;
 
       case 'Open (OPN)':
         return 9.5;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 10.5;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 8.5;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
-        return 7.0;
-        break;
+        return 7;
 
       case 'Production (PROD)':
         return 10.0;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
-        return 9.0;
-        break;
+        return 9;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 7.5;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 7.5;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
         return 7.0;
-        break;
 
       case 'Single Stack (SS)':
         return 10.5;
-        break;
     }
     return 0.0;
   }
@@ -212,55 +197,45 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 10.0;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 10.5;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 9.25;
 
       case 'Limited (LTD)':
         return 9.5;
-        break;
 
       case 'Open (OPN)':
         return 8.5;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 10.0;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 7.75;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
         return 7.0;
-        break;
 
       case 'Production (PROD)':
         return 10.0;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
         return 8.0;
-        break;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 7.0;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 7.5;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
-        return 7.0;
-        break;
+        return 7.0                                                                                                           ;
 
       case 'Single Stack (SS)':
         return 10.25;
-        break;
     }
     return 0.0;
   }
@@ -270,55 +245,45 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 13.75;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 15.75;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 13.0;
 
       case 'Limited (LTD)':
         return 13.5;
-        break;
 
       case 'Open (OPN)':
         return 12.5;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 14.25;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 12.25;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
         return 11.25;
-        break;
 
       case 'Production (PROD)':
         return 14.0;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
         return 13.0;
-        break;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 11.5;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 12.0;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
         return 10.75;
-        break;
 
       case 'Single Stack (SS)':
         return 14.75;
-        break;
     }
     return 0.0;
   }
@@ -328,55 +293,45 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 11.0;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 13.0;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 10.75;
 
       case 'Limited (LTD)':
         return 10.5;
-        break;
 
       case 'Open (OPN)':
         return 10.5;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 12.75;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 9.5;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
         return 8.75;
-        break;
 
       case 'Production (PROD)':
         return 11.5;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
         return 9.25;
-        break;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 8.5;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 9.0;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
         return 8.5;
-        break;
 
       case 'Single Stack (SS)':
         return 11.75;
-        break;
     }
     return 0.0;
   }
@@ -386,55 +341,45 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 12.75;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 14.25;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 12.0;
 
       case 'Limited (LTD)':
         return 12.5;
-        break;
 
       case 'Open (OPN)':
         return 11.25;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 13.5;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 10.5;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
         return 9.0;
-        break;
 
       case 'Production (PROD)':
         return 13.0;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
         return 11.0;
-        break;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 9.5;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 9.75;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
-        return 9.0;
-        break;
+        return 9;
 
       case 'Single Stack (SS)':
         return 13.5;
-        break;
     }
     return 0.0;
   }
@@ -444,55 +389,45 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 13.0;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 14.0;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 12.5;
 
       case 'Limited (LTD)':
         return 12.5;
-        break;
 
       case 'Open (OPN)':
         return 11.5;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 12.75;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 11.0;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
         return 9.5;
-        break;
 
       case 'Production (PROD)':
         return 13.0;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
         return 11.0;
-        break;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 10.0;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 10.0;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
         return 9.0;
-        break;
 
       case 'Single Stack (SS)':
         return 13.5;
-        break;
     }
     return 0.0;
   }
@@ -502,55 +437,45 @@ class Constants {
     switch (division) {
       case 'Carry Optics (CO)':
         return 9.75;
-        break;
 
       case 'Iron Sight Revolver (ISR)':
         return 11.0;
-        break;
+
+      case 'Limited Optics (LO)':
+        return 9.25;
 
       case 'Limited (LTD)':
         return 9.5;
-        break;
 
       case 'Open (OPN)':
         return 8.5;
-        break;
 
       case 'Optical Sight Revolver (OSR)':
         return 10.5;
-        break;
 
       case 'Pistol-Caliber Carbine Irons (PCCI)':
         return 8.0;
-        break;
 
       case 'Pistol-Caliber Carbine Open (PCCO)':
         return 7.5;
-        break;
 
       case 'Production (PROD)':
         return 10.0;
-        break;
 
       case 'Rimfire Pistol Irons (RFPI)':
         return 8.25;
-        break;
 
       case 'Rimfire Pistol Open (RFPO)':
         return 7.5;
-        break;
 
       case 'Rimfire Rifle Irons (RFRI)':
         return 7.5;
-        break;
 
       case 'Rimfire Rifle Open (RFRO)':
         return 7.0;
-        break;
 
       case 'Single Stack (SS)':
         return 10.5;
-        break;
     }
     return 0.0;
   }

@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 
     android {
 //        compileSdkVersion 28
-        compileSdkVersion 33
+        compileSdkVersion 34
         lintOptions {
             disable 'InvalidPackage'
         }
@@ -50,7 +50,7 @@ if (keystorePropertiesFile.exists()) {
 
 
             minSdkVersion 16
-            targetSdkVersion 33
+            targetSdkVersion 35
 ////            targetSdkVersion 31
 //            targetSdkVersion 28
             versionCode flutterVersionCode.toInteger()
