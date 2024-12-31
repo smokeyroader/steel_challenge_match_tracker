@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'Constants.dart';
+import 'constants.dart';
 
 class Privacy extends StatelessWidget {
-  const Privacy({Key key}) : super(key: key);
+  const Privacy({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +10,7 @@ class Privacy extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Privacy Policy'),
           backgroundColor: Constants.mtGreen,
+          foregroundColor: Colors.white,
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),

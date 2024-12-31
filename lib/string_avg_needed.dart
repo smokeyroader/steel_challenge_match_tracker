@@ -9,12 +9,12 @@ class TimesNeeded extends StatelessWidget {
   final double bestAvgStr;
 
   const TimesNeeded({
-    Key key,
-    this.division,
-    this.stage,
-    this.divAbb,
-    this.bestAvgStr,
-  }) : super(key: key);
+    super.key,
+    required this.division,
+    required this.stage,
+    required this.divAbb,
+    required this.bestAvgStr,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +53,7 @@ class TimesNeeded extends StatelessWidget {
             "Average String Time Goals",
           ),
           backgroundColor: Constants.mtGreen,
+          foregroundColor: Colors.white,
         ),
         body: Container(
           color: Colors.white,
@@ -93,10 +94,10 @@ class TimesNeeded extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              FittedBox(
+              const FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Padding(
                       padding: EdgeInsets.only(
                         left: 20.0,
@@ -154,10 +155,10 @@ class TimesNeeded extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              FittedBox(
+              const FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Padding(
                       padding: EdgeInsets.only(
                         left: 20.0,
@@ -213,8 +214,8 @@ class TimesNeeded extends StatelessWidget {
               const SizedBox(
                 height: 70,
               ),
-              FittedBox(
-                child: Row(children: const [
+              const FittedBox(
+                child: Row(children: [
                   Padding(
                     padding: EdgeInsets.only(left: 24, right: 24),
                     child: Text(
@@ -267,11 +268,16 @@ class TimesNeeded extends StatelessWidget {
 
 //Custom widget to reduce redundant code
 class ClassTimes extends StatelessWidget {
+  // const ClassTimes({
+  //   Key? key,
+  //   required this.classLetter,
+  //   required this.time,
+  // }) : super(key: key);
   const ClassTimes({
-    Key key,
-    @required this.classLetter,
-    this.time,
-  }) : super(key: key);
+    super.key,
+    required this.classLetter,
+    required this.time,
+  });
 
   final String classLetter;
   final String time;

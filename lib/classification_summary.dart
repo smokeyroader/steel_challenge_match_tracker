@@ -5,13 +5,13 @@ import 'constants.dart';
 import 'database_helper.dart';
 
 class ClassificationSummary extends StatefulWidget {
-  const ClassificationSummary({Key key}) : super(key: key);
+  const ClassificationSummary({super.key});
 
   @override
-  _ClassificationSummaryState createState() => _ClassificationSummaryState();
+  ClassificationSummaryState createState() => ClassificationSummaryState();
 }
 
-class _ClassificationSummaryState extends State<ClassificationSummary> {
+class ClassificationSummaryState extends State<ClassificationSummary> {
   DatabaseHelper helper = DatabaseHelper.instance;
 
   String div1 = '';
@@ -66,11 +66,16 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
   String div13Pct = '';
   String div13Class = '';
 
+  String div14 = '';
+  String div14Pct = '';
+  String div14Class = '';
+
   //Call method to find and display all of the user's current classifications
   @override
   void initState() {
     __getSummary('Carry Optics (CO)');
     __getSummary('Iron Sight Revolver (ISR)');
+    __getSummary('Limited Optics (LO)');
     __getSummary('Limited (LTD)');
     __getSummary('Open (OPN)');
     __getSummary('Optical Sight Revolver (OSR)');
@@ -94,6 +99,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           child: Text('Classification Summary'),
         ),
         backgroundColor: Constants.mtGreen,
+        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -103,10 +109,10 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
               child: Container(
                 height: 20.0,
                 color: Constants.mtGreen,
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(left: 16.0),
                       child: SizedBox(
@@ -443,10 +449,34 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4.0),
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 4.0,
+                    ),
+                    child: DivisionContainer(contents: div14),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: DivisionContainer(contents: div14Pct),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: DivisionContainer(
+                      contents: div14Class,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 4.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
+                children: <Widget>[
                   SizedBox(
                     width: 50.0,
                     height: 22.0,
@@ -475,9 +505,9 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 ],
               ),
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 SizedBox(
                   width: 50.0,
                   height: 20.0,
@@ -505,9 +535,9 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 ),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 SizedBox(
                   width: 50.0,
                   height: 20.0,
@@ -535,9 +565,9 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 ),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 SizedBox(
                   width: 50.0,
                   height: 20.0,
@@ -565,9 +595,9 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 ),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 SizedBox(
                   width: 50.0,
                   height: 20.0,
@@ -595,6 +625,19 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
                 ),
               ],
             ),
+            const SizedBox(
+              width: 150.0,
+              height: 50.0,
+              child: FittedBox(
+                child: Text(
+                  '*Overridden class',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Constants.mtGreen,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -611,8 +654,8 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
     double peakSpeed = Constants.getPeakSpeed(div);
     double peakRound = Constants.getPeakRound(div);
 
-    String divAbbrev;
-    String overriddenClass;
+    String divAbbrev = '';
+    String overriddenClass = '';
 
     double totalBest = 0.0;
     double totalPeak = 0.0;
@@ -685,6 +728,13 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
         });
         break;
 
+      case 'Limited Optics (LO)':
+        divAbbrev = 'LO';
+        _getClassOverride('Limited Optics (LO)').then((value) {
+          overriddenClass = value;
+        });
+        break;
+
       case 'Limited (LTD)':
         divAbbrev = 'LTD';
         _getClassOverride('Limited (LTD)').then((value) {
@@ -716,50 +766,50 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
 
     // Get the number of rows in the division table to avoid a null result and
     //to make sure we're querying the last row in the table.
-    int numRows = await helper.getCount(divAbbrev);
+    int? numRows = await helper.getCount(divAbbrev);
 
     //Get stage times from the last (most recently added) row in the table.
-    StageTimes stageTimes = await helper.queryStageTimes(divAbbrev, numRows);
+    StageTimes? stageTimes = await helper.queryStageTimes(divAbbrev, numRows!);
 
     //Make sure the table itself is not null (has at least one row).
     if (numRows >= 1) {
-      if (stageTimes.best5 != '') {
-        totalBest += double.parse(stageTimes.best5);
+      if (stageTimes?.best5 != '') {
+        totalBest += double.parse(stageTimes!.best5!);
         totalPeak += peak5;
         numClassifiers += 1;
       }
-      if (stageTimes.bestShow != '') {
-        totalBest += double.parse(stageTimes.bestShow);
+      if (stageTimes?.bestShow != '') {
+        totalBest += double.parse(stageTimes!.bestShow!);
         totalPeak += peakShow;
         numClassifiers += 1;
       }
-      if (stageTimes.bestSH != '') {
-        totalBest += double.parse(stageTimes.bestSH);
+      if (stageTimes?.bestSH != '') {
+        totalBest += double.parse(stageTimes!.bestSH!);
         totalPeak += peakSH;
         numClassifiers += 1;
       }
-      if (stageTimes.bestOL != '') {
-        totalBest += double.parse(stageTimes.bestOL);
+      if (stageTimes?.bestOL != '') {
+        totalBest += double.parse(stageTimes!.bestOL!);
         totalPeak += peakOL;
         numClassifiers += 1;
       }
-      if (stageTimes.bestAcc != '') {
-        totalBest += double.parse(stageTimes.bestAcc);
+      if (stageTimes?.bestAcc != '') {
+        totalBest += double.parse(stageTimes!.bestAcc!);
         totalPeak += peakAcc;
         numClassifiers += 1;
       }
-      if (stageTimes.bestPend != '') {
-        totalBest += double.parse(stageTimes.bestPend);
+      if (stageTimes?.bestPend != '') {
+        totalBest += double.parse(stageTimes!.bestPend!);
         totalPeak += peakPend;
         numClassifiers += 1;
       }
-      if (stageTimes.bestSpeed != '') {
-        totalBest += double.parse(stageTimes.bestSpeed);
+      if (stageTimes?.bestSpeed != '') {
+        totalBest += double.parse(stageTimes!.bestSpeed!);
         totalPeak += peakSpeed;
         numClassifiers += 1;
       }
-      if (stageTimes.bestRound != '') {
-        totalBest += double.parse(stageTimes.bestRound);
+      if (stageTimes?.bestRound != '') {
+        totalBest += double.parse(stageTimes!.bestRound!);
         totalPeak += peakRound;
         numClassifiers += 1;
       }
@@ -774,7 +824,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div1Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
 
           if (overriddenClass != '') {
-            div1Class = overriddenClass;
+            div1Class = '$overriddenClass*';
           } else {
             div1Class = _calcClass(totalPeak, totalBest);
           }
@@ -782,7 +832,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div2 = divAbbrev;
           div2Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div2Class = overriddenClass;
+            div2Class = '$overriddenClass*';
           } else {
             div2Class = _calcClass(totalPeak, totalBest);
           }
@@ -790,7 +840,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div3 = divAbbrev;
           div3Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div3Class = overriddenClass;
+            div3Class = '$overriddenClass*';
           } else {
             div3Class = _calcClass(totalPeak, totalBest);
           }
@@ -798,7 +848,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div4 = divAbbrev;
           div4Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div4Class = overriddenClass;
+            div4Class = '$overriddenClass*';
           } else {
             div4Class = _calcClass(totalPeak, totalBest);
           }
@@ -806,7 +856,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div5 = divAbbrev;
           div5Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div5Class = overriddenClass;
+            div5Class = '$overriddenClass*';
           } else {
             div5Class = _calcClass(totalPeak, totalBest);
           }
@@ -814,7 +864,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div6 = divAbbrev;
           div6Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div6Class = overriddenClass;
+            div6Class = '$overriddenClass*';
           } else {
             div6Class = _calcClass(totalPeak, totalBest);
           }
@@ -822,7 +872,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div7 = divAbbrev;
           div7Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div7Class = overriddenClass;
+            div7Class = '$overriddenClass*';
           } else {
             div7Class = _calcClass(totalPeak, totalBest);
           }
@@ -830,7 +880,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div8 = divAbbrev;
           div8Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div8Class = overriddenClass;
+            div8Class = '$overriddenClass*';
           } else {
             div8Class = _calcClass(totalPeak, totalBest);
           }
@@ -838,7 +888,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div9 = divAbbrev;
           div9Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div9Class = overriddenClass;
+            div9Class = '$overriddenClass*';
           } else {
             div9Class = _calcClass(totalPeak, totalBest);
           }
@@ -846,7 +896,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div10 = divAbbrev;
           div10Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div10Class = overriddenClass;
+            div10Class = '$overriddenClass*';
           } else {
             div10Class = _calcClass(totalPeak, totalBest);
           }
@@ -855,7 +905,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div11Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
 
           if (overriddenClass != '') {
-            div11Class = overriddenClass;
+            div11Class = '$overriddenClass*';
           } else {
             div11Class = _calcClass(totalPeak, totalBest);
           }
@@ -863,7 +913,7 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div12 = divAbbrev;
           div12Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div12Class = overriddenClass;
+            div12Class = '$overriddenClass*';
           } else {
             div12Class = _calcClass(totalPeak, totalBest);
           }
@@ -871,9 +921,17 @@ class _ClassificationSummaryState extends State<ClassificationSummary> {
           div13 = divAbbrev;
           div13Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
           if (overriddenClass != '') {
-            div13Class = overriddenClass;
+            div13Class = '$overriddenClass*';
           } else {
             div13Class = _calcClass(totalPeak, totalBest);
+          }
+        } else if (div14 == '') {
+          div14 = divAbbrev;
+          div14Pct = ((totalPeak / totalBest) * 100).toStringAsFixed(2);
+          if (overriddenClass != '') {
+            div14Class = '$overriddenClass*';
+          } else {
+            div14Class = _calcClass(totalPeak, totalBest);
           }
         }
       });
@@ -910,9 +968,9 @@ String _calcClass(double peak, double best) {
 //Custom container widget for division details
 class DivisionContainer extends StatelessWidget {
   const DivisionContainer({
-    Key key,
-    @required this.contents,
-  }) : super(key: key);
+    super.key,
+    required this.contents,
+  });
 
   final String contents;
 
@@ -937,7 +995,7 @@ class DivisionContainer extends StatelessWidget {
 
 //Custom container widget for header row
 class _HeadingContainer extends StatelessWidget {
-  const _HeadingContainer({Key key, @required this.heading}) : super(key: key);
+  const _HeadingContainer({required this.heading});
 
   final String heading;
 

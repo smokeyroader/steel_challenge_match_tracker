@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class Help extends StatelessWidget {
-  const Help({Key key}) : super(key: key);
+  const Help({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,7 @@ class Help extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Using Match Tracker'),
           backgroundColor: Constants.mtGreen,
+          foregroundColor: Colors.white,
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),

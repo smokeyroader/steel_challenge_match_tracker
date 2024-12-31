@@ -17,6 +17,7 @@ const String table10Name = 'PCCO';
 const String table11Name = 'CO';
 const String table12Name = 'ISR';
 const String table13Name = 'OSR';
+const String table28Name = 'LO';
 
 const String table14Name = "PRODSTR";
 const String table15Name = "LTDSTR";
@@ -31,6 +32,7 @@ const String table23Name = "PCCOSTR";
 const String table24Name = "COSTR";
 const String table25Name = "ISRSTR";
 const String table26Name = "OSRSTR";
+const String table29Name = 'LOSTR';
 
 const String columnId = '_id';
 const String column5 = 'FiveToGo';
@@ -70,27 +72,27 @@ const String creationMatchRecord =
 
 // data model class
 class StageTimes {
-  int id;
+  int? id;
 
-  String fiveToGo;
-  String showdown;
-  String smokeAndHope;
-  String outerLimits;
-  String accelerator;
-  String pendulum;
-  String speedOption;
-  String roundabout;
+  String? fiveToGo;
+  String? showdown;
+  String? smokeAndHope;
+  String? outerLimits;
+  String? accelerator;
+  String? pendulum;
+  String? speedOption;
+  String? roundabout;
 
-  String best5;
-  String bestShow;
-  String bestSH;
-  String bestOL;
-  String bestAcc;
-  String bestPend;
-  String bestSpeed;
-  String bestRound;
+  String? best5;
+  String? bestShow;
+  String? bestSH;
+  String? bestOL;
+  String? bestAcc;
+  String? bestPend;
+  String? bestSpeed;
+  String? bestRound;
 
-  String shavedTime;
+  late String shavedTime;
 
   StageTimes();
 
@@ -146,16 +148,16 @@ class StageTimes {
 }
 
 class StringTimes {
-  int id;
+  int? id;
 
-  String fiveToGo;
-  String showdown;
-  String smokeAndHope;
-  String outerLimits;
-  String accelerator;
-  String pendulum;
-  String speedOption;
-  String roundabout;
+  late String fiveToGo = '';
+  late String showdown = '';
+  late String smokeAndHope = '';
+  late String outerLimits = '';
+  late String accelerator = '';
+  late String pendulum = '';
+  late String speedOption = '';
+  late String roundabout = '';
 
   StringTimes();
 
@@ -196,15 +198,15 @@ class DatabaseHelper {
   // This is the actual database filename that is saved in the docs directory.
   static const _databaseName = 'MatchTracker.db';
   // Increment this version when you need to change the schema.
-  static const _databaseVersion = 1;
+  static const _databaseVersion = 2;
 
   // Make this a singleton class.
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
   // Only allow a single open connection to the database.
-  static Database _database;
-  Future<Database> get database async {
+  Database? _database;
+  Future<Database?> get database async {
     if (_database != null) return _database;
     _database = await _initDatabase();
     return _database;
@@ -216,8 +218,12 @@ class DatabaseHelper {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     // Open the database. Can also add an onUpdate callback parameter.
-    return await openDatabase(path,
-        version: _databaseVersion, onCreate: _onCreate);
+    return await openDatabase(
+      path,
+      version: _databaseVersion,
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade
+    );
   }
 
   // SQL string to create the database
@@ -236,6 +242,8 @@ class DatabaseHelper {
     await db.execute('CREATE TABLE $table11Name ($creationStagesTable)');
     await db.execute('CREATE TABLE $table12Name ($creationStagesTable)');
     await db.execute('CREATE TABLE $table13Name ($creationStagesTable)');
+    //Table added in upgrading database from version 1 to version 2 (adding LO division)
+    await db.execute('CREATE TABLE $table28Name ($creationStagesTable)');
 
     //Create tables for best string times
     await db.execute('CREATE TABLE $table14Name ($creationStringsTable)');
@@ -251,27 +259,61 @@ class DatabaseHelper {
     await db.execute('CREATE TABLE $table24Name ($creationStringsTable)');
     await db.execute('CREATE TABLE $table25Name ($creationStringsTable)');
     await db.execute('CREATE TABLE $table26Name ($creationStringsTable)');
+    //Table added in upgrading database from version 1 to version 2 (adding LO division)
+    await db.execute('CREATE TABLE $table29Name ($creationStringsTable)');
 
     await db.execute('CREATE TABLE $table27Name($creationMatchRecord)');
+
+  }
+
+  //Method to update the database when a new version is introduced
+  _onUpgrade(Database  db, int  oldVersion, int  newVersion) async {
+     // debugPrint('_onUpgrade called: Database Version onUpgrade: OLD: $oldVersion NEW: $newVersion');
+
+  //Provide for any current and subsequent upgrades
+    switch (oldVersion) {
+      case 1:
+        //Add stage and string tables for Limited Optics division when
+       // updating from version 1 to version 2 or to subsequent versions
+          await db.execute('CREATE TABLE $table28Name ($creationStagesTable)');
+          await db.execute('CREATE TABLE $table29Name ($creationStringsTable)');
+          break;
+      case 2:
+        //Add any changes for updating from version 2 to version 3.
+       // Add these changes to case 1 to handle upgrades from version 1 to version 3
+      break;
+
+  }
   }
 
   // Database helper methods:
 
-  Future<int> insertStages(String table, StageTimes stages) async {
-    Database db = await database;
-    int id = await db.insert(table, stages.toMap());
-    return id;
+  Future<int?> insertStages(String table, StageTimes stages) async {
+    Database? db = await database;
+    if (db != null) {
+      int id = await db.insert(table, stages.toMap());
+      return id;
+    }
+    return null;
+    // int id = await db.insert(table, stages.toMap());
+    // return id;
   }
 
-  Future<int> insertStrings(String table, StringTimes strings) async {
-    Database db = await database;
-    int id = await db.insert(table, strings.toMap());
-    return id;
+  Future<int?> insertStrings(String table, StringTimes strings) async {
+    Database? db = await database;
+    if (db != null) {
+      int id = await db.insert(table, strings.toMap());
+      return id;
+    }
+    return null;
+    //   int id = await db.insert(table, strings.toMap());
+    //   return id;
   }
 
-  Future<StageTimes> queryStageTimes(String table, int row) async {
-    Database db = await database;
-    List<Map> maps = await db.query(table,
+  Future<StageTimes?> queryStageTimes(String table, int row) async {
+    Database? db = await database;
+    List<Map<String, Object?>>? maps = await db?.query(table,
+        // List<Map> maps = await db!.query(table,
         columns: [
           column5,
           columnShow,
@@ -293,15 +335,15 @@ class DatabaseHelper {
         ],
         where: '$columnId = ?',
         whereArgs: [row]);
-    if (maps.isNotEmpty) {
+    if (maps!.isNotEmpty) {
       return StageTimes.fromMap(maps.first);
     }
     return null;
   }
 
-  Future<StringTimes> queryStringTimes(String table, int row) async {
-    Database db = await database;
-    List<Map> maps = await db.query(table,
+  Future<StringTimes?> queryStringTimes(String table, int row) async {
+    Database? db = await database;
+    List<Map<String, Object?>>? maps = await db?.query(table,
         columns: [
           column5,
           columnShow,
@@ -314,16 +356,16 @@ class DatabaseHelper {
         ],
         where: '$columnId = ?',
         whereArgs: [row]);
-    if (maps.isNotEmpty) {
+    if (maps!.isNotEmpty) {
       return StringTimes.fromMap(maps.first);
     }
     return null;
   }
 
-  Future<int> getCount(String table) async {
+  Future<int?> getCount(String table) async {
     //database connection
-    Database db = await database;
-    var rowCount = await db.rawQuery('SELECT COUNT (*) from $table');
+    Database? db = await database;
+    var rowCount = await db!.rawQuery('SELECT COUNT (*) from $table');
 
     return Sqflite.firstIntValue(rowCount);
   }

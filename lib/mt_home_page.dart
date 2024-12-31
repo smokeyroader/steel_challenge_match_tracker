@@ -12,18 +12,18 @@ import 'resources.dart';
 import 'classification_summary.dart';
 
 class MatchTrackerHomePage extends StatefulWidget {
-  const MatchTrackerHomePage({Key key}) : super(key: key);
+  // const MatchTrackerHomePage({Key? key}) : super(key: key);
+  const MatchTrackerHomePage({super.key});
 
   @override
-  _MatchTrackerHomePageState createState() => _MatchTrackerHomePageState();
+  MatchTrackerHomePageState createState() => MatchTrackerHomePageState();
 }
 
-class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
+class MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   //Provide for use of snackbar.
   final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
-  AudioPlayer player =
-      AudioPlayer(); //Declare audio player for playing app sounds.
+  late AudioPlayer player; //Declare audio player for playing app sounds.
 
 //Stings to hold recently used divisions
   String dropdownValue = 'Select Division';
@@ -32,7 +32,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   String thirdRecent = '';
   String fourthRecent = '';
 
-  String appSounds;
+  late String appSounds;
 
   bool gunsCleared = false;
 
@@ -40,8 +40,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 
   @override
   void initState() {
-    // AudioPlayer player = AudioPlayer();
-    // player = AudioPlayer(); //Initialize audio player (from just_audio package.)
+    player = AudioPlayer(); //Initialize audio player (from just_audio package.)
     //  Check whether application sounds have been turned off.
     getSoundStatus().then((value) {
       appSounds = value;
@@ -57,23 +56,23 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   }
 
 // Methods to retrieve saved recent guns. Need to figure out how to return multiple keys
-  Future<String> getSavedRecent1() async {
+  Future<Object?> getSavedRecent1() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     //If setting is null (no savedguns), return empty string.
     return preferences.get('recent1') ?? '';
   }
 
-  Future<String> getSavedRecent2() async {
+  Future<Object?> getSavedRecent2() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.get('recent2') ?? '';
   }
 
-  Future<String> getSavedRecent3() async {
+  Future<Object?> getSavedRecent3() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.get('recent3') ?? '';
   }
 
-  Future<String> getSavedRecent4() async {
+  Future<Object?> getSavedRecent4() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.get('recent4') ?? '';
   }
@@ -93,25 +92,25 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
   setRecents() {
     getSavedRecent1().then((value) {
       if (value != '') {
-        setState(() => firstRecent = value);
+        setState(() => firstRecent = value.toString());
       }
     });
 
     getSavedRecent2().then((value) {
       if (value != '') {
-        setState(() => secondRecent = value);
+        setState(() => secondRecent = value.toString());
       }
     });
 
     getSavedRecent3().then((value) {
       if (value != '') {
-        setState(() => thirdRecent = value);
+        setState(() => thirdRecent = value.toString());
       }
     });
 
     getSavedRecent4().then((value) {
       if (value != '') {
-        setState(() => fourthRecent = value);
+        setState(() => fourthRecent = value.toString());
       }
     });
   }
@@ -126,6 +125,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             child: Text('Steel Challenge Match Tracker'),
           ),
           backgroundColor: Constants.mtGreen,
+          foregroundColor: Colors.white,
           actions: <Widget>[
             FittedBox(
               child: PopupMenuButton<String>(
@@ -160,10 +160,10 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     padding: const EdgeInsets.only(top: 48.0),
                     child: DropdownButton<String>(
                       value: dropdownValue,
-                      onChanged: (String newValue) {
+                      onChanged: (String? newValue) {
                         if (newValue != 'Select Division') {
-                          dropdownValue = newValue;
-                          setState(() => showRecents(newValue));
+                          dropdownValue = newValue.toString();
+                          setState(() => showRecents(newValue.toString()));
                         } else {
                           _noDivisionAlert(context);
                         }
@@ -236,11 +236,14 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 190.0,
-                    child: Image.asset('images/match_tracker_logo_front.jpg'),
+                    height: 160.0,
+                    child: Image.asset('images/mt_logo_home.png'),
+                  ),
+                  const SizedBox(
+                    height: 14,
                   ),
                   const Text(
-                    'Version 2.2.7',
+                    'Version 2.2.8',
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ],
@@ -354,11 +357,11 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             //If sounds are on, turn them off.
             setSoundStatus('Off');
 
-            var snackbar = SnackBar(
+            var snackbar = const SnackBar(
               backgroundColor: Constants.mtGreen,
               content: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('App sounds off', textAlign: TextAlign.center),
                   Padding(
                     padding: EdgeInsets.only(left: 8.0),
@@ -378,11 +381,11 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           } else {
             //If they're not on, they must be off, so turn them on.
             setSoundStatus('On');
-            var snackBar = SnackBar(
+            var snackBar = const SnackBar(
               backgroundColor: Constants.mtGreen,
               content: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('App sounds on', textAlign: TextAlign.center),
                   Padding(
                     padding: EdgeInsets.only(left: 8.0),
@@ -413,7 +416,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return const Resources();
+              return Resources();
             },
           ),
         );
@@ -437,9 +440,9 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
             context: context,
             // applicationIcon: Image.asset('images/mt_logo_small.png'),
             applicationName: 'Steel Challenge Match Tracker',
-            applicationVersion: 'Version 2.2.7 (January 2024)',
+            applicationVersion: 'Version 2.2.8 (January 2025)',
             applicationLegalese:
-                'Copyright \u00a9 2018-2024 Smokey Road Software',
+                'Copyright \u00a9 2018-2025 Smokey Road Software',
             children: <Widget>[
               const SizedBox(
                 height: 40,
@@ -461,7 +464,7 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return const Privacy();
+                                return Privacy();
                               },
                             ),
                           )),
@@ -586,10 +589,15 @@ class _MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
 }
 
 class TextRecent extends StatelessWidget {
+  // const TextRecent({
+  //   Key? key,
+  //   required this.recent,
+  // }) : super(key: key);
+
   const TextRecent({
-    Key key,
-    @required this.recent,
-  }) : super(key: key);
+    super.key,
+    required this.recent,
+  });
 
   final String recent;
 

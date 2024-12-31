@@ -9,7 +9,7 @@ import 'Constants.dart';
 class CurrentClassification extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
 
-  CurrentClassification({Key key}) : super(key: key);
+  CurrentClassification({super.key});
 
   Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)) {}
@@ -31,6 +31,7 @@ class CurrentClassification extends StatelessWidget {
           'Current Classifications',
         ),
         backgroundColor: Constants.mtGreen,
+        foregroundColor: Colors.white,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -55,9 +56,8 @@ class CurrentClassification extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    side: const BorderSide(width: 1, color: Constants.mtGreen),
-                    primary: Colors.white),
+                    shape: const StadiumBorder(), backgroundColor: Colors.white,
+                    side: const BorderSide(width: 1, color: Constants.mtGreen)),
                 child: const Text(
                   'Go',
                   style: TextStyle(

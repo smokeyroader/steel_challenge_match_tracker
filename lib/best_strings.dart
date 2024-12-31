@@ -18,23 +18,23 @@ class BestStrings extends StatefulWidget {
   final String currBestRound;
 
   const BestStrings({
-    Key key,
-    this.currentDivision,
-    this.currBest5,
-    this.currBestShow,
-    this.currBestSH,
-    this.currBestOL,
-    this.currBestAcc,
-    this.currBestPend,
-    this.currBestSpeed,
-    this.currBestRound,
-  }) : super(key: key);
+    super.key,
+    required this.currentDivision,
+    required this.currBest5,
+    required this.currBestShow,
+    required this.currBestSH,
+    required this.currBestOL,
+    required this.currBestAcc,
+    required this.currBestPend,
+    required this.currBestSpeed,
+    required this.currBestRound,
+  });
 
   @override
-  _BestStringsState createState() => _BestStringsState();
+  BestStringsState createState() => BestStringsState();
 }
 
-class _BestStringsState extends State<BestStrings> {
+class BestStringsState extends State<BestStrings> {
   DatabaseHelper helper = DatabaseHelper.instance;
   final TextEditingController _controller5STR = TextEditingController();
   final TextEditingController _controllerShowSTR = TextEditingController();
@@ -54,7 +54,7 @@ class _BestStringsState extends State<BestStrings> {
   final FocusNode _focusSpeedSTR = FocusNode();
   final FocusNode _focusRoundSTR = FocusNode();
 
-  String divAbbrev;
+  late String divAbbrev;
 
   String bestStage5 = '';
   String bestStageShow = '';
@@ -181,6 +181,10 @@ class _BestStringsState extends State<BestStrings> {
         divAbbrev = 'PRODSTR';
         break;
 
+      case 'Limited Optics (LO)':
+        divAbbrev = 'LOSTR';
+        break;
+
       case 'Limited (LTD)':
         divAbbrev = 'LTDSTR';
         break;
@@ -233,6 +237,7 @@ class _BestStringsState extends State<BestStrings> {
           ),
         ),
         backgroundColor: Constants.mtGreen,
+        foregroundColor: Colors.white,
         actions: const <Widget>[],
       ),
 
@@ -259,12 +264,20 @@ class _BestStringsState extends State<BestStrings> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Text(
-                            widget.currentDivision,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Constants.mtGreen,
+                          child: Card(
+                            elevation: 8,
+                            shadowColor: Constants.mtGreen,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 4, bottom: 4, left: 8, right: 8),
+                              child: Text(
+                                widget.currentDivision,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Constants.mtGreen,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -274,9 +287,9 @@ class _BestStringsState extends State<BestStrings> {
                   Container(
                     height: 45,
                     color: Constants.mtGreen,
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const <Widget>[
+                      children: <Widget>[
                         SizedBox(
                           width: 95,
                           child: Padding(
@@ -963,12 +976,11 @@ class _BestStringsState extends State<BestStrings> {
                             padding: const EdgeInsets.only(right: 8.0),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  shape: const StadiumBorder(),
+                                  shape: const StadiumBorder(), backgroundColor: Colors.white,
                                   side: const BorderSide(
                                     width: 1,
                                     color: Constants.mtGreen,
-                                  ),
-                                  primary: Colors.white),
+                                  )),
                               child: const Text(
                                 'Clear',
                                 style: TextStyle(
@@ -1232,10 +1244,6 @@ class _BestStringsState extends State<BestStrings> {
         ),
         DialogButton(
           color: Colors.green,
-          child: const Text(
-            "Clear",
-            style: TextStyle(color: Colors.white, fontSize: 14),
-          ),
           onPressed: () {
             setState(() {
               _controller5STR.text = '';
@@ -1266,6 +1274,10 @@ class _BestStringsState extends State<BestStrings> {
             Navigator.pop(context);
           },
           width: 20,
+          child: const Text(
+            "Clear",
+            style: TextStyle(color: Colors.white, fontSize: 14),
+          ),
         ),
       ],
     ).show();
@@ -1306,44 +1318,44 @@ class _BestStringsState extends State<BestStrings> {
   }
 
   _getStringTimes() async {
-    int numRows = await helper.getCount(divAbbrev);
+    int? numRows = await helper.getCount(divAbbrev);
 
-    StringTimes stringTimes = await helper.queryStringTimes(divAbbrev, numRows);
-
+    StringTimes? stringTimes =
+        await helper.queryStringTimes(divAbbrev, numRows!);
     if (numRows != 0) {
       setState(() {
-        if (stringTimes.fiveToGo != '' && stringTimes.fiveToGo != null) {
-          _controller5STR.text = stringTimes.fiveToGo;
+        if (stringTimes?.fiveToGo != '' && stringTimes?.fiveToGo != null) {
+          _controller5STR.text = stringTimes!.fiveToGo;
           bestStage5 = _calcBestStage(peak5, stringTimes.fiveToGo, 4);
         }
-        if (stringTimes.showdown != '' && stringTimes.showdown != null) {
-          _controllerShowSTR.text = stringTimes.showdown;
+        if (stringTimes?.showdown != '' && stringTimes?.showdown != null) {
+          _controllerShowSTR.text = stringTimes!.showdown;
           bestStageShow = _calcBestStage(peakShow, stringTimes.showdown, 4);
         }
-        if (stringTimes.smokeAndHope != '' &&
-            stringTimes.smokeAndHope != null) {
-          _controllerSHSTR.text = stringTimes.smokeAndHope;
+        if (stringTimes?.smokeAndHope != '' &&
+            stringTimes?.smokeAndHope != null) {
+          _controllerSHSTR.text = stringTimes!.smokeAndHope;
           bestStageSH = _calcBestStage(peakSH, stringTimes.smokeAndHope, 4);
         }
-        if (stringTimes.outerLimits != '' && stringTimes.outerLimits != null) {
-          _controllerOLSTR.text = stringTimes.outerLimits;
+        if (stringTimes?.outerLimits != '' && stringTimes?.outerLimits != null) {
+          _controllerOLSTR.text = stringTimes!.outerLimits;
           bestStageOL = _calcBestStage(peakOL, stringTimes.outerLimits, 3);
         }
-        if (stringTimes.accelerator != '' && stringTimes.accelerator != null) {
-          _controllerAccSTR.text = stringTimes.accelerator;
+        if (stringTimes?.accelerator != '' && stringTimes?.accelerator != null) {
+          _controllerAccSTR.text = stringTimes!.accelerator;
           bestStageAcc = _calcBestStage(peakAcc, stringTimes.accelerator, 4);
         }
-        if (stringTimes.pendulum != '' && stringTimes.pendulum != null) {
-          _controllerPendSTR.text = stringTimes.pendulum;
+        if (stringTimes?.pendulum != '' && stringTimes?.pendulum != null) {
+          _controllerPendSTR.text = stringTimes!.pendulum;
           bestStagePend = _calcBestStage(peakPend, stringTimes.pendulum, 4);
         }
-        if (stringTimes.speedOption != '' && stringTimes.speedOption != null) {
-          _controllerSpeedSTR.text = stringTimes.speedOption;
+        if (stringTimes?.speedOption != '' && stringTimes?.speedOption != null) {
+          _controllerSpeedSTR.text = stringTimes!.speedOption;
           bestStageSpeed =
               _calcBestStage(peakSpeed, stringTimes.speedOption, 4);
         }
-        if (stringTimes.roundabout != '' && stringTimes.roundabout != null) {
-          _controllerRoundSTR.text = stringTimes.roundabout;
+        if (stringTimes?.roundabout != '' && stringTimes?.roundabout != null) {
+          _controllerRoundSTR.text = stringTimes!.roundabout;
           bestStageRound = _calcBestStage(peakRound, stringTimes.roundabout, 4);
         }
 

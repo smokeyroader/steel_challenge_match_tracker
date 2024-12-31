@@ -11,20 +11,20 @@ class ClassTracker extends StatelessWidget {
   final String currClass;
 
   ClassTracker({
-    Key key,
-    this.division,
-    this.totTime,
-    this.totPeak,
-    this.currClass,
-  }) : super(key: key);
+    super.key,
+    required this.division,
+    required this.totTime,
+    required this.totPeak,
+    required this.currClass,
+  });
 
-  String class1;
-  String class2;
-  String class3;
-  String class4;
-  String class5;
+  late String class1;
+  late String class2;
+  late String class3;
+  late String class4;
+  late String class5;
 
-  String timeCuts;
+  late String timeCuts;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,7 @@ class ClassTracker extends StatelessWidget {
             ),
           ),
           backgroundColor: Constants.mtGreen,
+          foregroundColor: Colors.white,
         ),
         body: Container(
           color: Colors.white,
@@ -57,12 +58,20 @@ class ClassTracker extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Center(
-                      child: Text(
-                        division,
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: Constants.mtGreen,
+                      child: Card(
+                        elevation: 8,
+                        shadowColor: Constants.mtGreen,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 4, bottom: 4, left: 8, right: 8),
+                          child: Text(
+                            division,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Constants.mtGreen,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -74,12 +83,20 @@ class ClassTracker extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'Current Class:  $currClass',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Constants.mtGreen,
+                    child: Card(
+                      elevation: 8,
+                      shadowColor: Constants.mtGreen,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 4, bottom: 4, left: 8, right: 8),
+                        child: Text(
+                          'Current Class:  $currClass',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Constants.mtGreen,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -121,10 +138,10 @@ class ClassTracker extends StatelessWidget {
                   contents: class5,
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
@@ -222,7 +239,7 @@ class ClassTracker extends StatelessWidget {
 
 //Custom widget for displaying time cuts needed for advancement
 class _ClassText extends StatelessWidget {
-  const _ClassText({Key key, @required this.contents}) : super(key: key);
+  const _ClassText({required this.contents});
 
   final String contents;
 

@@ -1,13 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode='23'
-    android:versionName='2.2.7'
+    android:versionCode='24'
+    android:versionName='2.2.8'
     xmlns:tools="http://schemas.android.com/tools"
     package="com.precisionwrite.steelchallengeclasstracker">
 
 
     <uses-sdk android:minSdkVersion="16"
-        android:targetSdkVersion="34"
-        android:maxSdkVersion="34" />
+        android:targetSdkVersion="35"
+        android:maxSdkVersion="35" />
 
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
@@ -39,9 +39,9 @@
                  there is no splash screen (such as the default splash screen
                  defined in @style/LaunchTheme). -->
 
-            <!--            <meta-data-->
-            <!--                android:name="io.flutter.embedding.android.SplashScreenDrawable"-->
-            <!--                android:resource="@drawable/launch_background" />-->
+                        <meta-data
+                            android:name="io.flutter.embedding.android.SplashScreenDrawable"
+                            android:resource="@drawable/match_tracker_logo_10_15_20" />
 
 
 

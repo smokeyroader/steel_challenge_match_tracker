@@ -9,14 +9,13 @@ class TodayTime extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
 
-  const TodayTime(this.color, this.controller, this.focusNode, {Key key})
-      : super(key: key);
+  const TodayTime(this.color, this.controller, this.focusNode, {super.key});
 
   @override
-  _TodayTimeState createState() => _TodayTimeState();
+  TodayTimeState createState() => TodayTimeState();
 }
 
-class _TodayTimeState extends State<TodayTime> {
+class TodayTimeState extends State<TodayTime> {
 //Set a switch to let the system distinguish between changes made by the user
 //and changes made by the system in response to user input. Default value is
 //false and is only changed to true briefly by the autoFormat method.
@@ -74,11 +73,9 @@ class _TodayTimeState extends State<TodayTime> {
       if (text != '') {
         text = text.replaceAll('.', '');
         if (text.length <= 2) {
-          text = '.' + text;
+          text = '.$text';
         } else {
-          text = text.substring(0, text.length - 2) +
-              '.' +
-              text.substring(text.length - 2, text.length);
+          text = '${text.substring(0, text.length - 2)}.${text.substring(text.length - 2, text.length)}';
         }
       }
       //Ignore changes made by the system
@@ -88,7 +85,7 @@ class _TodayTimeState extends State<TodayTime> {
         //Move cursor to first position after text changed
         controller.selection = TextSelection.fromPosition(
           TextPosition(
-            offset: (text ?? '').length,
+            offset: (text).length,
           ),
         );
       });

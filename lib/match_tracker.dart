@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,17 +22,17 @@ class MatchTracker extends StatefulWidget {
   final String appSounds; //Determines whether user has turned off app sounds.
 
   const MatchTracker({
-    Key key,
-    this.currentDivision,
-    this.appSounds, //If 'On,' sounds will play; if 'Off,' sounds will be muted.
-  }) : super(key: key);
+    super.key,
+    required this.currentDivision,
+    required this.appSounds, //If 'On,' sounds will play; if 'Off,' sounds will be muted.
+  });
 
   @override
-  _MatchTrackerState createState() => _MatchTrackerState();
+  MatchTrackerState createState() => MatchTrackerState();
 }
 
-class _MatchTrackerState extends State<MatchTracker> {
-  AudioPlayer player; //Declare audio player for playing app sounds.
+class MatchTrackerState extends State<MatchTracker> {
+  late AudioPlayer player; //Declare audio player for playing app sounds.
 
   //Establish connection with MatchTracker.db.
   DatabaseHelper helper = DatabaseHelper.instance;
@@ -49,19 +51,19 @@ class _MatchTrackerState extends State<MatchTracker> {
   final TextEditingController _controllerRound = TextEditingController();
 
   //Declare focusNodes to detect change in focus of TextFields.
-  FocusNode _focus5;
-  FocusNode _focusShow;
-  FocusNode _focusSH;
-  FocusNode _focusOL;
-  FocusNode _focusAcc;
-  FocusNode _focusPend;
-  FocusNode _focusSpeed;
-  FocusNode _focusRound;
+  late FocusNode _focus5;
+  late FocusNode _focusShow;
+  late FocusNode _focusSH;
+  late FocusNode _focusOL;
+  late FocusNode _focusAcc;
+  late FocusNode _focusPend;
+  late FocusNode _focusSpeed;
+  late FocusNode _focusRound;
 
-  String showToday;
-  String overriddenClass = '';
+  String? showToday;
+  late String overriddenClass = '';
 
-  String stageName;
+  late String stageName;
 
   String best5 = '';
   String bestShow = '';
@@ -81,16 +83,16 @@ class _MatchTrackerState extends State<MatchTracker> {
   String bestClassSpeed = '';
   String bestClassRound = '';
 
-  double peak5;
-  double peakShow;
-  double peakSH;
-  double peakOL;
-  double peakAcc;
-  double peakPend;
-  double peakSpeed;
-  double peakRound;
+  late double peak5;
+  late double peakShow;
+  late double peakSH;
+  late double peakOL;
+  late double peakAcc;
+  late double peakPend;
+  late double peakSpeed;
+  late double peakRound;
 
-  double diff;
+  late double diff;
   double timeShaved = 0.0;
 
   String todayPct5 = '';
@@ -117,16 +119,17 @@ class _MatchTrackerState extends State<MatchTracker> {
 
 // Permit changing today time font to green and bold if a new personal
 //best is entered.
-  Color newBestColor5;
-  Color newBestColorShow;
-  Color newBestColorSH;
-  Color newBestColorOL;
-  Color newBestColorAcc;
-  Color newBestColorPend;
-  Color newBestColorSpeed;
-  Color newBestColorRound;
 
-  String divAbbrev;
+  Color newBestColor5 = Colors.black;
+  Color newBestColorShow = Colors.black;
+  Color newBestColorSH = Colors.black;
+  Color newBestColorOL = Colors.black;
+  Color newBestColorAcc = Colors.black;
+  Color newBestColorPend = Colors.black;
+  Color newBestColorSpeed = Colors.black;
+  Color newBestColorRound = Colors.black;
+
+  late String divAbbrev;
 
   @override
   void initState() {
@@ -217,6 +220,7 @@ class _MatchTrackerState extends State<MatchTracker> {
           'Match Tracker',
         ),
         backgroundColor: Constants.mtGreen,
+        foregroundColor: Colors.white,
         //Create popup menu (stacked dots at the right of AppBar)
         //Menu is populated with a list from the Constants.dart file.
         actions: <Widget>[
@@ -239,26 +243,18 @@ class _MatchTrackerState extends State<MatchTracker> {
       key: scaffoldState,
 
       //GestureDetector to dismiss keyboard by tapping outside any text field
-      // (to account for ios keyboard that does not have a "Done" or check key).
+      // (to account for ios keyboard that does not have a "Done" key).
       body: GestureDetector(
         onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusManager.instance.primaryFocus?.unfocus();
         },
-        //Override both back buttons to save data when tapped
-        //even if the user has not tapped outside the last time text field.
-        child: WillPopScope(
-          onWillPop: () async {
-            FocusScopeNode currentFocus = FocusScope.of(context);
-
-            if (!currentFocus.hasPrimaryFocus) {
-              currentFocus.unfocus();
-            }
-
-            return true;
+        //Override both back buttons to save data when tapped even if the
+        //user has not tapped outside the last (focused) time text field.
+        child: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (bool didpop, Object? result) async {
+            // debugPrint('PopScope called. Value of didpop is $didpop.');
+            _onBackPressed(didpop);
           },
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -284,12 +280,20 @@ class _MatchTrackerState extends State<MatchTracker> {
                               2.0,
                             ),
                             child: FittedBox(
-                              child: Text(
-                                widget.currentDivision,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Constants.mtGreen,
+                              child: Card(
+                                elevation: 8,
+                                shadowColor: Constants.mtGreen,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 4, bottom: 4, left: 8, right: 8),
+                                  child: Text(
+                                    widget.currentDivision,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Constants.mtGreen,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -302,7 +306,8 @@ class _MatchTrackerState extends State<MatchTracker> {
                       color: Constants.mtGreen,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const <Widget>[
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: <Widget>[
                           SizedBox(
                             width: 65,
                             child: _HeadText(
@@ -358,24 +363,23 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    //Only play a sound if app sounds are 'On.'
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/five_to_go_2.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'Five to Go',
                                             'images/five_to_go.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    //Only play a sound if app sounds are 'On.'
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/five_to_go_2.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -469,23 +473,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/showdown.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'Showdown',
                                             'images/showdown.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/showdown.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -583,23 +586,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/smoke_n_hope.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'Smoke & Hope',
                                             'images/smoke_n_hope.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/smoke_n_hope.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -697,23 +699,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/outer_limits.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'Outer Limits',
                                             'images/outer_limits.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/outer_limits.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -811,23 +812,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/accelerator.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'Accelerator',
                                             'images/accelerator.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/accelerator.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -925,23 +925,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/pendulum.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'The Pendulum',
                                             'images/pendulum.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/pendulum.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -1039,23 +1038,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/speed_option.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'Speed Option',
                                             'images/speed_option.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/speed_option.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -1153,23 +1151,22 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   highlightColor: Constants.mtGreen,
                                   borderRadius: BorderRadius.circular(20),
                                   onTap: () async {
-                                    if (widget.appSounds == 'On') {
-                                      await player
-                                          .setAsset('sounds/roundabout.mp3');
-                                      player.play();
-                                    }
-
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return const StageDiagram(
+                                          return StageDiagram(
                                             'Roundabout',
                                             'images/roundabout.jpg',
                                           );
                                         },
                                       ),
                                     );
+                                    if (widget.appSounds == 'On') {
+                                      await player
+                                          .setAsset('sounds/roundabout.mp3');
+                                      player.play();
+                                    }
                                   },
                                   child: const SizedBox(
                                     height: 20,
@@ -1513,11 +1510,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         shape: const StadiumBorder(),
+                                        backgroundColor: Colors.white,
                                         side: const BorderSide(
                                           width: 1,
                                           color: Constants.mtGreen,
-                                        ),
-                                        primary: Colors.white),
+                                        )),
                                     child: const Text(
                                       'Change Gun',
                                       style: TextStyle(
@@ -1532,12 +1529,9 @@ class _MatchTrackerState extends State<MatchTracker> {
                                       //If the user has not tapped outside the active field before
                                       //attempting to change guns, remove focus programmatically to
                                       //activate the _saveStageTimes method.
-                                      FocusScopeNode currentFocus =
-                                          FocusScope.of(context);
 
-                                      if (!currentFocus.hasPrimaryFocus) {
-                                        currentFocus.unfocus();
-                                      }
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
                                       SystemChannels.textInput
                                           .invokeMethod('TextInput.hide');
 
@@ -1575,11 +1569,11 @@ class _MatchTrackerState extends State<MatchTracker> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         shape: const StadiumBorder(),
+                                        backgroundColor: Colors.white,
                                         side: const BorderSide(
                                           width: 1,
                                           color: Constants.mtGreen,
-                                        ),
-                                        primary: Colors.white),
+                                        )),
                                     child: const Text(
                                       'Clear Today',
                                       style: TextStyle(
@@ -1829,13 +1823,6 @@ class _MatchTrackerState extends State<MatchTracker> {
       buttons: [
         DialogButton(
           color: Constants.mtGreen,
-          child: const Text(
-            "Yes",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
           onPressed: () async {
             dialogShowing = false;
             if (widget.appSounds == 'On') {
@@ -2008,20 +1995,31 @@ class _MatchTrackerState extends State<MatchTracker> {
             }
             _saveStageTimes();
             Navigator.pop(context);
+            //Remove focus without triggering the best time dialog again
+            WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
           },
           width: 120,
+          child: const Text(
+            "Yes",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
         ),
         DialogButton(
           color: Constants.mtGreen,
+          onPressed: () {
+            dialogShowing = false;
+            Navigator.pop(context);
+            //Remove focus without triggering the best time dialog again
+            WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          },
+          width: 120,
           child: const Text(
             "No",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
-          onPressed: () {
-            dialogShowing = false;
-            Navigator.pop(context);
-          },
-          width: 120,
         ),
       ],
     ).show();
@@ -2324,10 +2322,6 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
         DialogButton(
           color: Constants.mtGreen,
-          child: const Text(
-            "Clear",
-            style: TextStyle(color: Colors.white, fontSize: 14),
-          ),
           onPressed: () {
             setState(() {
               _controller5.text = '';
@@ -2369,6 +2363,10 @@ class _MatchTrackerState extends State<MatchTracker> {
             Navigator.pop(context);
           },
           width: 20,
+          child: const Text(
+            "Clear",
+            style: TextStyle(color: Colors.white, fontSize: 14),
+          ),
         ),
       ],
     ).show();
@@ -2465,28 +2463,29 @@ class _MatchTrackerState extends State<MatchTracker> {
             todayPct = '';
             todayClass = '';
 
+            var snackBar = SnackBar(
+              backgroundColor: Constants.mtGreen,
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Today times hidden', textAlign: TextAlign.center),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: SizedBox(
+                      height: 20,
+                      width: 50,
+                      child: FaIcon(Icons.visibility_off_sharp),
+                    ),
+                  ),
+                ],
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
             _setShowHide('Off');
             _getShowHide().then((value) async {
               showToday = value;
 
-              var snackBar = SnackBar(
-                backgroundColor: Constants.mtGreen,
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Today times hidden', textAlign: TextAlign.center),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8.0),
-                      child: SizedBox(
-                        height: 20,
-                        width: 50,
-                        child: FaIcon(Icons.visibility_off_sharp),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
               if (widget.appSounds == 'On') {
                 await player.setAsset('sounds/ding.mp3');
                 player.play();
@@ -2498,27 +2497,29 @@ class _MatchTrackerState extends State<MatchTracker> {
           _addTodayPeak();
           _calcTodayPeak();
 
+          var snackBar = SnackBar(
+            backgroundColor: Constants.mtGreen,
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Today times showing', textAlign: TextAlign.center),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: SizedBox(
+                    height: 20,
+                    width: 50,
+                    child: FaIcon(Icons.visibility),
+                  ),
+                ),
+              ],
+            ),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
           _setShowHide('On');
           _getShowHide().then((value) async {
             showToday = value;
-            var snackBar = SnackBar(
-              backgroundColor: Constants.mtGreen,
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text('Today times showing', textAlign: TextAlign.center),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: SizedBox(
-                      height: 20,
-                      width: 50,
-                      child: FaIcon(Icons.visibility),
-                    ),
-                  ),
-                ],
-              ),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
             if (widget.appSounds == 'On') {
               await player.setAsset('sounds/ding.mp3');
               player.play();
@@ -2533,7 +2534,7 @@ class _MatchTrackerState extends State<MatchTracker> {
 //If the current peak percent doesn't support a class previously attained,
 //allow user to override the calculated class and display the correct class.
 //Do not allow choice of a class lower than supported by the current percentage.
-  Future<void> _overrideClass(BuildContext context) async {
+  Future<String?> _overrideClass(BuildContext context) async {
     return await showDialog<String>(
         context: context,
         barrierDismissible: true,
@@ -2783,7 +2784,7 @@ class _MatchTrackerState extends State<MatchTracker> {
                         shape: const StadiumBorder(),
                         side: const BorderSide(
                             width: 1, color: Constants.mtGreen),
-                        primary: Constants.mtGreen),
+                        backgroundColor: Constants.mtGreen),
                     onPressed: () async {
                       Navigator.pop(context);
 
@@ -2921,6 +2922,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       content: Text(
         'Best average string $stage is ${bestAvg.toStringAsFixed(2)}',
         textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.white),
       ),
       action: SnackBarAction(
         textColor: Colors.white,
@@ -2967,7 +2969,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     stageTimes.bestSpeed = bestSpeed;
     stageTimes.bestRound = bestRound;
 
-    if (timeShaved == null || timeShaved == 0.0) {
+    if (timeShaved == 0.0) {
       stageTimes.shavedTime = '';
     } else {
       stageTimes.shavedTime = timeShaved.toStringAsFixed(2);
@@ -2978,48 +2980,47 @@ class _MatchTrackerState extends State<MatchTracker> {
 
 //Restore from database all previously entered and displayed times when user revisits screen.
   _getStageTimes() async {
-    int numRows = await helper.getCount(divAbbrev);
+    int? numRows = await helper.getCount(divAbbrev);
 
-    StageTimes stageTimes = await helper.queryStageTimes(divAbbrev, numRows);
+    StageTimes? stageTimes = await helper.queryStageTimes(divAbbrev, numRows!);
     if (numRows == 0) {
       timeCuts = '';
     } else {
-      _controller5.text = stageTimes.fiveToGo;
+      _controller5.text = stageTimes!.fiveToGo!;
       stageTimes.fiveToGo != ''
-          ? todayPct5 = _calcTodayPercent(peak5, stageTimes.fiveToGo)
+          ? todayPct5 = _calcTodayPercent(peak5, stageTimes.fiveToGo!)
           : todayPct5 = '';
-      _controllerShow.text = stageTimes.showdown;
+      _controllerShow.text = stageTimes.showdown!;
       stageTimes.showdown != ''
-          ? todayPctShow = _calcTodayPercent(peakShow, stageTimes.showdown)
+          ? todayPctShow = _calcTodayPercent(peakShow, stageTimes.showdown!)
           : todayPctShow = '';
-      _controllerSH.text = stageTimes.smokeAndHope;
+      _controllerSH.text = stageTimes.smokeAndHope!;
       stageTimes.smokeAndHope != ''
-          ? todayPctSH = _calcTodayPercent(peakSH, stageTimes.smokeAndHope)
+          ? todayPctSH = _calcTodayPercent(peakSH, stageTimes.smokeAndHope!)
           : todayPctSH = '';
-      _controllerOL.text = stageTimes.outerLimits;
+      _controllerOL.text = stageTimes.outerLimits!;
       stageTimes.outerLimits != ''
-          ? todayPctOL = _calcTodayPercent(peakOL, stageTimes.outerLimits)
+          ? todayPctOL = _calcTodayPercent(peakOL, stageTimes.outerLimits!)
           : todayPctOL = '';
-      _controllerAcc.text = stageTimes.accelerator;
+      _controllerAcc.text = stageTimes.accelerator!;
       stageTimes.accelerator != ''
-          ? todayPctAcc = _calcTodayPercent(peakAcc, stageTimes.accelerator)
+          ? todayPctAcc = _calcTodayPercent(peakAcc, stageTimes.accelerator!)
           : todayPctAcc = '';
-      _controllerPend.text = stageTimes.pendulum;
+      _controllerPend.text = stageTimes.pendulum!;
       stageTimes.pendulum != ''
-          ? todayPctPend = _calcTodayPercent(peakPend, stageTimes.pendulum)
+          ? todayPctPend = _calcTodayPercent(peakPend, stageTimes.pendulum!)
           : todayPctPend = '';
-      _controllerSpeed.text = stageTimes.speedOption;
+      _controllerSpeed.text = stageTimes.speedOption!;
       stageTimes.speedOption != ''
-          ? todayPctSpeed = _calcTodayPercent(peakSpeed, stageTimes.speedOption)
+          ? todayPctSpeed =
+              _calcTodayPercent(peakSpeed, stageTimes.speedOption!)
           : todayPctSpeed = '';
-      _controllerRound.text = stageTimes.roundabout;
+      _controllerRound.text = stageTimes.roundabout!;
       stageTimes.roundabout != ''
-          ? todayPctRound = _calcTodayPercent(peakRound, stageTimes.roundabout)
+          ? todayPctRound = _calcTodayPercent(peakRound, stageTimes.roundabout!)
           : todayPctRound = '';
 
-      stageTimes.best5 != null && stageTimes.best5 != ''
-          ? best5 = stageTimes.best5
-          : best5 = '';
+      stageTimes.best5 != '' ? best5 = stageTimes.best5! : best5 = '';
 
       if (best5 != '') {
         bestClass5 = _calcBestClass(peak5, best5);
@@ -3029,7 +3030,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       }
 
       stageTimes.bestShow != null
-          ? bestShow = stageTimes.bestShow
+          ? bestShow = stageTimes.bestShow!
           : bestShow = '';
       if (bestShow != '') {
         bestClassShow = _calcBestClass(peakShow, bestShow);
@@ -3038,7 +3039,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         }
       }
 
-      stageTimes.bestSH != null ? bestSH = stageTimes.bestSH : bestSH = '';
+      stageTimes.bestSH != null ? bestSH = stageTimes.bestSH! : bestSH = '';
       if (bestSH != '') {
         bestClassSH = _calcBestClass(peakSH, bestSH);
         if (bestSH == _controllerSH.text) {
@@ -3046,7 +3047,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         }
       }
 
-      stageTimes.bestOL != null ? bestOL = stageTimes.bestOL : bestOL = '';
+      stageTimes.bestOL != null ? bestOL = stageTimes.bestOL! : bestOL = '';
       if (bestOL != '') {
         bestClassOL = _calcBestClass(peakOL, bestOL);
         if (bestOL == _controllerOL.text) {
@@ -3054,7 +3055,7 @@ class _MatchTrackerState extends State<MatchTracker> {
         }
       }
 
-      stageTimes.bestAcc != null ? bestAcc = stageTimes.bestAcc : bestAcc = '';
+      stageTimes.bestAcc != null ? bestAcc = stageTimes.bestAcc! : bestAcc = '';
       if (bestAcc != '') {
         bestClassAcc = _calcBestClass(peakAcc, bestAcc);
         if (bestAcc == _controllerAcc.text) {
@@ -3063,7 +3064,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       }
 
       stageTimes.bestPend != null
-          ? bestPend = stageTimes.bestPend
+          ? bestPend = stageTimes.bestPend!
           : bestPend = '';
       if (bestPend != '') {
         bestClassPend = _calcBestClass(peakPend, bestPend);
@@ -3073,7 +3074,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       }
 
       stageTimes.bestSpeed != null
-          ? bestSpeed = stageTimes.bestSpeed
+          ? bestSpeed = stageTimes.bestSpeed!
           : bestSpeed = '';
       if (bestSpeed != '') {
         bestClassSpeed = _calcBestClass(peakSpeed, bestSpeed);
@@ -3083,7 +3084,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       }
 
       stageTimes.bestRound != null
-          ? bestRound = stageTimes.bestRound
+          ? bestRound = stageTimes.bestRound!
           : bestRound = '';
       if (bestRound != '') {
         bestClassRound = _calcBestClass(peakRound, bestRound);
@@ -3092,16 +3093,16 @@ class _MatchTrackerState extends State<MatchTracker> {
         }
       }
 
-      best5 = stageTimes.best5;
-      bestShow = stageTimes.bestShow;
-      bestSH = stageTimes.bestSH;
-      bestOL = stageTimes.bestOL;
-      bestAcc = stageTimes.bestAcc;
-      bestPend = stageTimes.bestPend;
-      bestSpeed = stageTimes.bestSpeed;
-      bestRound = stageTimes.bestRound;
+      best5 = stageTimes.best5!;
+      bestShow = stageTimes.bestShow!;
+      bestSH = stageTimes.bestSH!;
+      bestOL = stageTimes.bestOL!;
+      bestAcc = stageTimes.bestAcc!;
+      bestPend = stageTimes.bestPend!;
+      bestSpeed = stageTimes.bestSpeed!;
+      bestRound = stageTimes.bestRound!;
 
-      if (stageTimes.shavedTime == null || stageTimes.shavedTime == '') {
+      if (stageTimes.shavedTime.isEmpty || stageTimes.shavedTime == '') {
         timeShaved = 0.0;
         timeCuts = '';
       } else {
@@ -3172,10 +3173,6 @@ class _MatchTrackerState extends State<MatchTracker> {
         ),
         DialogButton(
           color: Constants.mtGreen,
-          child: const Text(
-            "Clear",
-            style: TextStyle(color: Colors.white, fontSize: 14),
-          ),
           onPressed: () async {
             _controller5.text = '';
             _controllerShow.text = '';
@@ -3255,12 +3252,16 @@ class _MatchTrackerState extends State<MatchTracker> {
             }
           },
           width: 20,
+          child: const Text(
+            "Clear",
+            style: TextStyle(color: Colors.white, fontSize: 14),
+          ),
         ),
       ],
     ).show();
   }
 
-  _clearStringTimes() async {
+  void _clearStringTimes() async {
     StringTimes stringTimes = StringTimes();
     setState(() {
       stringTimes.fiveToGo = '';
@@ -3273,7 +3274,7 @@ class _MatchTrackerState extends State<MatchTracker> {
       stringTimes.roundabout = '';
     });
 
-    await helper.insertStrings(divAbbrev + 'STR', stringTimes);
+    await helper.insertStrings('${divAbbrev}STR', stringTimes);
   }
 
 //Determine if user has scored at least 4 classifier stages before displaying
@@ -3308,7 +3309,7 @@ class _MatchTrackerState extends State<MatchTracker> {
     return count;
   }
 
-  _noClassification(context) async {
+  void _noClassification(context) async {
     await player.setAsset('sounds/error.mp3');
     player.play();
     Alert(
@@ -3318,20 +3319,40 @@ class _MatchTrackerState extends State<MatchTracker> {
       buttons: [
         DialogButton(
           color: Constants.mtGreen,
+          onPressed: () => Navigator.pop(context),
+          width: 120,
           child: const Text(
             "OK",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
         )
       ],
     ).show();
   }
+//Method to handle PopScope action when a back button is tapped
+  void _onBackPressed(didpop) {
+    // debugPrint('_onBackPressed called.');
+    if (didpop) {
+      return;
+    }
+    //Unfocus all text fields and hide keyboard
+    FocusManager.instance.primaryFocus?.unfocus();
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+
+    //Delay back action to allow time for the _confirmNewBestTime dialog
+    //to show if necessary (which will cancel the back action)
+    Future.delayed(Duration(milliseconds: 200), () {
+      //If the new best time dialog is not showing, leave the scoring screen
+      if (!dialogShowing) {
+        if (!mounted) return;
+        Navigator.of(context).pop();
+             }
+    });
+  }
 }
 
 class _HeadText extends StatelessWidget {
-  const _HeadText({Key key, @required this.text}) : super(key: key);
+  const _HeadText({required this.text});
   final String text;
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ class StageDiagram extends StatelessWidget {
   final String stage;
   final String image;
 
-  const StageDiagram(this.stage, this.image, {Key key}) : super(key: key);
+  const StageDiagram(this.stage, this.image, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,7 @@ class StageDiagram extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Constants.mtGreen,
+        foregroundColor: Colors.white,
       ),
       body: InteractiveViewer(
         child: Image.asset(image),
