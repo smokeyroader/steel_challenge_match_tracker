@@ -32,27 +32,25 @@ android {
     namespace = "com.precisionwrite.steelchallengeclasstracker"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "25.1.8937393"
-    compileSdkVersion 35
-//    compileSdkVersion 34
+    compileSdkVersion 34
     // compileSdkVersion flutter.compileSdkVersion
 
     compileOptions {
 
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+//        sourceCompatibility JavaVersion.VERSION_21
+//        targetCompatibility JavaVersion.VERSION_21
 
-//        sourceCompatibility JavaVersion.VERSION_17
-//        targetCompatibility JavaVersion.VERSION_17
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+
     }
 
     kotlinOptions {
 
-        jvmTarget = JavaVersion.VERSION_21
+//        jvmTarget = JavaVersion.VERSION_21
 
-//        jvmTarget = JavaVersion.VERSION_17
-//        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_17
+
     }
 
     sourceSets {

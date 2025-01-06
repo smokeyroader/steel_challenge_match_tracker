@@ -3329,6 +3329,7 @@ class MatchTrackerState extends State<MatchTracker> {
       ],
     ).show();
   }
+
 //Method to handle PopScope action when a back button is tapped
   void _onBackPressed(didpop) {
     // debugPrint('_onBackPressed called.');
@@ -3346,7 +3347,7 @@ class MatchTrackerState extends State<MatchTracker> {
       if (!dialogShowing) {
         if (!mounted) return;
         Navigator.of(context).pop();
-             }
+      }
     });
   }
 }

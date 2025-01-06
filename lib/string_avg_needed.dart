@@ -222,8 +222,7 @@ class TimesNeeded extends StatelessWidget {
                 child: Row(children: [
                   Padding(
                     padding: EdgeInsets.only(left: 24, right: 24),
-                    child: Text(
-                      'Note: Times may not be precise due to rounding.',
+                    child: Text('Times may not be precise due to rounding.',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 60,
