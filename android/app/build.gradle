@@ -32,7 +32,7 @@ android {
     namespace = "com.precisionwrite.steelchallengeclasstracker"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "25.1.8937393"
-    compileSdkVersion 34
+    compileSdkVersion 35
     // compileSdkVersion flutter.compileSdkVersion
 
     compileOptions {

@@ -243,7 +243,7 @@ class MatchTrackerHomePageState extends State<MatchTrackerHomePage> {
                     height: 14,
                   ),
                   const Text(
-                    'Version 2.2.8',
+                    'Next Android Version 2.2.9+26',
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ],
